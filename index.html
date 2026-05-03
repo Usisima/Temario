@@ -102,56 +102,56 @@
   <!-- Semestre 1 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Primer Semestre</h2>
-    <span class="semestre-creditos">Total: 48 créditos</span>
+    <span class="semestre-creditos"> 48 créditos</span>
   </div>
   <div class="materias-grid" id="semestre1-grid"></div>
   
   <!-- Semestre 2 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Segundo Semestre</h2>
-    <span class="semestre-creditos">Total: 38 créditos</span>
+    <span class="semestre-creditos"> 38 créditos + 1 Optativa</span>
   </div>
   <div class="materias-grid" id="semestre2-grid"></div>
   
   <!-- Semestre 3 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Tercer Semestre</h2>
-    <span class="semestre-creditos">Total: 28 créditos</span>
+    <span class="semestre-creditos"> 28 créditos + 2 Optativas</span>
   </div>
   <div class="materias-grid" id="semestre3-grid"></div>
   
   <!-- Semestre 4 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Cuarto Semestre</h2>
-    <span class="semestre-creditos">Total: 38 créditos</span>
+    <span class="semestre-creditos"> 38 créditos + 1 Optativa</span>
   </div>
   <div class="materias-grid" id="semestre4-grid"></div>
   
   <!-- Semestre 5 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Quinto Semestre</h2>
-    <span class="semestre-creditos">Total: 30 créditos</span>
+    <span class="semestre-creditos"> 30 créditos + 1 Optativa</span>
   </div>
   <div class="materias-grid" id="semestre5-grid"></div>
   
   <!-- Semestre 6 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Sexto Semestre</h2>
-    <span class="semestre-creditos">Total: 10 créditos + Optativas</span>
+    <span class="semestre-creditos"> 10 créditos + 3 Optativas</span>
   </div>
   <div class="materias-grid" id="semestre6-grid"></div>
   
   <!-- Semestre 7 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Séptimo Semestre</h2>
-    <span class="semestre-creditos">Optativas</span>
+    <span class="semestre-creditos">4 Optativas</span>
   </div>
   <div class="materias-grid" id="semestre7-grid"></div>
   
   <!-- Semestre 8 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Octavo Semestre</h2>
-    <span class="semestre-creditos">Optativas</span>
+    <span class="semestre-creditos">4 Optativas</span>
   </div>
   <div class="materias-grid" id="semestre8-grid"></div>
 </div>
@@ -159,28 +159,100 @@
 <script>
 // SEMESTRE 1
 const semestre1 = [
-  {
-    id: 'algebra1',
-    name: 'Álgebra Superior I',
-    icon: '∑',
-    creditos: '10 créditos',
-    meta: [{label: 'Clave', value: '0007'}, {label: 'Créditos', value: '10'}],
-    temario: [
-      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
-      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
-      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
-    ],
-    bibliografia: {
-      basicas: [
-        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']},
-        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']},
-        {name: 'Libro 3', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']}
-      ],
-      complementarias: ['Libro complementario 1', 'Libro complementario 2', 'Libro complementario 3']
+{// Álgebra Superior I
+  id: 'algebra1',
+  name: 'Álgebra Superior I',
+  icon: '∑',
+  creditos: '10 créditos',
+  meta: [
+    {label: 'Clave', value: '0007'},
+    {label: 'Créditos', value: '10'}
+  ],
+  temario: [
+    {
+      num: 1,
+      name: 'Conjuntos',
+      subtemas: [
+        'Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío, Conjunto Universal',
+        'Operaciones con conjuntos: unión, intersección, complemento y diferencia',
+        'Conjunto potencia. Producto cartesiano. Familias de conjuntos'
+      ]
     },
-    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2', 'Materia subsecuente 3']
+    {
+      num: 2,
+      name: 'Relaciones y funciones',
+      subtemas: [
+        'Relaciones (dominio, codominio e imagen)',
+        'Funciones (imágenes e imágenes inversas)',
+        'Composición de funciones. Función inversa',
+        'Funciones inyectivas, suprayectivas y biyectivas',
+        'Cardinalidad. Conjuntos finitos e infinitos. Funciones entre conjuntos finitos',
+        'Relaciones de equivalencia y particiones'
+      ]
+    },
+    {
+      num: 3,
+      name: 'Números naturales y cálculo combinatoria',
+      subtemas: [
+        'Los números naturales. Principio de inducción',
+        'Cálculo combinatorio: ordenaciones con repetición, ordenaciones, permutaciones y combinaciones',
+        'Teorema del binomio. Relaciones entre coeficientes binomiales'
+      ]
+    },
+    {
+      num: 4,
+      name: 'Espacios vectoriales',
+      subtemas: [
+        'Los espacios ℝ² y ℝ³. Interpretación geométrica',
+        'El espacio vectorial ℝⁿ',
+        'Subespacios. Combinaciones lineales. Subespacio generado por un conjunto de vectores',
+        'Dependencia e independencia lineal',
+        'Bases. Dimensión'
+      ]
+    },
+    {
+      num: 5,
+      name: 'Matrices y determinantes',
+      subtemas: [
+        'Matrices, definición y operaciones. Transpuesta de una matriz',
+        'Operaciones elementales: Matrices escalón reducidas. Rango de una matriz',
+        'El determinante de una matriz cuadrada: definición y propiedades',
+        'Cálculo de determinantes',
+        'Caracterización del rango de una matriz por medio del determinante'
+      ]
+    },
+    {
+      num: 6,
+      name: 'Sistemas de ecuaciones lineales',
+      subtemas: [
+        'Sistemas, soluciones, matriz y matriz aumentada',
+        'Criterios de existencia de soluciones',
+        'Regla de Cramer',
+        'Espacio de soluciones de un sistema no homogéneo',
+        'Resolución de sistemas (eliminación)'
+      ]
+    }
+  ],
+  bibliografia: {
+    basicas: [
+      {name: 'Cárdenas, H., Lluis, E., Raggi, F., Tomás, F. — Álgebra Superior. México: Ed. Trillas, 1974', capitulos: ['Conjuntos', 'Relaciones y funciones', 'Números naturales', 'Espacios vectoriales', 'Matrices y determinantes', 'Sistemas de ecuaciones lineales']},
+      {name: 'Nachbin, L. — Álgebra Elemental. Washington, USA: Secretaría General de la OEA, Programa Regional de Desarrollo Científico y Tecnológico, 1986', capitulos: ['Conjuntos', 'Relaciones', 'Funciones', 'Números naturales']}
+    ],
+    complementarias: [
+      'Dodge, C. W. — Logic and Numbers. Boston: Weber & Schmidt, 1969',
+      'Friedberg, S. H., Insel, A. J., Spence, L. E. — Álgebra Lineal. México: Publicaciones Cultural, 1986',
+      'Gentile, E. R. — Aritmética Elemental. Washington: OEA, 1985',
+      'Grimaldi, R. P. — Matemáticas Discreta y Combinatoria. México: Sistemas Técnicos de Edición, 1998',
+      'Grossman, S. I. — Álgebra Lineal. México: McGraw-Hill, 1996',
+      'Halmos, P. R. — Teoría Intuitiva de los Conjuntos. México: Ed. Continental, 1973',
+      'Hoffman, K., Kunze, R. — Álgebra Lineal. Bogotá: Prentice Hall Internacional, 1973',
+      'Lang, S. — Álgebra Lineal. México: Sistemas Técnicos de Edición, 1986',
+      'Niven, I. M., Zuckerman, H. S. — Introducción a la Teoría de los Números. México: Limusa-Wiley, 1969'
+    ]
   },
-  {// Cálculo Diferencial e Integral I
+  subsecuentes: ['Álgebra Superior II', 'Cálculo Diferencial e Integral III', 'Taller de Modelación I']
+},
+{// Cálculo Diferencial e Integral I
   id: 'calculo1',
   name: 'Cálculo Diferencial e Integral I',
   icon: '∫',
