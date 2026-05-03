@@ -4,215 +4,222 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Licenciatura en Matemáticas — Plan 1983</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ─── Design Tokens ─────────────────────────────────────── */
+/* ─── Tokens ─────────────────────────────────────────────── */
 :root {
-  --bg:          #F7F5F0;
-  --surface:     #FFFFFF;
-  --surface-2:   #FFFFFF;
-  --border:      #E2DDD4;
-  --border-soft: #EDE9E2;
+  --bg:        #F0EDE8;
+  --surface:   #FAFAF8;
+  --surface-2: #F0EDE8;
+  --border:    #DDD9D2;
 
-  --ink:         #1A1714;
-  --ink-2:       #4A4540;
-  --ink-3:       #8A8480;
+  --ink:       #18160F;
+  --ink-2:     #524E46;
+  --ink-3:     #9A968E;
 
-  --accent:      #2B5EAB;
-  --accent-bg:   #EBF1FB;
-  --accent-soft: #D6E4F7;
+  --blue:      #1D52C4;
+  --blue-bg:   #EAF0FD;
+  --blue-soft: #C8D8F9;
 
-  --gold:        #B07D2E;
-  --gold-bg:     #FBF4E6;
+  --green:     #196B3C;
+  --green-bg:  #E4F4EC;
+  --green-mid: #2E7D52;
 
-  --green:       #2E7D52;
-  --green-bg:    #E8F5EE;
+  --amber:     #92580A;
+  --amber-bg:  #FEF3DC;
+  --amber-bdr: rgba(146,88,10,.18);
 
-  --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   14px;
+  --r-sm:  8px;
+  --r-md: 12px;
+  --r-lg: 16px;
 
-  --shadow-sm:   0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-  --shadow-md:   0 4px 12px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.04);
-
-  --transition:  200ms cubic-bezier(.25,.8,.25,1);
+  --ease: 220ms cubic-bezier(.25,.8,.25,1);
 }
 
-/* ─── Reset & Base ──────────────────────────────────────── */
+/* ─── Reset ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
 
+/* ─── Body — mobile-first ────────────────────────────────── */
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 16px;          /* comfortable base on phone */
   background: var(--bg);
   color: var(--ink);
   min-height: 100vh;
-  padding: 2.5rem 1.25rem 5rem;
-  line-height: 1.6;
+  /* safe padding: top for status bar, bottom for home indicator */
+  padding: env(safe-area-inset-top, 0px) 0 calc(env(safe-area-inset-bottom,0px) + 4rem);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Page Header ───────────────────────────────────────── */
+/* ─── Sticky page header ─────────────────────────────────── */
 .page-header {
-  max-width: 1380px;
-  margin: 0 auto 3rem;
-  border-bottom: 1.5px solid var(--border);
-  padding-bottom: 1.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(240,237,232,.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: .9rem 1rem .85rem;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: .75rem;
 }
+
 .page-title {
-  font-family: 'Lora', serif;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--ink);
   letter-spacing: -.02em;
+  line-height: 1.2;
 }
 .page-subtitle {
-  font-size: 13px;
+  font-size: 11.5px;
   color: var(--ink-3);
-  margin-top: 4px;
-  font-weight: 300;
+  margin-top: 2px;
+  font-weight: 400;
 }
-.global-stats {
-  display: flex;
-  gap: .75rem;
-  flex-wrap: wrap;
-}
-.stat-pill {
-  font-family: 'IBM Plex Mono', monospace;
+
+.global-pill {
+  font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 500;
-  padding: 4px 12px;
+  padding: 5px 11px;
   border-radius: 99px;
-  background: var(--accent-bg);
-  color: var(--accent);
-  border: 1px solid var(--accent-soft);
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid var(--blue-soft);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* ─── Container ─────────────────────────────────────────── */
-.container { max-width: 1380px; margin: 0 auto; }
+/* ─── Container ──────────────────────────────────────────── */
+.container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 .875rem;
+}
 
-/* ─── Semester Section ──────────────────────────────────── */
-.semester-section { margin-bottom: 3rem; }
+/* ─── Semester section ───────────────────────────────────── */
+.semester-section { margin-top: 1.75rem; }
 
 .semester-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: .75rem;
-  margin-bottom: 1.25rem;
+  gap: .5rem;
+  margin-bottom: .6rem;
 }
 
-.semester-left { display: flex; align-items: baseline; gap: 1rem; }
-
 .semester-title {
-  font-family: 'Lora', serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: -.01em;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  letter-spacing: .04em;
+  text-transform: uppercase;
 }
 
 .semester-credits {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
   color: var(--ink-3);
-  background: var(--surface-2);
+  background: var(--surface);
   border: 1px solid var(--border);
-  padding: 3px 10px;
+  padding: 2px 8px;
   border-radius: 99px;
+  white-space: nowrap;
 }
 
-/* Semester progress bar */
+/* Semester progress row */
 .semester-progress-wrap {
   display: flex;
   align-items: center;
-  gap: .6rem;
-  flex-shrink: 0;
+  gap: .5rem;
+  margin-bottom: 1rem;
 }
 .semester-bar-track {
-  width: 120px;
-  height: 4px;
+  flex: 1;
+  height: 3px;
   background: var(--border);
   border-radius: 99px;
   overflow: hidden;
 }
 .semester-bar-fill {
   height: 100%;
-  background: var(--accent);
+  background: var(--blue);
   border-radius: 99px;
-  transition: width .5s ease;
+  transition: width .55s ease;
   width: 0%;
 }
 .semester-pct {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
   font-weight: 500;
-  color: var(--accent);
-  min-width: 32px;
+  color: var(--blue);
+  min-width: 30px;
+  text-align: right;
 }
 
-.semester-divider {
-  height: 1.5px;
-  background: linear-gradient(90deg, var(--gold) 0%, transparent 60%);
-  margin-bottom: 1.5rem;
-  border: none;
-}
-
-/* ─── Subjects Grid ─────────────────────────────────────── */
+/* ─── Subjects stack (single column on mobile) ───────────── */
 .subjects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
-  gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
 }
-@media (max-width: 640px) { .subjects-grid { grid-template-columns: 1fr; } }
+@media (min-width: 700px) {
+  .subjects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
 
-/* ─── Subject Card ──────────────────────────────────────── */
+/* ─── Card ───────────────────────────────────────────────── */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--r-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition), border-color var(--transition);
+  /* subtle lift */
+  box-shadow: 0 1px 0 rgba(255,255,255,.8) inset,
+              0 1px 4px rgba(0,0,0,.05);
 }
-.card:hover { box-shadow: var(--shadow-md); border-color: #D0C9BE; }
 
-/* Card header */
+/* Card header — large tap target */
 .card-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.1rem 1.25rem;
+  gap: .85rem;
+  padding: 1rem 1rem;
   cursor: pointer;
   user-select: none;
-  gap: 1rem;
+  min-height: 72px;          /* generous touch target */
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--ease);
 }
-
-.card-left { display: flex; align-items: center; gap: .85rem; flex: 1; min-width: 0; }
+.card.open .card-header { background: var(--blue-bg); }
 
 .card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: var(--accent-bg);
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-md);
+  background: var(--blue-bg);
+  border: 1px solid var(--blue-soft);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   flex-shrink: 0;
-  border: 1px solid var(--accent-soft);
 }
+.card.open .card-icon { background: white; }
 
 .card-info { flex: 1; min-width: 0; }
 
 .card-name {
-  font-family: 'Lora', serif;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1rem;           /* 16px — comfortable phone reading */
+  font-weight: 700;
   color: var(--ink);
   line-height: 1.3;
   word-break: break-word;
@@ -221,49 +228,35 @@ body {
 .card-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem;
-  margin-top: .35rem;
+  gap: .3rem;
+  margin-top: .4rem;
 }
-
 .meta-tag {
-  font-size: 10.5px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
   color: var(--ink-3);
   background: var(--surface-2);
   border: 1px solid var(--border);
-  padding: 1px 8px;
+  padding: 2px 7px;
   border-radius: 99px;
 }
 .meta-tag strong { color: var(--ink-2); font-weight: 500; }
 
-/* Card right controls */
+/* Right side of card header */
 .card-controls {
   display: flex;
   align-items: center;
-  gap: .75rem;
+  gap: .5rem;
   flex-shrink: 0;
 }
 
-.card-pct {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--accent);
-  min-width: 38px;
-  text-align: right;
-}
-
-/* Circular progress */
-.circle-progress {
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-}
-.circle-bg { fill: none; stroke: var(--border); stroke-width: 3; }
+/* Circular progress — bigger on mobile */
+.circle-progress { width: 36px; height: 36px; flex-shrink: 0; }
+.circle-bg { fill: none; stroke: var(--border); stroke-width: 3.5; }
 .circle-fg {
   fill: none;
-  stroke: var(--accent);
-  stroke-width: 3;
+  stroke: var(--blue);
+  stroke-width: 3.5;
   stroke-linecap: round;
   stroke-dasharray: 82;
   stroke-dashoffset: 82;
@@ -273,15 +266,15 @@ body {
 }
 
 .chevron {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   color: var(--ink-3);
-  transition: transform .35s ease;
+  transition: transform .3s ease;
   flex-shrink: 0;
 }
-.card.open .chevron { transform: rotate(180deg); }
+.card.open .chevron { transform: rotate(180deg); color: var(--blue); }
 
-/* Card body */
+/* ─── Card body ──────────────────────────────────────────── */
 .card-body {
   max-height: 0;
   overflow: hidden;
@@ -289,218 +282,188 @@ body {
 }
 .card.open .card-body { max-height: 9999px; }
 
-/* ─── Tabs ──────────────────────────────────────────────── */
+/* ─── Tabs ───────────────────────────────────────────────── */
 .tabs {
   display: flex;
-  border-bottom: 1px solid var(--border-soft);
   background: var(--surface-2);
-  padding: 0 1.25rem;
+  border-bottom: 1px solid var(--border);
+  padding: 0 1rem;
 }
 .tab {
-  font-size: 12.5px;
-  font-weight: 500;
-  padding: .65rem 1rem;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: .75rem 1rem;      /* tall tab — easy to tap */
   cursor: pointer;
   color: var(--ink-3);
-  border-bottom: 2px solid transparent;
+  border-bottom: 2.5px solid transparent;
   margin-bottom: -1px;
-  transition: color var(--transition), border-color var(--transition);
-  letter-spacing: .01em;
+  transition: color var(--ease), border-color var(--ease);
+  -webkit-tap-highlight-color: transparent;
 }
-.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-.tab:hover:not(.active) { color: var(--ink-2); }
+.tab.active { color: var(--blue); border-bottom-color: var(--blue); }
 
-.tab-panel { display: none; padding: 1.25rem; }
+.tab-panel { display: none; padding: 1rem; }
 .tab-panel.active { display: block; }
 
-/* ─── Temario ───────────────────────────────────────────── */
+/* ─── Section label ──────────────────────────────────────── */
 .section-label {
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink-3);
-  margin: 1rem 0 .5rem;
+  margin: 1.1rem 0 .5rem;
 }
 .section-label:first-child { margin-top: 0; }
 
+/* ─── Temario ────────────────────────────────────────────── */
 .tema-item {
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
   overflow: hidden;
-  margin-bottom: .5rem;
+  margin-bottom: .6rem;
 }
-
 .tema-head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: .6rem;
-  padding: .6rem .85rem;
+  padding: .75rem .9rem;
   background: var(--surface-2);
 }
-
 .tema-num {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   font-weight: 500;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 1px solid var(--accent-soft);
-  padding: 1px 6px;
+  color: var(--blue);
+  background: var(--blue-bg);
+  border: 1px solid var(--blue-soft);
+  padding: 2px 6px;
   border-radius: 4px;
   flex-shrink: 0;
+  margin-top: 1px;
 }
-
 .tema-name {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;           /* larger than before */
+  font-weight: 600;
   color: var(--ink);
+  line-height: 1.35;
 }
-
 .subtema {
-  font-size: 12px;
+  font-size: 13px;           /* readable at arm's length */
   color: var(--ink-2);
-  padding: .4rem .85rem;
-  border-top: 1px solid var(--border-soft);
-  line-height: 1.55;
+  padding: .55rem .9rem;
+  border-top: 1px solid var(--border);
+  line-height: 1.6;
   display: flex;
-  gap: .5rem;
+  gap: .55rem;
 }
-.subtema::before {
-  content: "·";
-  color: var(--accent);
-  flex-shrink: 0;
-  margin-top: 0;
-}
+.subtema::before { content: "·"; color: var(--blue); flex-shrink: 0; margin-top: 2px; }
 
-/* ─── Bibliography ──────────────────────────────────────── */
+/* ─── Bibliography ───────────────────────────────────────── */
 .book-card {
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
   overflow: hidden;
-  margin-bottom: .5rem;
-  transition: border-color var(--transition);
+  margin-bottom: .6rem;
 }
-.book-card:hover { border-color: var(--accent-soft); }
-
 .book-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .7rem .9rem;
+  min-height: 56px;          /* tap-friendly */
+  padding: .75rem .9rem;
   cursor: pointer;
   gap: .75rem;
   background: var(--surface);
-  transition: background var(--transition);
+  -webkit-tap-highlight-color: transparent;
 }
-.book-header:hover { background: var(--surface-2); }
-
 .book-left { display: flex; align-items: flex-start; gap: .6rem; flex: 1; min-width: 0; }
-
 .book-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px; height: 7px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--blue);
   flex-shrink: 0;
   margin-top: .35rem;
 }
-
 .book-name {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink-2);
   line-height: 1.5;
   word-break: break-word;
 }
-
 .book-right { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
-
 .book-pct {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   font-weight: 500;
-  color: var(--accent);
-  background: var(--accent-bg);
-  padding: 2px 7px;
+  color: var(--blue);
+  background: var(--blue-bg);
+  padding: 2px 8px;
   border-radius: 99px;
-  border: 1px solid var(--accent-soft);
+  border: 1px solid var(--blue-soft);
 }
-
 .book-chev {
-  width: 13px; height: 13px;
+  width: 16px; height: 16px;
   color: var(--ink-3);
   transition: transform .25s ease;
   flex-shrink: 0;
 }
 .book-card.open .book-chev { transform: rotate(180deg); }
 
-/* Progress bar */
-.book-progress {
-  height: 2px;
-  background: var(--border);
-}
+.book-progress { height: 3px; background: var(--border); }
 .book-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent), #5B8DD9);
+  background: linear-gradient(90deg, var(--blue), #5B8DD9);
   transition: width .4s ease;
   width: 0%;
 }
 
-/* Chapter list */
-.book-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .35s ease;
-}
-.book-card.open .book-body { max-height: 600px; }
+.book-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.book-card.open .book-body { max-height: 700px; }
 
-.chapters-list { padding: .6rem .9rem .85rem; display: flex; flex-direction: column; gap: 2px; }
+.chapters-list { padding: .5rem .75rem .85rem; display: flex; flex-direction: column; gap: 1px; }
 
+/* Chapter row — tall for thumb tapping */
 .chapter-item {
   display: flex;
   align-items: center;
-  gap: .65rem;
-  padding: .45rem .6rem;
-  border-radius: var(--radius-sm);
-  transition: background var(--transition);
+  gap: .75rem;
+  padding: .65rem .5rem;
+  border-radius: var(--r-sm);
+  transition: background var(--ease);
   cursor: pointer;
+  min-height: 44px;
 }
-.chapter-item:hover { background: var(--surface-2); }
+.chapter-item:active { background: var(--surface-2); }
 .chapter-item.read { background: var(--green-bg); }
 
 .cap-check {
-  width: 15px;
-  height: 15px;
-  border: 1.5px solid var(--border);
-  border-radius: 4px;
+  width: 20px;              /* larger checkbox on touch */
+  height: 20px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
   flex-shrink: 0;
   cursor: pointer;
   appearance: none;
+  -webkit-appearance: none;
   background: white;
   position: relative;
-  transition: all var(--transition);
+  transition: all var(--ease);
 }
-.cap-check:checked {
-  background: var(--green);
-  border-color: var(--green);
-}
+.cap-check:checked { background: var(--green-mid); border-color: var(--green-mid); }
 .cap-check:checked::after {
   content: '';
   position: absolute;
-  width: 4px;
-  height: 7px;
-  border: 1.5px solid white;
-  border-top: none;
-  border-left: none;
-  transform: rotate(45deg) translate(-0.5px, -1px);
-  left: 3px;
-  top: 0px;
+  width: 5px; height: 9px;
+  border: 2px solid white;
+  border-top: none; border-left: none;
+  transform: rotate(45deg) translate(0px,-1px);
+  left: 4px; top: 1px;
 }
-
 .chapter-label {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink-2);
-  line-height: 1.4;
+  line-height: 1.45;
   flex: 1;
   cursor: pointer;
 }
@@ -510,75 +473,79 @@ body {
   text-decoration-color: rgba(46,125,82,.4);
 }
 
-/* Complementary */
+/* ─── Complementary ──────────────────────────────────────── */
 .comp-section {
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
   overflow: hidden;
-  margin-top: .25rem;
+  margin-top: .35rem;
 }
 .comp-toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .65rem .85rem;
+  min-height: 48px;
+  padding: .75rem .9rem;
   cursor: pointer;
   background: var(--surface-2);
-  transition: background var(--transition);
+  -webkit-tap-highlight-color: transparent;
 }
-.comp-toggle:hover { background: var(--border-soft); }
-.comp-title { font-size: 12.5px; font-weight: 500; color: var(--ink-2); }
-.comp-chev { width: 13px; height: 13px; color: var(--ink-3); transition: transform .25s; flex-shrink: 0; }
+.comp-title { font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.comp-chev {
+  width: 16px; height: 16px;
+  color: var(--ink-3);
+  transition: transform .25s;
+  flex-shrink: 0;
+}
 .comp-section.open .comp-chev { transform: rotate(180deg); }
 .comp-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-.comp-section.open .comp-body { max-height: 600px; }
+.comp-section.open .comp-body { max-height: 700px; }
 .comp-entry {
-  font-size: 11.5px;
+  font-size: 12.5px;
   color: var(--ink-3);
-  padding: .45rem .85rem;
-  border-top: 1px solid var(--border-soft);
-  line-height: 1.5;
+  padding: .6rem .9rem;
+  border-top: 1px solid var(--border);
+  line-height: 1.55;
   display: flex;
   gap: .5rem;
 }
 .comp-entry::before { content: "→"; color: var(--border); flex-shrink: 0; }
 
-/* ─── Subsecuentes ──────────────────────────────────────── */
+/* ─── Subsecuentes ───────────────────────────────────────── */
 .subsec-block {
-  margin: 0 1.25rem 1.25rem;
-  padding: .8rem 1rem;
-  background: var(--gold-bg);
-  border: 1px solid rgba(176,125,46,.2);
-  border-radius: var(--radius-md);
+  margin: 0 1rem 1rem;
+  padding: .9rem 1rem;
+  background: var(--amber-bg);
+  border: 1px solid var(--amber-bdr);
+  border-radius: var(--r-md);
 }
 .subsec-label {
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .1em;
+  font-weight: 700;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: .5rem;
+  color: var(--amber);
+  margin-bottom: .55rem;
 }
 .subsec-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
 .subsec-tag {
-  font-size: 11.5px;
-  color: var(--gold);
+  font-size: 12px;
+  color: var(--amber);
   background: white;
-  border: 1px solid rgba(176,125,46,.25);
-  padding: 3px 10px;
+  border: 1px solid var(--amber-bdr);
+  padding: 4px 11px;
   border-radius: 99px;
 }
 
-/* ─── Empty semester ────────────────────────────────────── */
+/* ─── Empty ──────────────────────────────────────────────── */
 .empty-semester {
-  grid-column: 1 / -1;
-  padding: 2rem;
+  padding: 2rem 1rem;
   text-align: center;
   color: var(--ink-3);
   font-size: 13px;
   font-style: italic;
   border: 1.5px dashed var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--r-lg);
 }
 </style>
 </head>
@@ -586,12 +553,10 @@ body {
 
 <header class="page-header">
   <div>
-    <h1 class="page-title">Licenciatura en Matemáticas</h1>
-    <p class="page-subtitle">Plan 1983 · Facultad de Ciencias, UNAM · 8 Semestres</p>
+    <h1 class="page-title">Lic. en Matemáticas</h1>
+    <p class="page-subtitle">Plan 1983 · Ciencias UNAM</p>
   </div>
-  <div class="global-stats">
-    <span class="stat-pill" id="global-pct">Progreso global: 0%</span>
-  </div>
+  <span class="global-pill" id="global-pct">0% global</span>
 </header>
 
 <div class="container" id="root"></div>
@@ -788,7 +753,7 @@ function refreshSemesterProgress(semIdx) {
 function refreshGlobal() {
   const pct = calcGlobalProgress();
   const el = document.getElementById('global-pct');
-  if (el) el.textContent = `Progreso global: ${pct}%`;
+  if (el) el.textContent = `${pct}% global`;
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -889,20 +854,17 @@ function renderCard(materia, semIdx) {
   return `
     <div class="card" data-materia="${materia.id}">
       <div class="card-header" data-toggle-card="${materia.id}">
-        <div class="card-left">
-          <div class="card-icon">${materia.icon}</div>
-          <div class="card-info">
-            <div class="card-name">${materia.name}</div>
-            <div class="card-meta">
-              <span class="meta-tag"><strong>Clave</strong> ${materia.clave}</span>
-              <span class="meta-tag"><strong>${materia.creditos}</strong> créditos</span>
-            </div>
+        <div class="card-icon">${materia.icon}</div>
+        <div class="card-info">
+          <div class="card-name">${materia.name}</div>
+          <div class="card-meta">
+            <span class="meta-tag"><strong>Clave</strong> ${materia.clave}</span>
+            <span class="meta-tag"><strong>${materia.creditos}</strong> créditos</span>
           </div>
         </div>
         <div class="card-controls">
-          <span class="card-pct">${pct}%</span>
           ${circ}
-          <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="5,7 10,13 15,7"/>
           </svg>
         </div>
@@ -933,18 +895,15 @@ function renderSemester(sem, idx) {
   return `
     <section class="semester-section">
       <div class="semester-header">
-        <div class="semester-left">
-          <h2 class="semester-title">📘 ${sem.titulo}</h2>
-          <span class="semester-credits">${sem.creditos}</span>
-        </div>
-        <div class="semester-progress-wrap">
-          <div class="semester-bar-track">
-            <div class="semester-bar-fill" id="sem-fill-${idx}" style="width:${pct}%"></div>
-          </div>
-          <span class="semester-pct" id="sem-pct-${idx}">${pct}%</span>
-        </div>
+        <h2 class="semester-title">${sem.titulo}</h2>
+        <span class="semester-credits">${sem.creditos}</span>
       </div>
-      <hr class="semester-divider">
+      <div class="semester-progress-wrap">
+        <div class="semester-bar-track">
+          <div class="semester-bar-fill" id="sem-fill-${idx}" style="width:${pct}%"></div>
+        </div>
+        <span class="semester-pct" id="sem-pct-${idx}">${pct}%</span>
+      </div>
       <div class="subjects-grid">${cardsHtml}</div>
     </section>
   `;
