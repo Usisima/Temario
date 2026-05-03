@@ -3,21 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Licenciatura en Matemáticas - Segundo Semestre</title>
+<title>Licenciatura en Matemáticas - Primer y Segundo Semestre</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:#f4f4f0;min-height:100vh;padding:2rem 1rem;}
   .container{max-width:1400px;margin:0 auto;}
   
-  /* Header institucional */
-  .uni-header{background:#041E42;color:white;border-radius:12px;padding:1.5rem 2rem;margin-bottom:2rem;}
-  .uni-header h1{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;}
-  .uni-header h2{font-size:16px;font-weight:400;opacity:0.85;margin-top:5px;}
-  .uni-badge{display:inline-block;background:#E6A817;color:#041E42;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-top:12px;}
-  
   /* Materias grid */
-  .semestre-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin:0 0 1rem 0;padding-bottom:0.5rem;border-bottom:2px solid #E6A817;}
+  .semestre-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin:2rem 0 1rem 0;padding-bottom:0.5rem;border-bottom:2px solid #E6A817;}
+  .semestre-header:first-of-type{margin-top:0;}
   .semestre-titulo{font-family:'DM Serif Display',serif;font-size:22px;color:#041E42;}
   .semestre-creditos{font-size:14px;color:#185FA5;background:#E6F1FB;padding:4px 12px;border-radius:20px;font-weight:500;}
   
@@ -105,25 +100,125 @@
 </head>
 <body>
 <div class="container">
-  <!-- Header institucional -->
-  <div class="uni-header">
-    <h1>Universidad Nacional Autónoma de México</h1>
-    <h2>Facultad de Ciencias · Licenciatura en Matemáticas</h2>
-    <div class="uni-badge">Plan 1983 · Vigente</div>
+  <!-- Primer semestre -->
+  <div class="semestre-header">
+    <h2 class="semestre-titulo">📘 Primer Semestre</h2>
+    <span class="semestre-creditos">Total: 48 créditos</span>
   </div>
+  <div class="materias-grid" id="primer-semestre-grid"></div>
   
-  <!-- Segundo semestre con créditos totales -->
+  <!-- Segundo semestre -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Segundo Semestre</h2>
     <span class="semestre-creditos">Total: 38 créditos</span>
   </div>
-  <div class="materias-grid" id="materias-grid"></div>
+  <div class="materias-grid" id="segundo-semestre-grid"></div>
 </div>
 
 <script>
-// Datos de las materias del segundo semestre
-// Créditos del semestre: Álgebra II (10) + Cálculo II (18) + Geo Analítica II (10) = 38 créditos
-const subjectsData = [
+// Datos del Primer Semestre
+const primerSemestre = [
+  {
+    id: 'algebra1',
+    name: 'Álgebra Superior I',
+    icon: '∑',
+    creditos: '10 créditos',
+    meta: [
+      {label: 'Clave', value: '0007'},
+      {label: 'Créditos', value: '10'},
+      {label: 'Semestre', value: '1°'}
+    ],
+    temario: [
+      {num: 1, name: 'Conjuntos', subtemas: ['Noción intuitiva e igualdad de conjuntos', 'Subconjuntos. Conjunto vacío y Universal', 'Operaciones con conjuntos: unión, intersección, complemento y diferencia', 'Conjunto potencia. Producto cartesiano', 'Familias de conjuntos']},
+      {num: 2, name: 'Relaciones y funciones', subtemas: ['Relaciones: dominio, codominio e imagen', 'Funciones: imágenes e imágenes inversas', 'Composición de funciones. Función inversa', 'Funciones inyectivas, suprayectivas y biyectivas', 'Cardinalidad. Conjuntos finitos e infinitos', 'Relaciones de equivalencia y particiones']},
+      {num: 3, name: 'Números naturales', subtemas: ['Los números naturales', 'Principio de inducción matemática', 'Demostraciones por inducción']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Álgebra Superior — Cárdenas, Lluis, Raggi, Tomás (Trillas, 1974)', capitulos: ['Conjuntos', 'Relaciones y funciones', 'Números naturales']},
+        {name: 'Álgebra Elemental — Nachbin (OEA, 1986)', capitulos: ['Conjuntos', 'Relaciones', 'Funciones']}
+      ],
+      complementarias: ['Halmos — Teoría Intuitiva de los Conjuntos', 'Grimaldi — Matemáticas Discreta y Combinatoria', 'Apostol — Cálculo']
+    },
+    subsecuentes: ['Álgebra Superior II', 'Álgebra Lineal I', 'Álgebra Moderna I']
+  },
+  {
+    id: 'calculo1',
+    name: 'Cálculo Diferencial e Integral I',
+    icon: '∫',
+    creditos: '18 créditos',
+    meta: [
+      {label: 'Clave', value: '0005'},
+      {label: 'Créditos', value: '18'},
+      {label: 'Semestre', value: '1°'}
+    ],
+    temario: [
+      {num: 1, name: 'Números reales', subtemas: ['Propiedades de los números reales', 'Desigualdades y valor absoluto', 'Supremo e ínfimo', 'Propiedad de completez']},
+      {num: 2, name: 'Funciones', subtemas: ['Funciones reales de variable real', 'Dominio, rango y gráficas', 'Funciones algebraicas y trascendentes', 'Funciones trigonométricas, exponenciales y logarítmicas']},
+      {num: 3, name: 'Límites y continuidad', subtemas: ['Definición intuitiva y formal de límite', 'Propiedades de los límites', 'Límites laterales', 'Límites infinitos y al infinito', 'Continuidad en un punto y en intervalos', 'Teorema del valor intermedio']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Cálculo Diferencial e Integral — Spivak (Reverté)', capitulos: ['Números reales', 'Funciones', 'Límites']},
+        {name: 'Cálculo — Stewart (Cengage)', capitulos: ['Límites', 'Continuidad', 'Funciones']}
+      ],
+      complementarias: ['Apostol — Calculus Vol. I', 'Courant — Introducción al Cálculo', 'Piskunov — Cálculo']
+    },
+    subsecuentes: ['Cálculo II', 'Cálculo III', 'Cálculo IV', 'Ecuaciones Diferenciales']
+  },
+  {
+    id: 'geometriaAnalitica1',
+    name: 'Geometría Analítica I',
+    icon: '📐',
+    creditos: '10 créditos',
+    meta: [
+      {label: 'Clave', value: '0010'},
+      {label: 'Créditos', value: '10'},
+      {label: 'Semestre', value: '1°'}
+    ],
+    temario: [
+      {num: 1, name: 'Sistema de coordenadas cartesianas', subtemas: ['Coordenadas cartesianas en el plano', 'Distancia entre dos puntos', 'División de un segmento', 'Coordenadas del punto que divide un segmento en una razón dada']},
+      {num: 2, name: 'La línea recta', subtemas: ['Pendiente y ángulo de inclinación', 'Ecuación de la recta en sus distintas formas', 'Rectas paralelas y perpendiculares', 'Distancia de un punto a una recta', 'Ángulo entre dos rectas']},
+      {num: 3, name: 'Circunferencia', subtemas: ['Ecuación de la circunferencia (forma ordinaria y general)', 'Centro y radio', 'Condiciones para que una ecuación represente una circunferencia', 'Familia de circunferencias']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Geometría Analítica — Lehmann (Limusa)', capitulos: ['Coordenadas', 'Recta', 'Circunferencia']},
+        {name: 'Geometría Analítica — Kindle (McGraw-Hill)', capitulos: ['Sistema de coordenadas', 'Recta', 'Cónicas']}
+      ],
+      complementarias: ['Fuller — Geometría Analítica', 'Eisenhart — Geometría Analítica', 'Swokowski — Geometría Analítica']
+    },
+    subsecuentes: ['Geometría Analítica II', 'Cálculo III', 'Geometría Diferencial']
+  },
+  {
+    id: 'geometriaModerna1',
+    name: 'Geometría Moderna I',
+    icon: '◯',
+    creditos: '10 créditos',
+    meta: [
+      {label: 'Clave', value: '0012'},
+      {label: 'Créditos', value: '10'},
+      {label: 'Semestre', value: '1°'}
+    ],
+    temario: [
+      {num: 1, name: 'Geometría axiomática', subtemas: ['Evolución histórica de la geometría', 'El sistema axiomático de Euclides', 'Estructura de un sistema axiomático', 'El quinto postulado y su equivalencia']},
+      {num: 2, name: 'Congruencia de triángulos', subtemas: ['Postulados de congruencia', 'Aplicaciones de la congruencia', 'Propiedades de triángulos isósceles', 'Desigualdades geométricas']},
+      {num: 3, name: 'Puntos y rectas notables en el triángulo', subtemas: ['Baricentro (centroide)', 'Ortocentro', 'Circuncentro', 'Incentro y excentros', 'Recta de Euler', 'Circunferencia de los nueve puntos']},
+      {num: 4, name: 'Geometría del círculo', subtemas: ['Ángulos inscritos, centrales y semi-inscritos', 'Teorema de Tales y generalizaciones', 'Teorema de Pitágoras generalizado', 'Potencia de un punto', 'Eje radical']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Geometría Moderna — Moise (Addison-Wesley)', capitulos: ['Axiomática', 'Congruencia', 'Puntos notables', 'Círculo']},
+        {name: 'Elementos de Geometría — Euclides', capitulos: ['Libro I', 'Libro III', 'Libro IV']}
+      ],
+      complementarias: ['Coxeter — Geometría Revisitada', 'Eves — Introducción a la Geometría', 'Pedoe — Geometría', 'Hilbert — Fundamentos']
+    },
+    subsecuentes: ['Geometría Moderna II', 'Geometría Proyectiva', 'Geometría Diferencial']
+  }
+];
+
+// Datos del Segundo Semestre
+const segundoSemestre = [
   {
     id: 'algebra2',
     name: 'Álgebra Superior II',
@@ -138,14 +233,14 @@ const subjectsData = [
       {num: 1, name: 'Números enteros', subtemas: ['Propiedades de los números enteros', 'Algoritmo de la división', 'Máximo común divisor', 'Mínimo común múltiplo', 'Teorema fundamental de la aritmética']},
       {num: 2, name: 'Números complejos', subtemas: ['Definición y representación', 'Operaciones con complejos', 'Forma polar y exponencial', 'Teorema de De Moivre', 'Raíces de números complejos']},
       {num: 3, name: 'Polinomios', subtemas: ['Anillo de polinomios', 'División de polinomios', 'Raíces y factorización', 'Teorema del factor y del residuo', 'Relaciones entre coeficientes y raíces']},
-      {num: 4, name: 'Teoría de números básica', subtemas: ['Congruencias', 'Teorema chino del resto', 'Pequeno teorema de Fermat', 'Función φ de Euler']}
+      {num: 4, name: 'Teoría de números básica', subtemas: ['Congruencias', 'Teorema chino del resto', 'Pequeño teorema de Fermat', 'Función φ de Euler']}
     ],
     bibliografia: {
       basicas: [
         {name: 'Álgebra Superior — Cárdenas, Lluis, Raggi, Tomás', capitulos: ['Enteros', 'Complejos', 'Polinomios']},
         {name: 'Introducción a la Teoría de Números — Niven, Zuckerman', capitulos: ['Divisibilidad', 'Congruencias']}
       ],
-      complementarias: ['Grimaldi — Matemáticas Discreta', 'Apostol — Introducción a la Teoría Analítica de Números', 'Birkhoff — Álgebra Moderna']
+      complementarias: ['Grimaldi — Matemáticas Discreta', 'Apostol — Teoría Analítica de Números', 'Birkhoff — Álgebra Moderna']
     },
     subsecuentes: ['Álgebra Lineal I', 'Álgebra Moderna I', 'Teoría de Números I']
   },
@@ -170,9 +265,9 @@ const subjectsData = [
         {name: 'Cálculo — Spivak', capitulos: ['Integral definida', 'Técnicas', 'Aplicaciones']},
         {name: 'Cálculo — Stewart', capitulos: ['Integración', 'Aplicaciones', 'Técnicas avanzadas']}
       ],
-      complementarias: ['Apostol — Calculus Vol I', 'Courant — Introducción al Cálculo', 'Piskunov — Cálculo Diferencial e Integral']
+      complementarias: ['Apostol — Calculus Vol I', 'Courant — Introducción al Cálculo', 'Piskunov — Cálculo']
     },
-    subsecuentes: ['Cálculo Diferencial e Integral III', 'Cálculo Diferencial e Integral IV', 'Ecuaciones Diferenciales']
+    subsecuentes: ['Cálculo III', 'Cálculo IV', 'Ecuaciones Diferenciales']
   },
   {
     id: 'geometriaAnalitica2',
@@ -196,22 +291,22 @@ const subjectsData = [
         {name: 'Geometría Analítica — Lehmann', capitulos: ['Parábola', 'Elipse', 'Hipérbola', 'Polares']},
         {name: 'Geometría Analítica — Kindle', capitulos: ['Cónicas', 'Transformaciones', 'Paramétricas']}
       ],
-      complementarias: ['Fuller — Geometría Analítica', 'Charles Lehmann — Geometría Analítica', 'Swokowski — Geometría Analítica']
+      complementarias: ['Fuller — Geometría Analítica', 'Swokowski — Geometría Analítica', 'Eisenhart — Geometría Analítica']
     },
     subsecuentes: ['Cálculo III', 'Geometría Diferencial', 'Geometría Analítica Avanzada']
   }
 ];
 
-// Renderizar todas las materias
-function renderAllSubjects() {
-  const container = document.getElementById('materias-grid');
+// Función para renderizar un grid de materias
+function renderMateriasGrid(containerId, subjects, prefix) {
+  const container = document.getElementById(containerId);
   container.innerHTML = '';
   
-  subjectsData.forEach((subject) => {
+  subjects.forEach((subject) => {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <div class="mat-header" onclick="toggleMain(this, '${subject.id}')">
+      <div class="mat-header" onclick="toggleMain(this, 'body_${prefix}_${subject.id}')">
         <div class="mat-left">
           <div class="mat-icon">${subject.icon}</div>
           <div>
@@ -221,15 +316,15 @@ function renderAllSubjects() {
         </div>
         <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="5,7 10,13 15,7"/></svg>
       </div>
-      <div class="body" id="body_${subject.id}">
+      <div class="body" id="body_${prefix}_${subject.id}">
         <div class="meta-row">
           ${subject.meta.map(m => `<span class="meta-pill">${m.label} <strong>${m.value}</strong></span>`).join('')}
         </div>
         <div class="tabs">
-          <div class="tab active" onclick="showTab(this, 'temario_${subject.id}', 'biblio_${subject.id}')">Temario</div>
-          <div class="tab" onclick="showTab(this, 'biblio_${subject.id}', 'temario_${subject.id}')">Bibliografía</div>
+          <div class="tab active" onclick="showTab(this, 'temario_${prefix}_${subject.id}', 'biblio_${prefix}_${subject.id}')">Temario</div>
+          <div class="tab" onclick="showTab(this, 'biblio_${prefix}_${subject.id}', 'temario_${prefix}_${subject.id}')">Bibliografía</div>
         </div>
-        <div class="tab-content active" id="temario_${subject.id}">
+        <div class="tab-content active" id="temario_${prefix}_${subject.id}">
           ${subject.temario.map(tema => `
             <div class="tema-block">
               <div class="tema-header">
@@ -240,25 +335,25 @@ function renderAllSubjects() {
             </div>
           `).join('')}
         </div>
-        <div class="tab-content" id="biblio_${subject.id}">
+        <div class="tab-content" id="biblio_${prefix}_${subject.id}">
           <div class="slabel">Básica</div>
           ${subject.bibliografia.basicas.map((libro, libIdx) => `
-            <div class="libro-card" id="libro_${subject.id}_${libIdx}">
-              <div class="libro-header" onclick="toggleLibro('libro_${subject.id}_${libIdx}')">
+            <div class="libro-card" id="libro_${prefix}_${subject.id}_${libIdx}">
+              <div class="libro-header" onclick="toggleLibro('libro_${prefix}_${subject.id}_${libIdx}')">
                 <div class="libro-left">
                   <div class="libro-dot"></div>
                   <span class="libro-name">${libro.name}</span>
                 </div>
                 <div class="libro-right">
-                  <span class="pct-badge" id="pct_${subject.id}_${libIdx}">0%</span>
+                  <span class="pct-badge" id="pct_${prefix}_${subject.id}_${libIdx}">0%</span>
                   <svg class="libro-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
                 </div>
               </div>
-              <div class="prog-wrap"><div class="prog-fill" id="bar_${subject.id}_${libIdx}" style="width:0%"></div></div>
-              <div class="libro-body"><div class="caps-list" id="caps_${subject.id}_${libIdx}">
+              <div class="prog-wrap"><div class="prog-fill" id="bar_${prefix}_${subject.id}_${libIdx}" style="width:0%"></div></div>
+              <div class="libro-body"><div class="caps-list" id="caps_${prefix}_${subject.id}_${libIdx}">
                 ${libro.capitulos.map((cap, capIdx) => `
                   <div class="cap-item">
-                    <input class="cap-check" type="checkbox" data-subject="${subject.id}" data-libro="${libIdx}" data-cap="${capIdx}" onchange="marcarCap(this, '${subject.id}', ${libIdx}, ${capIdx})">
+                    <input class="cap-check" type="checkbox" onchange="marcarCap(this, '${prefix}', '${subject.id}', ${libIdx}, ${capIdx})">
                     <span class="cap-label">${cap}</span>
                     <span class="cap-tag">tema</span>
                   </div>
@@ -267,8 +362,8 @@ function renderAllSubjects() {
             </div>
           `).join('')}
           <div class="slabel">Complementaria</div>
-          <div class="comp-block" id="comp_${subject.id}">
-            <div class="comp-header" onclick="toggleComp('comp_${subject.id}')">
+          <div class="comp-block" id="comp_${prefix}_${subject.id}">
+            <div class="comp-header" onclick="toggleComp('comp_${prefix}_${subject.id}')">
               <span class="comp-title">Ver bibliografía complementaria (${subject.bibliografia.complementarias.length} libros)</span>
               <svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
             </div>
@@ -287,38 +382,38 @@ function renderAllSubjects() {
   });
   
   // Cargar progreso guardado
-  subjectsData.forEach(subject => {
+  subjects.forEach((subject) => {
     subject.bibliografia.basicas.forEach((_, libIdx) => {
-      cargarEstadoLibro(subject.id, libIdx);
+      cargarEstadoLibro(prefix, subject.id, libIdx);
     });
   });
 }
 
 // Marcar capítulo
-function marcarCap(checkbox, subjectId, libroIdx, capIdx) {
+function marcarCap(checkbox, prefix, subjectId, libroIdx, capIdx) {
   const capItem = checkbox.closest('.cap-item');
   capItem.classList.toggle('leido', checkbox.checked);
   
-  const allChecks = document.querySelectorAll(`#caps_${subjectId}_${libroIdx} .cap-check`);
+  const allChecks = document.querySelectorAll(`#caps_${prefix}_${subjectId}_${libroIdx} .cap-check`);
   const states = Array.from(allChecks).map(ch => ch.checked);
-  localStorage.setItem(`progress_2_${subjectId}_${libroIdx}`, JSON.stringify(states));
+  localStorage.setItem(`progress_${prefix}_${subjectId}_${libroIdx}`, JSON.stringify(states));
   
   const completed = states.filter(s => s).length;
   const pct = Math.round((completed / states.length) * 100);
-  const pctSpan = document.getElementById(`pct_${subjectId}_${libroIdx}`);
-  const bar = document.getElementById(`bar_${subjectId}_${libroIdx}`);
+  const pctSpan = document.getElementById(`pct_${prefix}_${subjectId}_${libroIdx}`);
+  const bar = document.getElementById(`bar_${prefix}_${subjectId}_${libroIdx}`);
   if(pctSpan) pctSpan.textContent = `${pct}%`;
   if(bar) bar.style.width = `${pct}%`;
 }
 
 // Cargar estado
-function cargarEstadoLibro(subjectId, libroIdx) {
-  const key = `progress_2_${subjectId}_${libroIdx}`;
+function cargarEstadoLibro(prefix, subjectId, libroIdx) {
+  const key = `progress_${prefix}_${subjectId}_${libroIdx}`;
   const saved = localStorage.getItem(key);
   if(!saved) return;
   
   const states = JSON.parse(saved);
-  const checks = document.querySelectorAll(`#caps_${subjectId}_${libroIdx} .cap-check`);
+  const checks = document.querySelectorAll(`#caps_${prefix}_${subjectId}_${libroIdx} .cap-check`);
   checks.forEach((chk, i) => {
     if(states[i]) {
       chk.checked = true;
@@ -328,15 +423,15 @@ function cargarEstadoLibro(subjectId, libroIdx) {
   
   const completed = states.filter(s => s).length;
   const pct = Math.round((completed / states.length) * 100);
-  const pctSpan = document.getElementById(`pct_${subjectId}_${libroIdx}`);
-  const bar = document.getElementById(`bar_${subjectId}_${libroIdx}`);
+  const pctSpan = document.getElementById(`pct_${prefix}_${subjectId}_${libroIdx}`);
+  const bar = document.getElementById(`bar_${prefix}_${subjectId}_${libroIdx}`);
   if(pctSpan) pctSpan.textContent = `${pct}%`;
   if(bar) bar.style.width = `${pct}%`;
 }
 
 // UI Functions
-function toggleMain(el, subjectId) {
-  const body = document.getElementById(`body_${subjectId}`);
+function toggleMain(el, bodyId) {
+  const body = document.getElementById(bodyId);
   const chev = el.querySelector('.chevron');
   
   if(body.classList.contains('open')) {
@@ -374,7 +469,8 @@ function toggleComp(id) {
 }
 
 // Inicializar
-renderAllSubjects();
+renderMateriasGrid('primer-semestre-grid', primerSemestre, 's1');
+renderMateriasGrid('segundo-semestre-grid', segundoSemestre, 's2');
 </script>
 </body>
 </html>
