@@ -247,60 +247,426 @@ body{
 </header>
 <div class="container" id="root"></div>
 <script>
-// ============================================================
-// CRÉDITOS TOTALES CARRERA = 352  
-// AVANCE GLOBAL: (créditos de materias 100% completadas) / 352 * 100
-// AVANCE POR SEMESTRE: (créditos acumulados de materias completas en ese semestre) / (total créditos del semestre) * 100
-// CÍRCULO: r=18, circunferencia = 113 (2 * PI * 18 ≈ 113.09)
-// ============================================================
+
 const TOTAL_CREDITOS_CARRERA = 352;
-
-// ---- PLAN DE ESTUDIOS con créditos reales por semestre ----
 const CURRICULUM = [
-  { semestre:1, titulo:"Primer Semestre", materias:[
-    { id:"s1_algebra", name:"Álgebra Superior I", clave:"0007", creditos:10, icon:"🧮",
-      temario:[{num:"1",name:"Conjuntos",subtemas:["Noción intuitiva","Operaciones","Diagramas"]},{num:"2",name:"Relaciones y funciones",subtemas:["Dominio","Composición","Funciones inversas"]}],
-      bibBasicas:[{name:"Cárdenas — Álgebra Superior",caps:["Cap.1 Conjuntos","Cap.2 Relaciones","Cap.3 Cardinalidad","Cap.4 Números"]},{name:"Nachbin — Álgebra Elemental",caps:["Cap.1 Conjuntos","Cap.2 Relaciones","Cap.3 Operaciones"]}],
-      bibComp:["Dodge — Logic and Numbers","Hoffman — Álgebra Lineal"], subsecuentes:["Álgebra Superior II","Cálculo III"] },
-    { id:"s1_calculo", name:"Cálculo Diferencial e Integral I", clave:"0091", creditos:18, icon:"📊",
-      temario:[{num:"1",name:"Números reales",subtemas:["Propiedades","Compleción","Axiomas"]},{num:"2",name:"Límite",subtemas:["Definición ε-δ","Propiedades","Límites laterales"]}],
-      bibBasicas:[{name:"Arizmendi — Cálculo",caps:["Cap.1 Reales","Cap.2 Funciones","Cap.3 Límites","Cap.4 Continuidad"]},{name:"Spivak — Cálculo Infinitesimal",caps:["Cap.1 Propiedades","Cap.2 Derivadas","Cap.3 Límites"]}],
-      bibComp:["Apostol — Calculus I","Lang — Cálculo I"], subsecuentes:["Cálculo II","Ecuaciones Diferenciales"] },
-    { id:"s1_geoanalitica", name:"Geometría Analítica I", clave:"0244", creditos:10, icon:"📐",
-      temario:[{num:"1",name:"Coordenadas",subtemas:["Cartesianas","Polares","Transformaciones"]},{num:"2",name:"Cónicas",subtemas:["Elipse","Hipérbola","Parábola"]}],
-      bibBasicas:[{name:"Bracho — Geometría Analítica",caps:["Cap.1 Coordenadas","Cap.2 Vectores","Cap.3 Cónicas","Cap.4 Rectas"]},{name:"Efimov — Geometría Superior",caps:["Cap.1 Método coordenadas","Cap.2 Líneas","Cap.3 Cónicas"]}],
-      bibComp:["Eves — Estudio Geometrías"], subsecuentes:["Geometría Analítica II","Cálculo II"] },
-    { id:"s1_geometriamoderna", name:"Geometría Moderna I", clave:"0249", creditos:10, icon:"🔷",
-      temario:[{num:"1",name:"Triángulo",subtemas:["Circuncentro","Ortocentro","Baricentro"]},{num:"2",name:"Teoremas",subtemas:["Ceva","Menelao","Puntos notables"]}],
-      bibBasicas:[{name:"Shively — Geometría Moderna",caps:["Cap.1 Puntos notables","Cap.2 Circunferencia","Cap.3 Teorema de Ceva"]},{name:"Efimov — Superior",caps:["Cap.1 Triángulos","Cap.2 Cuadriláteros"]}],
-      bibComp:["Coxeter — Geometry Revisited"], subsecuentes:["Geometría Moderna II","Geometría Proyectiva"] }
-  ]},
-  { semestre:2, titulo:"Segundo Semestre", materias:[
-    { id:"s2_algebra2", name:"Álgebra Superior II", creditos:10, icon:"🧮", clave:"0008", temario:[{num:"1",name:"Espacios vectoriales",subtemas:["Definición","Ejemplos"]}], bibBasicas:[{name:"Álgebra Lineal - Grossman",caps:["Cap.1 Vectores","Cap.2 Matrices"]}], bibComp:[], subsecuentes:[] },
-    { id:"s2_calculo2", name:"Cálculo Diferencial e Integral II", creditos:18, icon:"📈", clave:"0092", temario:[{num:"1",name:"Integrales",subtemas:["Definición","Técnicas"]}], bibBasicas:[{name:"Cálculo - Stewart",caps:["Cap.5 Integrales","Cap.6 Aplicaciones"]}], bibComp:[], subsecuentes:[] },
-    { id:"s2_geoanalitica2", name:"Geometría Analítica II", creditos:10, icon:"📏", clave:"0245", temario:[{num:"1",name:"Superficies",subtemas:["Cuádricas"]}], bibBasicas:[{name:"Geometría - Lehmann",caps:["Cap.8 Superficies","Cap.9 Coordenadas"]}], bibComp:[], subsecuentes:[] }
-  ]},
-  { semestre:3, titulo:"Tercer Semestre", materias:[
-    { id:"s3_alglineal", name:"Álgebra Lineal I", creditos:12, icon:"🔢", clave:"0010", temario:[{num:"1",name:"Transformaciones",subtemas:["Lineales"]}], bibBasicas:[{name:"Álgebra Lineal - Hoffman",caps:["Cap.3 Transformaciones"]}], bibComp:[], subsecuentes:[] },
-    { id:"s3_calculo3", name:"Cálculo III", creditos:10, icon:"📉", clave:"0093", temario:[{num:"1",name:"Funciones varias variables",subtemas:["Límites"]}], bibBasicas:[{name:"Cálculo Avanzado - Marsden",caps:["Cap.2 Diferenciación"]}], bibComp:[], subsecuentes:[] }
-  ]},
-  { semestre:4, titulo:"Cuarto Semestre", materias:[
-    { id:"s4_edd", name:"Ecuaciones Diferenciales", creditos:10, icon:"📌", clave:"0180", temario:[{num:"1",name:"EDO",subtemas:["Primer orden"]}], bibBasicas:[{name:"Ecuaciones Diferenciales - Boyce",caps:["Cap.1 Introducción","Cap.2 EDO"]}], bibComp:[], subsecuentes:[] },
-    { id:"s4_probabilidad", name:"Probabilidad I", creditos:8, icon:"🎲", clave:"0401", temario:[{num:"1",name:"Espacios",subtemas:["Probabilidad"]}], bibBasicas:[{name:"Probabilidad - Ross",caps:["Cap.1 Combinatoria","Cap.2 Axiomas"]}], bibComp:[], subsecuentes:[] }
-  ]},
-  { semestre:5, titulo:"Quinto Semestre", materias:[
-    { id:"s5_estadistica", name:"Estadística", creditos:8, icon:"📊", clave:"0410", temario:[{num:"1",name:"Inferencia",subtemas:["Estimación"]}], bibBasicas:[{name:"Estadística - Devore",caps:["Cap.6 Intervalos"]}], bibComp:[], subsecuentes:[] },
-    { id:"s5_complejas", name:"Variables Complejas", creditos:10, icon:"🌀", clave:"0522", temario:[{num:"1",name:"Funciones analíticas",subtemas:["Cauchy-Riemann"]}], bibBasicas:[{name:"Complejas - Churchill",caps:["Cap.2 Funciones analíticas"]}], bibComp:[], subsecuentes:[] }
-  ]},
-  { semestre:6, titulo:"Sexto Semestre", materias:[
-    { id:"s6_topologia", name:"Topología", creditos:10, icon:"⚫", clave:"0600", temario:[{num:"1",name:"Espacios topológicos",subtemas:["Abiertos"]}], bibBasicas:[{name:"Topología - Munkres",caps:["Cap.1 Conjuntos","Cap.2 Topología"]}], bibComp:[], subsecuentes:[] }
-  ]},
-  { semestre:7, titulo:"Séptimo Semestre", materias:[
-  ]},
-  { semestre:8, titulo:"Octavo Semestre", materias:[
-  ]}
+  {
+    semestre: 1,
+    titulo: "Primer Semestre",
+    materias: [{
+  id: "algebra_superior_1",
+  name: "Álgebra Superior I",
+  clave: "0007",
+  creditos: 10,
+  icon: "🧮",
+  temario: [
+    {
+      num: "1",
+      name: "Conjuntos",
+      subtemas: [
+        "Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío, Conjunto Universal",
+        "Operaciones con conjuntos: unión, intersección, complemento y diferencia",
+        "Conjunto potencia. Producto cartesiano. Familias de conjuntos"
+      ]
+    },
+    {
+      num: "2",
+      name: "Relaciones y funciones",
+      subtemas: [
+        "Relaciones (dominio, codominio e imagen)",
+        "Funciones (imágenes e imágenes inversas)",
+        "Composición de funciones. Función inversa",
+        "Funciones inyectivas, suprayectivas y biyectivas",
+        "Cardinalidad. Conjuntos finitos e infinitos. Funciones entre conjuntos finitos",
+        "Relaciones de equivalencia y particiones"
+      ]
+    },
+    {
+      num: "3",
+      name: "Números naturales y cálculo combinatorio",
+      subtemas: [
+        "Los números naturales. Principio de inducción",
+        "Cálculo combinatorio: ordenaciones con repetición, ordenaciones, permutaciones y combinaciones",
+        "Teorema del binomio. Relaciones entre coeficientes binomiales"
+      ]
+    },
+    {
+      num: "4",
+      name: "Espacios vectoriales",
+      subtemas: [
+        "Los espacios ℝ² y ℝ³. Interpretación geométrica",
+        "El espacio vectorial ℝⁿ",
+        "Subespacios. Combinaciones lineales. Subespacio generado por un conjunto de vectores",
+        "Dependencia e independencia lineal",
+        "Bases. Dimensión"
+      ]
+    },
+    {
+      num: "5",
+      name: "Matrices y determinantes",
+      subtemas: [
+        "Matrices, definición y operaciones. Transpuesta de una matriz",
+        "Operaciones elementales: Matrices escalón reducidas. Rango de una matriz",
+        "El determinante de una matriz cuadrada: definición y propiedades",
+        "Cálculo de determinantes",
+        "Caracterización del rango de una matriz por medio del determinante"
+      ]
+    },
+    {
+      num: "6",
+      name: "Sistemas de ecuaciones lineales",
+      subtemas: [
+        "Sistemas, soluciones, matriz y matriz aumentada",
+        "Criterios de existencia de soluciones",
+        "Regla de Cramer",
+        "Espacio de soluciones de un sistema no homogéneo",
+        "Resolución de sistemas (eliminación)"
+      ]
+    }
+  ],
+  bibBasicas: [
+    {
+      name: "Cárdenas, H., Lluis, E., Raggi, F., Tomás, F., Álgebra Superior. México: Ed. Trillas, 1974.",
+      caps: ["Conjuntos", "Relaciones y funciones", "Números naturales", "Espacios vectoriales", "Matrices", "Sistemas de ecuaciones"]
+    },
+    {
+      name: "Nachbin, L., Álgebra Elemental. Washington, USA: Secretaría General de la OEA, Programa Regional de Desarrollo Científico y Tecnológico., 1986",
+      caps: ["Teoría de conjuntos", "Funciones", "Inducción", "Ecuaciones lineales", "Matrices"]
+    }
+  ],
+  bibComp: [
+    "Dodge, C. W., Logic and Numbers. Boston: Weber & Schmidt, 1969.",
+    "Friedberg, S. H., Insel, A. J., Spence, L. E., Álgebra Lineal. México: Publicaciones Cultural, 1986.",
+    "Gentile, E. R., Aritmética Elemental. Washington: OEA, 1985.",
+    "Grimaldi, R. P., Matemáticas Discreta y Combinatoria. México: Sistemas Técnicos de Edición, 1998.",
+    "Grossman, S. I., Álgebra Lineal. México: McGraw-Hill, 1996.",
+    "Halmos, P. R., Teoría Intuitiva de los Conjuntos. México: Ed. Continental, 1973.",
+    "Hoffman, K., Kunze, R., Álgebra Lineal. Bogotá: Prentice Hall Internacional, 1973.",
+    "Lang, S., Álgebra Lineal. México: Sistemas Técnicos de Edición, 1986.",
+    "Niven, I. M., Zuckerman, H. S., Introducción a la Teoría de los Números. México: Limusa-Wiley, 1969."
+  ],
+  subsecuentes: ["Álgebra Superior II", "Cálculo Diferencial e Integral III", "Taller de Modelación I"]
+},{
+  id: "calculo_diferencial_integral_1",
+  name: "Cálculo Diferencial e Integral I",
+  clave: "0091",
+  creditos: 18,
+  icon: "📐",
+  temario: [
+    {
+      num: "1",
+      name: "Introducción",
+      subtemas: [
+        "Los problemas que fundamentan al cálculo",
+        "Ejemplos"
+      ]
+    },
+    {
+      num: "2",
+      name: "Números reales",
+      subtemas: [
+        "Propiedades de los números enteros, racionales y reales y sus operaciones, desigualdades y valor absoluto",
+        "La propiedad de compleción de los números reales, expansiones decimales"
+      ]
+    },
+    {
+      num: "3",
+      name: "Funciones y sucesiones",
+      subtemas: [
+        "Definición, ejemplos, gráficas y propiedades elementales de las funciones (funciones polinomiales, racionales, trigonométricas, exponenciales, pares e impares, inyectivas y suprayectivas, periódicas, monótonas, acotadas)",
+        "Sucesiones de números reales, sucesiones de Cauchy",
+        "Suma, producto y cociente de funciones y sucesiones",
+        "Composición de funciones. Funciones inversas"
+      ]
+    },
+    {
+      num: "4",
+      name: "Límite",
+      subtemas: [
+        "Definición y ejemplos de sucesiones convergentes",
+        "Criterios elementales para la convergencia de sucesiones",
+        "Límite de funciones",
+        "Definición, ejemplos y propiedades básicas del límite de una función",
+        "Límite de la suma, el producto y el cociente de funciones",
+        "Límites que involucran al infinito, asíntotas de curvas"
+      ]
+    },
+    {
+      num: "5",
+      name: "Continuidad",
+      subtemas: [
+        "Definición y propiedades de las funciones continuas en un punto",
+        "La continuidad y la composición",
+        "Funciones continuas en intervalos cerrados",
+        "Propiedades de las funciones continuas en intervalos cerrados: máximos, mínimos y teorema de valor intermedio"
+      ]
+    },
+    {
+      num: "6",
+      name: "Funciones derivables",
+      subtemas: [
+        "Razón de cambio y razón instantánea de cambio y velocidad",
+        "Tangentes de curvas",
+        "Definición y ejemplos del concepto de derivada",
+        "Relación entre la continuidad y la derivabilidad de una función",
+        "Suma, producto y cociente de funciones derivables",
+        "La regla de la cadena",
+        "Método de Newton y raíces de funciones. Derivada de la función inversa",
+        "Derivación implícita",
+        "Derivadas de orden superior",
+        "Aceleración",
+        "El Teorema del Valor Medio",
+        "Puntos críticos",
+        "Localización de puntos máximos y mínimos relativos, regiones de concavidad y puntos de inflexión",
+        "Problemas de optimización",
+        "Aproximación de raíces",
+        "Polinomios de Taylor y forma de Lagrange del residuo",
+        "El Teorema del Valor Medio Generalizado y la Regla de L'Hôpital"
+      ]
+    }
+  ],
+  bibBasicas: [
+    {
+      name: "Arizmendi, H., Carrillo, H., Lara. M., Cálculo. Primer Curso. México: Addison Wesley, 1987.",
+      caps: ["Introducción", "Números reales", "Funciones", "Límite", "Continuidad", "Derivada"]
+    },
+    {
+      name: "Courant, R., John, F., Introducción al Cálculo y al Análisis. México: Editorial Limusa, 1974.",
+      caps: ["Fundamentos", "Funciones elementales", "Límites y continuidad", "Cálculo diferencial"]
+    },
+    {
+      name: "Lang. S., Cálculo I. México: Fondo Educativo Interamericano, 1990.",
+      caps: ["Números reales", "Funciones", "Límites", "Derivadas", "Aplicaciones"]
+    },
+    {
+      name: "Spivak, M., Cálculo Infinitesimal (2a ed). México: Reverté, 1998.",
+      caps: ["Propiedades básicas de los números", "Funciones", "Límites", "Continuidad", "Derivación"]
+    },
+    {
+      name: "Thomas, G. B. Finney, R. L., Cálculo con Geometría Analítica (9a ed). México: Addison-Wesley, 1987.",
+      caps: ["Preliminares", "Límites y continuidad", "Derivadas", "Aplicaciones de la derivada"]
+    }
+  ],
+  bibComp: [
+    "Apostol, T. M., Calculus, Volumen I. México: Ed. Reverté S. A., 2001.",
+    "Banach, S., Cálculo Diferencial e Integral. México: UTEHA., 1991.",
+    "Kuratowski, K, Introducción al Cálculo. México: Limusa-Wiley, 1970."
+  ],
+  subsecuentes: ["Cálculo Diferencial e Integral II", "Taller de Modelación I"]
+},{
+  id: "geometria_analitica_1",
+  name: "Geometría Analítica I",
+  clave: "0244",
+  creditos: 10,
+  icon: "📐",
+  temario: [
+    {
+      num: "1",
+      name: "Introducción",
+      subtemas: [
+        "Los conceptos geométricos elementales: distancia entre dos puntos, distancia de un punto a una recta, distancia de un punto a un plano; simetría respecto a un punto, respecto a una recta y respecto a un plano",
+        "Introducción de coordenadas cartesianas en el plano y en el espacio y el método analítico",
+        "Lugares geométricos del plano y el espacio definidos por ecuaciones y desigualdades elementales. Gráficas de funciones de primer y segundo grados en una y dos variables"
+      ]
+    },
+    {
+      num: "2",
+      name: "Trigonometría",
+      subtemas: [
+        "Razones trigonométricas; primeras relaciones. El Teorema de Pitágoras",
+        "Resolución de triángulos. Congruencia. Semejanza",
+        "Rectas y puntos notables de un triángulo",
+        "Ángulo central y ángulo inscrito. Potencia de un punto respecto a una circunferencia",
+        "Funciones trigonométricas. Identidades trigonométricas",
+        "Coordenadas polares. Curvas en coordenadas polares",
+        "Curvas paramétricas",
+        "Coordenadas esféricas y cilíndricas. Superficies coordenadas. Superficies paramétricas"
+      ]
+    },
+    {
+      num: "3",
+      name: "Espacios vectoriales básicos",
+      subtemas: [
+        "Definición y ejemplos de un espacio vectorial real (ℝ², ℝ³, las funciones reales de variable real; fuerzas planas y espaciales)",
+        "Subespacios vectoriales; ejemplos",
+        "Independencia lineal, conjunto generador, base, dimensión. Dimensión de una curva y de una superficie",
+        "Producto escalar, producto vectorial, triple producto escalar. Interpretación geométrica de cada uno y propiedades"
+      ]
+    },
+    {
+      num: "4",
+      name: "Rectas, planos, semiplanos y semiespacios",
+      subtemas: [
+        "Ecuaciones cartesianas y paramétricas de la recta en ℝ². Fórmula para la distancia de un punto a una recta. División de un segmento en una razón dada. Semiplanos",
+        "Rectas en ℝ³; rectas que se cruzan, distancia de un punto a una recta. Distancia entre dos rectas",
+        "Ecuaciones cartesianas y paramétricas de un plano en ℝ³. Distancia de un punto a un plano. Semiespacios",
+        "Sistemas de ecuaciones lineales. Transversalidad",
+        "Sistemas de desigualdades lineales"
+      ]
+    },
+    {
+      num: "5",
+      name: "Cónicas",
+      subtemas: [
+        "Definición, trazado y nomenclatura. Simetrías y extensión",
+        "Ecuaciones canónicas; sistema coordenado 'natural'",
+        "Cónicas con ejes paralelos a los coordenados. Traslaciones",
+        "Rotaciones en ℝ². Clasificación de formas cuadráticas (discriminante)",
+        "Definición general de cónica (excentricidad). Secciones de un cono",
+        "La tangente a una cónica; propiedad focal",
+        "Cónicas parametrizadas",
+        "Familias de cónicas"
+      ]
+    }
+  ],
+  bibBasicas: [
+    {
+      name: "Bracho, J. Geometría Analítica. Notas.",
+      caps: ["Introducción", "Trigonometría", "Espacios vectoriales", "Rectas y planos", "Cónicas"]
+    },
+    {
+      name: "Efimov, N. Geometría Superior. Moscú: MIR., 1984",
+      caps: ["Coordenadas cartesianas", "Vectores", "Rectas y planos", "Cónicas", "Superficies"]
+    },
+    {
+      name: "Preston, G. C., Lovaglia, A. R., Modern Analytic Geometry. New York: Harper & Row, 1971.",
+      caps: ["Coordinate systems", "Trigonometry", "Vectors", "Lines and planes", "Conics"]
+    },
+    {
+      name: "Ramírez Galarza, A., Geometría Analítica: Una Introducción a la Geometría. México: Las Prensas de Ciencias, 2004.",
+      caps: ["Geometría elemental", "Trigonometría", "Vectores", "Recta y plano", "Cónicas"]
+    }
+  ],
+  bibComp: [
+    "Eves, H., Estudio de las Geometrías. México: UTEHA., 1969.",
+    "Hilbert, D., Cohn Vossen, S., Geometry and the Imagination. México: Vínculos Matemáticos No. 150, Facultad de Ciencias, UNAM., 2000."
+  ],
+  subsecuentes: ["Cálculo Diferencial e Integral II", "Geometría Analítica II", "Taller de Modelación I"]
+},{
+  id: "geometria_moderna_1",
+  name: "Geometría Moderna I",
+  clave: "0249",
+  creditos: 10,
+  icon: "📐",
+  temario: [
+    {
+      num: "1",
+      name: "Geometría del triángulo",
+      subtemas: [
+        "Congruencia. Semejanza. Teorema de Tales. Teorema de Pitágoras. Teorema de Stewart",
+        "Circuncentro, incentro, excentros, ortocentro, baricentro",
+        "Recta de Euler",
+        "Triángulos pedales"
+      ]
+    },
+    {
+      num: "2",
+      name: "Circunferencia y cuadriláteros cíclicos",
+      subtemas: [
+        "Cuadriláteros cíclicos",
+        "Potencia. Círculos coaxiales",
+        "Ángulos en la circunferencia",
+        "Antiparalelas",
+        "Teorema de Ptolomeo. Línea de Simson",
+        "Circunferencia de los nueve puntos"
+      ]
+    },
+    {
+      num: "3",
+      name: "Introducción a la geometría moderna",
+      subtemas: [
+        "Breve discusión sobre los postulados euclidianos explícitos e implícitos",
+        "Segmentos y ángulos dirigidos",
+        "Puntos al infinito. División de un segmento en una razón dada",
+        "Teorema de Euler",
+        "Puntos armónicos",
+        "Dualidad",
+        "Cuadrilátero y cuadrángulo completos",
+        "Homotecia: polígonos homotéticos; puntos homólogos y antihomólogos; círculo de similitud"
+      ]
+    },
+    {
+      num: "4",
+      name: "Principales teoremas",
+      subtemas: [
+        "Teorema de Ceva. Teorema de Menelao",
+        "Teorema de Desargues",
+        "Teorema de Pascal",
+        "Teorema de Pappus",
+        "Teorema de Brianchon"
+      ]
+    }
+  ],
+  bibBasicas: [
+    {
+      name: "Efimov, N., Geometría Superior, Moscú: MIR, 1984.",
+      caps: ["Geometría del triángulo", "Circunferencia", "Geometría moderna", "Teoremas fundamentales"]
+    },
+    {
+      name: "Euclides, Euclid's Elements, New York: Dover, 1979.",
+      caps: ["Fundamentos", "Triángulos", "Círculos", "Proporciones"]
+    },
+    {
+      name: "Eves, H., Estudio de las Geometrías, México: UTEHA, 1969.",
+      caps: ["Geometría euclidiana", "Triángulos", "Circunferencias", "Teoremas clásicos"]
+    },
+    {
+      name: "Hilbert, D., Cohn Vossen, S., Geometry and the Imagination, México: Vínculos Matemáticos No. 150, Facultad de Ciencias, UNAM, 2000.",
+      caps: ["Geometría elemental", "Propiedades del triángulo", "Círculos", "Transformaciones"]
+    },
+    {
+      name: "Shively, L., Introducción a la Geometría Moderna, México: Ed. Continental, 1961.",
+      caps: ["Triángulo", "Circunferencia", "Geometría moderna", "Teoremas de Ceva y Menelao"]
+    },
+    {
+      name: "Wentworth, J., Smith, D. E., Geometría Plana y del Espacio, México: Ed. Porrúa, 1976.",
+      caps: ["Conceptos básicos", "Triángulos", "Círculos", "Geometría avanzada"]
+    }
+  ],
+  bibComp: [
+    "Cabri, software.",
+    "Courant, R., Robbins, H., ¿Qué es la Matemática?, Madrid: Ed. Aguilar, 1967.",
+    "Coxeter, S. M., Greitzer, S. L., Geometry Revisited, New York: Random House, 1967."
+  ],
+  subsecuentes: ["Geometría Moderna II", "Geometría Proyectiva"]
+}]
+  },
+  {
+    semestre: 2,
+    titulo: "Segundo Semestre",
+    materias: []
+  },
+  {
+    semestre: 3,
+    titulo: "Tercer Semestre",
+    materias: []
+  },
+  {
+    semestre: 4,
+    titulo: "Cuarto Semestre",
+    materias: []
+  },
+  {
+    semestre: 5,
+    titulo: "Quinto Semestre",
+    materias: []
+  },
+  {
+    semestre: 6,
+    titulo: "Sexto Semestre",
+    materias: []
+  },
+  {
+    semestre: 7,
+    titulo: "Séptimo Semestre",
+    materias: []
+  },
+  {
+    semestre: 8,
+    titulo: "Octavo Semestre",
+    materias: []
+  }
 ];
-
 // Asegurar que todas las materias tengan estructura mínima para checkboxes
 function ensureMateriaHasBibliografia(materia) {
   if(!materia.bibBasicas || materia.bibBasicas.length === 0) {
