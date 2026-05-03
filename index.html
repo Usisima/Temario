@@ -159,51 +159,438 @@
 <script>
 // SEMESTRE 1
 const semestre1 = [
-  {id:'algebra1',name:'Álgebra Superior I',icon:'∑',creditos:'10 créditos',meta:[{label:'Clave',value:'0007'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Conjuntos',subtemas:['Noción intuitiva e igualdad de conjuntos','Subconjuntos. Conjunto vacío y Universal','Operaciones con conjuntos: unión, intersección, complemento y diferencia','Conjunto potencia. Producto cartesiano']},{num:2,name:'Relaciones y funciones',subtemas:['Relaciones: dominio, codominio e imagen','Funciones: imágenes e imágenes inversas','Composición de funciones. Función inversa','Funciones inyectivas, suprayectivas y biyectivas']},{num:3,name:'Números naturales',subtemas:['Los números naturales','Principio de inducción matemática']}],bibliografia:{basicas:[{name:'Álgebra Superior — Cárdenas, Lluis, Raggi, Tomás',capitulos:['Conjuntos','Relaciones y funciones','Números naturales']},{name:'Álgebra Elemental — Nachbin',capitulos:['Conjuntos','Relaciones','Funciones']}],complementarias:['Halmos — Teoría Intuitiva de los Conjuntos','Grimaldi — Matemáticas Discreta']},subsecuentes:['Álgebra Superior II','Álgebra Lineal I','Álgebra Moderna I']},
-  {id:'calculo1',name:'Cálculo Diferencial e Integral I',icon:'∫',creditos:'18 créditos',meta:[{label:'Clave',value:'0005'},{label:'Créditos',value:'18'}],temario:[{num:1,name:'Números reales',subtemas:['Propiedades de los números reales','Desigualdades y valor absoluto','Supremo e ínfimo']},{num:2,name:'Funciones',subtemas:['Funciones reales de variable real','Dominio, rango y gráficas','Funciones trigonométricas, exponenciales y logarítmicas']},{num:3,name:'Límites y continuidad',subtemas:['Definición de límite','Propiedades de los límites','Continuidad','Teorema del valor intermedio']}],bibliografia:{basicas:[{name:'Cálculo — Spivak',capitulos:['Números reales','Funciones','Límites']},{name:'Cálculo — Stewart',capitulos:['Límites','Continuidad','Funciones']}],complementarias:['Apostol — Calculus Vol. I','Courant — Introducción al Cálculo']},subsecuentes:['Cálculo II','Cálculo III','Ecuaciones Diferenciales']},
-  {id:'geoAnalitica1',name:'Geometría Analítica I',icon:'📐',creditos:'10 créditos',meta:[{label:'Clave',value:'0010'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Sistema de coordenadas',subtemas:['Coordenadas cartesianas','Distancia entre dos puntos','División de un segmento']},{num:2,name:'La línea recta',subtemas:['Pendiente y ángulo','Ecuación de la recta','Rectas paralelas y perpendiculares','Distancia de un punto a una recta']},{num:3,name:'Circunferencia',subtemas:['Ecuación de la circunferencia','Centro y radio','Familia de circunferencias']}],bibliografia:{basicas:[{name:'Geometría Analítica — Lehmann',capitulos:['Coordenadas','Recta','Circunferencia']},{name:'Geometría Analítica — Kindle',capitulos:['Sistema de coordenadas','Recta']}],complementarias:['Fuller — Geometría Analítica','Swokowski — Geometría Analítica']},subsecuentes:['Geometría Analítica II','Cálculo III','Geometría Diferencial']},
-  {id:'geoModerna1',name:'Geometría Moderna I',icon:'◯',creditos:'10 créditos',meta:[{label:'Clave',value:'0012'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Geometría axiomática',subtemas:['Sistema axiomático de Euclides','El quinto postulado']},{num:2,name:'Congruencia de triángulos',subtemas:['Postulados de congruencia','Propiedades de triángulos isósceles']},{num:3,name:'Puntos notables',subtemas:['Baricentro','Ortocentro','Circuncentro','Incentro','Recta de Euler']},{num:4,name:'Geometría del círculo',subtemas:['Ángulos inscritos','Teorema de Tales','Potencia de un punto']}],bibliografia:{basicas:[{name:'Geometría Moderna — Moise',capitulos:['Axiomática','Congruencia','Puntos notables','Círculo']},{name:'Elementos de Geometría — Euclides',capitulos:['Libro I','Libro III']}],complementarias:['Coxeter — Geometría Revisitada','Eves — Introducción a la Geometría']},subsecuentes:['Geometría Moderna II','Geometría Proyectiva']}
+  {
+    id: 'algebra1',
+    name: 'Álgebra Superior I',
+    icon: '∑',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0007'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 3', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2', 'Libro complementario 3']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2', 'Materia subsecuente 3']
+  },
+  {// Cálculo Diferencial e Integral I
+  id: 'calculo1',
+  name: 'Cálculo Diferencial e Integral I',
+  icon: '∫',
+  creditos: '18 créditos',
+  meta: [
+    {label: 'Clave', value: '0091'},
+    {label: 'Créditos', value: '18'}
+  ],
+  temario: [
+    {
+      num: 1,
+      name: 'Introducción',
+      subtemas: [
+        'Los problemas que fundamentan al cálculo',
+        'Ejemplos'
+      ]
+    },
+    {
+      num: 2,
+      name: 'Números reales',
+      subtemas: [
+        'Propiedades de los números enteros, racionales y reales y sus operaciones, desigualdades y valor absoluto',
+        'La propiedad de compleción de los números reales, expansiones decimales'
+      ]
+    },
+    {
+      num: 3,
+      name: 'Funciones y sucesiones',
+      subtemas: [
+        'Definición, ejemplos, gráficas y propiedades elementales de las funciones (funciones polinomiales, racionales, trigonométricas, exponenciales, pares e impares, inyectivas y suprayectivas, periódicas, monótonas, acotadas)',
+        'Sucesiones de números reales, sucesiones de Cauchy',
+        'Suma, producto y cociente de funciones y sucesiones',
+        'Composición de funciones. Funciones inversas'
+      ]
+    },
+    {
+      num: 4,
+      name: 'Límite',
+      subtemas: [
+        'Definición y ejemplos de sucesiones convergentes',
+        'Criterios elementales para la convergencia de sucesiones',
+        'Límite de funciones',
+        'Definición, ejemplos y propiedades básicas del límite de una función',
+        'Límite de la suma, el producto y el cociente de funciones',
+        'Límites que involucran al infinito, asíntotas de curvas'
+      ]
+    },
+    {
+      num: 5,
+      name: 'Continuidad',
+      subtemas: [
+        'Definición y propiedades de las funciones continuas en un punto',
+        'La continuidad y la composición',
+        'Funciones continuas en intervalos cerrados',
+        'Propiedades de las funciones continuas en intervalos cerrados: máximos, mínimos y teorema de valor intermedio'
+      ]
+    },
+    {
+      num: 6,
+      name: 'Funciones derivables',
+      subtemas: [
+        'Razón de cambio y razón instantánea de cambio y velocidad',
+        'Tangentes de curvas',
+        'Definición y ejemplos del concepto de derivada',
+        'Relación entre la continuidad y la derivabilidad de una función',
+        'Suma, producto y cociente de funciones derivables',
+        'La regla de la cadena',
+        'Método de Newton y raíces de funciones. Derivada de la función inversa',
+        'Derivación implícita',
+        'Derivadas de orden superior',
+        'Aceleración',
+        'El Teorema del Valor Medio',
+        'Puntos críticos',
+        'Localización de puntos máximos y mínimos relativos, regiones de concavidad y puntos de inflexión',
+        'Problemas de optimización',
+        'Aproximación de raíces',
+        'Polinomios de Taylor y forma de Lagrange del residuo',
+        'El Teorema del Valor Medio Generalizado y la Regla de L\'Hôpital'
+      ]
+    }
+  ],
+  bibliografia: {
+    basicas: [
+      {name: 'Arizmendi, H., Carrillo, H., Lara. M. — Cálculo. Primer Curso. México: Addison Wesley, 1987', capitulos: ['Contenido completo']},
+      {name: 'Courant, R., John, F. — Introducción al Cálculo y al Análisis. México: Editorial Limusa, 1974', capitulos: ['Contenido completo']},
+      {name: 'Lang. S. — Cálculo I. México: Fondo Educativo Interamericano, 1990', capitulos: ['Contenido completo']},
+      {name: 'Spivak, M. — Cálculo Infinitesimal (2a ed). México: Reverté, 1998', capitulos: ['Contenido completo']},
+      {name: 'Thomas, G. B. Finney, R. L. — Cálculo con Geometría Analítica (9a ed). México: Addison-Wesley, 1987', capitulos: ['Contenido completo']}
+    ],
+    complementarias: [
+      'Apostol, T. M. — Calculus, Volumen I. México: Ed. Reverté S. A., 2001',
+      'Banach, S. — Cálculo Diferencial e Integral. México: UTEHA., 1991',
+      'Kuratowski, K — Introducción al Cálculo. México: Limusa-Wiley, 1970'
+    ]
+  },
+  subsecuentes: ['Cálculo Diferencial e Integral II', 'Taller de Modelación I']
+},
+  {
+    id: 'geoAnalitica1',
+    name: 'Geometría Analítica I',
+    icon: '📐',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0010'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  },
+  {
+    id: 'geoModerna1',
+    name: 'Geometría Moderna I',
+    icon: '◯',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0012'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']},
+      {num: 4, name: 'Tema 4', subtemas: ['Subtema 4.1', 'Subtema 4.2', 'Subtema 4.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2', 'Libro complementario 3']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  }
 ];
 
 // SEMESTRE 2
 const semestre2 = [
-  {id:'algebra2',name:'Álgebra Superior II',icon:'∑',creditos:'10 créditos',meta:[{label:'Clave',value:'0008'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Números enteros',subtemas:['Algoritmo de la división','Máximo común divisor','Teorema fundamental de la aritmética']},{num:2,name:'Números complejos',subtemas:['Definición y representación','Forma polar','Teorema de De Moivre']},{num:3,name:'Polinomios',subtemas:['División de polinomios','Raíces y factorización','Teorema del factor']},{num:4,name:'Teoría de números',subtemas:['Congruencias','Teorema chino del resto','Pequeño teorema de Fermat']}],bibliografia:{basicas:[{name:'Álgebra Superior — Cárdenas',capitulos:['Enteros','Complejos','Polinomios']},{name:'Teoría de Números — Niven',capitulos:['Divisibilidad','Congruencias']}],complementarias:['Grimaldi — Matemáticas Discreta','Apostol — Teoría de Números']},subsecuentes:['Álgebra Lineal I','Álgebra Moderna I']},
-  {id:'calculo2',name:'Cálculo Diferencial e Integral II',icon:'∫',creditos:'18 créditos',meta:[{label:'Clave',value:'0006'},{label:'Créditos',value:'18'}],temario:[{num:1,name:'Integral definida',subtemas:['Sumas de Riemann','Teorema fundamental del cálculo']},{num:2,name:'Técnicas de integración',subtemas:['Integración por partes','Fracciones parciales','Sustitución trigonométrica']},{num:3,name:'Aplicaciones',subtemas:['Áreas entre curvas','Volúmenes de revolución','Longitud de arco','Centroides']},{num:4,name:'Integrales impropias',subtemas:['Límites infinitos','Criterios de convergencia']}],bibliografia:{basicas:[{name:'Cálculo — Spivak',capitulos:['Integral definida','Técnicas','Aplicaciones']},{name:'Cálculo — Stewart',capitulos:['Integración','Aplicaciones']}],complementarias:['Apostol — Calculus','Piskunov — Cálculo']},subsecuentes:['Cálculo III','Ecuaciones Diferenciales']},
-  {id:'geoAnalitica2',name:'Geometría Analítica II',icon:'📐',creditos:'10 créditos',meta:[{label:'Clave',value:'0011'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Transformaciones',subtemas:['Traslación','Rotación','Eliminación del término xy']},{num:2,name:'Parábola',subtemas:['Definición','Elementos','Ecuaciones']},{num:3,name:'Elipse',subtemas:['Definición','Elementos','Excentricidad']},{num:4,name:'Hipérbola',subtemas:['Definición','Asíntotas']},{num:5,name:'Coordenadas polares',subtemas:['Sistema polar','Gráficas','Ecuaciones paramétricas']}],bibliografia:{basicas:[{name:'Geometría Analítica — Lehmann',capitulos:['Parábola','Elipse','Hipérbola','Polares']},{name:'Geometría Analítica — Kindle',capitulos:['Cónicas','Transformaciones']}],complementarias:['Fuller — Geometría Analítica','Swokowski']},subsecuentes:['Cálculo III','Geometría Diferencial']}
+  {
+    id: 'algebra2',
+    name: 'Álgebra Superior II',
+    icon: '∑',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0008'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']},
+      {num: 4, name: 'Tema 4', subtemas: ['Subtema 4.1', 'Subtema 4.2', 'Subtema 4.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2', 'Libro complementario 3']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2', 'Materia subsecuente 3']
+  },
+  {
+    id: 'calculo2',
+    name: 'Cálculo Diferencial e Integral II',
+    icon: '∫',
+    creditos: '18 créditos',
+    meta: [{label: 'Clave', value: '0006'}, {label: 'Créditos', value: '18'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']},
+      {num: 4, name: 'Tema 4', subtemas: ['Subtema 4.1', 'Subtema 4.2', 'Subtema 4.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  },
+  {
+    id: 'geoAnalitica2',
+    name: 'Geometría Analítica II',
+    icon: '📐',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0011'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']},
+      {num: 4, name: 'Tema 4', subtemas: ['Subtema 4.1', 'Subtema 4.2', 'Subtema 4.3']},
+      {num: 5, name: 'Tema 5', subtemas: ['Subtema 5.1', 'Subtema 5.2', 'Subtema 5.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2', 'Libro complementario 3']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  }
 ];
 
 // SEMESTRE 3
 const semestre3 = [
-  {id:'algebraLineal1',name:'Álgebra Lineal I',icon:'📊',creditos:'10 créditos',meta:[{label:'Clave',value:'0015'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Espacios vectoriales',subtemas:['Definición','ℝ² y ℝ³','Subespacios']},{num:2,name:'Combinaciones lineales',subtemas:['Combinaciones lineales','Subespacio generado','Dependencia e independencia lineal']},{num:3,name:'Bases y dimensión',subtemas:['Bases','Dimensión','Coordenadas']}],bibliografia:{basicas:[{name:'Álgebra Lineal — Friedberg',capitulos:['Espacios vectoriales','Combinaciones','Bases']},{name:'Álgebra Lineal — Hoffman',capitulos:['Espacios vectoriales','Dependencia lineal']}],complementarias:['Lang — Álgebra Lineal','Grossman — Álgebra Lineal']},subsecuentes:['Álgebra Lineal II','Álgebra Moderna I']},
-  {id:'calculo3',name:'Cálculo Diferencial e Integral III',icon:'∫',creditos:'18 créditos',meta:[{label:'Clave',value:'0007'},{label:'Créditos',value:'18'}],temario:[{num:1,name:'Sucesiones y series',subtemas:['Sucesiones','Series numéricas','Criterios de convergencia']},{num:2,name:'Series de potencias',subtemas:['Series de potencias','Radio de convergencia']},{num:3,name:'Series de Taylor',subtemas:['Polinomios de Taylor','Series de Taylor','Aproximaciones']}],bibliografia:{basicas:[{name:'Cálculo — Spivak',capitulos:['Sucesiones','Series']},{name:'Cálculo — Stewart',capitulos:['Series','Taylor']}],complementarias:['Apostol — Calculus','Courant']},subsecuentes:['Cálculo IV','Variable Compleja']}
+  {
+    id: 'algebraLineal1',
+    name: 'Álgebra Lineal I',
+    icon: '📊',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0015'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2', 'Libro complementario 3']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  },
+  {
+    id: 'calculo3',
+    name: 'Cálculo Diferencial e Integral III',
+    icon: '∫',
+    creditos: '18 créditos',
+    meta: [{label: 'Clave', value: '0007'}, {label: 'Créditos', value: '18'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2', 'Materia subsecuente 3']
+  }
 ];
 
 // SEMESTRE 4
 const semestre4 = [
-  {id:'algebraLineal2',name:'Álgebra Lineal II',icon:'📊',creditos:'10 créditos',meta:[{label:'Clave',value:'0016'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Transformaciones lineales',subtemas:['Definición','Núcleo e imagen','Teorema de la dimensión']},{num:2,name:'Matrices',subtemas:['Representación matricial','Cambios de base']},{num:3,name:'Valores propios',subtemas:['Valores y vectores propios','Diagonalización']}],bibliografia:{basicas:[{name:'Álgebra Lineal — Friedberg',capitulos:['Transformaciones','Matrices','Valores propios']},{name:'Álgebra Lineal — Hoffman',capitulos:['Transformaciones lineales','Diagonalización']}],complementarias:['Lang — Álgebra Lineal','Grossman']},subsecuentes:['Álgebra Moderna I','Análisis Matemático']},
-  {id:'calculo4',name:'Cálculo Diferencial e Integral IV',icon:'∫',creditos:'18 créditos',meta:[{label:'Clave',value:'0008'},{label:'Créditos',value:'18'}],temario:[{num:1,name:'Cálculo vectorial',subtemas:['Funciones vectoriales','Curvas','Velocidad y aceleración']},{num:2,name:'Funciones de varias variables',subtemas:['Dominio y gráficas','Límites y continuidad','Derivadas parciales']},{num:3,name:'Optimización',subtemas:['Máximos y mínimos','Multiplicadores de Lagrange']},{num:4,name:'Integrales múltiples',subtemas:['Integrales dobles','Integrales triples','Aplicaciones']}],bibliografia:{basicas:[{name:'Cálculo — Stewart',capitulos:['Varias variables','Derivadas parciales','Integrales múltiples']},{name:'Cálculo vectorial — Marsden',capitulos:['Funciones vectoriales','Optimización']}],complementarias:['Apostol — Calculus','Courant']},subsecuentes:['Ecuaciones Diferenciales','Análisis Matemático']},
-  {id:'ecuacionesDiferenciales1',name:'Ecuaciones Diferenciales I',icon:'📈',creditos:'10 créditos',meta:[{label:'Clave',value:'0020'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Ecuaciones de primer orden',subtemas:['Variables separables','Ecuaciones lineales','Ecuaciones exactas']},{num:2,name:'Ecuaciones de segundo orden',subtemas:['Ecuaciones lineales homogéneas','Coeficientes constantes']},{num:3,name:'Aplicaciones',subtemas:['Crecimiento poblacional','Circuitos eléctricos']}],bibliografia:{basicas:[{name:'Ecuaciones Diferenciales — Boyce',capitulos:['Primer orden','Segundo orden','Aplicaciones']},{name:'Ecuaciones Diferenciales — Zill',capitulos:['Ecuaciones lineales']}],complementarias:['Braun — Ecuaciones Diferenciales','Coddington']},subsecuentes:['Ecuaciones Diferenciales II','Análisis Matemático']}
+  {
+    id: 'algebraLineal2',
+    name: 'Álgebra Lineal II',
+    icon: '📊',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0016'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  },
+  {
+    id: 'calculo4',
+    name: 'Cálculo Diferencial e Integral IV',
+    icon: '∫',
+    creditos: '18 créditos',
+    meta: [{label: 'Clave', value: '0008'}, {label: 'Créditos', value: '18'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']},
+      {num: 4, name: 'Tema 4', subtemas: ['Subtema 4.1', 'Subtema 4.2', 'Subtema 4.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2', 'Libro complementario 3']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  },
+  {
+    id: 'ecuacionesDiferenciales1',
+    name: 'Ecuaciones Diferenciales I',
+    icon: '📈',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0020'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2', 'Materia subsecuente 3']
+  }
 ];
 
 // SEMESTRE 5
 const semestre5 = [
-  {id:'algebraModerna1',name:'Álgebra Moderna I',icon:'🔣',creditos:'10 créditos',meta:[{label:'Clave',value:'0025'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Grupos',subtemas:['Definición','Subgrupos','Grupos cíclicos']},{num:2,name:'Homomorfismos',subtemas:['Homomorfismos de grupos','Núcleo e imagen','Teoremas de isomorfismo']},{num:3,name:'Grupos de permutaciones',subtemas:['Grupos simétricos','Ciclos','Teorema de Cayley']}],bibliografia:{basicas:[{name:'Álgebra Moderna — Fraleigh',capitulos:['Grupos','Subgrupos','Homomorfismos']},{name:'Álgebra — Herstein',capitulos:['Grupos','Permutaciones']}],complementarias:['Lang — Álgebra','Artin — Álgebra']},subsecuentes:['Álgebra Moderna II','Álgebra Moderna III']},
-  {id:'analisis1',name:'Análisis Matemático I',icon:'📊',creditos:'10 créditos',meta:[{label:'Clave',value:'0030'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Números reales',subtemas:['Axiomas de campo','Axiomas de orden','Propiedad de completez']},{num:2,name:'Sucesiones',subtemas:['Límite de sucesiones','Sucesiones monótonas','Subsucesiones']},{num:3,name:'Funciones continuas',subtemas:['Límite de funciones','Continuidad','Teoremas de continuidad']}],bibliografia:{basicas:[{name:'Análisis Matemático — Apostol',capitulos:['Números reales','Sucesiones','Continuidad']},{name:'Principios de Análisis — Rudin',capitulos:['Sucesiones','Límites']}],complementarias:['Bartle — Análisis Real','Spivak — Cálculo']},subsecuentes:['Análisis Matemático II','Análisis Matemático III']},
-  {id:'variableCompleja1',name:'Variable Compleja I',icon:'ℂ',creditos:'10 créditos',meta:[{label:'Clave',value:'0035'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Números complejos',subtemas:['El plano complejo','Funciones complejas','Límites y continuidad']},{num:2,name:'Diferenciación compleja',subtemas:['Derivada','Ecuaciones de Cauchy-Riemann','Funciones analíticas']},{num:3,name:'Integración compleja',subtemas:['Integrales de línea','Teorema de Cauchy','Fórmula integral de Cauchy']}],bibliografia:{basicas:[{name:'Variable Compleja — Churchill',capitulos:['Funciones complejas','Diferenciación','Integración']},{name:'Variable Compleja — Ahlfors',capitulos:['Análisis complejo']}],complementarias:['Marsden — Análisis Complejo','Spiegel']},subsecuentes:['Variable Compleja II','Análisis Matemático']}
+  {
+    id: 'algebraModerna1',
+    name: 'Álgebra Moderna I',
+    icon: '🔣',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0025'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2', 'Libro complementario 3']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  },
+  {
+    id: 'analisis1',
+    name: 'Análisis Matemático I',
+    icon: '📊',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0030'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2', 'Materia subsecuente 3']
+  },
+  {
+    id: 'variableCompleja1',
+    name: 'Variable Compleja I',
+    icon: 'ℂ',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0035'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2', 'Libro complementario 3']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  }
 ];
 
 // SEMESTRE 6
 const semestre6 = [
-  {id:'analisis2',name:'Análisis Matemático II',icon:'📊',creditos:'10 créditos',meta:[{label:'Clave',value:'0031'},{label:'Créditos',value:'10'}],temario:[{num:1,name:'Derivación',subtemas:['Derivada de funciones reales','Teorema de Rolle','Teorema del valor medio']},{num:2,name:'Integración de Riemann',subtemas:['Integral de Riemann','Propiedades','Teorema fundamental']},{num:3,name:'Sucesiones de funciones',subtemas:['Convergencia puntual','Convergencia uniforme','Teorema de Weierstrass']}],bibliografia:{basicas:[{name:'Análisis Matemático — Apostol',capitulos:['Derivación','Integración','Sucesiones de funciones']},{name:'Principios de Análisis — Rudin',capitulos:['Derivadas','Integrales']}],complementarias:['Bartle — Análisis Real','Folland']},subsecuentes:['Análisis Matemático III','Análisis Matemático IV']}
+  {
+    id: 'analisis2',
+    name: 'Análisis Matemático II',
+    icon: '📊',
+    creditos: '10 créditos',
+    meta: [{label: 'Clave', value: '0031'}, {label: 'Créditos', value: '10'}],
+    temario: [
+      {num: 1, name: 'Tema 1', subtemas: ['Subtema 1.1', 'Subtema 1.2', 'Subtema 1.3']},
+      {num: 2, name: 'Tema 2', subtemas: ['Subtema 2.1', 'Subtema 2.2', 'Subtema 2.3']},
+      {num: 3, name: 'Tema 3', subtemas: ['Subtema 3.1', 'Subtema 3.2', 'Subtema 3.3']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Libro 1', capitulos: ['Capítulo 1', 'Capítulo 2']},
+        {name: 'Libro 2', capitulos: ['Capítulo 1', 'Capítulo 2', 'Capítulo 3']}
+      ],
+      complementarias: ['Libro complementario 1', 'Libro complementario 2']
+    },
+    subsecuentes: ['Materia subsecuente 1', 'Materia subsecuente 2']
+  }
 ];
 
-// SEMESTRE 7 (Optativas destacadas)
-const semestre7 = [
-];
+// SEMESTRE 7 (Optativas)
+const semestre7 = [];
 
-// SEMESTRE 8 (Optativas destacadas)
-const semestre8 = [
-];
+// SEMESTRE 8 (Optativas)
+const semestre8 = [];
 
 // Función para renderizar grid
 function renderMateriasGrid(containerId, subjects, prefix) {
