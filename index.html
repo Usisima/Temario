@@ -24,7 +24,11 @@
   .meta-pill{font-size:11px;padding:3px 9px;border-radius:99px;border:0.5px solid #e0ddd6;color:#666;background:#f8f7f4;}
   .meta-pill strong{color:#1a1a1a;font-weight:500;}
 
-  .body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+  .body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .7s cubic-bezier(.25,.8,.25,1);
+}
   .body.open{max-height:8000px;}
 
   .tabs{display:flex;border-bottom:0.5px solid #e0ddd6;padding:0 1.25rem;}
@@ -267,12 +271,31 @@
 
 <script>
 function toggleMain(el){
-  const body=document.getElementById('main-body');
-  const chev=el.querySelector('.chevron');
-  const sub=document.getElementById('sub-lbl');
-  const open=body.classList.toggle('open');
-  chev.classList.toggle('open',open);
-  sub.textContent=open?'Ocultar detalles':'Ver plan completo';
+  const body = document.getElementById('main-body');
+  const chev = el.querySelector('.chevron');
+  const sub = document.getElementById('sub-lbl');
+
+  if(body.classList.contains('open')){
+    body.style.maxHeight = body.scrollHeight + 'px'; 
+    requestAnimationFrame(()=>{
+      body.style.maxHeight = '0px';
+    });
+    body.classList.remove('open');
+    chev.classList.remove('open');
+    sub.textContent='Ver plan completo';
+
+  } else {
+    body.classList.add('open');
+
+    body.style.maxHeight = '0px';
+
+    body.offsetHeight;
+
+    body.style.maxHeight = body.scrollHeight + 'px';
+
+    chev.classList.add('open');
+    sub.textContent='Ocultar detalles';
+  }
 }
 function showTab(name,el){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
