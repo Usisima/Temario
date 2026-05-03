@@ -3,61 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Álgebra Superior I</title>
+<title>Materias - Matemáticas</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:#f4f4f0;min-height:100vh;padding:2rem 1rem;}
-  .app{max-width:620px;margin:0 auto;}
-  .card{background:white;border:0.5px solid #e0ddd6;border-radius:12px;overflow:hidden;}
-
-  .mat-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;user-select:none;transition:background .15s;}
-  .mat-header:hover{background:#fafaf8;}
+  .container{max-width:1400px;margin:0 auto;}
+  h1{font-family:'DM Serif Display',serif;font-size:28px;color:#1a1a1a;margin-bottom:0.5rem;}
+  .subtitle{font-size:14px;color:#888;margin-bottom:2rem;border-bottom:1px solid #e0ddd6;padding-bottom:0.75rem;}
+  
+  .materias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(550px,1fr));gap:1.5rem;}
+  
+  .card{background:white;border:0.5px solid #e0ddd6;border-radius:12px;overflow:hidden;height:fit-content;}
+  
+  .mat-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;user-select:none;transition:background .15s;background:#f8f7f4;}
+  .mat-header:hover{background:#f0efe8;}
   .mat-left{display:flex;align-items:center;gap:12px;}
-  .mat-icon{width:38px;height:38px;border-radius:8px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:18px;color:#185FA5;flex-shrink:0;}
-  .mat-title{font-family:'DM Serif Display',serif;font-size:17px;color:#1a1a1a;}
-  .mat-sub{font-size:12px;color:#888;margin-top:1px;}
-  .chevron{width:20px;height:20px;color:#888;transition:transform .6s;flex-shrink:0;}
+  .mat-icon{width:42px;height:42px;border-radius:10px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:22px;color:#185FA5;flex-shrink:0;}
+  .mat-title{font-family:'DM Serif Display',serif;font-size:18px;color:#1a1a1a;}
+  .mat-sub{font-size:12px;color:#888;margin-top:2px;}
+  .chevron{width:20px;height:20px;color:#888;transition:transform .4s;flex-shrink:0;}
   .chevron.open{transform:rotate(180deg);}
-
+  
   .meta-row{display:flex;flex-wrap:wrap;gap:6px;padding:0 1.25rem 1rem;}
   .meta-pill{font-size:11px;padding:3px 9px;border-radius:99px;border:0.5px solid #e0ddd6;color:#666;background:#f8f7f4;}
   .meta-pill strong{color:#1a1a1a;font-weight:500;}
-
-  .body{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .7s cubic-bezier(.25,.8,.25,1);
-}
-  .body.open{max-height:8000px;}
-
+  
+  .body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.8,.25,1);}
+  .body.open{max-height:5000px;}
+  
   .tabs{display:flex;border-bottom:0.5px solid #e0ddd6;padding:0 1.25rem;}
-  .tab{font-size:13px;padding:8px 12px;cursor:pointer;color:#888;border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:all .15s;user-select:none;}
+  .tab{font-size:13px;padding:8px 12px;cursor:pointer;color:#888;border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:all .15s;}
   .tab.active{color:#1a1a1a;border-bottom-color:#378ADD;font-weight:500;}
   .tab-content{display:none;padding:1rem 1.25rem 1.25rem;}
   .tab-content.active{display:block;}
-
+  
   .slabel{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#aaa;padding:.75rem 0 .4rem;}
   .slabel:first-child{padding-top:0;}
-
-  /* TEMAS - siempre expandidos */
+  
   .tema-block{margin-bottom:.5rem;border:0.5px solid #e0ddd6;border-radius:8px;overflow:hidden;}
   .tema-header{display:flex;align-items:center;gap:8px;padding:.6rem .85rem;background:#f8f7f4;}
   .tema-num{font-size:11px;font-weight:500;color:#185FA5;background:#E6F1FB;padding:1px 6px;border-radius:4px;flex-shrink:0;}
   .tema-name{font-size:13px;font-weight:500;color:#1a1a1a;flex:1;}
   .subtema{font-size:12px;color:#555;padding:.45rem .85rem;border-top:0.5px solid #e0ddd6;line-height:1.5;}
   .subtema::before{content:"·";margin-right:6px;color:#bbb;}
-
-  /* LIBROS BÁSICOS */
+  
   .libro-card{background:white;border:0.5px solid #e0ddd6;border-radius:8px;margin-bottom:.5rem;overflow:hidden;}
-  .libro-header{display:flex;align-items:center;justify-content:space-between;padding:.7rem .9rem;cursor:pointer;user-select:none;transition:background .15s;gap:8px;}
+  .libro-header{display:flex;align-items:center;justify-content:space-between;padding:.7rem .9rem;cursor:pointer;gap:8px;}
   .libro-header:hover{background:#fafaf8;}
-  .libro-left{display:flex;align-items:center;gap:8px;min-width:0;}
+  .libro-left{display:flex;align-items:center;gap:8px;min-width:0;flex:1;}
   .libro-dot{width:7px;height:7px;border-radius:50%;background:#378ADD;flex-shrink:0;}
-  .libro-name{font-size:13px;font-weight:500;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .libro-name{font-size:12px;font-weight:500;color:#1a1a1a;}
   .libro-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
   .pct-badge{font-size:11px;font-weight:500;color:#185FA5;background:#E6F1FB;padding:2px 7px;border-radius:99px;}
-  .libro-chev{width:14px;height:14px;color:#999;transition:transform .25s;flex-shrink:0;}
+  .libro-chev{width:14px;height:14px;color:#999;transition:transform .25s;}
   .libro-card.open .libro-chev{transform:rotate(180deg);}
   .libro-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
   .libro-card.open .libro-body{max-height:800px;}
@@ -67,287 +66,318 @@
   .cap-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;transition:background .15s;}
   .cap-item:hover{background:#fafaf8;}
   .cap-item.leido{background:#EAF3DE;}
-  .cap-check{width:15px;height:15px;border:1.5px solid #ccc;border-radius:4px;flex-shrink:0;cursor:pointer;appearance:none;-webkit-appearance:none;background:white;transition:all .15s;position:relative;}
+  .cap-check{width:15px;height:15px;border:1.5px solid #ccc;border-radius:4px;flex-shrink:0;cursor:pointer;appearance:none;background:white;position:relative;}
   .cap-check:checked{background:#378ADD;border-color:#378ADD;}
   .cap-check:checked::after{content:'';position:absolute;width:4px;height:7px;border:1.5px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-0.5px,-1px);left:3px;top:0px;}
-  .cap-label{font-size:12px;color:#1a1a1a;cursor:default;transition:all .2s;flex:1;}
+  .cap-label{font-size:12px;color:#1a1a1a;flex:1;cursor:default;}
   .cap-item.leido .cap-label{text-decoration:line-through;color:#999;}
-  .cap-tag{font-size:10px;padding:1px 6px;border-radius:99px;background:#E6F1FB;color:#185FA5;white-space:nowrap;flex-shrink:0;}
-
-  /* BIBLIOGRAFÍA COMPLEMENTARIA */
-  .comp-block{border:0.5px solid #e0ddd6;border-radius:8px;overflow:hidden;margin-bottom:.5rem;}
-  .comp-header{display:flex;align-items:center;justify-content:space-between;padding:.65rem .85rem;cursor:pointer;user-select:none;background:#f8f7f4;transition:background .15s;}
+  .cap-tag{font-size:10px;padding:1px 6px;border-radius:99px;background:#E6F1FB;color:#185FA5;white-space:nowrap;}
+  
+  .comp-block{border:0.5px solid #e0ddd6;border-radius:8px;margin-bottom:.5rem;overflow:hidden;}
+  .comp-header{display:flex;align-items:center;justify-content:space-between;padding:.65rem .85rem;cursor:pointer;background:#f8f7f4;}
   .comp-header:hover{background:white;}
   .comp-title{font-size:13px;font-weight:500;color:#1a1a1a;}
-  .comp-chev{width:14px;height:14px;color:#999;transition:transform .25s;flex-shrink:0;}
+  .comp-chev{width:14px;height:14px;color:#999;transition:transform .25s;}
   .comp-block.open .comp-chev{transform:rotate(180deg);}
   .comp-list{max-height:0;overflow:hidden;transition:max-height .3s ease;}
   .comp-block.open .comp-list{max-height:800px;}
   .comp-item{font-size:12px;color:#555;padding:.4rem .85rem;border-top:0.5px solid #e0ddd6;line-height:1.5;}
   .comp-item::before{content:"·";margin-right:6px;color:#bbb;}
-
-  /* SUBSECUENTES */
+  
   .subsec-block{margin:1rem 1.25rem 1.25rem;padding:.85rem 1rem;border:0.5px solid #e0ddd6;border-radius:8px;background:#f8f7f4;}
   .subsec-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:.5rem;}
   .subsec-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#1a1a1a;padding:3px 0;}
   .subsec-arrow{font-size:11px;color:#bbb;}
+  
+  @media (max-width: 1200px){.materias-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-<div class="app">
-<div class="card">
-
-  <div class="mat-header" onclick="toggleMain(this)">
-    <div class="mat-left">
-      <div class="mat-icon">∑</div>
-      <div>
-        <div class="mat-title">Álgebra Superior I</div>
-        <div class="mat-sub" id="sub-lbl">Ver plan completo</div>
-      </div>
-    </div>
-    <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="5,7 10,13 15,7"/></svg>
-  </div>
-
-  <div class="body" id="main-body">
-
-    <div class="meta-row">
-      <span class="meta-pill">Clave <strong>0007</strong></span>
-      <span class="meta-pill">Créditos <strong>10</strong></span>
-    </div>
-
-    <div class="tabs">
-      <div class="tab active" onclick="showTab('temario',this)">Temario</div>
-      <div class="tab" onclick="showTab('biblio',this)">Bibliografía</div>
-    </div>
-
-    <!-- TAB TEMARIO -->
-    <div class="tab-content active" id="tab-temario">
-
-      <div class="tema-block">
-        <div class="tema-header">
-          <span class="tema-num">1</span>
-          <span class="tema-name">Conjuntos</span>
-        </div>
-        <div class="subtema">Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío y Universal.</div>
-        <div class="subtema">Operaciones con conjuntos: unión, intersección, complemento y diferencia.</div>
-        <div class="subtema">Conjunto potencia. Producto cartesiano. Familias de conjuntos.</div>
-      </div>
-
-      <div class="tema-block">
-        <div class="tema-header">
-          <span class="tema-num">2</span>
-          <span class="tema-name">Relaciones y funciones</span>
-        </div>
-        <div class="subtema">Relaciones: dominio, codominio e imagen.</div>
-        <div class="subtema">Funciones: imágenes e imágenes inversas.</div>
-        <div class="subtema">Composición de funciones. Función inversa.</div>
-        <div class="subtema">Funciones inyectivas, suprayectivas y biyectivas.</div>
-        <div class="subtema">Cardinalidad. Conjuntos finitos e infinitos. Funciones entre conjuntos finitos.</div>
-        <div class="subtema">Relaciones de equivalencia y particiones.</div>
-      </div>
-
-      <div class="tema-block">
-        <div class="tema-header">
-          <span class="tema-num">3</span>
-          <span class="tema-name">Números naturales y cálculo combinatorio</span>
-        </div>
-        <div class="subtema">Los números naturales. Principio de inducción.</div>
-        <div class="subtema">Cálculo combinatorio: ordenaciones con repetición, ordenaciones, permutaciones y combinaciones.</div>
-        <div class="subtema">Teorema del binomio. Relaciones entre coeficientes binomiales.</div>
-      </div>
-
-      <div class="tema-block">
-        <div class="tema-header">
-          <span class="tema-num">4</span>
-          <span class="tema-name">Espacios vectoriales</span>
-        </div>
-        <div class="subtema">Los espacios ℝ² y ℝ³. Interpretación geométrica.</div>
-        <div class="subtema">El espacio vectorial ℝⁿ.</div>
-        <div class="subtema">Subespacios. Combinaciones lineales. Subespacio generado por un conjunto de vectores.</div>
-        <div class="subtema">Dependencia e independencia lineal.</div>
-        <div class="subtema">Bases. Dimensión.</div>
-      </div>
-
-      <div class="tema-block">
-        <div class="tema-header">
-          <span class="tema-num">5</span>
-          <span class="tema-name">Matrices y determinantes</span>
-        </div>
-        <div class="subtema">Matrices, definición y operaciones. Transpuesta de una matriz.</div>
-        <div class="subtema">Operaciones elementales. Matrices escalón reducidas. Rango de una matriz.</div>
-        <div class="subtema">El determinante de una matriz cuadrada: definición y propiedades.</div>
-        <div class="subtema">Cálculo de determinantes.</div>
-        <div class="subtema">Caracterización del rango de una matriz por medio del determinante.</div>
-      </div>
-
-      <div class="tema-block">
-        <div class="tema-header">
-          <span class="tema-num">6</span>
-          <span class="tema-name">Sistemas de ecuaciones lineales</span>
-        </div>
-        <div class="subtema">Sistemas, soluciones, matriz y matriz aumentada.</div>
-        <div class="subtema">Criterios de existencia de soluciones.</div>
-        <div class="subtema">Regla de Cramer.</div>
-        <div class="subtema">Espacio de soluciones de un sistema no homogéneo.</div>
-        <div class="subtema">Resolución de sistemas (eliminación).</div>
-      </div>
-
-    </div>
-
-    <!-- TAB BIBLIOGRAFÍA -->
-    <div class="tab-content" id="tab-biblio">
-
-      <div class="slabel">Básica</div>
-
-      <div class="libro-card" id="lb0">
-        <div class="libro-header" onclick="toggleLibro('lb0')">
-          <div class="libro-left">
-            <div class="libro-dot"></div>
-            <span class="libro-name">Álgebra Superior — Cárdenas, Lluis, Raggi, Tomás (Trillas, 1974)</span>
-          </div>
-          <div class="libro-right">
-            <span class="pct-badge" id="pct-lb0">0%</span>
-            <svg class="libro-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
-          </div>
-        </div>
-        <div class="prog-wrap"><div class="prog-fill" id="bar-lb0" style="width:0%"></div></div>
-        <div class="libro-body"><div class="caps-list" id="caps-lb0">
-          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb0','pct-lb0','bar-lb0')"><span class="cap-label">Conjuntos</span><span class="cap-tag">en temario</span></div>
-          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb0','pct-lb0','bar-lb0')"><span class="cap-label">Relaciones y funciones</span><span class="cap-tag">en temario</span></div>
-          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb0','pct-lb0','bar-lb0')"><span class="cap-label">Espacios vectoriales</span><span class="cap-tag">en temario</span></div>
-          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb0','pct-lb0','bar-lb0')"><span class="cap-label">Matrices y determinantes</span><span class="cap-tag">en temario</span></div>
-        </div></div>
-      </div>
-
-      <div class="libro-card" id="lb1">
-        <div class="libro-header" onclick="toggleLibro('lb1')">
-          <div class="libro-left">
-            <div class="libro-dot"></div>
-            <span class="libro-name">Álgebra Elemental — Nachbin (OEA, 1986)</span>
-          </div>
-          <div class="libro-right">
-            <span class="pct-badge" id="pct-lb1">0%</span>
-            <svg class="libro-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
-          </div>
-        </div>
-        <div class="prog-wrap"><div class="prog-fill" id="bar-lb1" style="width:0%"></div></div>
-        <div class="libro-body"><div class="caps-list" id="caps-lb1">
-          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb1','pct-lb1','bar-lb1')"><span class="cap-label">Conjuntos</span><span class="cap-tag">en temario</span></div>
-          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb1','pct-lb1','bar-lb1')"><span class="cap-label">Números naturales</span><span class="cap-tag">en temario</span></div>
-          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb1','pct-lb1','bar-lb1')"><span class="cap-label">Sistemas de ecuaciones lineales</span><span class="cap-tag">en temario</span></div>
-        </div></div>
-      </div>
-
-      <div class="slabel">Complementaria</div>
-
-      <div class="comp-block" id="comp0">
-        <div class="comp-header" onclick="toggleComp('comp0')">
-          <span class="comp-title">Ver bibliografía complementaria (9 libros)</span>
-          <svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
-        </div>
-        <div class="comp-list">
-          <div class="comp-item">Dodge, C. W. — <em>Logic and Numbers.</em> Weber & Schmidt, 1969.</div>
-          <div class="comp-item">Friedberg, Insel, Spence — <em>Álgebra Lineal.</em> Publicaciones Cultural, 1986.</div>
-          <div class="comp-item">Gentile, E. R. — <em>Aritmética Elemental.</em> OEA, 1985.</div>
-          <div class="comp-item">Grimaldi, R. P. — <em>Matemáticas Discreta y Combinatoria.</em> STE, 1998.</div>
-          <div class="comp-item">Grossman, S. I. — <em>Álgebra Lineal.</em> McGraw-Hill, 1996.</div>
-          <div class="comp-item">Halmos, P. R. — <em>Teoría Intuitiva de los Conjuntos.</em> Ed. Continental, 1973.</div>
-          <div class="comp-item">Hoffman, K., Kunze, R. — <em>Álgebra Lineal.</em> Prentice Hall Internacional, 1973.</div>
-          <div class="comp-item">Lang, S. — <em>Álgebra Lineal.</em> STE, 1986.</div>
-          <div class="comp-item">Niven, I. M., Zuckerman, H. S. — <em>Introducción a la Teoría de los Números.</em> Limusa-Wiley, 1969.</div>
-        </div>
-      </div>
-    </div>
-    <div class="subsec-block">
-      <div class="subsec-label">Materias subsecuentes</div>
-      <div class="subsec-item"><span class="subsec-arrow">→</span> Álgebra Superior II</div>
-      <div class="subsec-item"><span class="subsec-arrow">→</span> Cálculo Diferencial e Integral III</div>
-      <div class="subsec-item"><span class="subsec-arrow">→</span> Taller de Modelación I</div>
-    </div>
-
-  </div>
-</div>
+<div class="container">
+  <h1>📚 Materias Matemáticas</h1>
+  <div class="subtitle">Facultad de Ciencias · Plan de estudios</div>
+  
+  <div class="materias-grid" id="materias-grid"></div>
 </div>
 
 <script>
-function toggleMain(el){
-  const body = document.getElementById('main-body');
-  const chev = el.querySelector('.chevron');
-  const sub = document.getElementById('sub-lbl');
-
-  if(body.classList.contains('open')){
-    body.style.maxHeight = body.scrollHeight + 'px'; 
-    requestAnimationFrame(()=>{
-      body.style.maxHeight = '0px';
-    });
-    body.classList.remove('open');
-    chev.classList.remove('open');
-    sub.textContent='Ver plan completo';
-
-  } else {
-    body.classList.add('open');
-
-    body.style.maxHeight = '0px';
-
-    body.offsetHeight;
-
-    body.style.maxHeight = body.scrollHeight + 'px';
-
-    chev.classList.add('open');
-    sub.textContent='Ocultar detalles';
+// ==================== DATOS DE LAS MATERIAS ====================
+const subjectsData = [
+  {
+    id: 'algebra1',
+    name: 'Álgebra Superior I',
+    icon: '∑',
+    meta: [
+      {label: 'Clave', value: '0007'},
+      {label: 'Créditos', value: '10'}
+    ],
+    temario: [
+      {num: 1, name: 'Conjuntos', subtemas: ['Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío y Universal.', 'Operaciones con conjuntos: unión, intersección, complemento y diferencia.', 'Conjunto potencia. Producto cartesiano. Familias de conjuntos.']},
+      {num: 2, name: 'Relaciones y funciones', subtemas: ['Relaciones: dominio, codominio e imagen.', 'Funciones: imágenes e imágenes inversas.', 'Composición de funciones. Función inversa.', 'Funciones inyectivas, suprayectivas y biyectivas.', 'Cardinalidad. Conjuntos finitos e infinitos.', 'Relaciones de equivalencia y particiones.']},
+      {num: 3, name: 'Números naturales y cálculo combinatorio', subtemas: ['Los números naturales. Principio de inducción.', 'Cálculo combinatorio: ordenaciones, permutaciones y combinaciones.', 'Teorema del binomio.']},
+      {num: 4, name: 'Espacios vectoriales', subtemas: ['Los espacios ℝ² y ℝ³.', 'El espacio vectorial ℝⁿ.', 'Subespacios. Combinaciones lineales.', 'Dependencia e independencia lineal.', 'Bases y dimensión.']},
+      {num: 5, name: 'Matrices y determinantes', subtemas: ['Matrices y operaciones.', 'Operaciones elementales y rango.', 'Determinantes: definición y propiedades.', 'Cálculo de determinantes.']},
+      {num: 6, name: 'Sistemas de ecuaciones lineales', subtemas: ['Sistemas y soluciones.', 'Criterios de existencia.', 'Regla de Cramer.', 'Espacio de soluciones.', 'Métodos de eliminación.']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Álgebra Superior — Cárdenas, Lluis, Raggi, Tomás', capitulos: ['Conjuntos', 'Relaciones y funciones', 'Espacios vectoriales', 'Matrices y determinantes']},
+        {name: 'Álgebra Elemental — Nachbin (OEA, 1986)', capitulos: ['Conjuntos', 'Números naturales', 'Sistemas de ecuaciones']}
+      ],
+      complementarias: ['Friedberg, Insel, Spence — Álgebra Lineal', 'Hoffman, Kunze — Álgebra Lineal', 'Grossman — Álgebra Lineal', 'Halmos — Teoría Intuitiva de los Conjuntos']
+    },
+    subsecuentes: ['Álgebra Superior II', 'Cálculo Diferencial e Integral III', 'Taller de Modelación I']
+  },
+  {
+    id: 'calculo1',
+    name: 'Cálculo I',
+    icon: '∫',
+    meta: [
+      {label: 'Clave', value: '0012'},
+      {label: 'Créditos', value: '10'}
+    ],
+    temario: [
+      {num: 1, name: 'Números reales y funciones', subtemas: ['Propiedades de los números reales.', 'Desigualdades y valor absoluto.', 'Funciones reales: dominio, rango y gráficas.', 'Funciones trigonométricas, exponenciales y logarítmicas.']},
+      {num: 2, name: 'Límites y continuidad', subtemas: ['Definición intuitiva y formal de límite.', 'Propiedades de los límites.', 'Límites laterales y límites infinitos.', 'Continuidad en un punto y en intervalos.', 'Teorema del valor intermedio.']},
+      {num: 3, name: 'Derivadas', subtemas: ['Definición de derivada.', 'Interpretación geométrica y física.', 'Reglas de derivación.', 'Derivadas de funciones trigonométricas.', 'Regla de la cadena.', 'Derivación implícita.']},
+      {num: 4, name: 'Aplicaciones de la derivada', subtemas: ['Razones de cambio relacionadas.', 'Máximos y mínimos.', 'Teorema de Rolle y del valor medio.', 'Criterio de la primera y segunda derivada.', 'Problemas de optimización.', 'Gráficas de funciones.']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Cálculo — Stewart (Cengage)', capitulos: ['Límites', 'Derivadas', 'Aplicaciones']},
+        {name: 'Cálculo — Thomas (Pearson)', capitulos: ['Funciones', 'Derivación', 'Optimización']}
+      ],
+      complementarias: ['Larson — Cálculo', 'Purcell — Cálculo', 'Spivak — Cálculo infinitesimal']
+    },
+    subsecuentes: ['Cálculo II', 'Ecuaciones Diferenciales', 'Física I']
+  },
+  {
+    id: 'geometriaAnalitica',
+    name: 'Geometría Analítica',
+    icon: '📐',
+    meta: [
+      {label: 'Clave', value: '0015'},
+      {label: 'Créditos', value: '8'}
+    ],
+    temario: [
+      {num: 1, name: 'Sistema de coordenadas', subtemas: ['Coordenadas cartesianas en el plano.', 'Distancia entre dos puntos.', 'División de un segmento.', 'Pendiente y ángulo de inclinación.']},
+      {num: 2, name: 'La línea recta', subtemas: ['Ecuación de la recta en sus distintas formas.', 'Rectas paralelas y perpendiculares.', 'Distancia de un punto a una recta.', 'Ángulo entre dos rectas.']},
+      {num: 3, name: 'Cónicas I: Circunferencia y parábola', subtemas: ['Ecuación de la circunferencia.', 'Forma ordinaria y general.', 'Parábola: definición y ecuación.', 'Elementos de la parábola.']},
+      {num: 4, name: 'Cónicas II: Elipse e hipérbola', subtemas: ['Elipse: definición y ecuación.', 'Elementos de la elipse.', 'Hipérbola: definición y ecuación.', 'Asíntotas de la hipérbola.']},
+      {num: 5, name: 'Coordenadas polares', subtemas: ['Sistema polar.', 'Relación con coordenadas cartesianas.', 'Gráficas en coordenadas polares.']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Geometría Analítica — Lehmann (Limusa)', capitulos: ['Recta', 'Circunferencia', 'Parábola', 'Elipse', 'Hipérbola']},
+        {name: 'Geometría Analítica — Charles H. Lehmann', capitulos: ['Coordenadas', 'Cónicas', 'Polares']}
+      ],
+      complementarias: ['Fuller — Geometría Analítica', 'Kindle — Geometría Analítica', 'Swokowski — Geometría Analítica']
+    },
+    subsecuentes: ['Cálculo III', 'Geometría Diferencial', 'Dibujo Técnico']
+  },
+  {
+    id: 'geometriaModerna',
+    name: 'Geometría Moderna',
+    icon: '◯',
+    meta: [
+      {label: 'Clave', value: '0020'},
+      {label: 'Créditos', value: '8'}
+    ],
+    temario: [
+      {num: 1, name: 'Geometría axiomática', subtemas: ['Evolución de la geometría.', 'Sistema axiomático de Euclides.', 'El quinto postulado.', 'Geometrías no euclidianas.']},
+      {num: 2, name: 'Congruencia y semejanza', subtemas: ['Postulados de congruencia.', 'Congruencia de triángulos.', 'Semejanza de triángulos.', 'Teorema de Tales.']},
+      {num: 3, name: 'Puntos notables del triángulo', subtemas: ['Baricentro, ortocentro, circuncentro e incentro.', 'Recta de Euler.', 'Circunferencia de los nueve puntos.']},
+      {num: 4, name: 'Geometría del círculo', subtemas: ['Ángulos inscritos, centrales y semi-inscritos.', 'Teoremas de Tales y Pitágoras.', 'Potencia de un punto.', 'Eje radical.']},
+      {num: 5, name: 'Transformaciones geométricas', subtemas: ['Traslación, rotación y reflexión.', 'Homotecia.', 'Transformaciones inversas.', 'Aplicaciones a la resolución de problemas.']},
+      {num: 6, name: 'Geometría proyectiva', subtemas: ['Principios de proyección.', 'Teorema de Desargues.', 'Teorema de Pappus.', 'Razón cruzada.']}
+    ],
+    bibliografia: {
+      basicas: [
+        {name: 'Geometría Moderna — Moise (Addison-Wesley)', capitulos: ['Axiomática', 'Congruencia', 'Puntos notables', 'Círculo']},
+        {name: 'Geometría Superior — Coxeter', capitulos: ['Transformaciones', 'Proyectiva']}
+      ],
+      complementarias: ['Hilbert — Fundamentos de la Geometría', 'Eves — Introducción a la Geometría', 'Pedoe — Geometría']
+    },
+    subsecuentes: ['Geometría Diferencial', 'Topología', 'Dibujo Geométrico']
   }
-}
-function showTab(name,el){
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');
-  el.classList.add('active');
-}
-function toggleLibro(id){document.getElementById(id).classList.toggle('open');}
-function toggleComp(id){document.getElementById(id).classList.toggle('open');}
-function marcar(chk,capsId,badgeId,barId){
-  chk.closest('.cap-item').classList.toggle('leido',chk.checked);
+];
 
-  // Guardar estado en localStorage
-  const key = capsId + '_state';
-  const all = document.getElementById(capsId).querySelectorAll('input');
-  const state = [];
-  all.forEach(c => state.push(c.checked));
-  localStorage.setItem(key, JSON.stringify(state));
-
-  // Recalcular progreso
-  let n=0; all.forEach(c=>{if(c.checked)n++;});
-  const pct=Math.round((n/all.length)*100);
-
-  if(badgeId)document.getElementById(badgeId).textContent=pct+'%';
-  if(barId)document.getElementById(barId).style.width=pct+'%';
+// Renderizar todas las materias
+function renderAllSubjects() {
+  const container = document.getElementById('materias-grid');
+  container.innerHTML = '';
+  
+  subjectsData.forEach((subject, idx) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="mat-header" onclick="toggleMain(this, '${subject.id}')">
+        <div class="mat-left">
+          <div class="mat-icon">${subject.icon}</div>
+          <div>
+            <div class="mat-title">${subject.name}</div>
+            <div class="mat-sub">Ver plan completo</div>
+          </div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="5,7 10,13 15,7"/></svg>
+      </div>
+      <div class="body" id="body_${subject.id}">
+        <div class="meta-row">
+          ${subject.meta.map(m => `<span class="meta-pill">${m.label} <strong>${m.value}</strong></span>`).join('')}
+        </div>
+        <div class="tabs">
+          <div class="tab active" onclick="showTab(this, 'temario_${subject.id}', 'biblio_${subject.id}')">Temario</div>
+          <div class="tab" onclick="showTab(this, 'biblio_${subject.id}', 'temario_${subject.id}')">Bibliografía</div>
+        </div>
+        <div class="tab-content active" id="temario_${subject.id}">
+          ${subject.temario.map(tema => `
+            <div class="tema-block">
+              <div class="tema-header">
+                <span class="tema-num">${tema.num}</span>
+                <span class="tema-name">${tema.name}</span>
+              </div>
+              ${tema.subtemas.map(sub => `<div class="subtema">${sub}</div>`).join('')}
+            </div>
+          `).join('')}
+        </div>
+        <div class="tab-content" id="biblio_${subject.id}">
+          <div class="slabel">Básica</div>
+          ${subject.bibliografia.basicas.map((libro, libIdx) => `
+            <div class="libro-card" id="libro_${subject.id}_${libIdx}">
+              <div class="libro-header" onclick="toggleLibro('libro_${subject.id}_${libIdx}')">
+                <div class="libro-left">
+                  <div class="libro-dot"></div>
+                  <span class="libro-name">${libro.name}</span>
+                </div>
+                <div class="libro-right">
+                  <span class="pct-badge" id="pct_${subject.id}_${libIdx}">0%</span>
+                  <svg class="libro-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
+                </div>
+              </div>
+              <div class="prog-wrap"><div class="prog-fill" id="bar_${subject.id}_${libIdx}" style="width:0%"></div></div>
+              <div class="libro-body"><div class="caps-list" id="caps_${subject.id}_${libIdx}">
+                ${libro.capitulos.map((cap, capIdx) => `
+                  <div class="cap-item">
+                    <input class="cap-check" type="checkbox" data-subject="${subject.id}" data-libro="${libIdx}" data-cap="${capIdx}" onchange="marcarCap(this, '${subject.id}', ${libIdx}, ${capIdx})">
+                    <span class="cap-label">${cap}</span>
+                    <span class="cap-tag">en temario</span>
+                  </div>
+                `).join('')}
+              </div></div>
+            </div>
+          `).join('')}
+          <div class="slabel">Complementaria</div>
+          <div class="comp-block" id="comp_${subject.id}">
+            <div class="comp-header" onclick="toggleComp('comp_${subject.id}')">
+              <span class="comp-title">Ver bibliografía complementaria (${subject.bibliografia.complementarias.length} libros)</span>
+              <svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
+            </div>
+            <div class="comp-list">
+              ${subject.bibliografia.complementarias.map(lib => `<div class="comp-item">${lib}</div>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div class="subsec-block">
+          <div class="subsec-label">Materias subsecuentes</div>
+          ${subject.subsecuentes.map(sub => `<div class="subsec-item"><span class="subsec-arrow">→</span> ${sub}</div>`).join('')}
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+  
+  // Cargar progreso guardado para cada materia
+  subjectsData.forEach(subject => {
+    subject.bibliografia.basicas.forEach((_, libIdx) => {
+      cargarEstadoLibro(subject.id, libIdx);
+    });
+  });
 }
-function cargarEstado(capsId, badgeId, barId){
-  const key = capsId + '_state';
+
+// Marcar capítulo como leído
+function marcarCap(checkbox, subjectId, libroIdx, capIdx) {
+  const capItem = checkbox.closest('.cap-item');
+  capItem.classList.toggle('leido', checkbox.checked);
+  
+  const allChecks = document.querySelectorAll(`#caps_${subjectId}_${libroIdx} .cap-check`);
+  const states = Array.from(allChecks).map(ch => ch.checked);
+  localStorage.setItem(`progress_${subjectId}_${libroIdx}`, JSON.stringify(states));
+  
+  const completed = states.filter(s => s).length;
+  const pct = Math.round((completed / states.length) * 100);
+  const pctSpan = document.getElementById(`pct_${subjectId}_${libroIdx}`);
+  const bar = document.getElementById(`bar_${subjectId}_${libroIdx}`);
+  if(pctSpan) pctSpan.textContent = `${pct}%`;
+  if(bar) bar.style.width = `${pct}%`;
+}
+
+// Cargar estado guardado de un libro
+function cargarEstadoLibro(subjectId, libroIdx) {
+  const key = `progress_${subjectId}_${libroIdx}`;
   const saved = localStorage.getItem(key);
   if(!saved) return;
-
-  const values = JSON.parse(saved);
-  const all = document.getElementById(capsId).querySelectorAll('input');
-
-  all.forEach((chk, i) => {
-    chk.checked = values[i] || false;
-    chk.closest('.cap-item').classList.toggle('leido', chk.checked);
+  
+  const states = JSON.parse(saved);
+  const checks = document.querySelectorAll(`#caps_${subjectId}_${libroIdx} .cap-check`);
+  checks.forEach((chk, i) => {
+    if(states[i]) {
+      chk.checked = true;
+      chk.closest('.cap-item').classList.add('leido');
+    }
   });
-
-  // recalcular progreso
-  let n=0; all.forEach(c=>{if(c.checked)n++;});
-  const pct=Math.round((n/all.length)*100);
-
-  if(badgeId)document.getElementById(badgeId).textContent=pct+'%';
-  if(barId)document.getElementById(barId).style.width=pct+'%';
+  
+  const completed = states.filter(s => s).length;
+  const pct = Math.round((completed / states.length) * 100);
+  const pctSpan = document.getElementById(`pct_${subjectId}_${libroIdx}`);
+  const bar = document.getElementById(`bar_${subjectId}_${libroIdx}`);
+  if(pctSpan) pctSpan.textContent = `${pct}%`;
+  if(bar) bar.style.width = `${pct}%`;
 }
 
-// Inicialización
-window.addEventListener('DOMContentLoaded', () => {
-  cargarEstado('caps-lb0','pct-lb0','bar-lb0');
-  cargarEstado('caps-lb1','pct-lb1','bar-lb1');
-});
+// Funciones de UI
+function toggleMain(el, subjectId) {
+  const body = document.getElementById(`body_${subjectId}`);
+  const chev = el.querySelector('.chevron');
+  const subText = el.querySelector('.mat-sub');
+  
+  if(body.classList.contains('open')) {
+    body.style.maxHeight = '0px';
+    body.classList.remove('open');
+    chev.classList.remove('open');
+    if(subText) subText.textContent = 'Ver plan completo';
+  } else {
+    body.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    chev.classList.add('open');
+    if(subText) subText.textContent = 'Ocultar detalles';
+  }
+}
+
+function showTab(clickedTab, showId, hideId) {
+  const parent = clickedTab.closest('.card');
+  const showContent = parent.querySelector(`#${showId}`);
+  const hideContent = parent.querySelector(`#${hideId}`);
+  const tabs = parent.querySelectorAll('.tab');
+  
+  tabs.forEach(t => t.classList.remove('active'));
+  clickedTab.classList.add('active');
+  
+  if(showContent) showContent.classList.add('active');
+  if(hideContent) hideContent.classList.remove('active');
+}
+
+function toggleLibro(id) {
+  const el = document.getElementById(id);
+  if(el) el.classList.toggle('open');
+}
+
+function toggleComp(id) {
+  const el = document.getElementById(id);
+  if(el) el.classList.toggle('open');
+}
+
+// Inicializar
+renderAllSubjects();
 </script>
 </body>
 </html>
