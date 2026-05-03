@@ -720,7 +720,7 @@ const CURRICULUM = [
         "Cónicas parametrizadas",
         "Familias de cónicas"
       ]
-    }
+    },
   ],
   bibBasicas: [
     { name: "Bracho, J. — Geometría Analítica. Notas.", caps: ["Introducción", "Trigonometría", "Espacios vectoriales", "Rectas y planos", "Cónicas"] },
@@ -737,7 +737,83 @@ const CURRICULUM = [
     "Geometría Analítica II",
     "Taller de Modelación I"
   ]
-},
+},{
+  id: "geo_moderna_1",
+  name: "Geometría Moderna I",
+  clave: "0249",
+  creditos: 10,
+  icon: "d16.jpg",
+  temario: [
+    {
+      num: "1",
+      name: "Geometría del triángulo",
+      horas: 25,
+      subtemas: [
+        "Congruencia. Semejanza. Teorema de Tales. Teorema de Pitágoras. Teorema de Stewart",
+        "Circuncentro, incentro, excentros, ortocentro, baricentro",
+        "Recta de Euler",
+        "Triángulos pedales"
+      ]
+    },
+    {
+      num: "2",
+      name: "Circunferencia y cuadriláteros cíclicos",
+      horas: 15,
+      subtemas: [
+        "Cuadriláteros cíclicos",
+        "Potencia. Círculos coaxiales(*)",
+        "Ángulos en la circunferencia",
+        "Antiparalelas",
+        "Teorema de Ptolomeo. Línea de Simson",
+        "Circunferencia de los nueve puntos"
+      ]
+    },
+    {
+      num: "3",
+      name: "Introducción a la geometría moderna",
+      horas: 30,
+      subtemas: [
+        "Breve discusión sobre los postulados euclidianos explícitos e implícitos",
+        "Segmentos y ángulos dirigidos(*)",
+        "Puntos al infinito. División de un segmento en una razón dada",
+        "Teorema de Euler",
+        "Puntos armónicos",
+        "Dualidad(*)",
+        "Cuadrilátero y cuadrángulo completos",
+        "Homotecia: polígonos homotéticos; puntos homólogos y antihomólogos; círculo de similitud"
+      ]
+    },
+    {
+      num: "4",
+      name: "Principales teoremas",
+      horas: 10,
+      subtemas: [
+        "Teorema de Ceva. Teorema de Menelao",
+        "Teorema de Desargues",
+        "Teorema de Pascal(*)",
+        "Teorema de Pappus(*)",
+        "Teorema de Brianchon(*)"
+      ]
+    }
+  ],
+  bibBasicas: [
+    { name: "Efimov, N. — Geometría Superior. MIR, 1984.", caps: ["Geometría del triángulo", "Circunferencia", "Geometría moderna", "Teoremas fundamentales"] },
+    { name: "Euclides — Euclid's Elements. Dover, 1979.", caps: ["Triángulos", "Circunferencias", "Geometría euclidiana"] },
+    { name: "Eves, H. — Estudio de las Geometrías. UTEHA, 1969.", caps: ["Geometría euclidiana", "Triángulos", "Circunferencias", "Teoremas clásicos"] },
+    { name: "Hilbert & Cohn-Vossen — Geometry and the Imagination. UNAM, 2000.", caps: ["Geometría del triángulo", "Circunferencia", "Geometría moderna"] },
+    { name: "Shively, L. — Introducción a la Geometría Moderna. Continental, 1961.", caps: ["Triángulo", "Circunferencia", "Geometría moderna", "Teoremas de Ceva y Menelao"] },
+    { name: "Wentworth & Smith — Geometría Plana y del Espacio. Porrúa, 1976.", caps: ["Triángulos", "Circunferencias", "Geometría euclidiana"] }
+  ],
+  bibComp: [
+    "Cabri, software.",
+    "Courant & Robbins — ¿Qué es la Matemática? Aguilar, 1967.",
+    "Coxeter & Greitzer — Geometry Revisited. Random House, 1967."
+  ],
+  subsecuentes: [
+    "Geometría Moderna II",
+    "Geometría Proyectiva"
+  ]
+}
       
     ]
   },
