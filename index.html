@@ -2,1018 +2,494 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Licenciatura en Matemáticas — Plan 1983</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Lic. Matemáticas · Plan 1983 | Avance por Créditos</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ─── Tokens ─────────────────────────────────────────────── */
+/* ─── Tokens estético, fondo blanco, acentos azul-mar ── */
 :root {
   --bg:        #FFFFFF;
   --surface:   #FFFFFF;
-  --surface-2: #FFFFFF;
-  --border:    #DDD9D2;
-
-  --ink:       #18160F;
-  --ink-2:     #524E46;
-  --ink-3:     #9A968E;
-
-  --blue:      #79b8a4;
+  --surface-2: #F7F7F9;
+  --border:    #E2DFDA;
+  --ink:       #1E1C16;
+  --ink-2:     #5A564C;
+  --ink-3:     #A19D94;
+  --blue:      #79a7a1;
   --blue-bg:   #FFFFFF;
-  --blue-soft: #C8D8F9;
-
+  --blue-soft: #C9DDE8;
   --green:     #196B3C;
   --green-bg:  #E4F4EC;
   --green-mid: #2E7D52;
-
-  --amber:     #92580A;
-  --amber-bg:  #FEF3DC;
-  --amber-bdr: rgba(146,88,10,.18);
-
-  --r-sm:  8px;
-  --r-md: 12px;
-  --r-lg: 16px;
-
-  --ease: 220ms cubic-bezier(.25,.8,.25,1);
+  --amber:     #9B5E0C;
+  --amber-bg:  #FEF4E5;
+  --amber-bdr: rgba(155,94,12,.15);
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+  --ease: 220ms cubic-bezier(.2,.9,.4,1.1);
 }
-
-/* ─── Reset ──────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; }
-
-/* ─── Body — mobile-first ────────────────────────────────── */
-body {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 16px;          /* comfortable base on phone */
-  background: var(--bg);
-  color: var(--ink);
-  min-height: 100vh;
-  /* safe padding: top for status bar, bottom for home indicator */
-  padding: env(safe-area-inset-top, 0px) 0 calc(env(safe-area-inset-bottom,0px) + 4rem);
-  -webkit-font-smoothing: antialiased;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  font-size:16px;
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100vh;
+  padding:env(safe-area-inset-top,0px) 0 calc(env(safe-area-inset-bottom,0px)+3rem);
+  -webkit-font-smoothing:antialiased;
 }
-
-/* ─── Sticky page header ─────────────────────────────────── */
-.page-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #ececec;
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
-  border-bottom: 1px solid var(--border);
-  padding: .9rem 1rem .85rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .75rem;
+.page-header{
+  position:sticky;top:0;z-index:100;
+  background:#ececec;backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:0.9rem 1rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:0.75rem;
 }
-
-.page-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -.02em;
-  line-height: 1.2;
+.page-title{font-size:1rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;}
+.page-subtitle{font-size:11px;color:var(--ink-3);margin-top:2px;}
+.global-pill{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
+  padding:5px 12px;border-radius:99px;
+  background:var(--blue-bg);color:var(--blue);
+  border:1px solid var(--blue-soft);white-space:nowrap;
 }
-.page-subtitle {
-  font-size: 11.5px;
-  color: var(--ink-3);
-  margin-top: 2px;
-  font-weight: 400;
+.container{max-width:820px;margin:0 auto;padding:0 1rem;}
+.semester-section{margin-top:2rem;}
+.semester-header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:0.5rem;flex-wrap:wrap;gap:0.5rem;
 }
-
-.global-pill {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 5px 11px;
-  border-radius: 99px;
-  background: var(--blue-bg);
-  color: var(--blue);
-  border: 1px solid var(--blue-soft);
-  white-space: nowrap;
-  flex-shrink: 0;
+.semester-title{font-size:0.85rem;font-weight:700;color:var(--ink-2);letter-spacing:0.05em;text-transform:uppercase;}
+.semester-credits{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  background:var(--surface);border:1px solid var(--border);
+  padding:2px 8px;border-radius:99px;color:var(--ink-3);
 }
-
-/* ─── Container ──────────────────────────────────────────── */
-.container {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 0 .875rem;
+.semester-progress-wrap{
+  display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;
 }
-
-/* ─── Semester section ───────────────────────────────────── */
-.semester-section { margin-top: 1.75rem; }
-
-.semester-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .5rem;
-  margin-bottom: .6rem;
+.semester-bar-track{flex:1;height:3px;background:var(--border);border-radius:99px;overflow:hidden;}
+.semester-bar-fill{height:100%;background:var(--blue);border-radius:99px;transition:width 0.4s ease;width:0%;}
+.semester-pct{font-family:'JetBrains Mono';font-size:10px;font-weight:500;color:var(--blue);min-width:36px;text-align:right;}
+.subjects-grid{display:flex;flex-direction:column;gap:1rem;}
+@media (min-width:720px){.subjects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}}
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:0 1px 3px rgba(0,0,0,0.02),0 1px 2px rgba(0,0,0,0.03);
+  transition:all 0.2s;
 }
-
-.semester-title {
-  font-size: .9rem;
-  font-weight: 700;
-  color: var(--ink-2);
-  letter-spacing: .04em;
-  text-transform: uppercase;
+.card-header{
+  display:flex;align-items:center;gap:0.9rem;padding:1rem;
+  cursor:pointer;user-select:none;min-height:74px;
+  -webkit-tap-highlight-color:transparent;
 }
-
-.semester-credits {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--ink-3);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 2px 8px;
-  border-radius: 99px;
-  white-space: nowrap;
+.card.open .card-header{background:var(--blue-bg);}
+.card-icon{
+  width:48px;height:48px;border-radius:var(--r-md);
+  background:var(--blue-bg);border:1px solid var(--blue-soft);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;flex-shrink:0;
 }
-
-/* Semester progress row */
-.semester-progress-wrap {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  margin-bottom: 1rem;
+.card-info{flex:1;min-width:0;}
+.card-name{font-size:1rem;font-weight:700;color:var(--ink);line-height:1.3;}
+.card-meta{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.4rem;}
+.meta-tag{
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;
+  background:var(--surface-2);border:1px solid var(--border);
+  padding:2px 7px;border-radius:99px;color:var(--ink-3);
 }
-.semester-bar-track {
-  flex: 1;
-  height: 3px;
-  background: var(--border);
-  border-radius: 99px;
-  overflow: hidden;
+.meta-tag strong{color:var(--ink-2);font-weight:500;}
+.card-controls{display:flex;align-items:center;gap:0.6rem;flex-shrink:0;}
+/* circulo + número de porcentaje integrado */
+.circle-wrapper{
+  position:relative;width:44px;height:44px;flex-shrink:0;
 }
-.semester-bar-fill {
-  height: 100%;
-  background: var(--blue);
-  border-radius: 99px;
-  transition: width .55s ease;
-  width: 0%;
+.circle-progress{width:44px;height:44px;display:block;}
+.circle-bg{fill:none;stroke:var(--border);stroke-width:3.2;}
+.circle-fg{fill:none;stroke:var(--blue);stroke-width:3.2;stroke-linecap:round;
+  stroke-dasharray:115;stroke-dashoffset:115;transform:rotate(-90deg);transform-origin:50% 50%;
+  transition:stroke-dashoffset 0.4s ease;
 }
-.semester-pct {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--blue);
-  min-width: 30px;
-  text-align: right;
+.circle-percent-number{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
+  color:var(--blue);background:transparent;pointer-events:none;
 }
-
-/* ─── Subjects stack (single column on mobile) ───────────── */
-.subjects-grid {
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
+.chevron{
+  width:22px;height:22px;color:var(--ink-3);
+  transition:transform 0.3s ease;flex-shrink:0;
 }
-@media (min-width: 700px) {
-  .subjects-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
+.card.open .chevron{transform:rotate(180deg);color:var(--blue);}
+.card-body{max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.2,0.9,0.4,1.1);}
+.card.open .card-body{max-height:9999px;}
+.tabs{
+  display:flex;background:var(--surface-2);border-bottom:1px solid var(--border);
+  padding:0 1rem;gap:0.5rem;
 }
-
-/* ─── Card ───────────────────────────────────────────────── */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  /* subtle lift */
-  box-shadow: 0 1px 0 rgba(255,255,255,.8) inset,
-              0 1px 4px rgba(0,0,0,.05);
+.tab{
+  font-size:13px;font-weight:600;padding:0.75rem 0.9rem;
+  cursor:pointer;color:var(--ink-3);border-bottom:2.5px solid transparent;
+  transition:all var(--ease);
 }
-
-/* Card header — large tap target */
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: .85rem;
-  padding: 1rem 1rem;
-  cursor: pointer;
-  user-select: none;
-  min-height: 72px;          /* generous touch target */
-  -webkit-tap-highlight-color: transparent;
-  transition: background var(--ease);
+.tab.active{color:var(--blue);border-bottom-color:var(--blue);}
+.tab-panel{display:none;padding:1rem;}
+.tab-panel.active{display:block;}
+.section-label{
+  font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--ink-3);margin:1rem 0 0.6rem;
 }
-.card.open .card-header { background: var(--blue-bg); }
-
-.card-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--r-md);
-  background: var(--blue-bg);
-  border: 1px solid var(--blue-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.45rem;
-  flex-shrink: 0;
+.section-label:first-child{margin-top:0;}
+.tema-item{
+  border:1px solid var(--border);border-radius:var(--r-sm);
+  overflow:hidden;margin-bottom:0.7rem;
 }
-.card.open .card-icon { background: white; }
-
-.card-info { flex: 1; min-width: 0; }
-
-.card-name {
-  font-size: 1rem;           /* 16px — comfortable phone reading */
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.3;
-  word-break: break-word;
+.tema-head{
+  display:flex;align-items:flex-start;gap:0.6rem;padding:0.7rem 0.9rem;
+  background:var(--surface-2);
 }
-
-.card-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .3rem;
-  margin-top: .4rem;
+.tema-num{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;
+  background:var(--blue-bg);border:1px solid var(--blue-soft);
+  padding:2px 7px;border-radius:6px;color:var(--blue);
 }
-.meta-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--ink-3);
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  padding: 2px 7px;
-  border-radius: 99px;
+.tema-name{font-size:14px;font-weight:600;color:var(--ink);line-height:1.35;}
+.subtema{
+  font-size:13px;color:var(--ink-2);padding:0.55rem 0.9rem;
+  border-top:1px solid var(--border);line-height:1.5;
+  display:flex;gap:0.55rem;
 }
-.meta-tag strong { color: var(--ink-2); font-weight: 500; }
-
-/* Right side of card header */
-.card-controls {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  flex-shrink: 0;
+.subtema::before{content:"·";color:var(--blue);flex-shrink:0;}
+.book-card{
+  border:1px solid var(--border);border-radius:var(--r-sm);
+  overflow:hidden;margin-bottom:0.7rem;
 }
-
-/* Circular progress — bigger on mobile */
-.circle-progress { width: 36px; height: 36px; flex-shrink: 0; }
-.circle-bg { fill: none; stroke: var(--border); stroke-width: 3.5; }
-.circle-fg {
-  fill: none;
-  stroke: var(--blue);
-  stroke-width: 3.5;
-  stroke-linecap: round;
-  stroke-dasharray: 82;
-  stroke-dashoffset: 82;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-  transition: stroke-dashoffset .5s ease;
+.book-header{
+  display:flex;align-items:center;justify-content:space-between;
+  min-height:54px;padding:0.7rem 0.9rem;cursor:pointer;
+  gap:0.75rem;background:var(--surface);
 }
-
-.chevron {
-  width: 22px;
-  height: 22px;
-  color: var(--ink-3);
-  transition: transform .3s ease;
-  flex-shrink: 0;
+.book-left{display:flex;align-items:flex-start;gap:0.6rem;flex:1;}
+.book-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--blue);
+  flex-shrink:0;margin-top:0.35rem;
 }
-.card.open .chevron { transform: rotate(180deg); color: var(--blue); }
-
-/* ─── Card body ──────────────────────────────────────────── */
-.card-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .5s cubic-bezier(.25,.8,.25,1);
+.book-name{font-size:12.5px;color:var(--ink-2);line-height:1.4;word-break:break-word;}
+.book-right{display:flex;align-items:center;gap:0.5rem;}
+.book-pct{
+  font-family:'JetBrains Mono';font-size:10px;font-weight:500;
+  background:var(--blue-bg);border:1px solid var(--blue-soft);
+  padding:2px 8px;border-radius:99px;color:var(--blue);
 }
-.card.open .card-body { max-height: 9999px; }
-
-/* ─── Tabs ───────────────────────────────────────────────── */
-.tabs {
-  display: flex;
-  background: var(--surface-2);
-  border-bottom: 1px solid var(--border);
-  padding: 0 1rem;
+.book-chev{width:16px;height:16px;color:var(--ink-3);transition:transform 0.2s;}
+.book-card.open .book-chev{transform:rotate(180deg);}
+.book-progress{height:3px;background:var(--border);}
+.book-progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),#6e9fc7);transition:width 0.3s;}
+.book-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
+.book-card.open .book-body{max-height:600px;}
+.chapters-list{padding:0.5rem 0.7rem 0.8rem;display:flex;flex-direction:column;gap:2px;}
+.chapter-item{
+  display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0.5rem;
+  border-radius:var(--r-sm);transition:background 0.15s;min-height:44px;
 }
-.tab {
-  font-size: 13.5px;
-  font-weight: 600;
-  padding: .75rem 1rem;      /* tall tab — easy to tap */
-  cursor: pointer;
-  color: var(--ink-3);
-  border-bottom: 2.5px solid transparent;
-  margin-bottom: -1px;
-  transition: color var(--ease), border-color var(--ease);
-  -webkit-tap-highlight-color: transparent;
+.chapter-item:active{background:var(--surface-2);}
+.chapter-item.read{background:var(--green-bg);}
+.cap-check{
+  width:20px;height:20px;border:2px solid var(--border);border-radius:5px;
+  flex-shrink:0;cursor:pointer;appearance:none;background:white;
+  transition:all 0.15s;
 }
-.tab.active { color: var(--blue); border-bottom-color: var(--blue); }
-
-.tab-panel { display: none; padding: 1rem; }
-.tab-panel.active { display: block; }
-
-/* ─── Section label ──────────────────────────────────────── */
-.section-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin: 1.1rem 0 .5rem;
+.cap-check:checked{background:var(--green-mid);border-color:var(--green-mid);}
+.cap-check:checked::after{
+  content:'';position:absolute;width:5px;height:9px;
+  border:2px solid white;border-top:none;border-left:none;
+  transform:rotate(45deg) translate(0px,-1px);left:4px;top:1px;
 }
-.section-label:first-child { margin-top: 0; }
-
-/* ─── Temario ────────────────────────────────────────────── */
-.tema-item {
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  overflow: hidden;
-  margin-bottom: .6rem;
+.chapter-label{font-size:13px;color:var(--ink-2);line-height:1.4;flex:1;cursor:pointer;}
+.chapter-item.read .chapter-label{color:var(--green);text-decoration:line-through;text-decoration-thickness:1px;}
+.comp-section{
+  border:1px solid var(--border);border-radius:var(--r-sm);
+  overflow:hidden;margin-top:0.25rem;
 }
-.tema-head {
-  display: flex;
-  align-items: flex-start;
-  gap: .6rem;
-  padding: .75rem .9rem;
-  background: var(--surface-2);
+.comp-toggle{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.7rem 0.9rem;cursor:pointer;background:var(--surface-2);
 }
-.tema-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--blue);
-  background: var(--blue-bg);
-  border: 1px solid var(--blue-soft);
-  padding: 2px 6px;
-  border-radius: 4px;
-  flex-shrink: 0;
-  margin-top: 1px;
+.comp-title{font-size:12px;font-weight:600;color:var(--ink-2);}
+.comp-chev{width:16px;height:16px;color:var(--ink-3);transition:transform 0.2s;}
+.comp-section.open .comp-chev{transform:rotate(180deg);}
+.comp-body{max-height:0;overflow:hidden;transition:max-height 0.3s;}
+.comp-section.open .comp-body{max-height:500px;}
+.comp-entry{
+  font-size:12px;color:var(--ink-3);padding:0.6rem 0.9rem;
+  border-top:1px solid var(--border);display:flex;gap:0.5rem;
 }
-.tema-name {
-  font-size: 14px;           /* larger than before */
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.35;
+.comp-entry::before{content:"→";color:var(--border);}
+.subsec-block{
+  margin:0.8rem 1rem 1rem;padding:0.7rem 0.9rem;
+  background:var(--amber-bg);border:1px solid var(--amber-bdr);border-radius:var(--r-md);
 }
-.subtema {
-  font-size: 13px;           /* readable at arm's length */
-  color: var(--ink-2);
-  padding: .55rem .9rem;
-  border-top: 1px solid var(--border);
-  line-height: 1.6;
-  display: flex;
-  gap: .55rem;
+.subsec-label{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem;}
+.subsec-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.subsec-tag{
+  font-size:11px;background:white;border:1px solid var(--amber-bdr);
+  padding:3px 10px;border-radius:99px;color:var(--amber);
 }
-.subtema::before { content: "·"; color: var(--blue); flex-shrink: 0; margin-top: 2px; }
-
-/* ─── Bibliography ───────────────────────────────────────── */
-.book-card {
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  overflow: hidden;
-  margin-bottom: .6rem;
-}
-.book-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 56px;          /* tap-friendly */
-  padding: .75rem .9rem;
-  cursor: pointer;
-  gap: .75rem;
-  background: var(--surface);
-  -webkit-tap-highlight-color: transparent;
-}
-.book-left { display: flex; align-items: flex-start; gap: .6rem; flex: 1; min-width: 0; }
-.book-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--blue);
-  flex-shrink: 0;
-  margin-top: .35rem;
-}
-.book-name {
-  font-size: 13px;
-  color: var(--ink-2);
-  line-height: 1.5;
-  word-break: break-word;
-}
-.book-right { display: flex; align-items: center; gap: .4rem; flex-shrink: 0; }
-.book-pct {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--blue);
-  background: var(--blue-bg);
-  padding: 2px 8px;
-  border-radius: 99px;
-  border: 1px solid var(--blue-soft);
-}
-.book-chev {
-  width: 16px; height: 16px;
-  color: var(--ink-3);
-  transition: transform .25s ease;
-  flex-shrink: 0;
-}
-.book-card.open .book-chev { transform: rotate(180deg); }
-
-.book-progress { height: 3px; background: var(--border); }
-.book-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--blue), #5B8DD9);
-  transition: width .4s ease;
-  width: 0%;
-}
-
-.book-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-.book-card.open .book-body { max-height: 700px; }
-
-.chapters-list { padding: .5rem .75rem .85rem; display: flex; flex-direction: column; gap: 1px; }
-
-/* Chapter row — tall for thumb tapping */
-.chapter-item {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  padding: .65rem .5rem;
-  border-radius: var(--r-sm);
-  transition: background var(--ease);
-  cursor: pointer;
-  min-height: 44px;
-}
-.chapter-item:active { background: var(--surface-2); }
-.chapter-item.read { background: var(--green-bg); }
-
-.cap-check {
-  width: 20px;              /* larger checkbox on touch */
-  height: 20px;
-  border: 2px solid var(--border);
-  border-radius: 5px;
-  flex-shrink: 0;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  background: white;
-  position: relative;
-  transition: all var(--ease);
-}
-.cap-check:checked { background: var(--green-mid); border-color: var(--green-mid); }
-.cap-check:checked::after {
-  content: '';
-  position: absolute;
-  width: 5px; height: 9px;
-  border: 2px solid white;
-  border-top: none; border-left: none;
-  transform: rotate(45deg) translate(0px,-1px);
-  left: 4px; top: 1px;
-}
-.chapter-label {
-  font-size: 13px;
-  color: var(--ink-2);
-  line-height: 1.45;
-  flex: 1;
-  cursor: pointer;
-}
-.chapter-item.read .chapter-label {
-  color: var(--green);
-  text-decoration: line-through;
-  text-decoration-color: rgba(46,125,82,.4);
-}
-
-/* ─── Complementary ──────────────────────────────────────── */
-.comp-section {
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  overflow: hidden;
-  margin-top: .35rem;
-}
-.comp-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 48px;
-  padding: .75rem .9rem;
-  cursor: pointer;
-  background: var(--surface-2);
-  -webkit-tap-highlight-color: transparent;
-}
-.comp-title { font-size: 13px; font-weight: 600; color: var(--ink-2); }
-.comp-chev {
-  width: 16px; height: 16px;
-  color: var(--ink-3);
-  transition: transform .25s;
-  flex-shrink: 0;
-}
-.comp-section.open .comp-chev { transform: rotate(180deg); }
-.comp-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-.comp-section.open .comp-body { max-height: 700px; }
-.comp-entry {
-  font-size: 12.5px;
-  color: var(--ink-3);
-  padding: .6rem .9rem;
-  border-top: 1px solid var(--border);
-  line-height: 1.55;
-  display: flex;
-  gap: .5rem;
-}
-.comp-entry::before { content: "→"; color: var(--border); flex-shrink: 0; }
-
-/* ─── Subsecuentes ───────────────────────────────────────── */
-.subsec-block {
-  margin: 0 1rem 1rem;
-  padding: .9rem 1rem;
-  background: var(--amber-bg);
-  border: 1px solid var(--amber-bdr);
-  border-radius: var(--r-md);
-}
-.subsec-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--amber);
-  margin-bottom: .55rem;
-}
-.subsec-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
-.subsec-tag {
-  font-size: 12px;
-  color: var(--amber);
-  background: white;
-  border: 1px solid var(--amber-bdr);
-  padding: 4px 11px;
-  border-radius: 99px;
-}
-
-/* ─── Empty ──────────────────────────────────────────────── */
-.empty-semester {
-  padding: 2rem 1rem;
-  text-align: center;
-  color: var(--ink-3);
-  font-size: 13px;
-  font-style: italic;
-  border: 1.5px dashed var(--border);
-  border-radius: var(--r-lg);
+.empty-semester{
+  padding:2rem;text-align:center;color:var(--ink-3);
+  border:1.5px dashed var(--border);border-radius:var(--r-lg);
+  font-size:13px;
 }
 </style>
 </head>
 <body>
-
 <header class="page-header">
   <div>
-    <h1 class="page-title">Matemáticas</h1>
-    <p class="page-subtitle">Plan 1983 · Ciencias UNAM</p>
+    <h1 class="page-title">Matemáticas · UNAM</h1>
+    <p class="page-subtitle">Plan 1983 · Avance por créditos (352 total)</p>
   </div>
-  <span class="global-pill" id="global-pct">0% global</span>
+  <span class="global-pill" id="global-pct">0%</span>
 </header>
-
 <div class="container" id="root"></div>
-
 <script>
-// ═══════════════════════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════════════════════
+// ============================================================
+// TOTAL CRÉDITOS = 352
+// AVANCE GLOBAL = (créditos de materias 100% completadas) / 352 * 100
+// NO se muestra el detalle numérico de créditos acumulados, solo porcentaje.
+// En cada materia, el círculo incluye porcentaje numérico (lectura clara)
+// ============================================================
+const TOTAL_CREDITOS_CARRERA = 352;
 
+// ---- PLAN DE ESTUDIOS (primer semestre completo, otros semestres placeholder) ----
 const CURRICULUM = [
-  {
-    semestre: 1,
-    titulo: "Primer Semestre",
-    creditos: "48 Créditos",
-    materias: [
-      {
-        id: "s1_algebra_superior",
-        name: "Álgebra Superior I",
-        clave: "0007",
-        creditos: 10,
-        icon: "🧮",
-        temario: [
-          { num: "1", name: "Conjuntos", subtemas: ["Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío, Conjunto Universal.", "Operaciones con conjuntos: unión, intersección, complemento y diferencia.", "Conjunto potencia. Producto cartesiano. Familias de conjuntos."] },
-          { num: "2", name: "Relaciones y funciones", subtemas: ["Relaciones (dominio, codominio e imagen).", "Funciones (imágenes e imágenes inversas).", "Composición de funciones. Función inversa.", "Funciones inyectivas, suprayectivas y biyectivas.", "Cardinalidad. Conjuntos finitos e infinitos. Funciones entre conjuntos finitos.", "Relaciones de equivalencia y particiones."] },
-          { num: "3", name: "Números naturales y cálculo combinatorio", subtemas: ["Los números naturales. Principio de inducción.", "Cálculo combinatorio: ordenaciones con repetición, ordenaciones, permutaciones y combinaciones.", "Teorema del binomio. Relaciones entre coeficientes binomiales."] },
-          { num: "4", name: "Espacios vectoriales", subtemas: ["Los espacios ℝ² y ℝ³. Interpretación geométrica.", "El espacio vectorial ℝⁿ.", "Subespacios. Combinaciones lineales. Subespacio generado por un conjunto de vectores.", "Dependencia e independencia lineal.", "Bases. Dimensión."] },
-          { num: "5", name: "Matrices y determinantes", subtemas: ["Matrices, definición y operaciones. Transpuesta de una matriz.", "Operaciones elementales: Matrices escalón reducidas. Rango de una matriz.", "El determinante de una matriz cuadrada: definición y propiedades.", "Cálculo de determinantes.", "Caracterización del rango de una matriz por medio del determinante."] },
-          { num: "6", name: "Sistemas de ecuaciones lineales", subtemas: ["Sistemas, soluciones, matriz y matriz aumentada.", "Criterios de existencia de soluciones.", "Regla de Cramer.", "Espacio de soluciones de un sistema no homogéneo.", "Resolución de sistemas (eliminación)."] }
-        ],
-        bibBasicas: [
-          { name: "Cárdenas, H., Lluis, E., Raggi, F., Tomás, F. — Álgebra Superior. Ed. Trillas, 1974.", caps: ["Cap. 1: Conjuntos", "Cap. 2: Relaciones y funciones", "Cap. 3: Números naturales", "Cap. 4: Espacios vectoriales", "Cap. 5: Matrices", "Cap. 6: Sistemas lineales"] },
-          { name: "Nachbin, L. — Álgebra Elemental. OEA, 1986.", caps: ["Cap. 1: Conjuntos y funciones", "Cap. 2: Números", "Cap. 3: Álgebra lineal", "Cap. 4: Matrices"] }
-        ],
-        bibComp: ["Dodge, C. W., Logic and Numbers. Weber & Schmidt, 1969.", "Friedberg, Insel, Spence — Álgebra Lineal. Publicaciones Cultural, 1986.", "Grossman, S. I. — Álgebra Lineal. McGraw-Hill, 1996.", "Halmos, P. R. — Teoría Intuitiva de los Conjuntos. Ed. Continental, 1973.", "Hoffman, K., Kunze, R. — Álgebra Lineal. Prentice Hall, 1973.", "Lang, S. — Álgebra Lineal. Sistemas Técnicos de Edición, 1986.", "Niven, Zuckerman — Introducción a la Teoría de los Números. Limusa Wiley, 1969."],
-        subsecuentes: ["Álgebra Superior II", "Cálculo Diferencial e Integral III", "Taller de Modelación I"]
-      },
-      {
-        id: "s1_calculo_diferencial_integral",
-        name: "Cálculo Diferencial e Integral I",
-        clave: "0091",
-        creditos: 18,
-        icon: "📊",
-        temario: [
-          { num: "1", name: "Introducción", subtemas: ["Los problemas que fundamentan al cálculo.", "Ejemplos."] },
-          { num: "2", name: "Números reales", subtemas: ["Propiedades de los números enteros, racionales y reales y sus operaciones, desigualdades y valor absoluto.", "La propiedad de compleción de los números reales, expansiones decimales."] },
-          { num: "3", name: "Funciones y sucesiones", subtemas: ["Definición, ejemplos, gráficas y propiedades elementales de las funciones.", "Sucesiones de números reales, sucesiones de Cauchy.", "Suma, producto y cociente de funciones y sucesiones.", "Composición de funciones. Funciones inversas."] },
-          { num: "4", name: "Límite", subtemas: ["Definición y ejemplos de sucesiones convergentes.", "Criterios elementales para la convergencia de sucesiones.", "Límite de funciones.", "Definición, ejemplos y propiedades básicas del límite de una función.", "Límites que involucran al infinito, asíntotas de curvas."] },
-          { num: "5", name: "Continuidad", subtemas: ["Definición y propiedades de las funciones continuas en un punto.", "La continuidad y la composición.", "Funciones continuas en intervalos cerrados.", "Propiedades: máximos, mínimos y teorema de valor intermedio."] },
-          { num: "6", name: "Funciones derivables", subtemas: ["Razón de cambio instantánea y velocidad. Tangentes de curvas.", "Definición y ejemplos del concepto de derivada.", "Relación entre continuidad y derivabilidad.", "Reglas de derivación: suma, producto, cociente y cadena.", "El Teorema del Valor Medio.", "Puntos críticos, máximos, mínimos, concavidad.", "Polinomios de Taylor y Regla de L'Hôpital."] }
-        ],
-        bibBasicas: [
-          { name: "Arizmendi, Carrillo, Lara — Cálculo. Primer Curso. Addison Wesley, 1987.", caps: ["Cap. 1: Números reales", "Cap. 2: Funciones", "Cap. 3: Límites", "Cap. 4: Continuidad", "Cap. 5: Derivadas"] },
-          { name: "Spivak, M. — Cálculo Infinitesimal. Reverté, 1998.", caps: ["Cap. 1: Propiedades de los números", "Cap. 2: Funciones", "Cap. 3: Límites", "Cap. 4: Continuidad", "Cap. 5: Derivadas", "Cap. 6: Aplicaciones"] },
-          { name: "Thomas, G. B., Finney, R. L. — Cálculo con Geometría Analítica. Addison Wesley.", caps: ["Cap. 1: Preliminares", "Cap. 2: Límites", "Cap. 3: Derivadas", "Cap. 4: Aplicaciones"] }
-        ],
-        bibComp: ["Apostol, T. M. — Calculus, Vol. I. Reverté, 2001.", "Courant, R., John, F. — Introducción al Cálculo y al Análisis. Limusa, 1974.", "Lang, S. — Cálculo I. Fondo Educativo Interamericano, 1990.", "Kuratowski, K. — Introducción al Cálculo. Limusa-Wiley, 1970."],
-        subsecuentes: ["Cálculo Diferencial e Integral II", "Taller de Modelación I"]
-      },
-      {
-        id: "s1_geo_analitica",
-        name: "Geometría Analítica I",
-        clave: "0244",
-        creditos: 10,
-        icon: "📐",
-        temario: [
-          { num: "1", name: "Introducción", subtemas: ["Conceptos geométricos elementales: distancias, simetrías.", "Coordenadas cartesianas en el plano y en el espacio.", "Lugares geométricos definidos por ecuaciones y desigualdades."] },
-          { num: "2", name: "Trigonometría", subtemas: ["Razones trigonométricas. Teorema de Pitágoras.", "Resolución de triángulos. Congruencia. Semejanza.", "Funciones trigonométricas. Identidades.", "Coordenadas polares, esféricas y cilíndricas."] },
-          { num: "3", name: "Espacios vectoriales básicos", subtemas: ["Definición y ejemplos de espacio vectorial real.", "Subespacios, independencia lineal, bases, dimensión.", "Producto escalar, vectorial, triple producto escalar."] },
-          { num: "4", name: "Rectas y planos", subtemas: ["Ecuaciones cartesianas y paramétricas de la recta en ℝ².", "Rectas en ℝ³; distancias, rectas que se cruzan.", "Ecuaciones del plano en ℝ³. Semiespacios.", "Sistemas de ecuaciones y desigualdades lineales."] },
-          { num: "5", name: "Cónicas", subtemas: ["Definición, trazado, nomenclatura. Simetrías.", "Ecuaciones canónicas.", "Traslaciones y rotaciones. Clasificación.", "La tangente a una cónica; propiedad focal.", "Familias de cónicas."] }
-        ],
-        bibBasicas: [
-          { name: "Bracho, J. — Geometría Analítica. Notas UNAM.", caps: ["Introducción y coordenadas", "Trigonometría", "Vectores", "Rectas y planos", "Cónicas"] },
-          { name: "Ramírez Galarza, A. — Geometría Analítica: Una Introducción. Las Prensas de Ciencias, 2004.", caps: ["Cap. 1: Geometría del plano", "Cap. 2: Vectores", "Cap. 3: Cónicas"] },
-          { name: "Efimov, N. — Geometría Superior. MIR, 1984.", caps: ["Cap. 1: Método de coordenadas", "Cap. 2: Vectores", "Cap. 3: Líneas de segundo orden"] }
-        ],
-        bibComp: ["Eves, H. — Estudio de las Geometrías. UTEHA, 1969.", "Hilbert, D., Cohn Vossen, S. — Geometry and the Imagination. UNAM, 2000.", "Preston, G. C., Lovaglia, A. R. — Modern Analytic Geometry. Harper & Row, 1971."],
-        subsecuentes: ["Cálculo Diferencial e Integral II", "Geometría Analítica II", "Taller de Modelación I"]
-      },
-      {
-        id: "s1_geometria_moderna",
-        name: "Geometría Moderna I",
-        clave: "0249",
-        creditos: 10,
-        icon: "🔷",
-        temario: [
-          { num: "1", name: "Geometría del triángulo", subtemas: ["Congruencia. Semejanza. Teorema de Tales. Teorema de Pitágoras. Teorema de Stewart.", "Circuncentro, incentro, excentros, ortocentro, baricentro.", "Recta de Euler.", "Triángulos pedales."] },
-          { num: "2", name: "Circunferencia y cuadriláteros cíclicos", subtemas: ["Cuadriláteros cíclicos. Potencia. Círculos coaxiales.", "Ángulos en la circunferencia. Antiparalelas.", "Teorema de Ptolomeo. Línea de Simson.", "Circunferencia de los nueve puntos."] },
-          { num: "3", name: "Introducción a la geometría moderna", subtemas: ["Postulados euclidianos explícitos e implícitos.", "Puntos al infinito. División de un segmento en una razón dada.", "Puntos armónicos. Dualidad.", "Homotecia: polígonos homotéticos, puntos homólogos."] },
-          { num: "4", name: "Principales teoremas", subtemas: ["Teorema de Ceva. Teorema de Menelao.", "Teorema de Desargues.", "Teorema de Pascal. Teorema de Pappus.", "Teorema de Brianchon."] }
-        ],
-        bibBasicas: [
-          { name: "Efimov, N. — Geometría Superior. MIR, 1984.", caps: ["Cap. 1: Triángulos", "Cap. 2: Circunferencia", "Cap. 3: Transformaciones", "Cap. 4: Teoremas clásicos"] },
-          { name: "Eves, H. — Estudio de las Geometrías. UTEHA, 1969.", caps: ["Cap. 1: Geometría Euclidiana", "Cap. 2: Geometría Moderna", "Cap. 3: Proyectiva"] },
-          { name: "Shively, L. — Introducción a la Geometría Moderna. Ed. Continental, 1961.", caps: ["Cap. 1: Puntos notables", "Cap. 2: Circunferencia", "Cap. 3: Razones", "Cap. 4: Ceva y Menelao"] }
-        ],
-        bibComp: ["Coxeter, S. M., Greitzer, S. L. — Geometry Revisited. Random House, 1967.", "Courant, R., Robbins, H. — ¿Qué es la Matemática? Ed. Aguilar, 1967.", "Hilbert, D., Cohn Vossen, S. — Geometry and the Imagination. UNAM, 2000.", "Euclides — Euclid's Elements. Dover, 1979."],
-        subsecuentes: ["Geometría Moderna II", "Geometría Proyectiva"]
-      }
-    ]
-  },
-  { semestre: 2, titulo: "Segundo Semestre", creditos: "38 Créditos + 1 Optativa", materias: [] },
-  { semestre: 3, titulo: "Tercer Semestre",  creditos: "28 Créditos + 2 Optativas", materias: [] },
-  { semestre: 4, titulo: "Cuarto Semestre",  creditos: "38 Créditos + 1 Optativa", materias: [] },
-  { semestre: 5, titulo: "Quinto Semestre",  creditos: "30 Créditos + 1 Optativa", materias: [] },
-  { semestre: 6, titulo: "Sexto Semestre",   creditos: "10 Créditos + 3 Optativas", materias: [] },
-  { semestre: 7, titulo: "Séptimo Semestre", creditos: "4 Optativas",  materias: [] },
-  { semestre: 8, titulo: "Octavo Semestre",  creditos: "4 Optativas",  materias: [] }
+  { semestre:1, titulo:"Primer Semestre", creditos:"48 Créditos", materias:[
+    { id:"s1_algebra", name:"Álgebra Superior I", clave:"0007", creditos:10, icon:"🧮",
+      temario:[{num:"1",name:"Conjuntos",subtemas:["Noción intuitiva","Operaciones"]},{num:"2",name:"Relaciones y funciones",subtemas:["Dominio","Composición"]}],
+      bibBasicas:[{name:"Cárdenas — Álgebra Superior",caps:["Cap.1 Conjuntos","Cap.2 Relaciones","Cap.3 Números"]},{name:"Nachbin — Álgebra Elemental",caps:["Cap.1 Conjuntos","Cap.2 Álgebra lineal"]}],
+      bibComp:["Dodge — Logic and Numbers","Hoffman — Álgebra Lineal"], subsecuentes:["Álgebra Superior II","Cálculo III"] },
+    { id:"s1_calculo", name:"Cálculo Diferencial e Integral I", clave:"0091", creditos:18, icon:"📊",
+      temario:[{num:"1",name:"Números reales",subtemas:["Propiedades","Compleción"]},{num:"2",name:"Límite",subtemas:["Definición","Propiedades"]}],
+      bibBasicas:[{name:"Arizmendi — Cálculo",caps:["Cap.1 Reales","Cap.2 Funciones","Cap.3 Límites"]},{name:"Spivak — Cálculo Infinitesimal",caps:["Cap.1 Propiedades","Cap.2 Derivadas"]}],
+      bibComp:["Apostol — Calculus I","Lang — Cálculo I"], subsecuentes:["Cálculo II","Taller Modelación"] },
+    { id:"s1_geoanalitica", name:"Geometría Analítica I", clave:"0244", creditos:10, icon:"📐",
+      temario:[{num:"1",name:"Coordenadas",subtemas:["Cartesianas","Polares"]},{num:"2",name:"Cónicas",subtemas:["Elipse","Hipérbola"]}],
+      bibBasicas:[{name:"Bracho — Geometría Analítica",caps:["Cap.1 Coordenadas","Cap.2 Vectores","Cap.3 Cónicas"]},{name:"Efimov — Geometría Superior",caps:["Cap.1 Método coordenadas","Cap.2 Líneas"]}],
+      bibComp:["Eves — Estudio Geometrías"], subsecuentes:["Geometría Analítica II","Cálculo II"] },
+    { id:"s1_geometriamoderna", name:"Geometría Moderna I", clave:"0249", creditos:10, icon:"🔷",
+      temario:[{num:"1",name:"Triángulo",subtemas:["Circuncentro","Ortocentro"]},{num:"2",name:"Teoremas",subtemas:["Ceva","Menelao"]}],
+      bibBasicas:[{name:"Shively — Geometría Moderna",caps:["Cap.1 Puntos notables","Cap.2 Circunferencia"]},{name:"Efimov — Superior",caps:["Cap.1 Triángulos"]}],
+      bibComp:["Coxeter — Geometry Revisited"], subsecuentes:["Geometría Moderna II","Geometría Proyectiva"] }
+  ]},
+  { semestre:2, titulo:"Segundo Semestre", creditos:"38 Créditos + 1 Optativa", materias:[] },
+  { semestre:3, titulo:"Tercer Semestre", creditos:"28 Créditos + 2 Optativas", materias:[] },
+  { semestre:4, titulo:"Cuarto Semestre", creditos:"38 Créditos + 1 Optativa", materias:[] },
+  { semestre:5, titulo:"Quinto Semestre", creditos:"30 Créditos + 1 Optativa", materias:[] },
+  { semestre:6, titulo:"Sexto Semestre", creditos:"10 Créditos + 3 Optativas", materias:[] },
+  { semestre:7, titulo:"Séptimo Semestre", creditos:"4 Optativas", materias:[] },
+  { semestre:8, titulo:"Octavo Semestre", creditos:"4 Optativas", materias:[] }
 ];
 
-// ═══════════════════════════════════════════════════════════
-// STATE MANAGER
-// ═══════════════════════════════════════════════════════════
-
-const STORAGE_VERSION = 'v2_';
-
+// ---------- localStorage ----------
+const STORAGE_VERSION = 'cred_v5_';
 const State = {
-  get(key) {
-    try { return JSON.parse(localStorage.getItem(STORAGE_VERSION + key)) ?? null; }
-    catch { return null; }
-  },
-  set(key, value) {
-    try { localStorage.setItem(STORAGE_VERSION + key, JSON.stringify(value)); }
-    catch { /* storage full or unavailable */ }
-  }
+  get(key){ try{ return JSON.parse(localStorage.getItem(STORAGE_VERSION+key))??null; }catch(e){ return null; } },
+  set(key,val){ try{ localStorage.setItem(STORAGE_VERSION+key,JSON.stringify(val)); }catch(e){} }
 };
+function getBookProgress(subjId,bookIdx){ return State.get(`prog_${subjId}_${bookIdx}`)??[]; }
+function setBookProgress(subjId,bookIdx,states){ State.set(`prog_${subjId}_${bookIdx}`,states); }
 
-// ═══════════════════════════════════════════════════════════
-// PROGRESS HELPERS
-// ═══════════════════════════════════════════════════════════
-
-function getBookProgress(subjectId, bookIdx) {
-  return State.get(`prog_${subjectId}_${bookIdx}`) ?? [];
-}
-
-function setBookProgress(subjectId, bookIdx, states) {
-  State.set(`prog_${subjectId}_${bookIdx}`, states);
-}
-
-function calcSubjectProgress(materia) {
-  let total = 0, done = 0;
-  materia.bibBasicas.forEach((book, i) => {
-    const states = getBookProgress(materia.id, i);
-    total += book.caps.length;
-    done  += book.caps.filter((_, ci) => states[ci] === true).length;
+// % de avance de materia basado en capítulos (0-100)
+function getSubjectPercent(materia){
+  let totalCaps=0, doneCaps=0;
+  materia.bibBasicas.forEach((book,i)=>{
+    const states = getBookProgress(materia.id,i);
+    totalCaps += book.caps.length;
+    doneCaps += book.caps.filter((_,ci)=> states[ci]===true).length;
   });
-  return total === 0 ? 0 : Math.round((done / total) * 100);
+  if(totalCaps===0) return 0;
+  return Math.min(100, Math.floor((doneCaps/totalCaps)*100));
+}
+// materia 100% completada?
+function isSubjectFullyCompleted(materia){ return getSubjectPercent(materia)===100; }
+
+// créditos acumulados solo materias full
+function getAccumulatedCredits(){
+  let earned=0;
+  for(const sem of CURRICULUM)
+    for(const m of sem.materias)
+      if(isSubjectFullyCompleted(m)) earned += m.creditos;
+  return earned;
+}
+// porcentaje global basado en créditos (sin texto adicional)
+function getGlobalCreditPercent(){
+  const earned = getAccumulatedCredits();
+  return Math.min(100, Math.round((earned/TOTAL_CREDITOS_CARRERA)*100));
 }
 
-function calcSemesterProgress(materias) {
-  if (!materias.length) return 0;
-  const sum = materias.reduce((acc, m) => acc + calcSubjectProgress(m), 0);
-  return Math.round(sum / materias.length);
+// actualizar toda la UI (sin mostrar créditos en el pill, solo %)
+function refreshAllUI(){
+  const globalPercent = getGlobalCreditPercent();
+  const globalEl = document.getElementById('global-pct');
+  if(globalEl) globalEl.textContent = `${globalPercent}%`;
+  
+  // Actualizar cada materia: círculo + número visible dentro
+  for(const sem of CURRICULUM){
+    for(const mat of sem.materias){
+      const pct = getSubjectPercent(mat);
+      const cardDiv = document.querySelector(`[data-materia="${mat.id}"]`);
+      if(cardDiv){
+        const circleSvg = cardDiv.querySelector('.circle-progress');
+        if(circleSvg) updateCircleWithNumber(circleSvg, pct);
+        const numberSpan = cardDiv.querySelector('.circle-percent-number');
+        if(numberSpan) numberSpan.textContent = `${pct}%`;
+      }
+    }
+  }
+  // refrescar barras de semestre (porcentaje de materias completadas al 100% dentro del semestre)
+  for(let idx=0; idx<CURRICULUM.length; idx++){
+    const sem = CURRICULUM[idx];
+    const materias = sem.materias;
+    let completedCount = materias.filter(m=>isSubjectFullyCompleted(m)).length;
+    const semPct = materias.length ? Math.round((completedCount/materias.length)*100) : 0;
+    const fill = document.getElementById(`sem-fill-${idx}`);
+    const pctEl = document.getElementById(`sem-pct-${idx}`);
+    if(fill) fill.style.width = `${semPct}%`;
+    if(pctEl) pctEl.textContent = `${semPct}%`;
+  }
 }
-
-function calcGlobalProgress() {
-  const all = CURRICULUM.flatMap(s => s.materias);
-  if (!all.length) return 0;
-  const sum = all.reduce((acc, m) => acc + calcSubjectProgress(m), 0);
-  return Math.round(sum / all.length);
-}
-
-// ═══════════════════════════════════════════════════════════
-// DOM HELPERS
-// ═══════════════════════════════════════════════════════════
-
-function qs(sel, ctx = document) { return ctx.querySelector(sel); }
-
-function updateCircle(svgEl, pct) {
+function updateCircleWithNumber(svgEl, pct){
   const fg = svgEl?.querySelector('.circle-fg');
-  if (fg) fg.style.strokeDashoffset = 82 - (82 * pct / 100);
+  if(fg){
+    const circumference = 115; // 2*pi*r con r~18.3 -> 115 aprox
+    const offset = circumference - (circumference * pct / 100);
+    fg.style.strokeDashoffset = offset;
+  }
 }
-
-function refreshCardProgress(materia) {
-  const pct = calcSubjectProgress(materia);
-  const cardEl = document.querySelector(`[data-materia="${materia.id}"]`);
-  if (!cardEl) return;
-
-  const pctEl = cardEl.querySelector('.card-pct');
-  const circEl = cardEl.querySelector('.circle-progress');
-  if (pctEl) pctEl.textContent = `${pct}%`;
-  if (circEl) updateCircle(circEl, pct);
+// ----- Renderizado completo -----
+function renderTemario(temario){
+  return temario.map(t=>`<div class="tema-item"><div class="tema-head"><span class="tema-num">${t.num}</span><span class="tema-name">${t.name}</span></div>${t.subtemas.map(s=>`<div class="subtema">${s}</div>`).join('')}</div>`).join('');
 }
-
-function refreshSemesterProgress(semIdx) {
-  const materias = CURRICULUM[semIdx].materias;
-  const pct = calcSemesterProgress(materias);
-  const fill = document.getElementById(`sem-fill-${semIdx}`);
-  const pctEl = document.getElementById(`sem-pct-${semIdx}`);
-  if (fill) fill.style.width = `${pct}%`;
-  if (pctEl) pctEl.textContent = `${pct}%`;
-}
-
-function refreshGlobal() {
-  const pct = calcGlobalProgress();
-  const el = document.getElementById('global-pct');
-  if (el) el.textContent = `${pct}% global`;
-}
-
-// ═══════════════════════════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════════════════════════
-
-function renderTemario(temario) {
-  return temario.map(t => `
-    <div class="tema-item">
-      <div class="tema-head">
-        <span class="tema-num">${t.num}</span>
-        <span class="tema-name">${t.name}</span>
-      </div>
-      ${t.subtemas.map(s => `<div class="subtema">${s}</div>`).join('')}
-    </div>
-  `).join('');
-}
-
-function renderBiblioteca(materia, semIdx) {
-  const books = materia.bibBasicas.map((book, bi) => {
-    const states = getBookProgress(materia.id, bi);
-    const done   = book.caps.filter((_, ci) => states[ci] === true).length;
-    const pct    = book.caps.length ? Math.round((done / book.caps.length) * 100) : 0;
-
-    const caps = book.caps.map((cap, ci) => {
-      const checked = states[ci] === true;
-      return `
-        <div class="chapter-item${checked ? ' read' : ''}" data-bi="${bi}" data-ci="${ci}">
-          <input class="cap-check" type="checkbox" ${checked ? 'checked' : ''}
-            data-materia="${materia.id}" data-bi="${bi}" data-ci="${ci}" data-semidx="${semIdx}">
-          <span class="chapter-label">${cap}</span>
-        </div>
-      `;
+function renderBiblioteca(materia, semIdx){
+  const booksHtml = materia.bibBasicas.map((book,bi)=>{
+    const states = getBookProgress(materia.id,bi);
+    const done = states.filter(Boolean).length;
+    const pct = book.caps.length ? Math.round((done/book.caps.length)*100) : 0;
+    const capsHtml = book.caps.map((cap,ci)=>{
+      const checked = states[ci]===true;
+      return `<div class="chapter-item${checked ? ' read' : ''}"><input class="cap-check" type="checkbox" ${checked ? 'checked' : ''} data-materia="${materia.id}" data-bi="${bi}" data-ci="${ci}" data-semidx="${semIdx}"><span class="chapter-label">${cap}</span></div>`;
     }).join('');
-
-    return `
-      <div class="book-card" data-book="${materia.id}-${bi}">
-        <div class="book-header" data-toggle-book="${materia.id}-${bi}">
-          <div class="book-left">
-            <div class="book-dot"></div>
-            <span class="book-name">${book.name}</span>
-          </div>
-          <div class="book-right">
-            <span class="book-pct" data-book-pct="${materia.id}-${bi}">${pct}%</span>
-            <svg class="book-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
-              <polyline points="3,5 7,9 11,5"/>
-            </svg>
-          </div>
-        </div>
-        <div class="book-progress">
-          <div class="book-progress-fill" data-book-bar="${materia.id}-${bi}" style="width:${pct}%"></div>
-        </div>
-        <div class="book-body">
-          <div class="chapters-list" data-caps="${materia.id}-${bi}">${caps}</div>
-        </div>
-      </div>
-    `;
+    return `<div class="book-card" data-book="${materia.id}-${bi}"><div class="book-header" data-toggle-book="${materia.id}-${bi}"><div class="book-left"><div class="book-dot"></div><span class="book-name">${book.name}</span></div><div class="book-right"><span class="book-pct" data-book-pct="${materia.id}-${bi}">${pct}%</span><svg class="book-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg></div></div><div class="book-progress"><div class="book-progress-fill" data-book-bar="${materia.id}-${bi}" style="width:${pct}%"></div></div><div class="book-body"><div class="chapters-list" data-caps="${materia.id}-${bi}">${capsHtml}</div></div></div>`;
   }).join('');
-
-  const comp = materia.bibComp.map(c => `<div class="comp-entry">${c}</div>`).join('');
-
-  return `
-    <div class="section-label">Básica</div>
-    ${books}
-    <div class="section-label">Complementaria</div>
-    <div class="comp-section" data-comp="${materia.id}">
-      <div class="comp-toggle" data-toggle-comp="${materia.id}">
-        <span class="comp-title">Ver bibliografía complementaria (${materia.bibComp.length})</span>
-        <svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
-          <polyline points="3,5 7,9 11,5"/>
-        </svg>
-      </div>
-      <div class="comp-body">${comp}</div>
-    </div>
-  `;
+  const compHtml = `<div class="comp-section" data-comp="${materia.id}"><div class="comp-toggle" data-toggle-comp="${materia.id}"><span class="comp-title">Complementaria (${materia.bibComp.length})</span><svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg></div><div class="comp-body">${materia.bibComp.map(c=>`<div class="comp-entry">${c}</div>`).join('')}</div></div>`;
+  return `<div class="section-label">Bibliografía básica</div>${booksHtml}<div class="section-label">Complementaria</div>${compHtml}`;
 }
-
-function renderSubsecuentes(subsecuentes) {
-  return `
-    <div class="subsec-block">
-      <div class="subsec-label">Materias subsecuentes</div>
-      <div class="subsec-tags">
-        ${subsecuentes.map(s => `<span class="subsec-tag">${s}</span>`).join('')}
+function renderCard(materia, semIdx){
+  const pct = getSubjectPercent(materia);
+  return `<div class="card" data-materia="${materia.id}">
+    <div class="card-header" data-toggle-card="${materia.id}">
+      <div class="card-icon">${materia.icon}</div>
+      <div class="card-info">
+        <div class="card-name">${materia.name}</div>
+        <div class="card-meta"><span class="meta-tag"><strong>Clave</strong> ${materia.clave}</span><span class="meta-tag"><strong>${materia.creditos}</strong> créditos</span></div>
       </div>
-    </div>
-  `;
-}
-
-function renderCard(materia, semIdx) {
-  const pct = calcSubjectProgress(materia);
-  const circ = `
-    <svg class="circle-progress" viewBox="0 0 32 32">
-      <circle class="circle-bg" cx="16" cy="16" r="13"/>
-      <circle class="circle-fg" cx="16" cy="16" r="13"/>
-    </svg>
-  `;
-
-  return `
-    <div class="card" data-materia="${materia.id}">
-      <div class="card-header" data-toggle-card="${materia.id}">
-        <div class="card-icon">${materia.icon}</div>
-        <div class="card-info">
-          <div class="card-name">${materia.name}</div>
-          <div class="card-meta">
-            <span class="meta-tag"><strong>Clave</strong> ${materia.clave}</span>
-            <span class="meta-tag"><strong>${materia.creditos}</strong> créditos</span>
-          </div>
-        </div>
-        <div class="card-controls">
-          ${circ}
-          <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="5,7 10,13 15,7"/>
+      <div class="card-controls">
+        <div class="circle-wrapper">
+          <svg class="circle-progress" viewBox="0 0 44 44">
+            <circle class="circle-bg" cx="22" cy="22" r="18.3" fill="none" stroke-width="3.2"/>
+            <circle class="circle-fg" cx="22" cy="22" r="18.3" fill="none" stroke-width="3.2" stroke-linecap="round"/>
           </svg>
+          <span class="circle-percent-number">${pct}%</span>
         </div>
-      </div>
-      <div class="card-body">
-        <div class="tabs">
-          <div class="tab active" data-tab-target="${materia.id}-temario">Temario</div>
-          <div class="tab" data-tab-target="${materia.id}-biblio">Bibliografía</div>
-        </div>
-        <div class="tab-panel active" id="${materia.id}-temario">
-          ${renderTemario(materia.temario)}
-        </div>
-        <div class="tab-panel" id="${materia.id}-biblio">
-          ${renderBiblioteca(materia, semIdx)}
-        </div>
-        ${renderSubsecuentes(materia.subsecuentes)}
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5,7 10,13 15,7"/></svg>
       </div>
     </div>
-  `;
+    <div class="card-body">
+      <div class="tabs"><div class="tab active" data-tab-target="${materia.id}-temario">Temario</div><div class="tab" data-tab-target="${materia.id}-biblio">Bibliografía</div></div>
+      <div class="tab-panel active" id="${materia.id}-temario">${renderTemario(materia.temario)}</div>
+      <div class="tab-panel" id="${materia.id}-biblio">${renderBiblioteca(materia, semIdx)}</div>
+      <div class="subsec-block"><div class="subsec-label">Materias subsecuentes</div><div class="subsec-tags">${materia.subsecuentes.map(s=>`<span class="subsec-tag">${s}</span>`).join('')}</div></div>
+    </div>
+  </div>`;
 }
-
-function renderSemester(sem, idx) {
-  const pct = calcSemesterProgress(sem.materias);
-  const cardsHtml = sem.materias.length
-    ? sem.materias.map(m => renderCard(m, idx)).join('')
-    : `<div class="empty-semester">Sin materias registradas en este semestre</div>`;
-
-  return `
-    <section class="semester-section">
-      <div class="semester-header">
-        <h2 class="semester-title">${sem.titulo}</h2>
-        <span class="semester-credits">${sem.creditos}</span>
-      </div>
-      <div class="semester-progress-wrap">
-        <div class="semester-bar-track">
-          <div class="semester-bar-fill" id="sem-fill-${idx}" style="width:${pct}%"></div>
-        </div>
-        <span class="semester-pct" id="sem-pct-${idx}">${pct}%</span>
-      </div>
-      <div class="subjects-grid">${cardsHtml}</div>
-    </section>
-  `;
+function renderSemester(sem, idx){
+  const materias = sem.materias;
+  const completedCount = materias.filter(m=>isSubjectFullyCompleted(m)).length;
+  const semPct = materias.length ? Math.round((completedCount/materias.length)*100) : 0;
+  const cardsHtml = materias.length ? materias.map(m=>renderCard(m,idx)).join('') : `<div class="empty-semester">Sin materias cargadas en este semestre</div>`;
+  return `<section class="semester-section"><div class="semester-header"><h2 class="semester-title">${sem.titulo}</h2><span class="semester-credits">${sem.creditos}</span></div><div class="semester-progress-wrap"><div class="semester-bar-track"><div class="semester-bar-fill" id="sem-fill-${idx}" style="width:${semPct}%"></div></div><span class="semester-pct" id="sem-pct-${idx}">${semPct}%</span></div><div class="subjects-grid">${cardsHtml}</div></section>`;
 }
-
-function renderAll() {
+function renderAll(){
   const root = document.getElementById('root');
-  root.innerHTML = CURRICULUM.map((sem, i) => renderSemester(sem, i)).join('');
-
-  // Paint circles after DOM is ready
-  CURRICULUM.forEach(sem => {
-    sem.materias.forEach(m => {
-      const pct = calcSubjectProgress(m);
-      const cardEl = document.querySelector(`[data-materia="${m.id}"]`);
-      if (cardEl) updateCircle(cardEl.querySelector('.circle-progress'), pct);
-    });
-  });
-
-  refreshGlobal();
+  root.innerHTML = CURRICULUM.map((sem,i)=>renderSemester(sem,i)).join('');
+  // inicializar círculos con números
+  for(const sem of CURRICULUM){
+    for(const m of sem.materias){
+      const cardDiv = document.querySelector(`[data-materia="${m.id}"]`);
+      if(cardDiv){
+        const pct = getSubjectPercent(m);
+        const circleSvg = cardDiv.querySelector('.circle-progress');
+        if(circleSvg) updateCircleWithNumber(circleSvg, pct);
+        const numSpan = cardDiv.querySelector('.circle-percent-number');
+        if(numSpan) numSpan.textContent = `${pct}%`;
+      }
+    }
+  }
+  refreshAllUI();
 }
-
-// ═══════════════════════════════════════════════════════════
-// EVENT DELEGATION
-// ═══════════════════════════════════════════════════════════
-
-document.getElementById('root').addEventListener('click', e => {
-  // Toggle card
+// ----- EVENTOS -----
+document.getElementById('root').addEventListener('click', (e)=>{
   const cardToggle = e.target.closest('[data-toggle-card]');
-  if (cardToggle) {
+  if(cardToggle){
     const id = cardToggle.dataset.toggleCard;
-    const card = document.querySelector(`[data-materia="${id}"]`);
-    if (card) card.classList.toggle('open');
+    document.querySelector(`[data-materia="${id}"]`)?.classList.toggle('open');
     return;
   }
-
-  // Toggle book
   const bookToggle = e.target.closest('[data-toggle-book]');
-  if (bookToggle) {
+  if(bookToggle){
     const id = bookToggle.dataset.toggleBook;
-    const book = document.querySelector(`[data-book="${id}"]`);
-    if (book) book.classList.toggle('open');
+    document.querySelector(`[data-book="${id}"]`)?.classList.toggle('open');
     return;
   }
-
-  // Toggle comp
   const compToggle = e.target.closest('[data-toggle-comp]');
-  if (compToggle) {
+  if(compToggle){
     const id = compToggle.dataset.toggleComp;
-    const comp = document.querySelector(`[data-comp="${id}"]`);
-    if (comp) comp.classList.toggle('open');
+    document.querySelector(`[data-comp="${id}"]`)?.classList.toggle('open');
     return;
   }
-
-  // Tab switch
   const tab = e.target.closest('[data-tab-target]');
-  if (tab) {
+  if(tab){
     const targetId = tab.dataset.tabTarget;
     const tabsContainer = tab.closest('.tabs');
-    tabsContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tabsContainer.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
-
-    // Find sibling panels
     const panels = tab.closest('.card-body').querySelectorAll('.tab-panel');
-    panels.forEach(p => {
-      p.classList.toggle('active', p.id === targetId);
-    });
-    return;
+    panels.forEach(p=>p.classList.toggle('active', p.id===targetId));
   }
 });
-
-// Chapter checkbox change
-document.getElementById('root').addEventListener('change', e => {
+document.getElementById('root').addEventListener('change', (e)=>{
   const chk = e.target.closest('.cap-check');
-  if (!chk) return;
-
-  const { materia: materiaId, bi, ci, semidx } = chk.dataset;
-  const biInt = parseInt(bi), ciInt = parseInt(ci), semInt = parseInt(semidx);
-
-  // Update DOM immediately
-  const chapterItem = chk.closest('.chapter-item');
-  chapterItem.classList.toggle('read', chk.checked);
-
-  // Read all checks in this book
-  const capsContainer = document.querySelector(`[data-caps="${materiaId}-${biInt}"]`);
+  if(!chk) return;
+  const { materia, bi, ci, semidx } = chk.dataset;
+  const biInt = parseInt(bi), ciInt = parseInt(ci);
+  const capsContainer = document.querySelector(`[data-caps="${materia}-${biInt}"]`);
+  if(!capsContainer) return;
   const allChecks = capsContainer.querySelectorAll('.cap-check');
-  const states = Array.from(allChecks).map(c => c.checked);
-
-  // Save
-  setBookProgress(materiaId, biInt, states);
-
-  // Update book badge + bar
-  const done = states.filter(Boolean).length;
-  const pct  = Math.round((done / states.length) * 100);
-  const pctEl = document.querySelector(`[data-book-pct="${materiaId}-${biInt}"]`);
-  const barEl = document.querySelector(`[data-book-bar="${materiaId}-${biInt}"]`);
-  if (pctEl) pctEl.textContent = `${pct}%`;
-  if (barEl) barEl.style.width = `${pct}%`;
-
-  // Find materia
-  const materia = CURRICULUM.flatMap(s => s.materias).find(m => m.id === materiaId);
-  if (!materia) return;
-
-  refreshCardProgress(materia);
-  refreshSemesterProgress(semInt);
-  refreshGlobal();
+  const states = Array.from(allChecks).map(c=>c.checked);
+  const chapterItem = chk.closest('.chapter-item');
+  if(chapterItem) chapterItem.classList.toggle('read', chk.checked);
+  setBookProgress(materia, biInt, states);
+  // actualizar badge de libro
+  const doneCount = states.filter(Boolean).length;
+  const total = states.length;
+  const bookPct = total ? Math.round((doneCount/total)*100) : 0;
+  const pctSpan = document.querySelector(`[data-book-pct="${materia}-${biInt}"]`);
+  const barDiv = document.querySelector(`[data-book-bar="${materia}-${biInt}"]`);
+  if(pctSpan) pctSpan.textContent = `${bookPct}%`;
+  if(barDiv) barDiv.style.width = `${bookPct}%`;
+  // refrescar todo (global, círculos con número, etc)
+  refreshAllUI();
 });
-
-// ═══════════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════════
 renderAll();
 </script>
 </body>
