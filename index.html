@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Matemáticas</title>
+<title>Matemáticas - Modo Oscuro</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:        #FFFFFF;
-  --surface:   #FFFFFF;
-  --surface-2: #F7F9F8;
-  --border:    #DFE6E2;
-  --ink:       #1A2E22;
-  --ink-2:     #4B6B5B;
-  --ink-3:     #8B9E93;
-  --mint:      #1f7979;      
-  --mint-light:#B8E6CF;      /* menta claro para anillo */
-  --mint-soft: #D7F5E8;
-  --mint-bg:   #EFFAF4;
-  --green:     #2C7A4B;
-  --green-bg:  #E6F4EE;
+  --bg:        #000000;
+  --surface:   #0a0a0a;
+  --surface-2: #111111;
+  --border:    #2a2a2a;
+  --ink:       #ffffff;
+  --ink-2:     #aaaaaa;
+  --ink-3:     #666666;
+  --mint:      #76bdc2;
+  --mint-light:#02463d;
+  --mint-soft: #1a2f2a;
+  --mint-bg:   #0d1f1b;
+  --green:     #021f19;
+  --green-bg:  #0d2a22;
   --amber:     #B46F3F;
   --amber-bg:  #FEF6ED;
-  --r-sm: 8px; --r-md: 12px; --r-lg: 18px;
+  --r-sm: 8px; --r-md: 10px; --r-lg: 20px;
   --ease: 220ms cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 *{box-sizing:border-box; margin:0; padding:0;}
@@ -35,14 +35,14 @@ body{
 }
 .page-header{
   position:sticky; top:0; z-index:100;
-  background:#F1F6F3; backdrop-filter:saturate(180%) blur(14px);
+  background:#0a0a0a; backdrop-filter:saturate(180%) blur(14px);
   border-bottom:1px solid var(--border);
   padding:0.9rem 1rem;
   display:flex; align-items:center; justify-content:space-between;
   gap:0.75rem;
 }
 .page-title{font-size:1rem; font-weight:700; color:var(--ink); letter-spacing:-0.02em;}
-.page-subtitle{font-size:11px; color:var(--ink-3); margin-top:2px;}
+.page-subtitle{font-size:11px; color:var(--ink-2); margin-top:2px;}
 .global-pill{
   font-family:'JetBrains Mono', monospace; font-size:12px; font-weight:600;
   padding:5px 14px; border-radius:99px;
@@ -59,35 +59,42 @@ body{
 .semester-credits{
   font-family:'JetBrains Mono', monospace; font-size:10px;
   background:var(--surface); border:1px solid var(--border);
-  padding:2px 9px; border-radius:99px; color:var(--ink-3);
+  padding:2px 9px; border-radius:99px; color:var(--ink-2);
 }
 .semester-progress-wrap{
   display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem;
 }
-.semester-bar-track{flex:1; height:4px; background:#E2E9E5; border-radius:99px; overflow:hidden;}
+.semester-bar-track{flex:1; height:4px; background:#1a1a1a; border-radius:99px; overflow:hidden;}
 .semester-bar-fill{height:100%; background:var(--mint); border-radius:99px; transition:width 0.4s ease; width:0%;}
 .semester-pct{font-family:'JetBrains Mono'; font-size:11px; font-weight:600; color:var(--mint); min-width:38px; text-align:right;}
 .subjects-grid{display:flex; flex-direction:column; gap:1rem;}
 @media (min-width:720px){.subjects-grid{display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;}}
 .card{
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:var(--r-lg); overflow:hidden;
-  transition:all 0.2s; box-shadow:0 1px 3px rgba(0,0,0,0.02);
+  background: var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  transition:all 0.2s;
+  box-shadow:0 1px 3px rgba(0,0,0,0.5);
 }
 .card-header{
   display:flex; align-items:center; gap:0.9rem; padding:1rem;
   cursor:pointer; user-select:none; min-height:74px;
-  background:white;
+  background:var(--surface);
   transition:background 0.1s;
 }
 .card.open .card-header{
-  background:white;
+  background:var(--surface-2);
 }
 .card-icon{
   width:48px; height:48px; border-radius:var(--r-md);
-  background:var(--mint-bg); border:1px solid var(--mint-light);
+  background:var(--mint-bg); border:0px solid var(--mint-light);
   display:flex; align-items:center; justify-content:center;
-  font-size:1.6rem; flex-shrink:0;
+  flex-shrink:0; overflow:hidden;
+}
+.card-icon img{
+  width:100%; height:100%; object-fit:cover;
+  border-radius:var(--r-md);
 }
 .card-info{flex:1; min-width:0;}
 .card-name{font-size:1rem; font-weight:700; color:var(--ink); line-height:1.3;}
@@ -95,17 +102,16 @@ body{
 .meta-tag{
   font-family:'JetBrains Mono', monospace; font-size:9.5px;
   background:var(--surface-2); border:1px solid var(--border);
-  padding:2px 7px; border-radius:99px; color:var(--ink-3);
+  padding:2px 7px; border-radius:99px; color:var(--ink-2);
 }
-.meta-tag strong{color:var(--ink-2); font-weight:500;}
+.meta-tag strong{color:var(--ink); font-weight:500;}
 .card-controls{display:flex; align-items:center; gap:0.6rem; flex-shrink:0;}
-/* ANILLO con r=18, circunferencia 113 */
 .circle-wrapper{
   position:relative; width:48px; height:48px; flex-shrink:0;
 }
 .circle-progress{width:48px; height:48px; display:block;}
-.circle-bg{fill:none; stroke:#E2EDE8; stroke-width:3.2;}
-.circle-fg{fill:none; stroke:var(--mint-light); stroke-width:3.2; stroke-linecap:round;
+.circle-bg{fill:none; stroke:#2a2a2a; stroke-width:3.2;}
+.circle-fg{fill:none; stroke:var(--mint); stroke-width:3.2; stroke-linecap:round;
   stroke-dasharray:113; stroke-dashoffset:113; transform:rotate(-90deg); transform-origin:50% 50%;
   transition:stroke-dashoffset 0.4s ease;
 }
@@ -135,7 +141,7 @@ body{
 .tab-panel.active{display:block;}
 .section-label{
   font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
-  color:var(--ink-3); margin:1rem 0 0.6rem;
+  color:var(--ink-2); margin:1rem 0 0.6rem;
 }
 .section-label:first-child{margin-top:0;}
 .tema-item{
@@ -160,12 +166,12 @@ body{
 .subtema::before{content:"·"; color:var(--mint); flex-shrink:0;}
 .book-card{
   border:1px solid var(--border); border-radius:var(--r-sm);
-  overflow:hidden; margin-bottom:0.7rem; background:white;
+  overflow:hidden; margin-bottom:0.7rem; background:var(--surface);
 }
 .book-header{
   display:flex; align-items:center; justify-content:space-between;
   min-height:54px; padding:0.7rem 0.9rem; cursor:pointer;
-  gap:0.75rem; background:white;
+  gap:0.75rem; background:var(--surface);
 }
 .book-left{display:flex; align-items:flex-start; gap:0.6rem; flex:1;}
 .book-dot{width:8px; height:8px; border-radius:50%; background:var(--mint); flex-shrink:0; margin-top:0.35rem;}
@@ -178,8 +184,8 @@ body{
 }
 .book-chev{width:16px; height:16px; color:var(--ink-3); transition:transform 0.2s;}
 .book-card.open .book-chev{transform:rotate(180deg);}
-.book-progress{height:4px; background:#E9F0EC;}
-.book-progress-fill{height:100%; background:linear-gradient(90deg, var(--mint), #A1DBC2); transition:width 0.3s;}
+.book-progress{height:4px; background:#1a1a1a;}
+.book-progress-fill{height:100%; background:linear-gradient(90deg, var(--mint), var(--mint-light)); transition:width 0.3s;}
 .book-body{max-height:0; overflow:hidden; transition:max-height 0.3s ease;}
 .book-card.open .book-body{max-height:600px;}
 .chapters-list{padding:0.6rem 0.7rem 0.8rem; display:flex; flex-direction:column; gap:4px;}
@@ -191,13 +197,13 @@ body{
 .chapter-item.read{background:var(--green-bg);}
 .cap-check{
   width:20px; height:20px; border:2px solid var(--border); border-radius:5px;
-  flex-shrink:0; cursor:pointer; appearance:none; background:white;
+  flex-shrink:0; cursor:pointer; appearance:none; background:var(--surface);
   transition:all 0.15s; position:relative;
 }
 .cap-check:checked{background:var(--mint); border-color:var(--mint);}
 .cap-check:checked::after{
   content:''; position:absolute; width:5px; height:9px;
-  border:2px solid white; border-top:none; border-left:none;
+  border:2px solid #000000; border-top:none; border-left:none;
   transform:rotate(45deg) translate(0px,-1px); left:4px; top:1px;
 }
 .chapter-label{font-size:13px; color:var(--ink-2); flex:1; cursor:pointer;}
@@ -216,18 +222,18 @@ body{
 .comp-body{max-height:0; overflow:hidden; transition:max-height 0.3s;}
 .comp-section.open .comp-body{max-height:500px;}
 .comp-entry{
-  font-size:12px; color:var(--ink-3); padding:0.6rem 0.9rem;
+  font-size:12px; color:var(--ink-2); padding:0.6rem 0.9rem;
   border-top:1px solid var(--border); display:flex; gap:0.5rem;
 }
 .comp-entry::before{content:"→"; color:var(--mint);}
 .subsec-block{
   margin:0.8rem 1rem 1rem; padding:0.7rem 1rem;
-  background:var(--amber-bg); border:1px solid #F0E0D0; border-radius:var(--r-md);
+  background:var(--amber-bg); border:1px solid #3a2a22; border-radius:var(--r-md);
 }
 .subsec-label{font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); margin-bottom:0.5rem;}
 .subsec-tags{display:flex; flex-wrap:wrap; gap:0.4rem;}
 .subsec-tag{
-  font-size:11px; background:white; border:1px solid #EADACA;
+  font-size:11px; background:var(--surface-2); border:1px solid #3a2a22;
   padding:3px 10px; border-radius:99px; color:var(--amber);
 }
 .empty-semester{
@@ -241,7 +247,7 @@ body{
 <header class="page-header">
   <div>
     <h1 class="page-title">Matemáticas</h1>
-    <p class="page-subtitle">Facultad de Ciencias · UNAM </p>
+    <p class="page-subtitle">Facultad de Ciencias · UNAM</p>
   </div>
   <span class="global-pill" id="global-pct">0%</span>
 </header>
@@ -258,7 +264,7 @@ const CURRICULUM = [
   name: "Álgebra Superior I",
   clave: "0007",
   creditos: 10,
-  icon: "🧮",
+  icon: "imagnes/2acf7a54c6817047c1be67d82b633389.jpg",
   temario: [
     {
       num: "1",
@@ -351,7 +357,7 @@ const CURRICULUM = [
   name: "Cálculo Diferencial e Integral I",
   clave: "0091",
   creditos: 18,
-  icon: "📐",
+  icon: "https://img.icons8.com/fluency/48/000000/derivative.png",
   temario: [
     {
       num: "1",
@@ -458,7 +464,7 @@ const CURRICULUM = [
   name: "Geometría Analítica I",
   clave: "0244",
   creditos: 10,
-  icon: "📐",
+  icon: "https://img.icons8.com/fluency/48/000000/geometry.png",
   temario: [
     {
       num: "1",
@@ -547,7 +553,7 @@ const CURRICULUM = [
   name: "Geometría Moderna I",
   clave: "0249",
   creditos: 10,
-  icon: "📐",
+  icon: "https://img.icons8.com/fluency/48/000000/triangular.png",
   temario: [
     {
       num: "1",
@@ -639,7 +645,7 @@ const CURRICULUM = [
   name: "Álgebra Superior II",
   clave: "0008",
   creditos: 10,
-  icon: "🧮",
+  icon: "https://img.icons8.com/fluency/48/000000/math.png",
   temario: [
     {
       num: "1",
@@ -715,7 +721,7 @@ const CURRICULUM = [
   name: "Cálculo Diferencial e Integral II",
   clave: "0092",
   creditos: 18,
-  icon: "📊",
+  icon: "https://img.icons8.com/fluency/48/000000/integral.png",
   temario: [
     {
       num: "1",
@@ -836,7 +842,7 @@ const CURRICULUM = [
   name: "Geometría Analítica II",
   clave: "0245",
   creditos: 10,
-  icon: "📐",
+  icon: "https://img.icons8.com/fluency/48/000000/geometry.png",
   temario: [
     {
       num: "1",
@@ -913,7 +919,7 @@ const CURRICULUM = [
   name: "Álgebra Lineal I",
   clave: "0005",
   creditos: 10,
-  icon: "🔢",
+  icon: "https://img.icons8.com/fluency/48/000000/matrix.png",
   temario: [
     {
       num: "1",
@@ -1061,6 +1067,7 @@ const CURRICULUM = [
     materias: []
   }
 ];
+
 // Asegurar que todas las materias tengan estructura mínima para checkboxes
 function ensureMateriaHasBibliografia(materia) {
   if(!materia.bibBasicas || materia.bibBasicas.length === 0) {
@@ -1225,11 +1232,12 @@ function renderBiblioteca(materia) {
 }
 function renderCard(materia) {
   const pct = getSubjectPercent(materia);
-  // SVG con radio r=18, viewBox=48x48 para que quepa bien
   return `
   <div class="card" data-materia="${materia.id}">
     <div class="card-header" data-toggle-card="${materia.id}">
-      <div class="card-icon">${materia.icon || '📘'}</div>
+      <div class="card-icon">
+        <img src="${materia.icon || 'https://img.icons8.com/fluency/48/000000/book.png'}" alt="${materia.name}" onerror="this.src='https://img.icons8.com/fluency/48/000000/book.png'">
+      </div>
       <div class="card-info">
         <div class="card-name">${materia.name}</div>
         <div class="card-meta"><span class="meta-tag"><strong>Clave</strong> ${materia.clave || '—'}</span><span class="meta-tag"><strong>${materia.creditos}</strong> créditos</span></div>
