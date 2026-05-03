@@ -77,12 +77,11 @@ body{
 .card-header{
   display:flex; align-items:center; gap:0.9rem; padding:1rem;
   cursor:pointer; user-select:none; min-height:74px;
-  background:white; /* Siempre blanco, sin cambio al abrir */
+  background:white;
   transition:background 0.1s;
 }
-/* Eliminamos cualquier cambio de fondo al abrir la tarjeta */
 .card.open .card-header{
-  background:white; /* Se mantiene blanco */
+  background:white;
 }
 .card-icon{
   width:48px; height:48px; border-radius:var(--r-md);
@@ -100,19 +99,19 @@ body{
 }
 .meta-tag strong{color:var(--ink-2); font-weight:500;}
 .card-controls{display:flex; align-items:center; gap:0.6rem; flex-shrink:0;}
-/* ANILLO MENTA CLARO - CORREGIDO: circulo interno mas pequeño para que no se corte */
+/* ANILLO con r=18, circunferencia 113 */
 .circle-wrapper{
-  position:relative; width:44px; height:44px; flex-shrink:0;
+  position:relative; width:48px; height:48px; flex-shrink:0;
 }
-.circle-progress{width:44px; height:44px; display:block;}
+.circle-progress{width:48px; height:48px; display:block;}
 .circle-bg{fill:none; stroke:#E2EDE8; stroke-width:3.2;}
 .circle-fg{fill:none; stroke:var(--mint-light); stroke-width:3.2; stroke-linecap:round;
-  stroke-dasharray:88; stroke-dashoffset:88; transform:rotate(-90deg); transform-origin:50% 50%;
+  stroke-dasharray:113; stroke-dashoffset:113; transform:rotate(-90deg); transform-origin:50% 50%;
   transition:stroke-dashoffset 0.4s ease;
 }
 .circle-percent-number{
   position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-  font-family:'JetBrains Mono', monospace; font-size:10px; font-weight:700;
+  font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700;
   color:var(--mint); background:transparent; pointer-events:none;
 }
 .chevron{
@@ -242,7 +241,7 @@ body{
 <header class="page-header">
   <div>
     <h1 class="page-title">Matemáticas</h1>
-    <p class="page-subtitle">Facultad de Ciencias · UNAM</p>
+    <p class="page-subtitle">Facultad de Ciencias · UNAM </p>
   </div>
   <span class="global-pill" id="global-pct">0%</span>
 </header>
@@ -252,10 +251,7 @@ body{
 // CRÉDITOS TOTALES CARRERA = 352  
 // AVANCE GLOBAL: (créditos de materias 100% completadas) / 352 * 100
 // AVANCE POR SEMESTRE: (créditos acumulados de materias completas en ese semestre) / (total créditos del semestre) * 100
-// El anillo de materia usa color menta claro (#B8E6CF) y texto en menta más intenso
-// NO se muestra "créditos avanzados" en cabecera de semestre, solo el total del semestre
-// Al expandir materia, el fondo del header permanece BLANCO (sin cambio)
-// CÍRCULO CORREGIDO: radio interno reducido para evitar que se corte en bordes
+// CÍRCULO: r=18, circunferencia = 113 (2 * PI * 18 ≈ 113.09)
 // ============================================================
 const TOTAL_CREDITOS_CARRERA = 352;
 
@@ -300,10 +296,8 @@ const CURRICULUM = [
     { id:"s6_topologia", name:"Topología", creditos:10, icon:"⚫", clave:"0600", temario:[{num:"1",name:"Espacios topológicos",subtemas:["Abiertos"]}], bibBasicas:[{name:"Topología - Munkres",caps:["Cap.1 Conjuntos","Cap.2 Topología"]}], bibComp:[], subsecuentes:[] }
   ]},
   { semestre:7, titulo:"Séptimo Semestre", materias:[
-    { id:"s7_seminario", name:"Seminario de Tesis", creditos:12, icon:"📖", clave:"0999", temario:[{num:"1",name:"Investigación",subtemas:["Metodología"]}], bibBasicas:[{name:"Guía de Tesis",caps:["Cap.1 Planteamiento","Cap.2 Marco teórico"]}], bibComp:[], subsecuentes:[] }
   ]},
   { semestre:8, titulo:"Octavo Semestre", materias:[
-    { id:"s8_opcion", name:"Optativa Profunda", creditos:8, icon:"⭐", clave:"1001", temario:[{num:"1",name:"Tema selecto",subtemas:["Avanzado"]}], bibBasicas:[{name:"Material optativo",caps:["Módulo A","Módulo B"]}], bibComp:[], subsecuentes:[] }
   ]}
 ];
 
@@ -319,7 +313,7 @@ function ensureMateriaHasBibliografia(materia) {
 CURRICULUM.forEach(sem => sem.materias.forEach(m => ensureMateriaHasBibliografia(m)));
 
 // ---------- LOCALSTORAGE ----------
-const STORAGE_KEY = 'cred_mint_avance_v5';
+const STORAGE_KEY = 'cred_mint_avance_v6';
 function loadAllProgress() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if(stored) return JSON.parse(stored);
@@ -366,7 +360,6 @@ function getGlobalCreditPercent() {
   return Math.min(100, Math.round((getAccumulatedCredits() / TOTAL_CREDITOS_CARRERA) * 100));
 }
 
-// --- Cálculo por semestre basado en créditos (sin mostrar créditos avanzados en UI) ---
 function getSemesterTotalCredits(sem) {
   return sem.materias.reduce((sum, m) => sum + (m.creditos || 0), 0);
 }
@@ -424,11 +417,11 @@ function updateAllUI() {
   }
 }
 
-// Circunferencia corregida: 2 * PI * r (r=14) ≈ 88
+// Circunferencia para r=18: 2 * π * 18 ≈ 113.09 → usamos 113
 function updateCirclePercent(svgEl, percent) {
   const fg = svgEl?.querySelector('.circle-fg');
   if(fg) {
-    const circumference = 88; // 2 * π * 14 ≈ 87.96
+    const circumference = 113;
     const offset = circumference - (circumference * percent / 100);
     fg.style.strokeDashoffset = offset;
   }
@@ -472,7 +465,7 @@ function renderBiblioteca(materia) {
 }
 function renderCard(materia) {
   const pct = getSubjectPercent(materia);
-  // SVG con radio r=14 (para que quepa bien dentro de 44x44 sin cortarse)
+  // SVG con radio r=18, viewBox=48x48 para que quepa bien
   return `
   <div class="card" data-materia="${materia.id}">
     <div class="card-header" data-toggle-card="${materia.id}">
@@ -483,9 +476,9 @@ function renderCard(materia) {
       </div>
       <div class="card-controls">
         <div class="circle-wrapper">
-          <svg class="circle-progress" viewBox="0 0 44 44">
-            <circle class="circle-bg" cx="22" cy="22" r="18" fill="none" stroke-width="3.2"/>
-            <circle class="circle-fg" cx="22" cy="22" r="18" fill="none" stroke-width="3.2" stroke-linecap="round"/>
+          <svg class="circle-progress" viewBox="0 0 48 48">
+            <circle class="circle-bg" cx="24" cy="24" r="18" fill="none" stroke-width="3.2"/>
+            <circle class="circle-fg" cx="24" cy="24" r="18" fill="none" stroke-width="3.2" stroke-linecap="round"/>
           </svg>
           <span class="circle-percent-number">${pct}%</span>
         </div>
@@ -567,4 +560,3 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-```
