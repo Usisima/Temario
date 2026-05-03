@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Álgebra Superior I</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:#f4f4f0;min-height:100vh;padding:2rem 1rem;}
+  .app{max-width:620px;margin:0 auto;}
+  .card{background:white;border:0.5px solid #e0ddd6;border-radius:12px;overflow:hidden;}
+
+  .mat-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;user-select:none;transition:background .15s;}
+  .mat-header:hover{background:#fafaf8;}
+  .mat-left{display:flex;align-items:center;gap:12px;}
+  .mat-icon{width:38px;height:38px;border-radius:8px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:18px;color:#185FA5;flex-shrink:0;}
+  .mat-title{font-family:'DM Serif Display',serif;font-size:17px;color:#1a1a1a;}
+  .mat-sub{font-size:12px;color:#888;margin-top:1px;}
+  .chevron{width:20px;height:20px;color:#888;transition:transform .3s;flex-shrink:0;}
+  .chevron.open{transform:rotate(180deg);}
+
+  .meta-row{display:flex;flex-wrap:wrap;gap:6px;padding:0 1.25rem 1rem;}
+  .meta-pill{font-size:11px;padding:3px 9px;border-radius:99px;border:0.5px solid #e0ddd6;color:#666;background:#f8f7f4;}
+  .meta-pill strong{color:#1a1a1a;font-weight:500;}
+
+  .body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+  .body.open{max-height:8000px;}
+
+  .tabs{display:flex;border-bottom:0.5px solid #e0ddd6;padding:0 1.25rem;}
+  .tab{font-size:13px;padding:8px 12px;cursor:pointer;color:#888;border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:all .15s;user-select:none;}
+  .tab.active{color:#1a1a1a;border-bottom-color:#378ADD;font-weight:500;}
+  .tab-content{display:none;padding:1rem 1.25rem 1.25rem;}
+  .tab-content.active{display:block;}
+
+  .slabel{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#aaa;padding:.75rem 0 .4rem;}
+  .slabel:first-child{padding-top:0;}
+
+  /* TEMAS - siempre expandidos */
+  .tema-block{margin-bottom:.5rem;border:0.5px solid #e0ddd6;border-radius:8px;overflow:hidden;}
+  .tema-header{display:flex;align-items:center;gap:8px;padding:.6rem .85rem;background:#f8f7f4;}
+  .tema-num{font-size:11px;font-weight:500;color:#185FA5;background:#E6F1FB;padding:1px 6px;border-radius:4px;flex-shrink:0;}
+  .tema-name{font-size:13px;font-weight:500;color:#1a1a1a;flex:1;}
+  .subtema{font-size:12px;color:#555;padding:.45rem .85rem;border-top:0.5px solid #e0ddd6;line-height:1.5;}
+  .subtema::before{content:"·";margin-right:6px;color:#bbb;}
+
+  /* LIBROS BÁSICOS */
+  .libro-card{background:white;border:0.5px solid #e0ddd6;border-radius:8px;margin-bottom:.5rem;overflow:hidden;}
+  .libro-header{display:flex;align-items:center;justify-content:space-between;padding:.7rem .9rem;cursor:pointer;user-select:none;transition:background .15s;gap:8px;}
+  .libro-header:hover{background:#fafaf8;}
+  .libro-left{display:flex;align-items:center;gap:8px;min-width:0;}
+  .libro-dot{width:7px;height:7px;border-radius:50%;background:#378ADD;flex-shrink:0;}
+  .libro-name{font-size:13px;font-weight:500;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .libro-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+  .pct-badge{font-size:11px;font-weight:500;color:#185FA5;background:#E6F1FB;padding:2px 7px;border-radius:99px;}
+  .libro-chev{width:14px;height:14px;color:#999;transition:transform .25s;flex-shrink:0;}
+  .libro-card.open .libro-chev{transform:rotate(180deg);}
+  .libro-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .libro-card.open .libro-body{max-height:800px;}
+  .prog-wrap{margin:0 .9rem;height:2px;border-radius:99px;background:#e8e5e0;overflow:hidden;}
+  .prog-fill{height:100%;border-radius:99px;background:#378ADD;transition:width .3s ease;}
+  .caps-list{padding:.6rem .9rem .9rem;display:flex;flex-direction:column;gap:3px;}
+  .cap-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;transition:background .15s;}
+  .cap-item:hover{background:#fafaf8;}
+  .cap-item.leido{background:#EAF3DE;}
+  .cap-check{width:15px;height:15px;border:1.5px solid #ccc;border-radius:4px;flex-shrink:0;cursor:pointer;appearance:none;-webkit-appearance:none;background:white;transition:all .15s;position:relative;}
+  .cap-check:checked{background:#378ADD;border-color:#378ADD;}
+  .cap-check:checked::after{content:'';position:absolute;width:4px;height:7px;border:1.5px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-0.5px,-1px);left:3px;top:0px;}
+  .cap-label{font-size:12px;color:#1a1a1a;cursor:default;transition:all .2s;flex:1;}
+  .cap-item.leido .cap-label{text-decoration:line-through;color:#999;}
+  .cap-tag{font-size:10px;padding:1px 6px;border-radius:99px;background:#E6F1FB;color:#185FA5;white-space:nowrap;flex-shrink:0;}
+
+  /* BIBLIOGRAFÍA COMPLEMENTARIA */
+  .comp-block{border:0.5px solid #e0ddd6;border-radius:8px;overflow:hidden;margin-bottom:.5rem;}
+  .comp-header{display:flex;align-items:center;justify-content:space-between;padding:.65rem .85rem;cursor:pointer;user-select:none;background:#f8f7f4;transition:background .15s;}
+  .comp-header:hover{background:white;}
+  .comp-title{font-size:13px;font-weight:500;color:#1a1a1a;}
+  .comp-chev{width:14px;height:14px;color:#999;transition:transform .25s;flex-shrink:0;}
+  .comp-block.open .comp-chev{transform:rotate(180deg);}
+  .comp-list{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .comp-block.open .comp-list{max-height:800px;}
+  .comp-item{font-size:12px;color:#555;padding:.4rem .85rem;border-top:0.5px solid #e0ddd6;line-height:1.5;}
+  .comp-item::before{content:"·";margin-right:6px;color:#bbb;}
+
+  /* SUBSECUENTES */
+  .subsec-block{margin:1rem 1.25rem 1.25rem;padding:.85rem 1rem;border:0.5px solid #e0ddd6;border-radius:8px;background:#f8f7f4;}
+  .subsec-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:.5rem;}
+  .subsec-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#1a1a1a;padding:3px 0;}
+  .subsec-arrow{font-size:11px;color:#bbb;}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="card">
+
+  <div class="mat-header" onclick="toggleMain(this)">
+    <div class="mat-left">
+      <div class="mat-icon">∑</div>
+      <div>
+        <div class="mat-title">Álgebra Superior I</div>
+        <div class="mat-sub" id="sub-lbl">Ver plan completo</div>
+      </div>
+    </div>
+    <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="5,7 10,13 15,7"/></svg>
+  </div>
+
+  <div class="body" id="main-body">
+
+    <div class="meta-row">
+      <span class="meta-pill">Clave <strong>0007</strong></span>
+      <span class="meta-pill">Créditos <strong>10</strong></span>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('temario',this)">Temario</div>
+      <div class="tab" onclick="showTab('biblio',this)">Bibliografía</div>
+    </div>
+
+    <!-- TAB TEMARIO -->
+    <div class="tab-content active" id="tab-temario">
+
+      <div class="tema-block">
+        <div class="tema-header">
+          <span class="tema-num">1</span>
+          <span class="tema-name">Conjuntos</span>
+        </div>
+        <div class="subtema">Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío y Universal.</div>
+        <div class="subtema">Operaciones con conjuntos: unión, intersección, complemento y diferencia.</div>
+        <div class="subtema">Conjunto potencia. Producto cartesiano. Familias de conjuntos.</div>
+      </div>
+
+      <div class="tema-block">
+        <div class="tema-header">
+          <span class="tema-num">2</span>
+          <span class="tema-name">Relaciones y funciones</span>
+        </div>
+        <div class="subtema">Relaciones: dominio, codominio e imagen.</div>
+        <div class="subtema">Funciones: imágenes e imágenes inversas.</div>
+        <div class="subtema">Composición de funciones. Función inversa.</div>
+        <div class="subtema">Funciones inyectivas, suprayectivas y biyectivas.</div>
+        <div class="subtema">Cardinalidad. Conjuntos finitos e infinitos. Funciones entre conjuntos finitos.</div>
+        <div class="subtema">Relaciones de equivalencia y particiones.</div>
+      </div>
+
+      <div class="tema-block">
+        <div class="tema-header">
+          <span class="tema-num">3</span>
+          <span class="tema-name">Números naturales y cálculo combinatorio</span>
+        </div>
+        <div class="subtema">Los números naturales. Principio de inducción.</div>
+        <div class="subtema">Cálculo combinatorio: ordenaciones con repetición, ordenaciones, permutaciones y combinaciones.</div>
+        <div class="subtema">Teorema del binomio. Relaciones entre coeficientes binomiales.</div>
+      </div>
+
+      <div class="tema-block">
+        <div class="tema-header">
+          <span class="tema-num">4</span>
+          <span class="tema-name">Espacios vectoriales</span>
+        </div>
+        <div class="subtema">Los espacios ℝ² y ℝ³. Interpretación geométrica.</div>
+        <div class="subtema">El espacio vectorial ℝⁿ.</div>
+        <div class="subtema">Subespacios. Combinaciones lineales. Subespacio generado por un conjunto de vectores.</div>
+        <div class="subtema">Dependencia e independencia lineal.</div>
+        <div class="subtema">Bases. Dimensión.</div>
+      </div>
+
+      <div class="tema-block">
+        <div class="tema-header">
+          <span class="tema-num">5</span>
+          <span class="tema-name">Matrices y determinantes</span>
+        </div>
+        <div class="subtema">Matrices, definición y operaciones. Transpuesta de una matriz.</div>
+        <div class="subtema">Operaciones elementales. Matrices escalón reducidas. Rango de una matriz.</div>
+        <div class="subtema">El determinante de una matriz cuadrada: definición y propiedades.</div>
+        <div class="subtema">Cálculo de determinantes.</div>
+        <div class="subtema">Caracterización del rango de una matriz por medio del determinante.</div>
+      </div>
+
+      <div class="tema-block">
+        <div class="tema-header">
+          <span class="tema-num">6</span>
+          <span class="tema-name">Sistemas de ecuaciones lineales</span>
+        </div>
+        <div class="subtema">Sistemas, soluciones, matriz y matriz aumentada.</div>
+        <div class="subtema">Criterios de existencia de soluciones.</div>
+        <div class="subtema">Regla de Cramer.</div>
+        <div class="subtema">Espacio de soluciones de un sistema no homogéneo.</div>
+        <div class="subtema">Resolución de sistemas (eliminación).</div>
+      </div>
+
+    </div>
+
+    <!-- TAB BIBLIOGRAFÍA -->
+    <div class="tab-content" id="tab-biblio">
+
+      <div class="slabel">Básica</div>
+
+      <div class="libro-card" id="lb0">
+        <div class="libro-header" onclick="toggleLibro('lb0')">
+          <div class="libro-left">
+            <div class="libro-dot"></div>
+            <span class="libro-name">Álgebra Superior — Cárdenas, Lluis, Raggi, Tomás (Trillas, 1974)</span>
+          </div>
+          <div class="libro-right">
+            <span class="pct-badge" id="pct-lb0">0%</span>
+            <svg class="libro-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
+          </div>
+        </div>
+        <div class="prog-wrap"><div class="prog-fill" id="bar-lb0" style="width:0%"></div></div>
+        <div class="libro-body"><div class="caps-list" id="caps-lb0">
+          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb0','pct-lb0','bar-lb0')"><span class="cap-label">Conjuntos</span><span class="cap-tag">en temario</span></div>
+          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb0','pct-lb0','bar-lb0')"><span class="cap-label">Relaciones y funciones</span><span class="cap-tag">en temario</span></div>
+          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb0','pct-lb0','bar-lb0')"><span class="cap-label">Espacios vectoriales</span><span class="cap-tag">en temario</span></div>
+          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb0','pct-lb0','bar-lb0')"><span class="cap-label">Matrices y determinantes</span><span class="cap-tag">en temario</span></div>
+        </div></div>
+      </div>
+
+      <div class="libro-card" id="lb1">
+        <div class="libro-header" onclick="toggleLibro('lb1')">
+          <div class="libro-left">
+            <div class="libro-dot"></div>
+            <span class="libro-name">Álgebra Elemental — Nachbin (OEA, 1986)</span>
+          </div>
+          <div class="libro-right">
+            <span class="pct-badge" id="pct-lb1">0%</span>
+            <svg class="libro-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
+          </div>
+        </div>
+        <div class="prog-wrap"><div class="prog-fill" id="bar-lb1" style="width:0%"></div></div>
+        <div class="libro-body"><div class="caps-list" id="caps-lb1">
+          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb1','pct-lb1','bar-lb1')"><span class="cap-label">Conjuntos</span><span class="cap-tag">en temario</span></div>
+          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb1','pct-lb1','bar-lb1')"><span class="cap-label">Números naturales</span><span class="cap-tag">en temario</span></div>
+          <div class="cap-item"><input class="cap-check" type="checkbox" onchange="marcar(this,'caps-lb1','pct-lb1','bar-lb1')"><span class="cap-label">Sistemas de ecuaciones lineales</span><span class="cap-tag">en temario</span></div>
+        </div></div>
+      </div>
+
+      <div class="slabel">Complementaria</div>
+
+      <div class="comp-block" id="comp0">
+        <div class="comp-header" onclick="toggleComp('comp0')">
+          <span class="comp-title">Ver bibliografía complementaria (9 libros)</span>
+          <svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
+        </div>
+        <div class="comp-list">
+          <div class="comp-item">Dodge, C. W. — <em>Logic and Numbers.</em> Weber & Schmidt, 1969.</div>
+          <div class="comp-item">Friedberg, Insel, Spence — <em>Álgebra Lineal.</em> Publicaciones Cultural, 1986.</div>
+          <div class="comp-item">Gentile, E. R. — <em>Aritmética Elemental.</em> OEA, 1985.</div>
+          <div class="comp-item">Grimaldi, R. P. — <em>Matemáticas Discreta y Combinatoria.</em> STE, 1998.</div>
+          <div class="comp-item">Grossman, S. I. — <em>Álgebra Lineal.</em> McGraw-Hill, 1996.</div>
+          <div class="comp-item">Halmos, P. R. — <em>Teoría Intuitiva de los Conjuntos.</em> Ed. Continental, 1973.</div>
+          <div class="comp-item">Hoffman, K., Kunze, R. — <em>Álgebra Lineal.</em> Prentice Hall Internacional, 1973.</div>
+          <div class="comp-item">Lang, S. — <em>Álgebra Lineal.</em> STE, 1986.</div>
+          <div class="comp-item">Niven, I. M., Zuckerman, H. S. — <em>Introducción a la Teoría de los Números.</em> Limusa-Wiley, 1969.</div>
+        </div>
+      </div>
+    </div>
+    <div class="subsec-block">
+      <div class="subsec-label">Materias subsecuentes</div>
+      <div class="subsec-item"><span class="subsec-arrow">→</span> Álgebra Superior II</div>
+      <div class="subsec-item"><span class="subsec-arrow">→</span> Cálculo Diferencial e Integral III</div>
+      <div class="subsec-item"><span class="subsec-arrow">→</span> Taller de Modelación I</div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<script>
+function toggleMain(el){
+  const body=document.getElementById('main-body');
+  const chev=el.querySelector('.chevron');
+  const sub=document.getElementById('sub-lbl');
+  const open=body.classList.toggle('open');
+  chev.classList.toggle('open',open);
+  sub.textContent=open?'Ocultar detalles':'Ver plan completo';
+}
+function showTab(name,el){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  el.classList.add('active');
+}
+function toggleLibro(id){document.getElementById(id).classList.toggle('open');}
+function toggleComp(id){document.getElementById(id).classList.toggle('open');}
+function marcar(chk,capsId,badgeId,barId){
+  chk.closest('.cap-item').classList.toggle('leido',chk.checked);
+  if(!capsId)return;
+  const all=document.getElementById(capsId).querySelectorAll('input');
+  let n=0; all.forEach(c=>{if(c.checked)n++;});
+  const pct=Math.round((n/all.length)*100);
+  if(badgeId)document.getElementById(badgeId).textContent=pct+'%';
+  if(barId)document.getElementById(barId).style.width=pct+'%';
+}
+</script>
+</body>
+</html>
