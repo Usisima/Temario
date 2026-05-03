@@ -20,32 +20,44 @@
   .card{background:white;border:0.5px solid #e0ddd6;border-radius:12px;overflow:visible;height:fit-content;transition:box-shadow 0.2s;position:relative;}
   .card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.05);}
   
-  /* Porcentaje de avance - solo texto, sin fondo, en esquina superior derecha */
+  .mat-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;user-select:none;background:white;border-radius:12px;position:relative;}
+  .mat-header:active{background:white;}
+  
+  .mat-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0;}
+  .mat-icon{width:42px;height:42px;border-radius:10px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:22px;color:#185FA5;flex-shrink:0;}
+  .mat-info{flex:1;min-width:0;}
+  .mat-title{font-family:'DM Serif Display',serif;font-size:17px;color:#1a1a1a;word-wrap:break-word;}
+  .mat-meta{display:flex;gap:12px;margin-top:4px;flex-wrap:wrap;}
+  .mat-meta-item{font-size:11px;color:#666;background:#f8f7f4;padding:2px 8px;border-radius:12px;white-space:nowrap;}
+  .mat-meta-item strong{color:#1a1a1a;font-weight:500;}
+  
+  .right-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
   .progress-text {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     font-family: 'DM Sans', sans-serif;
     color: #185FA5;
     cursor: default;
-    z-index: 5;
     letter-spacing: -0.3px;
+    min-width: 48px;
+    text-align: right;
   }
-  
-  .mat-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;user-select:none;background:white;border-radius:12px;position:relative;}
-  .mat-header:active{background:white;}
-  
-  .mat-left{display:flex;align-items:center;gap:12px;flex:1;}
-  .mat-icon{width:42px;height:42px;border-radius:10px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:22px;color:#185FA5;flex-shrink:0;}
-  .mat-info{flex:1;}
-  .mat-title{font-family:'DM Serif Display',serif;font-size:17px;color:#1a1a1a;}
-  .mat-meta{display:flex;gap:12px;margin-top:4px;flex-wrap:wrap;}
-  .mat-meta-item{font-size:11px;color:#666;background:#f8f7f4;padding:2px 8px;border-radius:12px;}
-  .mat-meta-item strong{color:#1a1a1a;font-weight:500;}
-  .chevron{width:20px;height:20px;color:#888;transition:transform .4s;flex-shrink:0;}
-  .chevron.open{transform:rotate(180deg);}
+  .chevron {
+    width: 20px;
+    height: 20px;
+    color: #888;
+    transition: transform .4s;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .chevron.open {
+    transform: rotate(180deg);
+  }
   
   .body{max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.25,.8,.25,1);}
   .body.open{max-height:10000px;}
@@ -62,8 +74,8 @@
   .tema-block{margin-bottom:.5rem;border:0.5px solid #e0ddd6;border-radius:8px;overflow:hidden;}
   .tema-header{display:flex;align-items:center;gap:8px;padding:.6rem .85rem;background:#f8f7f4;}
   .tema-num{font-size:11px;font-weight:500;color:#185FA5;background:#E6F1FB;padding:1px 6px;border-radius:4px;flex-shrink:0;}
-  .tema-name{font-size:13px;font-weight:500;color:#1a1a1a;flex:1;}
-  .subtema{font-size:12px;color:#555;padding:.45rem .85rem;border-top:0.5px solid #e0ddd6;line-height:1.5;}
+  .tema-name{font-size:13px;font-weight:500;color:#1a1a1a;flex:1;word-wrap:break-word;}
+  .subtema{font-size:12px;color:#555;padding:.45rem .85rem;border-top:0.5px solid #e0ddd6;line-height:1.5;word-wrap:break-word;}
   .subtema::before{content:"·";margin-right:6px;color:#bbb;}
   
   .libro-card{background:white;border:0.5px solid #e0ddd6;border-radius:8px;margin-bottom:.5rem;overflow:hidden;}
@@ -71,12 +83,10 @@
   .libro-header:active{background:white;}
   .libro-left{display:flex;align-items:center;gap:8px;min-width:0;flex:1;flex-wrap:wrap;}
   .libro-dot{width:7px;height:7px;border-radius:50%;background:#378ADD;flex-shrink:0;}
-  .libro-name{font-size:12px;font-weight:500;color:#1a1a1a;}
-  .libro-duplicate-badge{font-size:10px;padding:2px 6px;border-radius:12px;background:#FFF3E0;color:#E65100;margin-left:8px;white-space:nowrap;}
-  .libro-duplicate-badge.comp{background:#E8F5E9;color:#2E7D32;}
+  .libro-name{font-size:12px;font-weight:500;color:#1a1a1a;word-wrap:break-word;flex:1;min-width:0;}
   .libro-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
-  .pct-badge{font-size:11px;font-weight:500;color:#185FA5;background:#E6F1FB;padding:2px 7px;border-radius:99px;}
-  .libro-chev{width:14px;height:14px;color:#999;transition:transform .25s;}
+  .pct-badge{font-size:11px;font-weight:500;color:#185FA5;background:#E6F1FB;padding:2px 7px;border-radius:99px;flex-shrink:0;}
+  .libro-chev{width:14px;height:14px;color:#999;transition:transform .25s;flex-shrink:0;}
   .libro-card.open .libro-chev{transform:rotate(180deg);}
   .libro-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
   .libro-card.open .libro-body{max-height:800px;}
@@ -89,82 +99,87 @@
   .cap-check{width:15px;height:15px;border:1.5px solid #ccc;border-radius:4px;flex-shrink:0;cursor:pointer;appearance:none;background:white;position:relative;}
   .cap-check:checked{background:#378ADD;border-color:#378ADD;}
   .cap-check:checked::after{content:'';position:absolute;width:4px;height:7px;border:1.5px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-0.5px,-1px);left:3px;top:0px;}
-  .cap-label{font-size:12px;color:#1a1a1a;flex:1;cursor:default;}
+  .cap-label{font-size:12px;color:#1a1a1a;flex:1;cursor:default;word-wrap:break-word;}
   .cap-item.leido .cap-label{text-decoration:line-through;color:#999;}
   
   .comp-block{border:0.5px solid #e0ddd6;border-radius:8px;margin-bottom:.5rem;overflow:hidden;}
   .comp-header{display:flex;align-items:center;justify-content:space-between;padding:.65rem .85rem;cursor:pointer;background:#f8f7f4;}
   .comp-header:active{background:#f8f7f4;}
   .comp-title{font-size:13px;font-weight:500;color:#1a1a1a;}
-  .comp-chev{width:14px;height:14px;color:#999;transition:transform .25s;}
+  .comp-chev{width:14px;height:14px;color:#999;transition:transform .25s;flex-shrink:0;}
   .comp-block.open .comp-chev{transform:rotate(180deg);}
   .comp-list{max-height:0;overflow:hidden;transition:max-height .3s ease;}
   .comp-block.open .comp-list{max-height:800px;}
-  .comp-item{font-size:12px;color:#555;padding:.4rem .85rem;border-top:0.5px solid #e0ddd6;line-height:1.5;text-align:left;display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap;}
-  .comp-item::before{content:"·";margin-right:6px;color:#bbb;}
-  .comp-duplicate-badge{font-size:10px;padding:2px 6px;border-radius:12px;background:#FFF3E0;color:#E65100;white-space:nowrap;}
-  .comp-duplicate-badge.comp{background:#E8F5E9;color:#2E7D32;}
+  .comp-item {
+    font-size: 12px;
+    color: #555;
+    padding: 0.5rem 0.85rem;
+    border-top: 0.5px solid #e0ddd6;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    display: block;
+  }
+  .comp-item::before {
+    content: "·";
+    margin-right: 8px;
+    color: #bbb;
+    display: inline-block;
+  }
   
   .subsec-block{margin:1rem 1.25rem 1.25rem;padding:.85rem 1rem;border:0.5px solid #e0ddd6;border-radius:8px;background:#f8f7f4;}
   .subsec-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#aaa;margin-bottom:.5rem;}
-  .subsec-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#1a1a1a;padding:3px 0;}
-  .subsec-arrow{font-size:11px;color:#bbb;}
+  .subsec-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#1a1a1a;padding:3px 0;word-wrap:break-word;}
+  .subsec-arrow{font-size:11px;color:#bbb;flex-shrink:0;}
   
   @media (max-width: 1200px){.materias-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <div class="container">
-  <!-- Semestre 1 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Primer Semestre</h2>
     <span class="semestre-creditos">48 Créditos</span>
   </div>
   <div class="materias-grid" id="semestre1-grid"></div>
   
-  <!-- Semestre 2 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Segundo Semestre</h2>
     <span class="semestre-creditos">38 Créditos + 1 Optativa</span>
   </div>
   <div class="materias-grid" id="semestre2-grid"></div>
   
-  <!-- Semestre 3 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Tercer Semestre</h2>
     <span class="semestre-creditos">28 Créditos + 2 Optativas</span>
   </div>
   <div class="materias-grid" id="semestre3-grid"></div>
   
-  <!-- Semestre 4 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Cuarto Semestre</h2>
     <span class="semestre-creditos">38 Créditos + 1 Optativa</span>
   </div>
   <div class="materias-grid" id="semestre4-grid"></div>
   
-  <!-- Semestre 5 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Quinto Semestre</h2>
     <span class="semestre-creditos">30 Créditos + 1 Optativa</span>
   </div>
   <div class="materias-grid" id="semestre5-grid"></div>
   
-  <!-- Semestre 6 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Sexto Semestre</h2>
     <span class="semestre-creditos">10 Créditos + 3 Optativas</span>
   </div>
   <div class="materias-grid" id="semestre6-grid"></div>
   
-  <!-- Semestre 7 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Séptimo Semestre</h2>
     <span class="semestre-creditos">4 Optativas</span>
   </div>
   <div class="materias-grid" id="semestre7-grid"></div>
   
-  <!-- Semestre 8 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Octavo Semestre</h2>
     <span class="semestre-creditos">4 Optativas</span>
@@ -172,19 +187,6 @@
   <div class="materias-grid" id="semestre8-grid"></div>
 </div>
 <script>
-// Función para normalizar nombres de libros
-function normalizeBookName(name) {
-  return name.toLowerCase()
-    .replace(/[áä]/g, 'a')
-    .replace(/[éë]/g, 'e')
-    .replace(/[íï]/g, 'i')
-    .replace(/[óö]/g, 'o')
-    .replace(/[úü]/g, 'u')
-    .replace(/[^\w\s]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
 // ==================== SEMESTRE 1 ====================
 const semestre1Subjects = [{
   id: "s1_algebra_superior",
@@ -303,87 +305,13 @@ const semestre1Subjects = [{
   subsecuentes: ["Geometría Moderna II", "Geometría Proyectiva"]
 }];
 
-// ==================== SEMESTRE 2 ====================
 const semestre2Subjects = [];
-
-// ==================== SEMESTRE 3 ====================
 const semestre3Subjects = [];
-
-// ==================== SEMESTRE 4 ====================
 const semestre4Subjects = [];
-
-// ==================== SEMESTRE 5 ====================
 const semestre5Subjects = [];
-
-// ==================== SEMESTRE 6 ====================
 const semestre6Subjects = [];
-
-// ==================== SEMESTRE 7 ====================
 const semestre7Subjects = [];
-
-// ==================== SEMESTRE 8 ====================
 const semestre8Subjects = [];
-
-// Construir índice global de libros
-function buildGlobalBookIndex() {
-  const allSubjects = [
-    ...semestre1Subjects, ...semestre2Subjects, ...semestre3Subjects,
-    ...semestre4Subjects, ...semestre5Subjects, ...semestre6Subjects,
-    ...semestre7Subjects, ...semestre8Subjects
-  ];
-  const index = {};
-  allSubjects.forEach(sub => {
-    if(sub.bibliografia && sub.bibliografia.basicas) {
-      sub.bibliografia.basicas.forEach(book => {
-        const normalized = normalizeBookName(book.name);
-        if(!index[normalized]) index[normalized] = { name: book.name, basic: [], comp: [] };
-        if(!index[normalized].basic.find(id => id === sub.id)) index[normalized].basic.push(sub.id);
-      });
-    }
-    if(sub.bibliografia && sub.bibliografia.complementarias) {
-      sub.bibliografia.complementarias.forEach(book => {
-        const normalized = normalizeBookName(book);
-        if(!index[normalized]) index[normalized] = { name: book, basic: [], comp: [] };
-        if(!index[normalized].comp.find(id => id === sub.id)) index[normalized].comp.push(sub.id);
-      });
-    }
-  });
-  return index;
-}
-
-const globalBookIndex = buildGlobalBookIndex();
-
-function getDuplicateInfo(bookName, currentSubjectId, isBasic = true) {
-  const normalized = normalizeBookName(bookName);
-  const entry = globalBookIndex[normalized];
-  if(!entry) return null;
-  const otherBasic = entry.basic.filter(id => id !== currentSubjectId).length;
-  const otherComp = entry.comp.filter(id => id !== currentSubjectId).length;
-  if (otherBasic === 0 && otherComp === 0) return null;
-  return { basic: otherBasic, comp: otherComp };
-}
-
-function getDuplicateBadge(bookName, currentSubjectId, isBasic = true) {
-  const info = getDuplicateInfo(bookName, currentSubjectId, isBasic);
-  if (!info) return '';
-  const parts = [];
-  if (info.basic > 0) parts.push(`+${info.basic}`);
-  if (info.comp > 0) parts.push(`+${info.comp}C`);
-  if (parts.length === 0) return '';
-  const badgeClass = info.comp > 0 ? 'comp' : '';
-  return `<span class="libro-duplicate-badge ${badgeClass}" title="${info.basic > 0 ? info.basic + ' materia(s) como básica, ' : ''}${info.comp > 0 ? info.comp + ' materia(s) como complementaria' : ''}">${parts.join(' ')}</span>`;
-}
-
-function getDuplicateBadgeComp(bookName, currentSubjectId) {
-  const info = getDuplicateInfo(bookName, currentSubjectId, false);
-  if (!info) return '';
-  const parts = [];
-  if (info.basic > 0) parts.push(`+${info.basic}`);
-  if (info.comp > 0) parts.push(`+${info.comp}C`);
-  if (parts.length === 0) return '';
-  const badgeClass = info.comp > 0 ? 'comp' : '';
-  return `<span class="comp-duplicate-badge ${badgeClass}" title="${info.basic > 0 ? info.basic + ' materia(s) como básica, ' : ''}${info.comp > 0 ? info.comp + ' materia(s) como complementaria' : ''}">${parts.join(' ')}</span>`;
-}
 
 function calcularProgresoGeneral(subjectId, subjects) {
   const subject = subjects.find(s => s.id === subjectId);
@@ -420,7 +348,6 @@ function renderMateriasGrid(containerId, subjects, prefix) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <div class="progress-text" id="prog_${subject.id}">0%</div>
       <div class="mat-header" onclick="toggleMain(this, 'body_${subject.id}')">
         <div class="mat-left">
           <div class="mat-icon">${subject.icon}</div>
@@ -432,7 +359,10 @@ function renderMateriasGrid(containerId, subjects, prefix) {
             </div>
           </div>
         </div>
-        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="5,7 10,13 15,7"/></svg>
+        <div class="right-controls">
+          <span class="progress-text" id="prog_${subject.id}">0%</span>
+          <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="5,7 10,13 15,7"/></svg>
+        </div>
       </div>
       <div class="body" id="body_${subject.id}">
         <div class="tabs">
@@ -453,14 +383,12 @@ function renderMateriasGrid(containerId, subjects, prefix) {
         <div class="tab-content" id="biblio_${subject.id}">
           <div class="slabel">Básica</div>
           ${subject.bibliografia.basicas.map((libro, libIdx) => {
-            const badge = getDuplicateBadge(libro.name, subject.id, true);
             return `
             <div class="libro-card" id="libro_${subject.id}_${libIdx}">
               <div class="libro-header" onclick="toggleLibro('libro_${subject.id}_${libIdx}')">
                 <div class="libro-left">
                   <div class="libro-dot"></div>
                   <span class="libro-name">${libro.name}</span>
-                  ${badge}
                 </div>
                 <div class="libro-right">
                   <span class="pct-badge" id="pct_${subject.id}_${libIdx}">0%</span>
@@ -486,8 +414,7 @@ function renderMateriasGrid(containerId, subjects, prefix) {
             </div>
             <div class="comp-list">
               ${subject.bibliografia.complementarias.map(lib => {
-                const badge = getDuplicateBadgeComp(lib, subject.id);
-                return `<div class="comp-item">${lib} ${badge}</div>`;
+                return `<div class="comp-item">${lib}</div>`;
               }).join('')}
             </div>
           </div>
@@ -584,7 +511,6 @@ function showTab(clickedTab, showId, hideId) {
 function toggleLibro(id) { const el = document.getElementById(id); if(el) el.classList.toggle('open'); }
 function toggleComp(id) { const el = document.getElementById(id); if(el) el.classList.toggle('open'); }
 
-// Renderizar todos los semestres
 renderMateriasGrid('semestre1-grid', semestre1Subjects, 's1');
 renderMateriasGrid('semestre2-grid', semestre2Subjects, 's2');
 renderMateriasGrid('semestre3-grid', semestre3Subjects, 's3');
