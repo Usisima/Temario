@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Licenciatura en Matemáticas - Facultad de Ciencias, UNAM</title>
+<title>Licenciatura en Matemáticas - Segundo Semestre</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -11,32 +11,23 @@
   .container{max-width:1400px;margin:0 auto;}
   
   /* Header institucional */
-  .uni-header{background:#041E42;color:white;border-radius:12px 12px 0 0;padding:1.5rem 2rem;margin-bottom:0;}
+  .uni-header{background:#041E42;color:white;border-radius:12px;padding:1.5rem 2rem;margin-bottom:2rem;}
   .uni-header h1{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;}
   .uni-header h2{font-size:16px;font-weight:400;opacity:0.85;margin-top:5px;}
   .uni-badge{display:inline-block;background:#E6A817;color:#041E42;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-top:12px;}
   
-  /* Info del plan */
-  .plan-info{background:white;border:0.5px solid #e0ddd6;border-top:none;border-radius:0 0 12px 12px;padding:1.5rem 2rem;margin-bottom:2rem;}
-  .info-grid{display:flex;flex-wrap:wrap;gap:2rem;margin-top:0.5rem;}
-  .info-item{flex:1;min-width:150px;}
-  .info-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#888;}
-  .info-value{font-size:24px;font-weight:600;color:#041E42;font-family:'DM Serif Display',serif;}
-  .info-desc{font-size:13px;color:#555;margin-top:5px;}
-  
-  .perfil{background:#f0f7ff;border-left:4px solid #041E42;padding:1rem 1.5rem;margin-top:1rem;border-radius:8px;}
-  .perfil p{font-size:14px;color:#2c3e50;line-height:1.5;}
-  
   /* Materias grid */
-  .semestre-titulo{font-family:'DM Serif Display',serif;font-size:22px;color:#041E42;margin:2rem 0 1rem;padding-bottom:0.5rem;border-bottom:2px solid #E6A817;display:inline-block;}
+  .semestre-header{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin:0 0 1rem 0;padding-bottom:0.5rem;border-bottom:2px solid #E6A817;}
+  .semestre-titulo{font-family:'DM Serif Display',serif;font-size:22px;color:#041E42;}
+  .semestre-creditos{font-size:14px;color:#185FA5;background:#E6F1FB;padding:4px 12px;border-radius:20px;font-weight:500;}
+  
   .materias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(550px,1fr));gap:1.5rem;margin-top:1rem;}
   
   .card{background:white;border:0.5px solid #e0ddd6;border-radius:12px;overflow:hidden;height:fit-content;transition:box-shadow 0.2s;}
   .card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.05);}
   
-  /* ELIMINADO EL COLOR GRIS AL HACER CLICK - ahora solo fondo blanco */
   .mat-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;user-select:none;background:white;}
-  .mat-header:active{background:white;} /* Evita el gris al hacer click */
+  .mat-header:active{background:white;}
   
   .mat-left{display:flex;align-items:center;gap:12px;}
   .mat-icon{width:42px;height:42px;border-radius:10px;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:22px;color:#185FA5;flex-shrink:0;}
@@ -109,9 +100,6 @@
   .subsec-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#1a1a1a;padding:3px 0;}
   .subsec-arrow{font-size:11px;color:#bbb;}
   
-  .footer-info{margin-top:3rem;padding:1.5rem;background:#041E42;color:white;border-radius:12px;text-align:center;font-size:12px;}
-  .footer-info a{color:#E6A817;text-decoration:none;}
-  
   @media (max-width: 1200px){.materias-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -124,142 +112,93 @@
     <div class="uni-badge">Plan 1983 · Vigente</div>
   </div>
   
-  <!-- Información del plan -->
-  <div class="plan-info">
-    <div class="info-grid">
-      <div class="info-item">
-        <div class="info-label">Clave de la carrera</div>
-        <div class="info-value">122</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Duración</div>
-        <div class="info-value">8 semestres</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Créditos totales</div>
-        <div class="info-value">352</div>
-        <div class="info-desc">192 obligatorios · 160 optativos</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Fundación</div>
-        <div class="info-value">5 dic 1966</div>
-      </div>
-    </div>
-    <div class="perfil">
-      <p><strong>📌 Perfil profesional:</strong> Un profesionista capaz de encontrar analogías y de modelar situaciones reales, que aprenda las matemáticas y sus relaciones con otras disciplinas tanto científicas como sociales. Participan en equipos interdisciplinarios abocados a la resolución de problemas comunes y específicos, así como en actividades de docencia y difusión de la matemática en diferentes niveles.</p>
-    </div>
+  <!-- Segundo semestre con créditos totales -->
+  <div class="semestre-header">
+    <h2 class="semestre-titulo">📘 Segundo Semestre</h2>
+    <span class="semestre-creditos">Total: 38 créditos</span>
   </div>
-  
-  <!-- Primer semestre -->
-  <h2 class="semestre-titulo">📘 Primer Semestre</h2>
   <div class="materias-grid" id="materias-grid"></div>
-  
-  <!-- Footer -->
-  <div class="footer-info">
-    <p>Facultad de Ciencias, UNAM · Av. Universidad 3000, Circuito Exterior s/n · Alcaldía Coyoacán, CP 04510 · Ciudad Universitaria, CDMX, México</p>
-    <p style="margin-top:10px">Coordinador: <strong>Dr. David Meza Alcántara</strong> · dmeza@ciencias.unam.mx · Tel: 55 5623·4899 ext. 45773</p>
-  </div>
 </div>
 
 <script>
-// Datos de las materias del primer semestre basados en la página oficial
+// Datos de las materias del segundo semestre
+// Créditos del semestre: Álgebra II (10) + Cálculo II (18) + Geo Analítica II (10) = 38 créditos
 const subjectsData = [
   {
-    id: 'algebra1',
-    name: 'Álgebra Superior I',
+    id: 'algebra2',
+    name: 'Álgebra Superior II',
     icon: '∑',
     creditos: '10 créditos',
     meta: [
-      {label: 'Clave', value: '0007'},
+      {label: 'Clave', value: '0008'},
       {label: 'Créditos', value: '10'},
-      {label: 'Semestre', value: '1°'}
+      {label: 'Semestre', value: '2°'}
     ],
     temario: [
-      {num: 1, name: 'Conjuntos', subtemas: ['Noción intuitiva e igualdad de conjuntos', 'Subconjuntos. Conjunto vacío y Universal', 'Operaciones con conjuntos: unión, intersección, complemento y diferencia', 'Conjunto potencia. Producto cartesiano', 'Familias de conjuntos']},
-      {num: 2, name: 'Relaciones y funciones', subtemas: ['Relaciones: dominio, codominio e imagen', 'Funciones: imágenes e imágenes inversas', 'Composición de funciones. Función inversa', 'Funciones inyectivas, suprayectivas y biyectivas', 'Cardinalidad. Conjuntos finitos e infinitos', 'Relaciones de equivalencia y particiones']},
-      {num: 3, name: 'Números naturales', subtemas: ['Los números naturales', 'Principio de inducción matemática', 'Demostraciones por inducción']}
+      {num: 1, name: 'Números enteros', subtemas: ['Propiedades de los números enteros', 'Algoritmo de la división', 'Máximo común divisor', 'Mínimo común múltiplo', 'Teorema fundamental de la aritmética']},
+      {num: 2, name: 'Números complejos', subtemas: ['Definición y representación', 'Operaciones con complejos', 'Forma polar y exponencial', 'Teorema de De Moivre', 'Raíces de números complejos']},
+      {num: 3, name: 'Polinomios', subtemas: ['Anillo de polinomios', 'División de polinomios', 'Raíces y factorización', 'Teorema del factor y del residuo', 'Relaciones entre coeficientes y raíces']},
+      {num: 4, name: 'Teoría de números básica', subtemas: ['Congruencias', 'Teorema chino del resto', 'Pequeno teorema de Fermat', 'Función φ de Euler']}
     ],
     bibliografia: {
       basicas: [
-        {name: 'Álgebra Superior — Cárdenas, Lluis, Raggi, Tomás (Trillas, 1974)', capitulos: ['Conjuntos', 'Relaciones y funciones', 'Números naturales']},
-        {name: 'Álgebra Elemental — Nachbin (OEA, 1986)', capitulos: ['Conjuntos', 'Relaciones', 'Funciones']}
+        {name: 'Álgebra Superior — Cárdenas, Lluis, Raggi, Tomás', capitulos: ['Enteros', 'Complejos', 'Polinomios']},
+        {name: 'Introducción a la Teoría de Números — Niven, Zuckerman', capitulos: ['Divisibilidad', 'Congruencias']}
       ],
-      complementarias: ['Halmos — Teoría Intuitiva de los Conjuntos', 'Grimaldi — Matemáticas Discreta y Combinatoria', 'Apostol — Cálculo (primeros capítulos de conjuntos)']
+      complementarias: ['Grimaldi — Matemáticas Discreta', 'Apostol — Introducción a la Teoría Analítica de Números', 'Birkhoff — Álgebra Moderna']
     },
-    subsecuentes: ['Álgebra Superior II', 'Álgebra Lineal I', 'Álgebra Moderna I']
+    subsecuentes: ['Álgebra Lineal I', 'Álgebra Moderna I', 'Teoría de Números I']
   },
   {
-    id: 'calculo1',
-    name: 'Cálculo Diferencial e Integral I',
+    id: 'calculo2',
+    name: 'Cálculo Diferencial e Integral II',
     icon: '∫',
     creditos: '18 créditos',
     meta: [
-      {label: 'Clave', value: '0005'},
+      {label: 'Clave', value: '0006'},
       {label: 'Créditos', value: '18'},
-      {label: 'Semestre', value: '1°'}
+      {label: 'Semestre', value: '2°'}
     ],
     temario: [
-      {num: 1, name: 'Números reales', subtemas: ['Propiedades de los números reales', 'Desigualdades y valor absoluto', 'Supremo e ínfimo', 'Propiedad de completez']},
-      {num: 2, name: 'Funciones', subtemas: ['Funciones reales de variable real', 'Dominio, rango y gráficas', 'Funciones algebraicas y trascendentes', 'Funciones trigonométricas, exponenciales y logarítmicas']},
-      {num: 3, name: 'Límites y continuidad', subtemas: ['Definición intuitiva y formal de límite', 'Propiedades de los límites', 'Límites laterales', 'Límites infinitos y al infinito', 'Continuidad en un punto y en intervalos', 'Teorema del valor intermedio']}
+      {num: 1, name: 'La integral definida', subtemas: ['Sumas de Riemann', 'Definición de integral definida', 'Propiedades de la integral', 'Teorema fundamental del cálculo', 'Teorema del valor medio para integrales']},
+      {num: 2, name: 'Técnicas de integración', subtemas: ['Integración por partes', 'Integración por sustitución trigonométrica', 'Integración de fracciones parciales', 'Integración de potencias trigonométricas']},
+      {num: 3, name: 'Aplicaciones de la integral', subtemas: ['Cálculo de áreas entre curvas', 'Volúmenes de sólidos de revolución', 'Longitud de arco', 'Áreas de superficies de revolución', 'Centroides y momentos']},
+      {num: 4, name: 'Integrales impropias', subtemas: ['Límites infinitos de integración', 'Integrandos discontinuos', 'Criterios de convergencia']}
     ],
     bibliografia: {
       basicas: [
-        {name: 'Cálculo Diferencial e Integral — Spivak (Editorial Reverté)', capitulos: ['Números reales', 'Funciones', 'Límites']},
-        {name: 'Cálculo — Stewart (Cengage Learning)', capitulos: ['Límites', 'Continuidad', 'Funciones']}
+        {name: 'Cálculo — Spivak', capitulos: ['Integral definida', 'Técnicas', 'Aplicaciones']},
+        {name: 'Cálculo — Stewart', capitulos: ['Integración', 'Aplicaciones', 'Técnicas avanzadas']}
       ],
-      complementarias: ['Apostol — Calculus Vol. I', 'Courant — Introducción al Cálculo', 'Piskunov — Cálculo Diferencial e Integral']
+      complementarias: ['Apostol — Calculus Vol I', 'Courant — Introducción al Cálculo', 'Piskunov — Cálculo Diferencial e Integral']
     },
-    subsecuentes: ['Cálculo Diferencial e Integral II', 'Cálculo Diferencial e Integral III', 'Cálculo Diferencial e Integral IV', 'Ecuaciones Diferenciales']
+    subsecuentes: ['Cálculo Diferencial e Integral III', 'Cálculo Diferencial e Integral IV', 'Ecuaciones Diferenciales']
   },
   {
-    id: 'geometriaAnalitica1',
-    name: 'Geometría Analítica I',
+    id: 'geometriaAnalitica2',
+    name: 'Geometría Analítica II',
     icon: '📐',
     creditos: '10 créditos',
     meta: [
-      {label: 'Clave', value: '0010'},
+      {label: 'Clave', value: '0011'},
       {label: 'Créditos', value: '10'},
-      {label: 'Semestre', value: '1°'}
+      {label: 'Semestre', value: '2°'}
     ],
     temario: [
-      {num: 1, name: 'Sistema de coordenadas cartesianas', subtemas: ['Coordenadas cartesianas en el plano', 'Distancia entre dos puntos', 'División de un segmento', 'Coordenadas del punto que divide un segmento en una razón dada']},
-      {num: 2, name: 'La línea recta', subtemas: ['Pendiente y ángulo de inclinación', 'Ecuación de la recta en sus distintas formas', 'Rectas paralelas y perpendiculares', 'Distancia de un punto a una recta', 'Ángulo entre dos rectas']},
-      {num: 3, name: 'Circunferencia', subtemas: ['Ecuación de la circunferencia (forma ordinaria y general)', 'Centro y radio', 'Condiciones para que una ecuación represente una circunferencia', 'Familia de circunferencias']}
+      {num: 1, name: 'Transformaciones de coordenadas', subtemas: ['Traslación de ejes', 'Rotación de ejes', 'Eliminación del término xy', 'Invariantes']},
+      {num: 2, name: 'La parábola', subtemas: ['Definición geométrica', 'Elementos de la parábola', 'Ecuaciones ordinaria y general', 'Aplicaciones']},
+      {num: 3, name: 'La elipse', subtemas: ['Definición geométrica', 'Elementos de la elipse', 'Ecuación ordinaria y general', 'Excentricidad']},
+      {num: 4, name: 'La hipérbola', subtemas: ['Definición geométrica', 'Elementos de la hipérbola', 'Asíntotas', 'Hipérbola rectangular']},
+      {num: 5, name: 'Coordenadas polares', subtemas: ['Sistema de coordenadas polares', 'Relación con coordenadas cartesianas', 'Gráficas en coordenadas polares', 'Ecuaciones paramétricas']}
     ],
     bibliografia: {
       basicas: [
-        {name: 'Geometría Analítica — Lehmann (Limusa)', capitulos: ['Coordenadas', 'Recta', 'Circunferencia']},
-        {name: 'Geometría Analítica — Kindle (McGraw-Hill)', capitulos: ['Sistema de coordenadas', 'Recta', 'Cónicas']}
+        {name: 'Geometría Analítica — Lehmann', capitulos: ['Parábola', 'Elipse', 'Hipérbola', 'Polares']},
+        {name: 'Geometría Analítica — Kindle', capitulos: ['Cónicas', 'Transformaciones', 'Paramétricas']}
       ],
-      complementarias: ['Fuller — Geometría Analítica', 'Eisenhart — Geometría Analítica', 'Charles H. Lehmann — Geometría Analítica']
+      complementarias: ['Fuller — Geometría Analítica', 'Charles Lehmann — Geometría Analítica', 'Swokowski — Geometría Analítica']
     },
-    subsecuentes: ['Geometría Analítica II', 'Cálculo III', 'Geometría Diferencial']
-  },
-  {
-    id: 'geometriaModerna1',
-    name: 'Geometría Moderna I',
-    icon: '◯',
-    creditos: '10 créditos',
-    meta: [
-      {label: 'Clave', value: '0012'},
-      {label: 'Créditos', value: '10'},
-      {label: 'Semestre', value: '1°'}
-    ],
-    temario: [
-      {num: 1, name: 'Geometría axiomática', subtemas: ['Evolución histórica de la geometría', 'El sistema axiomático de Euclides', 'Estructura de un sistema axiomático', 'El quinto postulado y su equivalencia']},
-      {num: 2, name: 'Congruencia de triángulos', subtemas: ['Postulados de congruencia', 'Aplicaciones de la congruencia', 'Propiedades de triángulos isósceles', 'Desigualdades geométricas']},
-      {num: 3, name: 'Puntos y rectas notables en el triángulo', subtemas: ['Baricentro (centroide)', 'Ortocentro', 'Circuncentro', 'Incentro y excentros', 'Recta de Euler', 'Circunferencia de los nueve puntos']},
-      {num: 4, name: 'Geometría del círculo', subtemas: ['Ángulos inscritos, centrales y semi-inscritos', 'Teorema de Tales y generalizaciones', 'Teorema de Pitágoras generalizado', 'Potencia de un punto', 'Eje radical']}
-    ],
-    bibliografia: {
-      basicas: [
-        {name: 'Geometría Moderna — Moise (Addison-Wesley)', capitulos: ['Axiomática', 'Congruencia', 'Puntos notables', 'Círculo']},
-        {name: 'Elementos de Geometría — Euclides', capitulos: ['Libro I', 'Libro III', 'Libro IV']}
-      ],
-      complementarias: ['Coxeter — Geometría Revisitada', 'Eves — Introducción a la Geometría', 'Pedoe — Geometría', 'Hilbert — Fundamentos de la Geometría']
-    },
-    subsecuentes: ['Geometría Moderna II', 'Geometría Proyectiva', 'Geometría Diferencial']
+    subsecuentes: ['Cálculo III', 'Geometría Diferencial', 'Geometría Analítica Avanzada']
   }
 ];
 
@@ -362,7 +301,7 @@ function marcarCap(checkbox, subjectId, libroIdx, capIdx) {
   
   const allChecks = document.querySelectorAll(`#caps_${subjectId}_${libroIdx} .cap-check`);
   const states = Array.from(allChecks).map(ch => ch.checked);
-  localStorage.setItem(`progress_${subjectId}_${libroIdx}`, JSON.stringify(states));
+  localStorage.setItem(`progress_2_${subjectId}_${libroIdx}`, JSON.stringify(states));
   
   const completed = states.filter(s => s).length;
   const pct = Math.round((completed / states.length) * 100);
@@ -374,7 +313,7 @@ function marcarCap(checkbox, subjectId, libroIdx, capIdx) {
 
 // Cargar estado
 function cargarEstadoLibro(subjectId, libroIdx) {
-  const key = `progress_${subjectId}_${libroIdx}`;
+  const key = `progress_2_${subjectId}_${libroIdx}`;
   const saved = localStorage.getItem(key);
   if(!saved) return;
   
