@@ -634,12 +634,406 @@ const CURRICULUM = [
   {
     semestre: 2,
     titulo: "Segundo Semestre",
-    materias: []
+    materias: [{
+  id: "algebra_superior_2",
+  name: "Álgebra Superior II",
+  clave: "0008",
+  creditos: 10,
+  icon: "🧮",
+  temario: [
+    {
+      num: "1",
+      name: "Números enteros",
+      subtemas: [
+        "El anillo de los números enteros",
+        "ℤ como dominio entero",
+        "El orden en ℤ",
+        "Principio de inducción. Principio del buen orden",
+        "Unidades en ℤ"
+      ]
+    },
+    {
+      num: "2",
+      name: "Divisibilidad",
+      subtemas: [
+        "Propiedades elementales",
+        "Algoritmo de la división",
+        "Máximo común divisor. Algoritmo de Euclides. Mínimo común múltiplo",
+        "Soluciones enteras de una ecuación lineal",
+        "Números primos. Factorización única",
+        "Congruencias. Congruencias lineales. Teorema chino del residuo"
+      ]
+    },
+    {
+      num: "3",
+      name: "Números complejos",
+      subtemas: [
+        "El campo de los números complejos",
+        "Conjugación. Módulo o norma",
+        "Raíces cuadradas. La ecuación de 2° grado",
+        "Representación polar. Teorema de De Moivre. Raíces n-ésimas"
+      ]
+    },
+    {
+      num: "4",
+      name: "Polinomios y ecuaciones polinomiales",
+      subtemas: [
+        "Polinomios con coeficientes en un campo K. Operaciones. El dominio entero K[x]",
+        "Divisibilidad. Algoritmo de la división",
+        "Máximo común divisor. Algoritmo de Euclides",
+        "Polinomios irreducibles. Factorización única",
+        "Evaluación. Raíces de un polinomio. Teorema del residuo. Teorema del factor. Factorización de polinomios. División sintética",
+        "Raíces múltiples. Derivadas y multiplicidad",
+        "Teorema fundamental del álgebra. Consecuencias"
+      ]
+    }
+  ],
+  bibBasicas: [
+    {
+      name: "Cárdenas, H., Lluis, E., Raggi, F., Tomás, F., Álgebra Superior. México: Ed. Trillas, 1974.",
+      caps: ["Números enteros", "Divisibilidad", "Números complejos", "Polinomios"]
+    },
+    {
+      name: "Nachbin, L., Álgebra Elemental. Washington, USA: Secretaría General de la OEA, Programa Regional de Desarrollo Científico y Tecnológico, 1986.",
+      caps: ["Enteros", "Divisibilidad", "Complejos", "Polinomios y ecuaciones"]
+    }
+  ],
+  bibComp: [
+    "Dodge, C. W., Sets, Logic and Numbers. Boston: Weber & Schmidt, 1969.",
+    "Friedberg, S. H., Insel, A. J., Spence, L. E., Álgebra Lineal. México: Publicaciones Cultural, 1982.",
+    "Gentile, E. R., Aritmética Elemental. Washington: OEA., 1985.",
+    "Grimaldi, R. P., Matemáticas Discreta y Combinatoria. México: Sistemas Técnicos de Edición, 1998.",
+    "Grossman, S. I., Álgebra Lineal. México: McGraw-Hill, 1996.",
+    "Halmos, P. R., Teoría Intuitiva de los Conjuntos. México: Ed. Continental, 1966.",
+    "Hoffman, K., Kunze, R., Álgebra Lineal. Bogotá: Prentice Hall Internacional, 1973.",
+    "Lang, S., Álgebra Lineal. México: Sistemas Técnicos de Edición, 1986.",
+    "Niven, I. M., Zuckerman, H. S., Introducción a la Teoría de los Números. México: Limusa-Wiley, 1969."
+  ],
+  subsecuentes: ["Álgebra Lineal I", "Taller de Modelación II"]
+},{
+  id: "calculo_diferencial_integral_2",
+  name: "Cálculo Diferencial e Integral II",
+  clave: "0092",
+  creditos: 18,
+  icon: "📊",
+  temario: [
+    {
+      num: "1",
+      name: "Integral definida",
+      subtemas: [
+        "Ejemplos que conducen al concepto de integral definida (área bajo una curva, trabajo)",
+        "Sumas superiores e inferiores (o sumas de Riemann)",
+        "Definición y ejemplos de la integral definida de una función continua",
+        "Propiedades básicas de la integral definida",
+        "Teorema del valor medio para la integral",
+        "Ejemplos de funciones integrables con un número finito de puntos de discontinuidad",
+        "Ejemplos de funciones integrables con un número infinito de puntos de discontinuidad",
+        "La función de Riemann"
+      ]
+    },
+    {
+      num: "2",
+      name: "Teorema Fundamental del Cálculo",
+      subtemas: [
+        "La integral como función del límite superior (integral indefinida)",
+        "Propiedades de la integral indefinida",
+        "Demostración de los teoremas fundamentales del cálculo",
+        "Integración directa",
+        "Integrales impropias",
+        "Criterios de convergencia de las integrales impropias"
+      ]
+    },
+    {
+      num: "3",
+      name: "Las funciones logaritmo y exponencial",
+      subtemas: [
+        "Definición de la función logaritmo a través de la integral",
+        "Propiedades de las funciones logarítmicas",
+        "La función exponencial como inversa de la función logaritmo",
+        "Propiedades de las funciones exponenciales",
+        "Derivación logarítmica",
+        "Funciones que sólo pueden expresarse en términos de una integral: Funciones elípticas"
+      ]
+    },
+    {
+      num: "4",
+      name: "Las funciones trigonométricas a través de la integral (Opcional)",
+      subtemas: [
+        "Definición de π por medio de una integral",
+        "Propiedades de las funciones trigonométricas",
+        "Funciones trigonométricas inversas"
+      ]
+    },
+    {
+      num: "5",
+      name: "Métodos de integración y aplicaciones de la integral definida",
+      subtemas: [
+        "Métodos de sustitución o cambio de variable",
+        "Integración por partes",
+        "Teorema del valor medio para integrales",
+        "Polinomios de Taylor y forma de Cauchy del residuo",
+        "Fracciones parciales; método de coeficientes indeterminados para la integración de funciones racionales",
+        "Métodos numéricos de integración"
+      ]
+    },
+    {
+      num: "6",
+      name: "Aplicaciones",
+      subtemas: [
+        "Cálculo de áreas de regiones planas",
+        "Área en coordenadas polares",
+        "Longitud de una curva y distancia recorrida por una partícula",
+        "Volumen y área de sólidos de revolución",
+        "Trabajo, densidad y masa",
+        "Cálculo de momentos",
+        "Problemas de decaimiento radioactivo, ley de Malthus, oscilación de un resorte, ecuación logística"
+      ]
+    },
+    {
+      num: "7",
+      name: "Series",
+      subtemas: [
+        "Definición y ejemplos de sucesiones y series convergentes y no convergentes",
+        "Criterios de convergencia para sucesiones y para series con términos positivos",
+        "Series alternantes y convergencia absoluta de una serie",
+        "Criterio de Leibniz",
+        "Reordenamiento de los términos de una serie",
+        "Ejemplos elementales de series de potencias",
+        "Ejemplos de series de Fourier"
+      ]
+    }
+  ],
+  bibBasicas: [
+    {
+      name: "Arizmendi, H., Carrillo, H., Lara. M., Cálculo. Primer Curso. México: Addison Wesley Iberoamericana, 1987.",
+      caps: ["Integral definida", "Teorema Fundamental", "Logaritmos y exponenciales", "Métodos de integración", "Aplicaciones", "Series"]
+    },
+    {
+      name: "Courant, R., John, F., Introducción al Cálculo y al Análisis. México: Editorial Limusa, 1996.",
+      caps: ["Integrales", "Cálculo integral", "Funciones trascendentes", "Técnicas de integración", "Series"]
+    },
+    {
+      name: "Lang. S., Cálculo I. México: Fondo Educativo Interamericano, 1990.",
+      caps: ["Integral definida", "Teorema Fundamental", "Funciones logarítmicas y exponenciales", "Métodos de integración", "Series"]
+    },
+    {
+      name: "Spivak, M., Cálculo Infinitesimal (2ª ed.). México: Reverté, 1998.",
+      caps: ["Integrales", "Cálculo integral", "Funciones trascendentes", "Técnicas de integración", "Sucesiones y series"]
+    },
+    {
+      name: "Thomas, G. B., Finney, R. L., Cálculo con Geometría Analítica (9ª ed.). México: Addison-Wesley, 1987.",
+      caps: ["Integral definida", "Teorema Fundamental", "Funciones trascendentes", "Técnicas de integración", "Aplicaciones", "Series infinitas"]
+    }
+  ],
+  bibComp: [
+    "Apostol, T. M., Calculus. Volumen I. México: Ed. Reverté S. A., 2001.",
+    "Banach, S., Cálculo Diferencial e Integral. México: UTEHA, 1991.",
+    "Kuratowski, K., Introducción al Cálculo. México: Limusa-Wiley, 1970."
+  ],
+  subsecuentes: ["Cálculo Diferencial e Integral III", "Probabilidad I"]
+},{
+  id: "geometria_analitica_2",
+  name: "Geometría Analítica II",
+  clave: "0245",
+  creditos: 10,
+  icon: "📐",
+  temario: [
+    {
+      num: "1",
+      name: "Superficies cuádricas",
+      subtemas: [
+        "Cilindros. Cilindros sobre cónicas",
+        "Superficies de revolución. Superficies de revolución generadas por cónicas",
+        "La ecuación de 2° grado sin términos mixtos",
+        "Simetrías y extensión de superficies cuádricas",
+        "Cuádricas con ejes paralelos a los coordenados",
+        "Superficies regladas",
+        "Plano tangente a una cuádrica"
+      ]
+    },
+    {
+      num: "2",
+      name: "Transformaciones",
+      subtemas: [
+        "Definición y ejemplos de transformaciones lineales en ℝ² y en ℝ³. Proyecciones, homotecias",
+        "La matriz de una transformación lineal respecto a una base. Subespacios invariantes",
+        "Definición y ejemplos de transformaciones rígidas en ℝ² y en ℝ³. Subgrupos. Descomposición de una transformación rígida como una lineal seguida de una traslación",
+        "Eliminación de los términos mixtos de la ecuación general de 2° grado en 3 variables por una rotación adecuada",
+        "Transformaciones afines. Perspectiva"
+      ]
+    },
+    {
+      num: "3",
+      name: "La geometría de la esfera",
+      subtemas: [
+        "Geodésicas",
+        "Un poco de trigonometría esférica"
+      ]
+    },
+    {
+      num: "4",
+      name: "Transformaciones de Möbius",
+      subtemas: [
+        "Interpretación geométrica de la suma y el producto de números complejos",
+        "El plano complejo extendido. Transformaciones de Möbius. Principales propiedades",
+        "Introducción a la geometría hiperbólica"
+      ]
+    }
+  ],
+  bibBasicas: [
+    {
+      name: "Bracho, J. Geometría Analítica. Notas.",
+      caps: ["Superficies cuádricas", "Transformaciones", "Geometría de la esfera", "Transformaciones de Möbius"]
+    },
+    {
+      name: "Efimov, N., Geometría Superior. Moscú: MIR, 1984.",
+      caps: ["Cuádricas", "Transformaciones lineales", "Geometría esférica", "Geometría hiperbólica"]
+    },
+    {
+      name: "Preston, G. C., Lovaglia, A. R., Modern Analytic Geometry. New York: Harper & Row, 1971.",
+      caps: ["Quadric surfaces", "Linear transformations", "Sphere geometry", "Möbius transformations"]
+    },
+    {
+      name: "Ramírez-Galarza, A., Geometría Analítica: Una Introducción a la Geometría. México: Las Prensas de Ciencias, 1998.",
+      caps: ["Superficies cuádricas", "Transformaciones", "Geometría esférica", "Transformaciones de Möbius"]
+    }
+  ],
+  bibComp: [
+    "Eves, H., Estudio de las Geometrías. México: UTEHA, 1969.",
+    "Hilbert, D., Cohn Vossen, S., Geometry and the Imagination. México: Vínculos Matemáticos No. 150, Facultad de Ciencias, UNAM, 2000."
+  ],
+  subsecuentes: ["Álgebra Lineal I", "Cálculo Diferencial e Integral III", "Taller de Modelación III"]
+}]
   },
   {
     semestre: 3,
     titulo: "Tercer Semestre",
-    materias: []
+    materias: [{
+  id: "algebra_lineal_1",
+  name: "Álgebra Lineal I",
+  clave: "0005",
+  creditos: 10,
+  icon: "🔢",
+  temario: [
+    {
+      num: "1",
+      name: "Espacios vectoriales",
+      subtemas: [
+        "Campos",
+        "Espacios vectoriales",
+        "Subespacios vectoriales",
+        "Dependencia lineal",
+        "Bases y dimensión",
+        "Sumas directas"
+      ]
+    },
+    {
+      num: "2",
+      name: "Matrices",
+      subtemas: [
+        "El espacio de las matrices",
+        "Multiplicación de matrices. Matrices elementales. Matriz inversa",
+        "Sistemas de ecuaciones lineales"
+      ]
+    },
+    {
+      num: "3",
+      name: "Transformaciones lineales",
+      subtemas: [
+        "El espacio de las transformaciones lineales",
+        "Núcleo e imagen de una transformación lineal",
+        "Composición de transformaciones lineales",
+        "La transformación inversa",
+        "Espacios isomorfos"
+      ]
+    },
+    {
+      num: "4",
+      name: "Transformaciones lineales y matrices",
+      subtemas: [
+        "La transformación lineal asociada a una matriz",
+        "La matriz asociada a una transformación lineal",
+        "Isomorfismos entre el espacio de matrices y el de transformaciones lineales",
+        "Cambios de base"
+      ]
+    },
+    {
+      num: "5",
+      name: "Producto escalar",
+      subtemas: [
+        "Productos escalares y hermitianos",
+        "Ortogonalidad",
+        "Productos positivos, normas y ángulos",
+        "Coeficientes de Fourier",
+        "Bases ortogonales (caso positivo)",
+        "Complemento ortogonal de un subespacio. Aplicación a los sistemas de ecuaciones",
+        "Bases ortogonales (caso general)",
+        "Espacio dual"
+      ]
+    },
+    {
+      num: "6",
+      name: "Determinantes",
+      subtemas: [
+        "Unicidad del determinante",
+        "Determinante de un producto",
+        "Invertibilidad de matrices y determinantes",
+        "Determinante de un operador lineal"
+      ]
+    },
+    {
+      num: "7",
+      name: "Transformaciones simétricas",
+      subtemas: [
+        "Definición y propiedades elementales de valores y vectores propios",
+        "Polinomio característico",
+        "Existencia de valores propios reales de transformaciones simétricas",
+        "Teorema espectral para transformaciones simétricas",
+        "Ejemplos"
+      ]
+    }
+  ],
+  bibBasicas: [
+    {
+      name: "Curtis, C.W., Linear Algebra. New York: Springer, 1984.",
+      caps: ["Espacios vectoriales", "Matrices", "Transformaciones lineales", "Producto escalar", "Determinantes"]
+    },
+    {
+      name: "Friedberg, S. H., Insel, A. J., Spence, L. E., Álgebra Lineal. México: Publicaciones Cultural, 1982.",
+      caps: ["Espacios vectoriales", "Matrices", "Transformaciones lineales", "Producto interno", "Determinantes", "Valores propios"]
+    },
+    {
+      name: "Hoffman, K., Kunze, R., Álgebra Lineal. Bogotá: Prentice Hall Internacional, 1973.",
+      caps: ["Espacios vectoriales", "Transformaciones lineales", "Producto interno", "Determinantes", "Operadores"]
+    },
+    {
+      name: "Lang, S., Álgebra Lineal. México: Sistemas Técnicos de Edición, 1986.",
+      caps: ["Espacios vectoriales", "Matrices", "Transformaciones lineales", "Producto escalar", "Determinantes"]
+    },
+    {
+      name: "Nomizu, K., Fundamentals of Linear Algebra. New York: McGraw-Hill, 1966.",
+      caps: ["Vector spaces", "Matrices", "Linear transformations", "Inner products", "Determinants"]
+    },
+    {
+      name: "Rincón, H. A., Álgebra Lineal. México: Las Prensas de Ciencias, 2002.",
+      caps: ["Espacios vectoriales", "Matrices", "Transformaciones lineales", "Ortogonalidad", "Determinantes", "Valores propios"]
+    }
+  ],
+  bibComp: [
+    "Birkhoff, G., MacLane, S., A Survey of Modern Algebra. New York: Macmillan, 1977.",
+    "Jacobson, N., Lectures in Abstract Algebra, Volumen II. New York: Van Nostrand, 1951.",
+    "Lluis, E., Álgebra Lineal, Álgebra Multilineal y K-Teoría Algebraica Clásica. México: Addison-Wesley Iberoamericana, 1990.",
+    "Nickerson, H. K., Spencer, D. C., Steenrod, N. E., Advanced Calculus. Princeton: Van Nostrand, 1959."
+  ],
+  subsecuentes: [
+    "Cálculo Diferencial e Integral IV",
+    "Ecuaciones Diferenciales I",
+    "Investigación de Operaciones",
+    "Probabilidad II",
+    "Análisis Numérico",
+    "Taller de Modelación III"
+  ]
+}]
   },
   {
     semestre: 4,
