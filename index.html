@@ -6,7 +6,6 @@
 <title>Matemáticas</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ─── Tokens estético, menta claro ── */
 :root {
   --bg:        #FFFFFF;
   --surface:   #FFFFFF;
@@ -15,7 +14,7 @@
   --ink:       #1A2E22;
   --ink-2:     #4B6B5B;
   --ink-3:     #8B9E93;
-  --mint:      #1c8372;      
+  --mint:      #1f7979;      
   --mint-light:#B8E6CF;      /* menta claro para anillo */
   --mint-soft: #D7F5E8;
   --mint-bg:   #EFFAF4;
@@ -101,23 +100,23 @@ body{
 }
 .meta-tag strong{color:var(--ink-2); font-weight:500;}
 .card-controls{display:flex; align-items:center; gap:0.6rem; flex-shrink:0;}
-/* ANILLO MENTA CLARO */
+/* ANILLO MENTA CLARO - CORREGIDO: circulo interno mas pequeño para que no se corte */
 .circle-wrapper{
-  position:relative; width:48px; height:48px; flex-shrink:0;
+  position:relative; width:44px; height:44px; flex-shrink:0;
 }
-.circle-progress{width:48px; height:48px; display:block;}
-.circle-bg{fill:none; stroke:#E2EDE8; stroke-width:3.6;}
-.circle-fg{fill:none; stroke:var(--mint-light); stroke-width:3.6; stroke-linecap:round;
-  stroke-dasharray:132; stroke-dashoffset:132; transform:rotate(-90deg); transform-origin:50% 50%;
+.circle-progress{width:44px; height:44px; display:block;}
+.circle-bg{fill:none; stroke:#E2EDE8; stroke-width:3.2;}
+.circle-fg{fill:none; stroke:var(--mint-light); stroke-width:3.2; stroke-linecap:round;
+  stroke-dasharray:88; stroke-dashoffset:88; transform:rotate(-90deg); transform-origin:50% 50%;
   transition:stroke-dashoffset 0.4s ease;
 }
 .circle-percent-number{
   position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-  font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700;
+  font-family:'JetBrains Mono', monospace; font-size:10px; font-weight:700;
   color:var(--mint); background:transparent; pointer-events:none;
 }
 .chevron{
-  width:22px; height:22px; color:var(--ink-3);
+  width:20px; height:20px; color:var(--ink-3);
   transition:transform 0.3s ease; flex-shrink:0;
 }
 .card.open .chevron{transform:rotate(180deg); color:var(--mint);}
@@ -256,6 +255,7 @@ body{
 // El anillo de materia usa color menta claro (#B8E6CF) y texto en menta más intenso
 // NO se muestra "créditos avanzados" en cabecera de semestre, solo el total del semestre
 // Al expandir materia, el fondo del header permanece BLANCO (sin cambio)
+// CÍRCULO CORREGIDO: radio interno reducido para evitar que se corte en bordes
 // ============================================================
 const TOTAL_CREDITOS_CARRERA = 352;
 
@@ -300,8 +300,10 @@ const CURRICULUM = [
     { id:"s6_topologia", name:"Topología", creditos:10, icon:"⚫", clave:"0600", temario:[{num:"1",name:"Espacios topológicos",subtemas:["Abiertos"]}], bibBasicas:[{name:"Topología - Munkres",caps:["Cap.1 Conjuntos","Cap.2 Topología"]}], bibComp:[], subsecuentes:[] }
   ]},
   { semestre:7, titulo:"Séptimo Semestre", materias:[
+    { id:"s7_seminario", name:"Seminario de Tesis", creditos:12, icon:"📖", clave:"0999", temario:[{num:"1",name:"Investigación",subtemas:["Metodología"]}], bibBasicas:[{name:"Guía de Tesis",caps:["Cap.1 Planteamiento","Cap.2 Marco teórico"]}], bibComp:[], subsecuentes:[] }
   ]},
   { semestre:8, titulo:"Octavo Semestre", materias:[
+    { id:"s8_opcion", name:"Optativa Profunda", creditos:8, icon:"⭐", clave:"1001", temario:[{num:"1",name:"Tema selecto",subtemas:["Avanzado"]}], bibBasicas:[{name:"Material optativo",caps:["Módulo A","Módulo B"]}], bibComp:[], subsecuentes:[] }
   ]}
 ];
 
@@ -317,7 +319,7 @@ function ensureMateriaHasBibliografia(materia) {
 CURRICULUM.forEach(sem => sem.materias.forEach(m => ensureMateriaHasBibliografia(m)));
 
 // ---------- LOCALSTORAGE ----------
-const STORAGE_KEY = 'cred_mint_avance_v4';
+const STORAGE_KEY = 'cred_mint_avance_v5';
 function loadAllProgress() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if(stored) return JSON.parse(stored);
@@ -422,10 +424,11 @@ function updateAllUI() {
   }
 }
 
+// Circunferencia corregida: 2 * PI * r (r=14) ≈ 88
 function updateCirclePercent(svgEl, percent) {
   const fg = svgEl?.querySelector('.circle-fg');
   if(fg) {
-    const circumference = 132;
+    const circumference = 88; // 2 * π * 14 ≈ 87.96
     const offset = circumference - (circumference * percent / 100);
     fg.style.strokeDashoffset = offset;
   }
@@ -469,6 +472,7 @@ function renderBiblioteca(materia) {
 }
 function renderCard(materia) {
   const pct = getSubjectPercent(materia);
+  // SVG con radio r=14 (para que quepa bien dentro de 44x44 sin cortarse)
   return `
   <div class="card" data-materia="${materia.id}">
     <div class="card-header" data-toggle-card="${materia.id}">
@@ -480,8 +484,8 @@ function renderCard(materia) {
       <div class="card-controls">
         <div class="circle-wrapper">
           <svg class="circle-progress" viewBox="0 0 44 44">
-            <circle class="circle-bg" cx="22" cy="22" r="21" fill="none" stroke-width="3.6"/>
-            <circle class="circle-fg" cx="22" cy="22" r="21" fill="none" stroke-width="3.6" stroke-linecap="round"/>
+            <circle class="circle-bg" cx="22" cy="22" r="18" fill="none" stroke-width="3.2"/>
+            <circle class="circle-fg" cx="22" cy="22" r="18" fill="none" stroke-width="3.2" stroke-linecap="round"/>
           </svg>
           <span class="circle-percent-number">${pct}%</span>
         </div>
@@ -499,7 +503,6 @@ function renderCard(materia) {
 function renderSemester(sem, idx) {
   const semPct = getSemesterPercent(sem);
   const totalCredSem = getSemesterTotalCredits(sem);
-  // Mostrar SOLO el total de créditos del semestre, sin mencionar avanzados
   return `
   <section class="semester-section">
     <div class="semester-header"><h2 class="semester-title">${sem.titulo}</h2><span class="semester-credits">${totalCredSem} Créditos</span></div>
@@ -564,3 +567,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+```
