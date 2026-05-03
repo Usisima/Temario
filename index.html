@@ -284,13 +284,47 @@ function toggleLibro(id){document.getElementById(id).classList.toggle('open');}
 function toggleComp(id){document.getElementById(id).classList.toggle('open');}
 function marcar(chk,capsId,badgeId,barId){
   chk.closest('.cap-item').classList.toggle('leido',chk.checked);
-  if(!capsId)return;
-  const all=document.getElementById(capsId).querySelectorAll('input');
+
+  // Guardar estado en localStorage
+  const key = capsId + '_state';
+  const all = document.getElementById(capsId).querySelectorAll('input');
+  const state = [];
+  all.forEach(c => state.push(c.checked));
+  localStorage.setItem(key, JSON.stringify(state));
+
+  // Recalcular progreso
   let n=0; all.forEach(c=>{if(c.checked)n++;});
   const pct=Math.round((n/all.length)*100);
+
   if(badgeId)document.getElementById(badgeId).textContent=pct+'%';
   if(barId)document.getElementById(barId).style.width=pct+'%';
 }
+function cargarEstado(capsId, badgeId, barId){
+  const key = capsId + '_state';
+  const saved = localStorage.getItem(key);
+  if(!saved) return;
+
+  const values = JSON.parse(saved);
+  const all = document.getElementById(capsId).querySelectorAll('input');
+
+  all.forEach((chk, i) => {
+    chk.checked = values[i] || false;
+    chk.closest('.cap-item').classList.toggle('leido', chk.checked);
+  });
+
+  // recalcular progreso
+  let n=0; all.forEach(c=>{if(c.checked)n++;});
+  const pct=Math.round((n/all.length)*100);
+
+  if(badgeId)document.getElementById(badgeId).textContent=pct+'%';
+  if(barId)document.getElementById(barId).style.width=pct+'%';
+}
+
+// Inicialización
+window.addEventListener('DOMContentLoaded', () => {
+  cargarEstado('caps-lb0','pct-lb0','bar-lb0');
+  cargarEstado('caps-lb1','pct-lb1','bar-lb1');
+});
 </script>
 </body>
 </html>
