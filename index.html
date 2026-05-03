@@ -8,20 +8,20 @@
 <style>
 :root {
   --bg:        #000;
-  --s1:        #0c0c0c;
-  --s2:        #141414;
-  --s3:        #1c1c1c;
-  --border:    rgba(255,255,255,0.08);
-  --border2:   rgba(255,255,255,0.14);
-  --ink:       #f5f0e8;
-  --ink2:      rgba(245,240,232,0.55);
-  --ink3:      rgba(245,240,232,0.28);
-  --gold:      #c9a96e;
-  --gold2:     #e8c98a;
-  --gold-dim:  rgba(201,169,110,0.15);
-  --gold-glow: rgba(201,169,110,0.06);
-  --teal:      #5bbfb5;
-  --teal-dim:  rgba(91,191,181,0.12);
+  --s1:        #080d0c;
+  --s2:        #0d1512;
+  --s3:        #121c18;
+  --border:    rgba(100,220,200,0.08);
+  --border2:   rgba(100,220,200,0.16);
+  --ink:       #e8f5f2;
+  --ink2:      rgba(232,245,242,0.55);
+  --ink3:      rgba(232,245,242,0.28);
+  --gold:      #5ecfbe;
+  --gold2:     #93e8d8;
+  --gold-dim:  rgba(94,207,190,0.14);
+  --gold-glow: rgba(94,207,190,0.06);
+  --teal:      #a8f0e2;
+  --teal-dim:  rgba(168,240,226,0.12);
   --r:         20px;
   --r2:        12px;
   --ease:      0.3s cubic-bezier(0.4,0,0.2,1);
@@ -72,8 +72,8 @@ body{
   font-family:'DM Mono',monospace;
   font-size:13px;font-weight:500;
   padding:6px 16px;border-radius:99px;
-  border:1px solid rgba(201,169,110,0.35);
-  background:rgba(201,169,110,0.08);
+  border:1px solid rgba(94,207,190,0.35);
+  background:rgba(94,207,190,0.08);
   color:var(--gold2);
   white-space:nowrap;
   letter-spacing:0.04em;
@@ -96,7 +96,7 @@ body{
   font-family:'Playfair Display',serif;
   font-size:0.78rem;font-weight:700;
   letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--ink3);
+  color:var(--ink);
 }
 .sem-credits-badge{
   font-family:'DM Mono',monospace;
@@ -142,8 +142,8 @@ body{
   box-shadow:0 8px 40px rgba(0,0,0,0.6);
 }
 .card.open{
-  border-color:rgba(201,169,110,0.2);
-  box-shadow:0 8px 40px rgba(0,0,0,0.6),0 0 0 1px rgba(201,169,110,0.06) inset;
+  border-color:rgba(94,207,190,0.2);
+  box-shadow:0 8px 40px rgba(0,0,0,0.6),0 0 0 1px rgba(94,207,190,0.06) inset;
 }
 
 /* card header */
@@ -240,7 +240,7 @@ body{
 .tema-head-left{flex:1;display:flex;gap:0.6rem;align-items:flex-start;}
 .tema-num{
   font-family:'DM Mono',monospace;font-size:9px;font-weight:500;
-  background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.25);
+  background:rgba(94,207,190,0.12);border:1px solid rgba(94,207,190,0.25);
   padding:2px 7px;border-radius:6px;color:var(--gold);
   flex-shrink:0;margin-top:1px;letter-spacing:0.05em;
 }
@@ -371,8 +371,8 @@ body{
 /* ── SUBSECUENTES ── */
 .subsec-block{
   margin:0;padding:0.75rem 1rem 1rem;
-  background:rgba(201,169,110,0.04);
-  border:none;border-top:1px solid rgba(201,169,110,0.12);
+  background:rgba(94,207,190,0.04);
+  border:none;border-top:1px solid rgba(94,207,190,0.12);
   border-radius:0;
 }
 .subsec-label{
@@ -382,20 +382,20 @@ body{
 .subsec-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
 .subsec-tag{
   font-size:11px;
-  background:rgba(201,169,110,0.07);
-  border:1px solid rgba(201,169,110,0.2);
+  background:rgba(94,207,190,0.07);
+  border:1px solid rgba(94,207,190,0.2);
   padding:4px 10px;border-radius:99px;
   color:var(--gold);cursor:pointer;
   transition:all 0.2s;
   display:flex;align-items:center;gap:4px;
 }
 .subsec-tag:hover{
-  background:rgba(201,169,110,0.15);
-  border-color:rgba(201,169,110,0.4);
+  background:rgba(94,207,190,0.15);
+  border-color:rgba(94,207,190,0.4);
 }
 .subsec-tag-arrow{font-size:9px;opacity:0.6;}
 .subsec-tag.no-link{cursor:default;opacity:0.5;}
-.subsec-tag.no-link:hover{background:rgba(201,169,110,0.07);border-color:rgba(201,169,110,0.2);}
+.subsec-tag.no-link:hover{background:rgba(94,207,190,0.07);border-color:rgba(94,207,190,0.2);}
 
 /* empty */
 .empty-card{
@@ -410,8 +410,8 @@ body{
   animation:pulseBorder 1.5s ease forwards;
 }
 @keyframes pulseBorder{
-  0%{border-color:rgba(201,169,110,0.6);box-shadow:0 0 0 4px rgba(201,169,110,0.15);}
-  100%{border-color:rgba(201,169,110,0.2);box-shadow:0 8px 40px rgba(0,0,0,0.6);}
+  0%{border-color:rgba(94,207,190,0.6);box-shadow:0 0 0 4px rgba(94,207,190,0.15);}
+  100%{border-color:rgba(94,207,190,0.2);box-shadow:0 8px 40px rgba(0,0,0,0.6);}
 }
 
 /* progress summary removed */
@@ -424,7 +424,7 @@ body{
 /* Ornamental top bar */
 .orn-top{
   text-align:center;padding:1.2rem 1.5rem 0;
-  letter-spacing:0.3em;color:rgba(201,169,110,0.25);
+  letter-spacing:0.3em;color:rgba(94,207,190,0.25);
   font-size:11px;font-family:'DM Mono',monospace;
 }
 </style>
@@ -457,7 +457,7 @@ const CURRICULUM = [
       {
         id: "algebra_superior_1", name: "Álgebra Superior I",
         clave: "0007", creditos: 10,
-        icon: "d1.jpg",
+        icon: "d1.png",
         temario: [
           { num:"1", name:"Conjuntos", horas:8, subtemas:["Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío, Conjunto Universal","Operaciones con conjuntos: unión, intersección, complemento y diferencia","Conjunto potencia. Producto cartesiano. Familias de conjuntos"] },
           { num:"2", name:"Relaciones y funciones", horas:12, subtemas:["Relaciones (dominio, codominio e imagen)","Funciones (imágenes e imágenes inversas)","Composición de funciones. Función inversa","Funciones inyectivas, suprayectivas y biyectivas","Cardinalidad. Conjuntos finitos e infinitos. Funciones entre conjuntos finitos","Relaciones de equivalencia y particiones"] },
@@ -476,7 +476,7 @@ const CURRICULUM = [
       {
         id: "calculo_1", name: "Cálculo Diferencial e Integral I",
         clave: "0091", creditos: 18,
-        icon: "d2.jpg",
+        icon: "d2.png",
         temario: [
           { num:"1", name:"Introducción", horas:4, subtemas:["Los problemas que fundamentan al cálculo","Ejemplos"] },
           { num:"2", name:"Números reales", horas:8, subtemas:["Propiedades de los números enteros, racionales y reales, desigualdades y valor absoluto","La propiedad de compleción de los números reales, expansiones decimales"] },
@@ -496,7 +496,7 @@ const CURRICULUM = [
       {
         id: "geo_analitica_1", name: "Geometría Analítica I",
         clave: "0244", creditos: 10,
-        icon: "d3.jpg",
+        icon: "d3.png",
         temario: [
           { num:"1", name:"Introducción", horas:8, subtemas:["Los conceptos geométricos elementales: distancias, simetrías","Coordenadas cartesianas en el plano y en el espacio","Lugares geométricos definidos por ecuaciones y desigualdades. Gráficas de funciones"] },
           { num:"2", name:"Trigonometría", horas:12, subtemas:["Razones trigonométricas. El Teorema de Pitágoras","Resolución de triángulos. Congruencia. Semejanza","Rectas y puntos notables de un triángulo","Ángulo central y ángulo inscrito. Potencia de un punto","Funciones trigonométricas. Identidades","Coordenadas polares. Curvas en coordenadas polares","Curvas paramétricas","Coordenadas esféricas y cilíndricas. Superficies paramétricas"] },
@@ -515,7 +515,7 @@ const CURRICULUM = [
       {
         id: "geo_moderna_1", name: "Geometría Moderna I",
         clave: "0249", creditos: 10,
-        icon: "d4.jpg",
+        icon: "d4.png",
         temario: [
           { num:"1", name:"Geometría del triángulo", horas:14, subtemas:["Congruencia. Semejanza. Teorema de Tales. Pitágoras. Stewart","Circuncentro, incentro, excentros, ortocentro, baricentro","Recta de Euler","Triángulos pedales"] },
           { num:"2", name:"Circunferencia y cuadriláteros cíclicos", horas:14, subtemas:["Cuadriláteros cíclicos","Potencia. Círculos coaxiales","Ángulos en la circunferencia","Antiparalelas","Teorema de Ptolomeo. Línea de Simson","Circunferencia de los nueve puntos"] },
@@ -538,7 +538,7 @@ const CURRICULUM = [
       {
         id: "algebra_superior_2", name: "Álgebra Superior II",
         clave: "0008", creditos: 10,
-        icon: "d5.jpg",
+        icon: "d5.png",
         temario: [
           { num:"1", name:"Números enteros", horas:10, subtemas:["El anillo de los números enteros","ℤ como dominio entero","El orden en ℤ","Principio de inducción. Principio del buen orden","Unidades en ℤ"] },
           { num:"2", name:"Divisibilidad", horas:16, subtemas:["Propiedades elementales","Algoritmo de la división","Máximo común divisor. Algoritmo de Euclides. MCD","Soluciones enteras de una ecuación lineal","Números primos. Factorización única","Congruencias. Congruencias lineales. Teorema chino del residuo"] },
@@ -555,7 +555,7 @@ const CURRICULUM = [
       {
         id: "calculo_2", name: "Cálculo Diferencial e Integral II",
         clave: "0092", creditos: 18,
-        icon: "d6.jpg",
+        icon: "d6.png",
         temario: [
           { num:"1", name:"Integral definida", horas:14, subtemas:["Ejemplos que conducen al concepto de integral definida","Sumas superiores e inferiores (sumas de Riemann)","Definición y ejemplos de la integral definida","Propiedades básicas de la integral definida","Teorema del valor medio para la integral","Ejemplos de funciones integrables con discontinuidades","La función de Riemann"] },
           { num:"2", name:"Teorema Fundamental del Cálculo", horas:12, subtemas:["La integral como función del límite superior","Propiedades de la integral indefinida","Demostración de los teoremas fundamentales","Integración directa","Integrales impropias y criterios de convergencia"] },
@@ -575,7 +575,7 @@ const CURRICULUM = [
       {
         id: "geo_analitica_2", name: "Geometría Analítica II",
         clave: "0245", creditos: 10,
-        icon: "d7.jpg",
+        icon: "d7.png",
         temario: [
           { num:"1", name:"Superficies cuádricas", horas:16, subtemas:["Cilindros sobre cónicas","Superficies de revolución generadas por cónicas","La ecuación de 2° grado sin términos mixtos","Simetrías y extensión de superficies cuádricas","Cuádricas con ejes paralelos a los coordenados","Superficies regladas","Plano tangente a una cuádrica"] },
           { num:"2", name:"Transformaciones", horas:16, subtemas:["Transformaciones lineales en ℝ² y ℝ³","La matriz de una transformación lineal. Subespacios invariantes","Transformaciones rígidas en ℝ² y ℝ³. Subgrupos","Eliminación de términos mixtos por rotación","Transformaciones afines. Perspectiva"] },
@@ -597,7 +597,7 @@ const CURRICULUM = [
       {
         id: "algebra_lineal_1", name: "Álgebra Lineal I",
         clave: "0005", creditos: 10,
-        icon: "d8.jpg",
+        icon: "d8.png",
         temario: [
           { num:"1", name:"Espacios vectoriales", horas:14, subtemas:["Campos","Espacios vectoriales","Subespacios vectoriales","Dependencia lineal","Bases y dimensión","Sumas directas"] },
           { num:"2", name:"Matrices", horas:10, subtemas:["El espacio de las matrices","Multiplicación de matrices. Matrices elementales. Inversa","Sistemas de ecuaciones lineales"] },
@@ -758,7 +758,7 @@ function renderCard(mat){
   return `<div class="card" id="${buildMateriaId(mat.id)}" data-materia="${mat.id}">
     <div class="card-head" data-toggle-card="${mat.id}">
       <div class="card-icon">
-        <img src="${mat.icon||'https://img.icons8.com/fluency/48/book.png'}" alt="${mat.name}" onerror="this.src='https://img.icons8.com/fluency/48/book.png'">
+        <img src="${mat.icon||'d1.png'}" alt="${mat.name}" onerror="this.style.opacity='0.3'">
       </div>
       <div class="card-info">
         <div class="card-name">${mat.name}</div>
