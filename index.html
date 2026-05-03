@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Licenciatura en Matemáticas - Plan 1983 (8 Semestres)</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:'DM Sans',sans-serif;background:#f4f4f0;min-height:100vh;padding:2rem 1rem;}
@@ -17,10 +17,24 @@
   
   .materias-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(580px,1fr));gap:1.5rem;margin-top:1rem;}
   
-  .card{background:white;border:0.5px solid #e0ddd6;border-radius:12px;overflow:visible;height:fit-content;transition:box-shadow 0.2s;}
+  .card{background:white;border:0.5px solid #e0ddd6;border-radius:12px;overflow:visible;height:fit-content;transition:box-shadow 0.2s;position:relative;}
   .card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.05);}
   
-  .mat-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;user-select:none;background:white;border-radius:12px;}
+  /* Porcentaje de avance - solo texto, sin fondo, en esquina superior derecha */
+  .progress-text {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    color: #185FA5;
+    cursor: default;
+    z-index: 5;
+    letter-spacing: -0.3px;
+  }
+  
+  .mat-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;user-select:none;background:white;border-radius:12px;position:relative;}
   .mat-header:active{background:white;}
   
   .mat-left{display:flex;align-items:center;gap:12px;flex:1;}
@@ -30,7 +44,6 @@
   .mat-meta{display:flex;gap:12px;margin-top:4px;flex-wrap:wrap;}
   .mat-meta-item{font-size:11px;color:#666;background:#f8f7f4;padding:2px 8px;border-radius:12px;}
   .mat-meta-item strong{color:#1a1a1a;font-weight:500;}
-  .progress-summary{font-size:11px;color:#185FA5;background:#E6F1FB;padding:2px 8px;border-radius:12px;}
   .chevron{width:20px;height:20px;color:#888;transition:transform .4s;flex-shrink:0;}
   .chevron.open{transform:rotate(180deg);}
   
@@ -105,42 +118,42 @@
   <!-- Semestre 1 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Primer Semestre</h2>
-    <span class="semestre-creditos"> 48 Créditos</span>
+    <span class="semestre-creditos">48 Créditos</span>
   </div>
   <div class="materias-grid" id="semestre1-grid"></div>
   
   <!-- Semestre 2 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Segundo Semestre</h2>
-    <span class="semestre-creditos"> 38 Créditos + 1 Optativa</span>
+    <span class="semestre-creditos">38 Créditos + 1 Optativa</span>
   </div>
   <div class="materias-grid" id="semestre2-grid"></div>
   
   <!-- Semestre 3 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Tercer Semestre</h2>
-    <span class="semestre-creditos"> 28 Créditos + 2 Optativas</span>
+    <span class="semestre-creditos">28 Créditos + 2 Optativas</span>
   </div>
   <div class="materias-grid" id="semestre3-grid"></div>
   
   <!-- Semestre 4 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Cuarto Semestre</h2>
-    <span class="semestre-creditos"> 38 Créditos + 1 Optativa</span>
+    <span class="semestre-creditos">38 Créditos + 1 Optativa</span>
   </div>
   <div class="materias-grid" id="semestre4-grid"></div>
   
   <!-- Semestre 5 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Quinto Semestre</h2>
-    <span class="semestre-creditos"> 30 Créditos + 1 Optativa</span>
+    <span class="semestre-creditos">30 Créditos + 1 Optativa</span>
   </div>
   <div class="materias-grid" id="semestre5-grid"></div>
   
   <!-- Semestre 6 -->
   <div class="semestre-header">
     <h2 class="semestre-titulo">📘 Sexto Semestre</h2>
-    <span class="semestre-creditos"> 10 Créditos + 3 Optativas</span>
+    <span class="semestre-creditos">10 Créditos + 3 Optativas</span>
   </div>
   <div class="materias-grid" id="semestre6-grid"></div>
   
@@ -407,6 +420,7 @@ function renderMateriasGrid(containerId, subjects, prefix) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
+      <div class="progress-text" id="prog_${subject.id}">0%</div>
       <div class="mat-header" onclick="toggleMain(this, 'body_${subject.id}')">
         <div class="mat-left">
           <div class="mat-icon">${subject.icon}</div>
@@ -414,8 +428,7 @@ function renderMateriasGrid(containerId, subjects, prefix) {
             <div class="mat-title">${subject.name}</div>
             <div class="mat-meta">
               <span class="mat-meta-item"><strong>Clave:</strong> ${subject.clave}</span>
-              <span class="mat-meta-item"><strong>Créditos:</strong> ${subject.creditos}</span>
-              <span class="progress-summary" id="prog_${subject.id}">0%</span>
+              <span class="mat-meta-item"><strong>${subject.creditos} Créditos</strong></span>
             </div>
           </div>
         </div>
