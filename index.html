@@ -3,242 +3,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Lic. Matemáticas · Plan 1983 | Avance por Créditos</title>
+<title>Matemáticas</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ─── Tokens estético, fondo blanco, acentos azul-mar ── */
+/* ─── Tokens estético, menta claro ── */
 :root {
   --bg:        #FFFFFF;
   --surface:   #FFFFFF;
-  --surface-2: #F7F7F9;
-  --border:    #E2DFDA;
-  --ink:       #1E1C16;
-  --ink-2:     #5A564C;
-  --ink-3:     #A19D94;
-  --blue:      #79a7a1;
-  --blue-bg:   #FFFFFF;
-  --blue-soft: #C9DDE8;
-  --green:     #196B3C;
-  --green-bg:  #E4F4EC;
-  --green-mid: #2E7D52;
-  --amber:     #9B5E0C;
-  --amber-bg:  #FEF4E5;
-  --amber-bdr: rgba(155,94,12,.15);
-  --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
-  --ease: 220ms cubic-bezier(.2,.9,.4,1.1);
+  --surface-2: #F7F9F8;
+  --border:    #DFE6E2;
+  --ink:       #1A2E22;
+  --ink-2:     #4B6B5B;
+  --ink-3:     #8B9E93;
+  --mint:      #1c8372;      
+  --mint-light:#B8E6CF;      /* menta claro para anillo */
+  --mint-soft: #D7F5E8;
+  --mint-bg:   #EFFAF4;
+  --green:     #2C7A4B;
+  --green-bg:  #E6F4EE;
+  --amber:     #B46F3F;
+  --amber-bg:  #FEF6ED;
+  --r-sm: 8px; --r-md: 12px; --r-lg: 18px;
+  --ease: 220ms cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{-webkit-text-size-adjust:100%;}
+*{box-sizing:border-box; margin:0; padding:0;}
 body{
   font-family:'Plus Jakarta Sans',system-ui,sans-serif;
-  font-size:16px;
   background:var(--bg);
   color:var(--ink);
-  min-height:100vh;
-  padding:env(safe-area-inset-top,0px) 0 calc(env(safe-area-inset-bottom,0px)+3rem);
+  padding-bottom:3rem;
   -webkit-font-smoothing:antialiased;
 }
 .page-header{
-  position:sticky;top:0;z-index:100;
-  background:#ececec;backdrop-filter:saturate(180%) blur(14px);
+  position:sticky; top:0; z-index:100;
+  background:#F1F6F3; backdrop-filter:saturate(180%) blur(14px);
   border-bottom:1px solid var(--border);
   padding:0.9rem 1rem;
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex; align-items:center; justify-content:space-between;
   gap:0.75rem;
 }
-.page-title{font-size:1rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;}
-.page-subtitle{font-size:11px;color:var(--ink-3);margin-top:2px;}
+.page-title{font-size:1rem; font-weight:700; color:var(--ink); letter-spacing:-0.02em;}
+.page-subtitle{font-size:11px; color:var(--ink-3); margin-top:2px;}
 .global-pill{
-  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
-  padding:5px 12px;border-radius:99px;
-  background:var(--blue-bg);color:var(--blue);
-  border:1px solid var(--blue-soft);white-space:nowrap;
+  font-family:'JetBrains Mono', monospace; font-size:12px; font-weight:600;
+  padding:5px 14px; border-radius:99px;
+  background:var(--mint-bg); color:var(--mint);
+  border:1px solid var(--mint-light); white-space:nowrap;
 }
-.container{max-width:820px;margin:0 auto;padding:0 1rem;}
+.container{max-width:880px; margin:0 auto; padding:0 1rem;}
 .semester-section{margin-top:2rem;}
 .semester-header{
-  display:flex;align-items:baseline;justify-content:space-between;
-  margin-bottom:0.5rem;flex-wrap:wrap;gap:0.5rem;
+  display:flex; align-items:baseline; justify-content:space-between;
+  margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;
 }
-.semester-title{font-size:0.85rem;font-weight:700;color:var(--ink-2);letter-spacing:0.05em;text-transform:uppercase;}
+.semester-title{font-size:0.85rem; font-weight:700; color:var(--ink-2); letter-spacing:0.05em; text-transform:uppercase;}
 .semester-credits{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  background:var(--surface);border:1px solid var(--border);
-  padding:2px 8px;border-radius:99px;color:var(--ink-3);
+  font-family:'JetBrains Mono', monospace; font-size:10px;
+  background:var(--surface); border:1px solid var(--border);
+  padding:2px 9px; border-radius:99px; color:var(--ink-3);
 }
 .semester-progress-wrap{
-  display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;
+  display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem;
 }
-.semester-bar-track{flex:1;height:3px;background:var(--border);border-radius:99px;overflow:hidden;}
-.semester-bar-fill{height:100%;background:var(--blue);border-radius:99px;transition:width 0.4s ease;width:0%;}
-.semester-pct{font-family:'JetBrains Mono';font-size:10px;font-weight:500;color:var(--blue);min-width:36px;text-align:right;}
-.subjects-grid{display:flex;flex-direction:column;gap:1rem;}
-@media (min-width:720px){.subjects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}}
+.semester-bar-track{flex:1; height:4px; background:#E2E9E5; border-radius:99px; overflow:hidden;}
+.semester-bar-fill{height:100%; background:var(--mint); border-radius:99px; transition:width 0.4s ease; width:0%;}
+.semester-pct{font-family:'JetBrains Mono'; font-size:11px; font-weight:600; color:var(--mint); min-width:38px; text-align:right;}
+.subjects-grid{display:flex; flex-direction:column; gap:1rem;}
+@media (min-width:720px){.subjects-grid{display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;}}
 .card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r-lg);overflow:hidden;
-  box-shadow:0 1px 3px rgba(0,0,0,0.02),0 1px 2px rgba(0,0,0,0.03);
-  transition:all 0.2s;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg); overflow:hidden;
+  transition:all 0.2s; box-shadow:0 1px 3px rgba(0,0,0,0.02);
 }
 .card-header{
-  display:flex;align-items:center;gap:0.9rem;padding:1rem;
-  cursor:pointer;user-select:none;min-height:74px;
-  -webkit-tap-highlight-color:transparent;
+  display:flex; align-items:center; gap:0.9rem; padding:1rem;
+  cursor:pointer; user-select:none; min-height:74px;
+  background:white; /* Siempre blanco, sin cambio al abrir */
+  transition:background 0.1s;
 }
-.card.open .card-header{background:var(--blue-bg);}
+/* Eliminamos cualquier cambio de fondo al abrir la tarjeta */
+.card.open .card-header{
+  background:white; /* Se mantiene blanco */
+}
 .card-icon{
-  width:48px;height:48px;border-radius:var(--r-md);
-  background:var(--blue-bg);border:1px solid var(--blue-soft);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.6rem;flex-shrink:0;
+  width:48px; height:48px; border-radius:var(--r-md);
+  background:var(--mint-bg); border:1px solid var(--mint-light);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.6rem; flex-shrink:0;
 }
-.card-info{flex:1;min-width:0;}
-.card-name{font-size:1rem;font-weight:700;color:var(--ink);line-height:1.3;}
-.card-meta{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.4rem;}
+.card-info{flex:1; min-width:0;}
+.card-name{font-size:1rem; font-weight:700; color:var(--ink); line-height:1.3;}
+.card-meta{display:flex; flex-wrap:wrap; gap:0.3rem; margin-top:0.4rem;}
 .meta-tag{
-  font-family:'JetBrains Mono',monospace;font-size:9.5px;
-  background:var(--surface-2);border:1px solid var(--border);
-  padding:2px 7px;border-radius:99px;color:var(--ink-3);
+  font-family:'JetBrains Mono', monospace; font-size:9.5px;
+  background:var(--surface-2); border:1px solid var(--border);
+  padding:2px 7px; border-radius:99px; color:var(--ink-3);
 }
-.meta-tag strong{color:var(--ink-2);font-weight:500;}
-.card-controls{display:flex;align-items:center;gap:0.6rem;flex-shrink:0;}
-/* circulo + número de porcentaje integrado */
+.meta-tag strong{color:var(--ink-2); font-weight:500;}
+.card-controls{display:flex; align-items:center; gap:0.6rem; flex-shrink:0;}
+/* ANILLO MENTA CLARO */
 .circle-wrapper{
-  position:relative;width:44px;height:44px;flex-shrink:0;
+  position:relative; width:48px; height:48px; flex-shrink:0;
 }
-.circle-progress{width:44px;height:44px;display:block;}
-.circle-bg{fill:none;stroke:var(--border);stroke-width:3.2;}
-.circle-fg{fill:none;stroke:var(--blue);stroke-width:3.2;stroke-linecap:round;
-  stroke-dasharray:115;stroke-dashoffset:115;transform:rotate(-90deg);transform-origin:50% 50%;
+.circle-progress{width:48px; height:48px; display:block;}
+.circle-bg{fill:none; stroke:#E2EDE8; stroke-width:3.6;}
+.circle-fg{fill:none; stroke:var(--mint-light); stroke-width:3.6; stroke-linecap:round;
+  stroke-dasharray:132; stroke-dashoffset:132; transform:rotate(-90deg); transform-origin:50% 50%;
   transition:stroke-dashoffset 0.4s ease;
 }
 .circle-percent-number{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;
-  color:var(--blue);background:transparent;pointer-events:none;
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700;
+  color:var(--mint); background:transparent; pointer-events:none;
 }
 .chevron{
-  width:22px;height:22px;color:var(--ink-3);
-  transition:transform 0.3s ease;flex-shrink:0;
+  width:22px; height:22px; color:var(--ink-3);
+  transition:transform 0.3s ease; flex-shrink:0;
 }
-.card.open .chevron{transform:rotate(180deg);color:var(--blue);}
-.card-body{max-height:0;overflow:hidden;transition:max-height 0.5s cubic-bezier(0.2,0.9,0.4,1.1);}
+.card.open .chevron{transform:rotate(180deg); color:var(--mint);}
+.card-body{max-height:0; overflow:hidden; transition:max-height 0.5s cubic-bezier(0.2,0.9,0.4,1.1);}
 .card.open .card-body{max-height:9999px;}
 .tabs{
-  display:flex;background:var(--surface-2);border-bottom:1px solid var(--border);
-  padding:0 1rem;gap:0.5rem;
+  display:flex; background:var(--surface-2); border-bottom:1px solid var(--border);
+  padding:0 1rem; gap:0.5rem;
 }
 .tab{
-  font-size:13px;font-weight:600;padding:0.75rem 0.9rem;
-  cursor:pointer;color:var(--ink-3);border-bottom:2.5px solid transparent;
+  font-size:13px; font-weight:600; padding:0.75rem 0.9rem;
+  cursor:pointer; color:var(--ink-3); border-bottom:2.5px solid transparent;
   transition:all var(--ease);
 }
-.tab.active{color:var(--blue);border-bottom-color:var(--blue);}
-.tab-panel{display:none;padding:1rem;}
+.tab.active{color:var(--mint); border-bottom-color:var(--mint);}
+.tab-panel{display:none; padding:1rem;}
 .tab-panel.active{display:block;}
 .section-label{
-  font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--ink-3);margin:1rem 0 0.6rem;
+  font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--ink-3); margin:1rem 0 0.6rem;
 }
 .section-label:first-child{margin-top:0;}
 .tema-item{
-  border:1px solid var(--border);border-radius:var(--r-sm);
-  overflow:hidden;margin-bottom:0.7rem;
+  border:1px solid var(--border); border-radius:var(--r-sm);
+  overflow:hidden; margin-bottom:0.7rem;
 }
 .tema-head{
-  display:flex;align-items:flex-start;gap:0.6rem;padding:0.7rem 0.9rem;
+  display:flex; align-items:flex-start; gap:0.6rem; padding:0.7rem 0.9rem;
   background:var(--surface-2);
 }
 .tema-num{
-  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;
-  background:var(--blue-bg);border:1px solid var(--blue-soft);
-  padding:2px 7px;border-radius:6px;color:var(--blue);
+  font-family:'JetBrains Mono', monospace; font-size:10px; font-weight:500;
+  background:var(--mint-bg); border:1px solid var(--mint-light);
+  padding:2px 7px; border-radius:6px; color:var(--mint);
 }
-.tema-name{font-size:14px;font-weight:600;color:var(--ink);line-height:1.35;}
+.tema-name{font-size:14px; font-weight:600; color:var(--ink); line-height:1.35;}
 .subtema{
-  font-size:13px;color:var(--ink-2);padding:0.55rem 0.9rem;
-  border-top:1px solid var(--border);line-height:1.5;
-  display:flex;gap:0.55rem;
+  font-size:13px; color:var(--ink-2); padding:0.55rem 0.9rem;
+  border-top:1px solid var(--border); line-height:1.5;
+  display:flex; gap:0.55rem;
 }
-.subtema::before{content:"·";color:var(--blue);flex-shrink:0;}
+.subtema::before{content:"·"; color:var(--mint); flex-shrink:0;}
 .book-card{
-  border:1px solid var(--border);border-radius:var(--r-sm);
-  overflow:hidden;margin-bottom:0.7rem;
+  border:1px solid var(--border); border-radius:var(--r-sm);
+  overflow:hidden; margin-bottom:0.7rem; background:white;
 }
 .book-header{
-  display:flex;align-items:center;justify-content:space-between;
-  min-height:54px;padding:0.7rem 0.9rem;cursor:pointer;
-  gap:0.75rem;background:var(--surface);
+  display:flex; align-items:center; justify-content:space-between;
+  min-height:54px; padding:0.7rem 0.9rem; cursor:pointer;
+  gap:0.75rem; background:white;
 }
-.book-left{display:flex;align-items:flex-start;gap:0.6rem;flex:1;}
-.book-dot{
-  width:7px;height:7px;border-radius:50%;background:var(--blue);
-  flex-shrink:0;margin-top:0.35rem;
-}
-.book-name{font-size:12.5px;color:var(--ink-2);line-height:1.4;word-break:break-word;}
-.book-right{display:flex;align-items:center;gap:0.5rem;}
+.book-left{display:flex; align-items:flex-start; gap:0.6rem; flex:1;}
+.book-dot{width:8px; height:8px; border-radius:50%; background:var(--mint); flex-shrink:0; margin-top:0.35rem;}
+.book-name{font-size:12.5px; color:var(--ink-2); line-height:1.4; font-weight:500;}
+.book-right{display:flex; align-items:center; gap:0.5rem;}
 .book-pct{
-  font-family:'JetBrains Mono';font-size:10px;font-weight:500;
-  background:var(--blue-bg);border:1px solid var(--blue-soft);
-  padding:2px 8px;border-radius:99px;color:var(--blue);
+  font-family:'JetBrains Mono'; font-size:10px; font-weight:600;
+  background:var(--mint-bg); border:1px solid var(--mint-light);
+  padding:2px 8px; border-radius:99px; color:var(--mint);
 }
-.book-chev{width:16px;height:16px;color:var(--ink-3);transition:transform 0.2s;}
+.book-chev{width:16px; height:16px; color:var(--ink-3); transition:transform 0.2s;}
 .book-card.open .book-chev{transform:rotate(180deg);}
-.book-progress{height:3px;background:var(--border);}
-.book-progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),#6e9fc7);transition:width 0.3s;}
-.book-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
+.book-progress{height:4px; background:#E9F0EC;}
+.book-progress-fill{height:100%; background:linear-gradient(90deg, var(--mint), #A1DBC2); transition:width 0.3s;}
+.book-body{max-height:0; overflow:hidden; transition:max-height 0.3s ease;}
 .book-card.open .book-body{max-height:600px;}
-.chapters-list{padding:0.5rem 0.7rem 0.8rem;display:flex;flex-direction:column;gap:2px;}
+.chapters-list{padding:0.6rem 0.7rem 0.8rem; display:flex; flex-direction:column; gap:4px;}
 .chapter-item{
-  display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0.5rem;
-  border-radius:var(--r-sm);transition:background 0.15s;min-height:44px;
+  display:flex; align-items:center; gap:0.75rem; padding:0.6rem 0.5rem;
+  border-radius:var(--r-sm); transition:background 0.15s;
 }
-.chapter-item:active{background:var(--surface-2);}
+.chapter-item:hover{background:var(--mint-soft);}
 .chapter-item.read{background:var(--green-bg);}
 .cap-check{
-  width:20px;height:20px;border:2px solid var(--border);border-radius:5px;
-  flex-shrink:0;cursor:pointer;appearance:none;background:white;
-  transition:all 0.15s;
+  width:20px; height:20px; border:2px solid var(--border); border-radius:5px;
+  flex-shrink:0; cursor:pointer; appearance:none; background:white;
+  transition:all 0.15s; position:relative;
 }
-.cap-check:checked{background:var(--green-mid);border-color:var(--green-mid);}
+.cap-check:checked{background:var(--mint); border-color:var(--mint);}
 .cap-check:checked::after{
-  content:'';position:absolute;width:5px;height:9px;
-  border:2px solid white;border-top:none;border-left:none;
-  transform:rotate(45deg) translate(0px,-1px);left:4px;top:1px;
+  content:''; position:absolute; width:5px; height:9px;
+  border:2px solid white; border-top:none; border-left:none;
+  transform:rotate(45deg) translate(0px,-1px); left:4px; top:1px;
 }
-.chapter-label{font-size:13px;color:var(--ink-2);line-height:1.4;flex:1;cursor:pointer;}
-.chapter-item.read .chapter-label{color:var(--green);text-decoration:line-through;text-decoration-thickness:1px;}
+.chapter-label{font-size:13px; color:var(--ink-2); flex:1; cursor:pointer;}
+.chapter-item.read .chapter-label{color:var(--green); text-decoration:line-through; text-decoration-thickness:1.2px;}
 .comp-section{
-  border:1px solid var(--border);border-radius:var(--r-sm);
-  overflow:hidden;margin-top:0.25rem;
+  border:1px solid var(--border); border-radius:var(--r-sm);
+  overflow:hidden; margin-top:0.25rem;
 }
 .comp-toggle{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0.7rem 0.9rem;cursor:pointer;background:var(--surface-2);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0.7rem 0.9rem; cursor:pointer; background:var(--surface-2);
 }
-.comp-title{font-size:12px;font-weight:600;color:var(--ink-2);}
-.comp-chev{width:16px;height:16px;color:var(--ink-3);transition:transform 0.2s;}
+.comp-title{font-size:12px; font-weight:600; color:var(--ink-2);}
+.comp-chev{width:16px; height:16px; color:var(--ink-3); transition:transform 0.2s;}
 .comp-section.open .comp-chev{transform:rotate(180deg);}
-.comp-body{max-height:0;overflow:hidden;transition:max-height 0.3s;}
+.comp-body{max-height:0; overflow:hidden; transition:max-height 0.3s;}
 .comp-section.open .comp-body{max-height:500px;}
 .comp-entry{
-  font-size:12px;color:var(--ink-3);padding:0.6rem 0.9rem;
-  border-top:1px solid var(--border);display:flex;gap:0.5rem;
+  font-size:12px; color:var(--ink-3); padding:0.6rem 0.9rem;
+  border-top:1px solid var(--border); display:flex; gap:0.5rem;
 }
-.comp-entry::before{content:"→";color:var(--border);}
+.comp-entry::before{content:"→"; color:var(--mint);}
 .subsec-block{
-  margin:0.8rem 1rem 1rem;padding:0.7rem 0.9rem;
-  background:var(--amber-bg);border:1px solid var(--amber-bdr);border-radius:var(--r-md);
+  margin:0.8rem 1rem 1rem; padding:0.7rem 1rem;
+  background:var(--amber-bg); border:1px solid #F0E0D0; border-radius:var(--r-md);
 }
-.subsec-label{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem;}
-.subsec-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.subsec-label{font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); margin-bottom:0.5rem;}
+.subsec-tags{display:flex; flex-wrap:wrap; gap:0.4rem;}
 .subsec-tag{
-  font-size:11px;background:white;border:1px solid var(--amber-bdr);
-  padding:3px 10px;border-radius:99px;color:var(--amber);
+  font-size:11px; background:white; border:1px solid #EADACA;
+  padding:3px 10px; border-radius:99px; color:var(--amber);
 }
 .empty-semester{
-  padding:2rem;text-align:center;color:var(--ink-3);
-  border:1.5px dashed var(--border);border-radius:var(--r-lg);
+  padding:2rem; text-align:center; color:var(--ink-3);
+  border:1.5px dashed var(--border); border-radius:var(--r-lg);
   font-size:13px;
 }
 </style>
@@ -246,158 +242,246 @@ body{
 <body>
 <header class="page-header">
   <div>
-    <h1 class="page-title">Matemáticas · UNAM</h1>
-    <p class="page-subtitle">Plan 1983 · Avance por créditos (352 total)</p>
+    <h1 class="page-title">Matemáticas</h1>
+    <p class="page-subtitle">Facultad de Ciencias · UNAM</p>
   </div>
   <span class="global-pill" id="global-pct">0%</span>
 </header>
 <div class="container" id="root"></div>
 <script>
 // ============================================================
-// TOTAL CRÉDITOS = 352
-// AVANCE GLOBAL = (créditos de materias 100% completadas) / 352 * 100
-// NO se muestra el detalle numérico de créditos acumulados, solo porcentaje.
-// En cada materia, el círculo incluye porcentaje numérico (lectura clara)
+// CRÉDITOS TOTALES CARRERA = 352  
+// AVANCE GLOBAL: (créditos de materias 100% completadas) / 352 * 100
+// AVANCE POR SEMESTRE: (créditos acumulados de materias completas en ese semestre) / (total créditos del semestre) * 100
+// El anillo de materia usa color menta claro (#B8E6CF) y texto en menta más intenso
+// NO se muestra "créditos avanzados" en cabecera de semestre, solo el total del semestre
+// Al expandir materia, el fondo del header permanece BLANCO (sin cambio)
 // ============================================================
 const TOTAL_CREDITOS_CARRERA = 352;
 
-// ---- PLAN DE ESTUDIOS (primer semestre completo, otros semestres placeholder) ----
+// ---- PLAN DE ESTUDIOS con créditos reales por semestre ----
 const CURRICULUM = [
-  { semestre:1, titulo:"Primer Semestre", creditos:"48 Créditos", materias:[
+  { semestre:1, titulo:"Primer Semestre", materias:[
     { id:"s1_algebra", name:"Álgebra Superior I", clave:"0007", creditos:10, icon:"🧮",
-      temario:[{num:"1",name:"Conjuntos",subtemas:["Noción intuitiva","Operaciones"]},{num:"2",name:"Relaciones y funciones",subtemas:["Dominio","Composición"]}],
-      bibBasicas:[{name:"Cárdenas — Álgebra Superior",caps:["Cap.1 Conjuntos","Cap.2 Relaciones","Cap.3 Números"]},{name:"Nachbin — Álgebra Elemental",caps:["Cap.1 Conjuntos","Cap.2 Álgebra lineal"]}],
+      temario:[{num:"1",name:"Conjuntos",subtemas:["Noción intuitiva","Operaciones","Diagramas"]},{num:"2",name:"Relaciones y funciones",subtemas:["Dominio","Composición","Funciones inversas"]}],
+      bibBasicas:[{name:"Cárdenas — Álgebra Superior",caps:["Cap.1 Conjuntos","Cap.2 Relaciones","Cap.3 Cardinalidad","Cap.4 Números"]},{name:"Nachbin — Álgebra Elemental",caps:["Cap.1 Conjuntos","Cap.2 Relaciones","Cap.3 Operaciones"]}],
       bibComp:["Dodge — Logic and Numbers","Hoffman — Álgebra Lineal"], subsecuentes:["Álgebra Superior II","Cálculo III"] },
     { id:"s1_calculo", name:"Cálculo Diferencial e Integral I", clave:"0091", creditos:18, icon:"📊",
-      temario:[{num:"1",name:"Números reales",subtemas:["Propiedades","Compleción"]},{num:"2",name:"Límite",subtemas:["Definición","Propiedades"]}],
-      bibBasicas:[{name:"Arizmendi — Cálculo",caps:["Cap.1 Reales","Cap.2 Funciones","Cap.3 Límites"]},{name:"Spivak — Cálculo Infinitesimal",caps:["Cap.1 Propiedades","Cap.2 Derivadas"]}],
-      bibComp:["Apostol — Calculus I","Lang — Cálculo I"], subsecuentes:["Cálculo II","Taller Modelación"] },
+      temario:[{num:"1",name:"Números reales",subtemas:["Propiedades","Compleción","Axiomas"]},{num:"2",name:"Límite",subtemas:["Definición ε-δ","Propiedades","Límites laterales"]}],
+      bibBasicas:[{name:"Arizmendi — Cálculo",caps:["Cap.1 Reales","Cap.2 Funciones","Cap.3 Límites","Cap.4 Continuidad"]},{name:"Spivak — Cálculo Infinitesimal",caps:["Cap.1 Propiedades","Cap.2 Derivadas","Cap.3 Límites"]}],
+      bibComp:["Apostol — Calculus I","Lang — Cálculo I"], subsecuentes:["Cálculo II","Ecuaciones Diferenciales"] },
     { id:"s1_geoanalitica", name:"Geometría Analítica I", clave:"0244", creditos:10, icon:"📐",
-      temario:[{num:"1",name:"Coordenadas",subtemas:["Cartesianas","Polares"]},{num:"2",name:"Cónicas",subtemas:["Elipse","Hipérbola"]}],
-      bibBasicas:[{name:"Bracho — Geometría Analítica",caps:["Cap.1 Coordenadas","Cap.2 Vectores","Cap.3 Cónicas"]},{name:"Efimov — Geometría Superior",caps:["Cap.1 Método coordenadas","Cap.2 Líneas"]}],
+      temario:[{num:"1",name:"Coordenadas",subtemas:["Cartesianas","Polares","Transformaciones"]},{num:"2",name:"Cónicas",subtemas:["Elipse","Hipérbola","Parábola"]}],
+      bibBasicas:[{name:"Bracho — Geometría Analítica",caps:["Cap.1 Coordenadas","Cap.2 Vectores","Cap.3 Cónicas","Cap.4 Rectas"]},{name:"Efimov — Geometría Superior",caps:["Cap.1 Método coordenadas","Cap.2 Líneas","Cap.3 Cónicas"]}],
       bibComp:["Eves — Estudio Geometrías"], subsecuentes:["Geometría Analítica II","Cálculo II"] },
     { id:"s1_geometriamoderna", name:"Geometría Moderna I", clave:"0249", creditos:10, icon:"🔷",
-      temario:[{num:"1",name:"Triángulo",subtemas:["Circuncentro","Ortocentro"]},{num:"2",name:"Teoremas",subtemas:["Ceva","Menelao"]}],
-      bibBasicas:[{name:"Shively — Geometría Moderna",caps:["Cap.1 Puntos notables","Cap.2 Circunferencia"]},{name:"Efimov — Superior",caps:["Cap.1 Triángulos"]}],
+      temario:[{num:"1",name:"Triángulo",subtemas:["Circuncentro","Ortocentro","Baricentro"]},{num:"2",name:"Teoremas",subtemas:["Ceva","Menelao","Puntos notables"]}],
+      bibBasicas:[{name:"Shively — Geometría Moderna",caps:["Cap.1 Puntos notables","Cap.2 Circunferencia","Cap.3 Teorema de Ceva"]},{name:"Efimov — Superior",caps:["Cap.1 Triángulos","Cap.2 Cuadriláteros"]}],
       bibComp:["Coxeter — Geometry Revisited"], subsecuentes:["Geometría Moderna II","Geometría Proyectiva"] }
   ]},
-  { semestre:2, titulo:"Segundo Semestre", creditos:"38 Créditos + 1 Optativa", materias:[] },
-  { semestre:3, titulo:"Tercer Semestre", creditos:"28 Créditos + 2 Optativas", materias:[] },
-  { semestre:4, titulo:"Cuarto Semestre", creditos:"38 Créditos + 1 Optativa", materias:[] },
-  { semestre:5, titulo:"Quinto Semestre", creditos:"30 Créditos + 1 Optativa", materias:[] },
-  { semestre:6, titulo:"Sexto Semestre", creditos:"10 Créditos + 3 Optativas", materias:[] },
-  { semestre:7, titulo:"Séptimo Semestre", creditos:"4 Optativas", materias:[] },
-  { semestre:8, titulo:"Octavo Semestre", creditos:"4 Optativas", materias:[] }
+  { semestre:2, titulo:"Segundo Semestre", materias:[
+    { id:"s2_algebra2", name:"Álgebra Superior II", creditos:10, icon:"🧮", clave:"0008", temario:[{num:"1",name:"Espacios vectoriales",subtemas:["Definición","Ejemplos"]}], bibBasicas:[{name:"Álgebra Lineal - Grossman",caps:["Cap.1 Vectores","Cap.2 Matrices"]}], bibComp:[], subsecuentes:[] },
+    { id:"s2_calculo2", name:"Cálculo Diferencial e Integral II", creditos:18, icon:"📈", clave:"0092", temario:[{num:"1",name:"Integrales",subtemas:["Definición","Técnicas"]}], bibBasicas:[{name:"Cálculo - Stewart",caps:["Cap.5 Integrales","Cap.6 Aplicaciones"]}], bibComp:[], subsecuentes:[] },
+    { id:"s2_geoanalitica2", name:"Geometría Analítica II", creditos:10, icon:"📏", clave:"0245", temario:[{num:"1",name:"Superficies",subtemas:["Cuádricas"]}], bibBasicas:[{name:"Geometría - Lehmann",caps:["Cap.8 Superficies","Cap.9 Coordenadas"]}], bibComp:[], subsecuentes:[] }
+  ]},
+  { semestre:3, titulo:"Tercer Semestre", materias:[
+    { id:"s3_alglineal", name:"Álgebra Lineal I", creditos:12, icon:"🔢", clave:"0010", temario:[{num:"1",name:"Transformaciones",subtemas:["Lineales"]}], bibBasicas:[{name:"Álgebra Lineal - Hoffman",caps:["Cap.3 Transformaciones"]}], bibComp:[], subsecuentes:[] },
+    { id:"s3_calculo3", name:"Cálculo III", creditos:10, icon:"📉", clave:"0093", temario:[{num:"1",name:"Funciones varias variables",subtemas:["Límites"]}], bibBasicas:[{name:"Cálculo Avanzado - Marsden",caps:["Cap.2 Diferenciación"]}], bibComp:[], subsecuentes:[] }
+  ]},
+  { semestre:4, titulo:"Cuarto Semestre", materias:[
+    { id:"s4_edd", name:"Ecuaciones Diferenciales", creditos:10, icon:"📌", clave:"0180", temario:[{num:"1",name:"EDO",subtemas:["Primer orden"]}], bibBasicas:[{name:"Ecuaciones Diferenciales - Boyce",caps:["Cap.1 Introducción","Cap.2 EDO"]}], bibComp:[], subsecuentes:[] },
+    { id:"s4_probabilidad", name:"Probabilidad I", creditos:8, icon:"🎲", clave:"0401", temario:[{num:"1",name:"Espacios",subtemas:["Probabilidad"]}], bibBasicas:[{name:"Probabilidad - Ross",caps:["Cap.1 Combinatoria","Cap.2 Axiomas"]}], bibComp:[], subsecuentes:[] }
+  ]},
+  { semestre:5, titulo:"Quinto Semestre", materias:[
+    { id:"s5_estadistica", name:"Estadística", creditos:8, icon:"📊", clave:"0410", temario:[{num:"1",name:"Inferencia",subtemas:["Estimación"]}], bibBasicas:[{name:"Estadística - Devore",caps:["Cap.6 Intervalos"]}], bibComp:[], subsecuentes:[] },
+    { id:"s5_complejas", name:"Variables Complejas", creditos:10, icon:"🌀", clave:"0522", temario:[{num:"1",name:"Funciones analíticas",subtemas:["Cauchy-Riemann"]}], bibBasicas:[{name:"Complejas - Churchill",caps:["Cap.2 Funciones analíticas"]}], bibComp:[], subsecuentes:[] }
+  ]},
+  { semestre:6, titulo:"Sexto Semestre", materias:[
+    { id:"s6_topologia", name:"Topología", creditos:10, icon:"⚫", clave:"0600", temario:[{num:"1",name:"Espacios topológicos",subtemas:["Abiertos"]}], bibBasicas:[{name:"Topología - Munkres",caps:["Cap.1 Conjuntos","Cap.2 Topología"]}], bibComp:[], subsecuentes:[] }
+  ]},
+  { semestre:7, titulo:"Séptimo Semestre", materias:[
+  ]},
+  { semestre:8, titulo:"Octavo Semestre", materias:[
+  ]}
 ];
 
-// ---------- localStorage ----------
-const STORAGE_VERSION = 'cred_v5_';
-const State = {
-  get(key){ try{ return JSON.parse(localStorage.getItem(STORAGE_VERSION+key))??null; }catch(e){ return null; } },
-  set(key,val){ try{ localStorage.setItem(STORAGE_VERSION+key,JSON.stringify(val)); }catch(e){} }
-};
-function getBookProgress(subjId,bookIdx){ return State.get(`prog_${subjId}_${bookIdx}`)??[]; }
-function setBookProgress(subjId,bookIdx,states){ State.set(`prog_${subjId}_${bookIdx}`,states); }
-
-// % de avance de materia basado en capítulos (0-100)
-function getSubjectPercent(materia){
-  let totalCaps=0, doneCaps=0;
-  materia.bibBasicas.forEach((book,i)=>{
-    const states = getBookProgress(materia.id,i);
-    totalCaps += book.caps.length;
-    doneCaps += book.caps.filter((_,ci)=> states[ci]===true).length;
-  });
-  if(totalCaps===0) return 0;
-  return Math.min(100, Math.floor((doneCaps/totalCaps)*100));
+// Asegurar que todas las materias tengan estructura mínima para checkboxes
+function ensureMateriaHasBibliografia(materia) {
+  if(!materia.bibBasicas || materia.bibBasicas.length === 0) {
+    materia.bibBasicas = [{ name: `Material de ${materia.name}`, caps: ["Unidad principal", "Ejercicios"] }];
+  }
+  if(!materia.temario) materia.temario = [];
+  if(!materia.bibComp) materia.bibComp = [];
+  if(!materia.subsecuentes) materia.subsecuentes = [];
 }
-// materia 100% completada?
-function isSubjectFullyCompleted(materia){ return getSubjectPercent(materia)===100; }
+CURRICULUM.forEach(sem => sem.materias.forEach(m => ensureMateriaHasBibliografia(m)));
 
-// créditos acumulados solo materias full
-function getAccumulatedCredits(){
-  let earned=0;
-  for(const sem of CURRICULUM)
-    for(const m of sem.materias)
-      if(isSubjectFullyCompleted(m)) earned += m.creditos;
+// ---------- LOCALSTORAGE ----------
+const STORAGE_KEY = 'cred_mint_avance_v4';
+function loadAllProgress() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if(stored) return JSON.parse(stored);
+  return {};
+}
+function saveAllProgress(prog) { localStorage.setItem(STORAGE_KEY, JSON.stringify(prog)); }
+let progressDB = loadAllProgress();
+
+function getBookProgress(materiaId, bookIdx) {
+  const key = `${materiaId}_${bookIdx}`;
+  return progressDB[key] || [];
+}
+function setBookProgress(materiaId, bookIdx, states) {
+  const key = `${materiaId}_${bookIdx}`;
+  progressDB[key] = states;
+  saveAllProgress(progressDB);
+}
+
+function getSubjectPercent(materia) {
+  let totalCaps = 0, doneCaps = 0;
+  if(!materia.bibBasicas) return 0;
+  materia.bibBasicas.forEach((book, idx) => {
+    const states = getBookProgress(materia.id, idx);
+    totalCaps += book.caps.length;
+    doneCaps += states.filter(v => v === true).length;
+  });
+  if(totalCaps === 0) return 0;
+  return Math.min(100, Math.floor((doneCaps / totalCaps) * 100));
+}
+function isSubjectFullyCompleted(materia) {
+  return getSubjectPercent(materia) === 100;
+}
+
+function getAccumulatedCredits() {
+  let total = 0;
+  for(const sem of CURRICULUM) {
+    for(const m of sem.materias) {
+      if(isSubjectFullyCompleted(m)) total += m.creditos;
+    }
+  }
+  return total;
+}
+function getGlobalCreditPercent() {
+  return Math.min(100, Math.round((getAccumulatedCredits() / TOTAL_CREDITOS_CARRERA) * 100));
+}
+
+// --- Cálculo por semestre basado en créditos (sin mostrar créditos avanzados en UI) ---
+function getSemesterTotalCredits(sem) {
+  return sem.materias.reduce((sum, m) => sum + (m.creditos || 0), 0);
+}
+function getSemesterEarnedCredits(sem) {
+  let earned = 0;
+  for(const m of sem.materias) {
+    if(isSubjectFullyCompleted(m)) earned += (m.creditos || 0);
+  }
   return earned;
 }
-// porcentaje global basado en créditos (sin texto adicional)
-function getGlobalCreditPercent(){
-  const earned = getAccumulatedCredits();
-  return Math.min(100, Math.round((earned/TOTAL_CREDITOS_CARRERA)*100));
+function getSemesterPercent(sem) {
+  const totalCred = getSemesterTotalCredits(sem);
+  if(totalCred === 0) return 0;
+  const earned = getSemesterEarnedCredits(sem);
+  return Math.min(100, Math.round((earned / totalCred) * 100));
 }
 
-// actualizar toda la UI (sin mostrar créditos en el pill, solo %)
-function refreshAllUI(){
-  const globalPercent = getGlobalCreditPercent();
+function updateAllUI() {
+  const globalPct = getGlobalCreditPercent();
   const globalEl = document.getElementById('global-pct');
-  if(globalEl) globalEl.textContent = `${globalPercent}%`;
+  if(globalEl) globalEl.textContent = `${globalPct}%`;
   
-  // Actualizar cada materia: círculo + número visible dentro
-  for(const sem of CURRICULUM){
-    for(const mat of sem.materias){
+  for(const sem of CURRICULUM) {
+    for(const mat of sem.materias) {
       const pct = getSubjectPercent(mat);
       const cardDiv = document.querySelector(`[data-materia="${mat.id}"]`);
-      if(cardDiv){
+      if(cardDiv) {
         const circleSvg = cardDiv.querySelector('.circle-progress');
-        if(circleSvg) updateCircleWithNumber(circleSvg, pct);
-        const numberSpan = cardDiv.querySelector('.circle-percent-number');
-        if(numberSpan) numberSpan.textContent = `${pct}%`;
+        if(circleSvg) updateCirclePercent(circleSvg, pct);
+        const numSpan = cardDiv.querySelector('.circle-percent-number');
+        if(numSpan) numSpan.textContent = `${pct}%`;
+        if(mat.bibBasicas) {
+          mat.bibBasicas.forEach((book, bi) => {
+            const states = getBookProgress(mat.id, bi);
+            const done = states.filter(Boolean).length;
+            const totalC = book.caps.length;
+            const bookPct = totalC ? Math.round((done/totalC)*100) : 0;
+            const pctSpan = document.querySelector(`[data-book-pct="${mat.id}-${bi}"]`);
+            const barDiv = document.querySelector(`[data-book-bar="${mat.id}-${bi}"]`);
+            if(pctSpan) pctSpan.textContent = `${bookPct}%`;
+            if(barDiv) barDiv.style.width = `${bookPct}%`;
+          });
+        }
       }
     }
   }
-  // refrescar barras de semestre (porcentaje de materias completadas al 100% dentro del semestre)
-  for(let idx=0; idx<CURRICULUM.length; idx++){
-    const sem = CURRICULUM[idx];
-    const materias = sem.materias;
-    let completedCount = materias.filter(m=>isSubjectFullyCompleted(m)).length;
-    const semPct = materias.length ? Math.round((completedCount/materias.length)*100) : 0;
-    const fill = document.getElementById(`sem-fill-${idx}`);
-    const pctEl = document.getElementById(`sem-pct-${idx}`);
-    if(fill) fill.style.width = `${semPct}%`;
+  
+  for(let i=0; i<CURRICULUM.length; i++) {
+    const sem = CURRICULUM[i];
+    const semPct = getSemesterPercent(sem);
+    const fillBar = document.getElementById(`sem-fill-${i}`);
+    const pctEl = document.getElementById(`sem-pct-${i}`);
+    if(fillBar) fillBar.style.width = `${semPct}%`;
     if(pctEl) pctEl.textContent = `${semPct}%`;
   }
 }
-function updateCircleWithNumber(svgEl, pct){
+
+function updateCirclePercent(svgEl, percent) {
   const fg = svgEl?.querySelector('.circle-fg');
-  if(fg){
-    const circumference = 115; // 2*pi*r con r~18.3 -> 115 aprox
-    const offset = circumference - (circumference * pct / 100);
+  if(fg) {
+    const circumference = 132;
+    const offset = circumference - (circumference * percent / 100);
     fg.style.strokeDashoffset = offset;
   }
 }
-// ----- Renderizado completo -----
+
+// --- Renderizado ---
 function renderTemario(temario){
-  return temario.map(t=>`<div class="tema-item"><div class="tema-head"><span class="tema-num">${t.num}</span><span class="tema-name">${t.name}</span></div>${t.subtemas.map(s=>`<div class="subtema">${s}</div>`).join('')}</div>`).join('');
+  if(!temario || temario.length===0) return '<div class="empty-semester" style="padding:1rem">Temario en construcción</div>';
+  return temario.map(t => `
+    <div class="tema-item">
+      <div class="tema-head"><span class="tema-num">${t.num}</span><span class="tema-name">${t.name}</span></div>
+      ${t.subtemas ? t.subtemas.map(s => `<div class="subtema">${s}</div>`).join('') : ''}
+    </div>`).join('');
 }
-function renderBiblioteca(materia, semIdx){
-  const booksHtml = materia.bibBasicas.map((book,bi)=>{
-    const states = getBookProgress(materia.id,bi);
+function renderBiblioteca(materia) {
+  if(!materia.bibBasicas || materia.bibBasicas.length===0) return '<div class="empty-semester" style="padding:1rem">Sin bibliografía</div>';
+  const booksHtml = materia.bibBasicas.map((book, bi) => {
+    const states = getBookProgress(materia.id, bi);
     const done = states.filter(Boolean).length;
     const pct = book.caps.length ? Math.round((done/book.caps.length)*100) : 0;
-    const capsHtml = book.caps.map((cap,ci)=>{
-      const checked = states[ci]===true;
-      return `<div class="chapter-item${checked ? ' read' : ''}"><input class="cap-check" type="checkbox" ${checked ? 'checked' : ''} data-materia="${materia.id}" data-bi="${bi}" data-ci="${ci}" data-semidx="${semIdx}"><span class="chapter-label">${cap}</span></div>`;
+    const capsHtml = book.caps.map((cap, ci) => {
+      const checked = states[ci] === true;
+      return `<div class="chapter-item ${checked ? 'read' : ''}">
+        <input class="cap-check" type="checkbox" ${checked ? 'checked' : ''} data-materia="${materia.id}" data-bi="${bi}" data-ci="${ci}">
+        <span class="chapter-label">${cap}</span>
+      </div>`;
     }).join('');
-    return `<div class="book-card" data-book="${materia.id}-${bi}"><div class="book-header" data-toggle-book="${materia.id}-${bi}"><div class="book-left"><div class="book-dot"></div><span class="book-name">${book.name}</span></div><div class="book-right"><span class="book-pct" data-book-pct="${materia.id}-${bi}">${pct}%</span><svg class="book-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg></div></div><div class="book-progress"><div class="book-progress-fill" data-book-bar="${materia.id}-${bi}" style="width:${pct}%"></div></div><div class="book-body"><div class="chapters-list" data-caps="${materia.id}-${bi}">${capsHtml}</div></div></div>`;
+    return `
+    <div class="book-card" data-book="${materia.id}-${bi}">
+      <div class="book-header" data-toggle-book="${materia.id}-${bi}">
+        <div class="book-left"><div class="book-dot"></div><span class="book-name">${book.name}</span></div>
+        <div class="book-right"><span class="book-pct" data-book-pct="${materia.id}-${bi}">${pct}%</span><svg class="book-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg></div>
+      </div>
+      <div class="book-progress"><div class="book-progress-fill" data-book-bar="${materia.id}-${bi}" style="width:${pct}%"></div></div>
+      <div class="book-body"><div class="chapters-list" data-caps="${materia.id}-${bi}">${capsHtml}</div></div>
+    </div>`;
   }).join('');
-  const compHtml = `<div class="comp-section" data-comp="${materia.id}"><div class="comp-toggle" data-toggle-comp="${materia.id}"><span class="comp-title">Complementaria (${materia.bibComp.length})</span><svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg></div><div class="comp-body">${materia.bibComp.map(c=>`<div class="comp-entry">${c}</div>`).join('')}</div></div>`;
-  return `<div class="section-label">Bibliografía básica</div>${booksHtml}<div class="section-label">Complementaria</div>${compHtml}`;
+  const compList = (materia.bibComp && materia.bibComp.length) ? materia.bibComp.map(c=>`<div class="comp-entry">${c}</div>`).join('') : '<div class="comp-entry">Sin referencias</div>';
+  const compHtml = `<div class="comp-section" data-comp="${materia.id}"><div class="comp-toggle" data-toggle-comp="${materia.id}"><span class="comp-title">Complementaria (${materia.bibComp?.length || 0})</span><svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg></div><div class="comp-body">${compList}</div></div>`;
+  return `<div class="section-label">Bibliografía básica</div>${booksHtml}<div class="section-label mt-2">Complementaria</div>${compHtml}`;
 }
-function renderCard(materia, semIdx){
+function renderCard(materia) {
   const pct = getSubjectPercent(materia);
-  return `<div class="card" data-materia="${materia.id}">
+  return `
+  <div class="card" data-materia="${materia.id}">
     <div class="card-header" data-toggle-card="${materia.id}">
-      <div class="card-icon">${materia.icon}</div>
+      <div class="card-icon">${materia.icon || '📘'}</div>
       <div class="card-info">
         <div class="card-name">${materia.name}</div>
-        <div class="card-meta"><span class="meta-tag"><strong>Clave</strong> ${materia.clave}</span><span class="meta-tag"><strong>${materia.creditos}</strong> créditos</span></div>
+        <div class="card-meta"><span class="meta-tag"><strong>Clave</strong> ${materia.clave || '—'}</span><span class="meta-tag"><strong>${materia.creditos}</strong> créditos</span></div>
       </div>
       <div class="card-controls">
         <div class="circle-wrapper">
           <svg class="circle-progress" viewBox="0 0 44 44">
-            <circle class="circle-bg" cx="22" cy="22" r="18.3" fill="none" stroke-width="3.2"/>
-            <circle class="circle-fg" cx="22" cy="22" r="18.3" fill="none" stroke-width="3.2" stroke-linecap="round"/>
+            <circle class="circle-bg" cx="22" cy="22" r="21" fill="none" stroke-width="3.6"/>
+            <circle class="circle-fg" cx="22" cy="22" r="21" fill="none" stroke-width="3.6" stroke-linecap="round"/>
           </svg>
           <span class="circle-percent-number">${pct}%</span>
         </div>
@@ -407,90 +491,76 @@ function renderCard(materia, semIdx){
     <div class="card-body">
       <div class="tabs"><div class="tab active" data-tab-target="${materia.id}-temario">Temario</div><div class="tab" data-tab-target="${materia.id}-biblio">Bibliografía</div></div>
       <div class="tab-panel active" id="${materia.id}-temario">${renderTemario(materia.temario)}</div>
-      <div class="tab-panel" id="${materia.id}-biblio">${renderBiblioteca(materia, semIdx)}</div>
-      <div class="subsec-block"><div class="subsec-label">Materias subsecuentes</div><div class="subsec-tags">${materia.subsecuentes.map(s=>`<span class="subsec-tag">${s}</span>`).join('')}</div></div>
+      <div class="tab-panel" id="${materia.id}-biblio">${renderBiblioteca(materia)}</div>
+      <div class="subsec-block"><div class="subsec-label">Materias subsecuentes</div><div class="subsec-tags">${materia.subsecuentes?.map(s=>`<span class="subsec-tag">${s}</span>`).join('') || '<span class="subsec-tag">—</span>'}</div></div>
     </div>
   </div>`;
 }
-function renderSemester(sem, idx){
-  const materias = sem.materias;
-  const completedCount = materias.filter(m=>isSubjectFullyCompleted(m)).length;
-  const semPct = materias.length ? Math.round((completedCount/materias.length)*100) : 0;
-  const cardsHtml = materias.length ? materias.map(m=>renderCard(m,idx)).join('') : `<div class="empty-semester">Sin materias cargadas en este semestre</div>`;
-  return `<section class="semester-section"><div class="semester-header"><h2 class="semester-title">${sem.titulo}</h2><span class="semester-credits">${sem.creditos}</span></div><div class="semester-progress-wrap"><div class="semester-bar-track"><div class="semester-bar-fill" id="sem-fill-${idx}" style="width:${semPct}%"></div></div><span class="semester-pct" id="sem-pct-${idx}">${semPct}%</span></div><div class="subjects-grid">${cardsHtml}</div></section>`;
+function renderSemester(sem, idx) {
+  const semPct = getSemesterPercent(sem);
+  const totalCredSem = getSemesterTotalCredits(sem);
+  // Mostrar SOLO el total de créditos del semestre, sin mencionar avanzados
+  return `
+  <section class="semester-section">
+    <div class="semester-header"><h2 class="semester-title">${sem.titulo}</h2><span class="semester-credits">${totalCredSem} Créditos</span></div>
+    <div class="semester-progress-wrap"><div class="semester-bar-track"><div class="semester-bar-fill" id="sem-fill-${idx}" style="width:${semPct}%"></div></div><span class="semester-pct" id="sem-pct-${idx}">${semPct}%</span></div>
+    <div class="subjects-grid">${sem.materias.map(m => renderCard(m)).join('')}</div>
+  </section>`;
 }
-function renderAll(){
+function renderFull() {
   const root = document.getElementById('root');
   root.innerHTML = CURRICULUM.map((sem,i)=>renderSemester(sem,i)).join('');
-  // inicializar círculos con números
-  for(const sem of CURRICULUM){
-    for(const m of sem.materias){
+  for(const sem of CURRICULUM) {
+    for(const m of sem.materias) {
       const cardDiv = document.querySelector(`[data-materia="${m.id}"]`);
       if(cardDiv){
         const pct = getSubjectPercent(m);
         const circleSvg = cardDiv.querySelector('.circle-progress');
-        if(circleSvg) updateCircleWithNumber(circleSvg, pct);
+        if(circleSvg) updateCirclePercent(circleSvg, pct);
         const numSpan = cardDiv.querySelector('.circle-percent-number');
         if(numSpan) numSpan.textContent = `${pct}%`;
       }
     }
   }
-  refreshAllUI();
+  updateAllUI();
 }
-// ----- EVENTOS -----
-document.getElementById('root').addEventListener('click', (e)=>{
-  const cardToggle = e.target.closest('[data-toggle-card]');
-  if(cardToggle){
-    const id = cardToggle.dataset.toggleCard;
-    document.querySelector(`[data-materia="${id}"]`)?.classList.toggle('open');
-    return;
-  }
-  const bookToggle = e.target.closest('[data-toggle-book]');
-  if(bookToggle){
-    const id = bookToggle.dataset.toggleBook;
-    document.querySelector(`[data-book="${id}"]`)?.classList.toggle('open');
-    return;
-  }
-  const compToggle = e.target.closest('[data-toggle-comp]');
-  if(compToggle){
-    const id = compToggle.dataset.toggleComp;
-    document.querySelector(`[data-comp="${id}"]`)?.classList.toggle('open');
-    return;
-  }
-  const tab = e.target.closest('[data-tab-target]');
-  if(tab){
-    const targetId = tab.dataset.tabTarget;
-    const tabsContainer = tab.closest('.tabs');
-    tabsContainer.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    tab.classList.add('active');
-    const panels = tab.closest('.card-body').querySelectorAll('.tab-panel');
-    panels.forEach(p=>p.classList.toggle('active', p.id===targetId));
-  }
+
+// Eventos
+document.addEventListener('DOMContentLoaded', () => {
+  renderFull();
+  document.getElementById('root').addEventListener('click', (e) => {
+    const cardToggle = e.target.closest('[data-toggle-card]');
+    if(cardToggle){ const id = cardToggle.dataset.toggleCard; document.querySelector(`[data-materia="${id}"]`)?.classList.toggle('open'); return; }
+    const bookToggle = e.target.closest('[data-toggle-book]');
+    if(bookToggle){ const id = bookToggle.dataset.toggleBook; document.querySelector(`[data-book="${id}"]`)?.classList.toggle('open'); return; }
+    const compToggle = e.target.closest('[data-toggle-comp]');
+    if(compToggle){ const id = compToggle.dataset.toggleComp; document.querySelector(`[data-comp="${id}"]`)?.classList.toggle('open'); return; }
+    const tab = e.target.closest('[data-tab-target]');
+    if(tab){
+      const targetId = tab.dataset.tabTarget;
+      const tabsContainer = tab.closest('.tabs');
+      tabsContainer.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      const panels = tab.closest('.card-body').querySelectorAll('.tab-panel');
+      panels.forEach(p=>p.classList.toggle('active', p.id===targetId));
+    }
+  });
+  document.getElementById('root').addEventListener('change', (e) => {
+    const chk = e.target.closest('.cap-check');
+    if(!chk) return;
+    const materiaId = chk.dataset.materia, bi = parseInt(chk.dataset.bi), ci = parseInt(chk.dataset.ci);
+    const capsContainer = document.querySelector(`[data-caps="${materiaId}-${bi}"]`);
+    if(!capsContainer) return;
+    const allChecks = capsContainer.querySelectorAll('.cap-check');
+    const newStates = Array.from(allChecks).map(cb => cb.checked);
+    setBookProgress(materiaId, bi, newStates);
+    allChecks.forEach((cb, idx) => {
+      const parent = cb.closest('.chapter-item');
+      if(parent) parent.classList.toggle('read', cb.checked);
+    });
+    updateAllUI();
+  });
 });
-document.getElementById('root').addEventListener('change', (e)=>{
-  const chk = e.target.closest('.cap-check');
-  if(!chk) return;
-  const { materia, bi, ci, semidx } = chk.dataset;
-  const biInt = parseInt(bi), ciInt = parseInt(ci);
-  const capsContainer = document.querySelector(`[data-caps="${materia}-${biInt}"]`);
-  if(!capsContainer) return;
-  const allChecks = capsContainer.querySelectorAll('.cap-check');
-  const states = Array.from(allChecks).map(c=>c.checked);
-  const chapterItem = chk.closest('.chapter-item');
-  if(chapterItem) chapterItem.classList.toggle('read', chk.checked);
-  setBookProgress(materia, biInt, states);
-  // actualizar badge de libro
-  const doneCount = states.filter(Boolean).length;
-  const total = states.length;
-  const bookPct = total ? Math.round((doneCount/total)*100) : 0;
-  const pctSpan = document.querySelector(`[data-book-pct="${materia}-${biInt}"]`);
-  const barDiv = document.querySelector(`[data-book-bar="${materia}-${biInt}"]`);
-  if(pctSpan) pctSpan.textContent = `${bookPct}%`;
-  if(barDiv) barDiv.style.width = `${bookPct}%`;
-  // refrescar todo (global, círculos con número, etc)
-  refreshAllUI();
-});
-renderAll();
 </script>
 </body>
 </html>
