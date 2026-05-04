@@ -118,15 +118,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .cap-check:checked::after{content:'';position:absolute;width:4px;height:7px;border:1.5px solid #000;border-top:none;border-left:none;transform:rotate(45deg);left:4px;top:1px;}
 .chap-label{font-size:12px;color:var(--ink3);flex:1;cursor:pointer;line-height:1.4;}
 .chap-item.read .chap-label{color:var(--teal);text-decoration:line-through;text-decoration-thickness:1px;opacity:0.7;}
-.comp-section{border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-top:0.25rem;}
-.comp-toggle{display:flex;align-items:center;justify-content:space-between;padding:0.65rem 0.9rem;cursor:pointer;background:rgba(255,255,255,0.02);}
-.comp-title{font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:0.05em;}
-.comp-chev{width:14px;height:14px;min-width:14px;color:var(--ink3);transition:transform 0.2s;display:block;}
-.comp-section.open .comp-chev{transform:rotate(180deg);}
-.comp-body{max-height:0;overflow:hidden;transition:max-height 0.3s;}
-.comp-section.open .comp-body{max-height:500px;}
-.comp-entry{font-size:11.5px;color:var(--ink3);padding:0.55rem 0.9rem;border-top:1px solid var(--border);display:flex;gap:0.5rem;line-height:1.5;}
-.comp-entry::before{content:"→";color:var(--gold);flex-shrink:0;}
 
 /* SUBSECUENTES */
 .subsec-block{margin:0;padding:0.75rem 1rem 1rem;background:rgba(94,207,190,0.04);border-top:1px solid rgba(94,207,190,0.12);}
@@ -143,44 +134,216 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .card.highlight-pulse{animation:pulseBorder 1.5s ease forwards;}
 @keyframes pulseBorder{0%{border-color:rgba(94,207,190,0.6);box-shadow:0 0 0 4px rgba(94,207,190,0.15);}100%{border-color:rgba(94,207,190,0.2);box-shadow:0 8px 40px rgba(0,0,0,0.6);}}
 
-/* ── OPTATIVA PICKER (vertical carousel) ── */
+/* ── OPTATIVA CAROUSEL (SCROLL MEJORADO) ── */
 .add-optativa-btn{display:flex;align-items:center;justify-content:center;gap:0.55rem;width:100%;padding:0.75rem 1rem;border-radius:var(--r);border:1px dashed rgba(94,207,190,0.2);background:rgba(94,207,190,0.03);color:var(--ink3);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.04em;transition:all 0.2s;}
 .add-optativa-btn:hover{border-color:rgba(94,207,190,0.4);background:rgba(94,207,190,0.07);color:var(--gold);}
 .add-optativa-btn svg{flex-shrink:0;transition:transform 0.25s;}
 .add-optativa-btn.open svg{transform:rotate(180deg);}
 .add-optativa-btn.open{border-color:rgba(94,207,190,0.35);background:rgba(94,207,190,0.06);color:var(--gold);}
+
+/* Contenedor principal del carrusel */
 .opt-carousel-wrap{overflow:hidden;max-height:0;transition:max-height 0.45s cubic-bezier(0.2,1,0.4,1);}
 .opt-carousel-wrap.open{max-height:2000px;}
-.opt-carousel-inner{padding:0.6rem 0 0.4rem;display:flex;flex-direction:column;gap:0;}
-.opt-carousel-viewport{height:calc(72px * 2.6);overflow:hidden;position:relative;border-radius:var(--r2);border:1px solid var(--border);background:rgba(0,0,0,0.25);}
-.opt-carousel-viewport::before,.opt-carousel-viewport::after{content:'';position:absolute;left:0;right:0;height:32px;z-index:2;pointer-events:none;}
-.opt-carousel-viewport::before{top:0;background:linear-gradient(to bottom,rgba(0,0,0,0.6),transparent);}
-.opt-carousel-viewport::after{bottom:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent);}
-.opt-carousel-list{display:flex;flex-direction:column;transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);}
-.opt-item{display:flex;align-items:center;gap:0.9rem;padding:0 1rem;height:72px;min-height:72px;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.15s;flex-shrink:0;user-select:none;}
+
+/* Viewport con scroll NATIVO y snap points */
+.opt-carousel-viewport{
+  height:220px; /* Altura fija para 3 items visibles */
+  overflow-y:auto; /* ¡Scroll nativo! */
+  position:relative;
+  border-radius:var(--r2);
+  border:1px solid var(--border);
+  background:rgba(0,0,0,0.25);
+  
+  /* CSS Scroll Snap - esencial */
+  scroll-snap-type:y mandatory;
+  scroll-behavior:smooth;
+  
+  /* Oculta el scrollbar nativo */
+  scrollbar-width:thin;
+  scrollbar-color:rgba(94,207,190,0.3) transparent;
+  
+  /* Padding para compensar los fades */
+  padding: 10px 0;
+}
+
+/* Scrollbar personalizado para WebKit (Chrome/Safari) */
+.opt-carousel-viewport::-webkit-scrollbar{
+  width:6px;
+}
+
+.opt-carousel-viewport::-webkit-scrollbar-track{
+  background:rgba(255,255,255,0.03);
+  border-radius:99px;
+  margin:15px 0;
+}
+
+.opt-carousel-viewport::-webkit-scrollbar-thumb{
+  background:rgba(94,207,190,0.3);
+  border-radius:99px;
+  cursor:pointer;
+}
+
+.opt-carousel-viewport::-webkit-scrollbar-thumb:hover{
+  background:rgba(94,207,190,0.5);
+}
+
+/* Efectos de fade en los bordes */
+.opt-carousel-viewport::before,.opt-carousel-viewport::after{
+  content:'';
+  position:sticky;
+  left:0;right:0;
+  height:20px;
+  z-index:2;
+  pointer-events:none;
+  display:block;
+}
+
+.opt-carousel-viewport::before{
+  top:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.7),transparent);
+}
+
+.opt-carousel-viewport::after{
+  bottom:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
+}
+
+/* Lista de items */
+.opt-carousel-list{
+  display:flex;
+  flex-direction:column;
+  padding: 5px 0;
+}
+
+/* Cada item con snap */
+.opt-item{
+  display:flex;
+  align-items:center;
+  gap:0.9rem;
+  padding:0.55rem 1rem;
+  height:70px;
+  min-height:70px;
+  cursor:pointer;
+  border-bottom:1px solid var(--border);
+  transition:background 0.15s;
+  flex-shrink:0;
+  user-select:none;
+  
+  /* Scroll snap alignment */
+  scroll-snap-align:center;
+}
+
 .opt-item:last-child{border-bottom:none;}
 .opt-item:hover{background:rgba(94,207,190,0.05);}
-.opt-item.focused{background:rgba(94,207,190,0.09);border-left:2px solid var(--gold);}
-.opt-item-icon{width:44px;height:44px;border-radius:var(--r2);background:rgba(94,207,190,0.07);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--gold);letter-spacing:-0.02em;}
+
+/* Estado seleccionado con mejor visibilidad */
+.opt-item.selected{
+  background:rgba(94,207,190,0.12);
+  border-left:3px solid var(--gold);
+  position:relative;
+}
+
+.opt-item.selected::after{
+  content:'✓';
+  position:absolute;
+  right:15px;
+  color:var(--gold);
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* Icono del item */
+.opt-item-icon{
+  width:44px;height:44px;
+  border-radius:var(--r2);
+  background:rgba(94,207,190,0.07);
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:900;
+  color:var(--gold);
+  letter-spacing:-0.02em;
+}
+
+/* Info del item */
 .opt-item-info{flex:1;min-width:0;}
 .opt-item-name{font-family:'Playfair Display',serif;font-size:0.93rem;font-weight:700;color:var(--ink);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .opt-item-meta{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.35rem;}
-.opt-carousel-footer{display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0.2rem 0.3rem;gap:0.75rem;}
-.opt-carousel-pos{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);}
-.opt-select-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:6px 18px;border-radius:99px;border:1px solid rgba(94,207,190,0.45);background:rgba(94,207,190,0.1);color:var(--gold);cursor:pointer;transition:all 0.2s;}
-.opt-select-btn:hover{background:rgba(94,207,190,0.2);border-color:rgba(94,207,190,0.7);}
+
+/* Footer del carrusel */
+.opt-carousel-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.55rem 0.2rem 0.3rem;gap:0.75rem;
+}
+
+.opt-carousel-pos{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--ink3);
+}
+
+/* Botón de selección */
+.opt-select-btn{
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:600;
+  padding:6px 18px;
+  border-radius:99px;
+  border:1px solid rgba(94,207,190,0.45);
+  background:rgba(94,207,190,0.1);
+  color:var(--gold);
+  cursor:pointer;
+  transition:all 0.2s;
+}
+
+.opt-select-btn:hover{
+  background:rgba(94,207,190,0.2);
+  border-color:rgba(94,207,190,0.7);
+}
+
 .opt-select-btn:disabled{opacity:0.3;cursor:default;}
-.opt-change-row{display:flex;align-items:center;justify-content:flex-end;gap:0.5rem;padding:0.6rem 1rem;border-top:1px solid rgba(94,207,190,0.08);background:rgba(0,0,0,0.2);}
-.opt-change-btn{font-family:'DM Mono',monospace;font-size:9px;padding:3px 10px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--ink3);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
-.opt-change-btn:hover{background:rgba(94,207,190,0.08);color:var(--gold);border-color:rgba(94,207,190,0.3);}
-.opt-remove-btn{font-family:'DM Mono',monospace;font-size:9px;padding:3px 10px;border-radius:99px;border:1px solid rgba(255,80,80,0.2);background:transparent;color:rgba(255,120,120,0.6);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
-.opt-remove-btn:hover{background:rgba(255,80,80,0.08);color:rgba(255,120,120,1);border-color:rgba(255,80,80,0.4);}
+
+/* Botones de cambio/eliminación */
+.opt-change-row{
+  display:flex;align-items:center;justify-content:flex-end;gap:0.5rem;
+  padding:0.6rem 1rem;
+  border-top:1px solid rgba(94,207,190,0.08);
+  background:rgba(0,0,0,0.2);
+}
+
+.opt-change-btn{
+  font-family:'DM Mono',monospace;font-size:9px;
+  padding:3px 10px;border-radius:99px;
+  border:1px solid var(--border2);
+  background:transparent;color:var(--ink3);
+  cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;
+}
+
+.opt-change-btn:hover{
+  background:rgba(94,207,190,0.08);
+  color:var(--gold);
+  border-color:rgba(94,207,190,0.3);
+}
+
+.opt-remove-btn{
+  font-family:'DM Mono',monospace;font-size:9px;
+  padding:3px 10px;border-radius:99px;
+  border:1px solid rgba(255,80,80,0.2);
+  background:transparent;
+  color:rgba(255,120,120,0.6);
+  cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;
+}
+
+.opt-remove-btn:hover{
+  background:rgba(255,80,80,0.08);
+  color:rgba(255,120,120,1);
+  border-color:rgba(255,80,80,0.4);
+}
 
 /* ── OLD optativa wrapper (keep for selected state) ── */
 .optativa-wrapper{
   position:relative;
   border-radius:var(--r);
-  /* height matches a card-head */
   min-height:70px;
 }
 
@@ -318,9 +481,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .opt-remove-btn{font-family:'DM Mono',monospace;font-size:9px;padding:3px 10px;border-radius:99px;border:1px solid rgba(255,80,80,0.2);background:transparent;color:rgba(255,120,120,0.6);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
 .opt-remove-btn:hover{background:rgba(255,80,80,0.08);color:rgba(255,120,120,1);border-color:rgba(255,80,80,0.4);}
 
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:transparent;}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:99px;}
 </style>
 </head>
 <body>
@@ -611,19 +771,17 @@ function renderCard(mat){
   </div>`;
 }
 
-// ── OPTATIVA CAROUSEL STATE per semester ──
-// carouselState[sem] = { open: bool, focusedIdx: number }
+// ── OPTATIVA CAROUSEL (SCROLL MEJORADO) ──
 const carouselState = {};
 
 function getCarousel(sem){
-  if(!carouselState[sem]) carouselState[sem]={open:false,focusedIdx:0};
+  if(!carouselState[sem]) carouselState[sem]={open:false,selectedIdx:0};
   return carouselState[sem];
 }
 
 function getAvailableOpts(sem){
   const pool = getOptativasPool(sem);
   const allChosen = getAllChosenOptNames();
-  // Get names currently selected in THIS semester's slots (to allow re-selection within same sem)
   const thisSemChosen = [];
   const semObj = CURRICULUM.find(s=>s.semestre===sem);
   if(semObj){
@@ -634,21 +792,46 @@ function getAvailableOpts(sem){
   }
   return pool.filter(o=>{
     if(!allChosen.includes(o.name)) return true;
-    // if it's chosen in this semester, still include it (so user can see it)
     return thisSemChosen.includes(o.name);
   });
 }
 
-// Render the add-optativa button + vertical carousel for a semester
+// Función para hacer scroll al item seleccionado
+function scrollToSelectedItem(sem) {
+  const cs = getCarousel(sem);
+  const viewport = document.querySelector(`#opt-vp-${sem}`);
+  const list = document.querySelector(`#opt-list-${sem}`);
+  
+  if (!viewport || !list) return;
+  
+  const items = list.querySelectorAll('.opt-item');
+  if (!items.length) return;
+  
+  // Encontrar el item seleccionado
+  let selectedItem = null;
+  items.forEach(item => {
+    if (item.classList.contains('selected')) {
+      selectedItem = item;
+    }
+  });
+  
+  if (selectedItem) {
+    // Scroll suave al item seleccionado
+    selectedItem.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }
+}
+
 function renderOptativaCarousel(sem){
   const cs = getCarousel(sem);
   const available = getAvailableOpts(sem);
   const total = available.length;
 
-  // Build item HTML — icon uses first 2 chars of name as monogram
   const itemsHtml = available.map((o,i)=>{
     const mono = o.name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase().slice(0,2);
-    return `<div class="opt-item${i===cs.focusedIdx?' focused':''}" data-opt-item="${sem}-${i}">
+    return `<div class="opt-item${i===cs.selectedIdx?' selected':''}" data-opt-item="${sem}-${i}">
       <div class="opt-item-icon">${mono}</div>
       <div class="opt-item-info">
         <div class="opt-item-name">${o.name}</div>
@@ -657,23 +840,18 @@ function renderOptativaCarousel(sem){
           <span class="meta-pill"><b>${o.creditos}</b> créditos</span>
         </div>
       </div>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--ink3);flex-shrink:0"><polyline points="6,3 11,8 6,13"/></svg>
     </div>`;
   }).join('');
 
-  const offset = cs.focusedIdx * 72;
-
   return `<div class="opt-carousel-wrap${cs.open?' open':''}" id="opt-carousel-${sem}">
     <div class="opt-carousel-inner">
-      <div class="opt-carousel-viewport"
-        data-carousel-sem="${sem}"
-        data-wheel-sem="${sem}">
-        <div class="opt-carousel-list" id="opt-list-${sem}" style="transform:translateY(-${offset}px)">
+      <div class="opt-carousel-viewport" id="opt-vp-${sem}">
+        <div class="opt-carousel-list" id="opt-list-${sem}">
           ${total ? itemsHtml : '<div style="padding:1.5rem;text-align:center;color:var(--ink3);font-size:12px;font-family:\'DM Mono\',monospace;">Sin opciones disponibles</div>'}
         </div>
       </div>
       <div class="opt-carousel-footer">
-        <span class="opt-carousel-pos" id="opt-pos-${sem}">${total ? `${cs.focusedIdx+1} / ${total}` : '—'}</span>
+        <span class="opt-carousel-pos" id="opt-pos-${sem}">${total ? `1 / ${total}` : '—'}</span>
         <button class="opt-select-btn" data-opt-confirm="${sem}" ${!total?'disabled':''}>Añadir ＋</button>
       </div>
     </div>
@@ -683,7 +861,8 @@ function renderOptativaCarousel(sem){
 // Render selected optativa as full card
 function renderOptativaSlot(sem, slot){
   const chosen = getOptSlot(sem, slot);
-  if(!chosen) return '';
+  if(!chosen && false) return ''; // Slot vacío = no renderizar nada
+  if(!chosen) return ''; // Mostrar slot vacío
 
   const mat = {
     id:`opt_${sem}_${slot}`,
@@ -732,12 +911,11 @@ function renderSemester(sem,idx){
   // Render already-chosen optativas as cards
   const chosenCards = [];
   for(let i=0;i<optCount;i++){
-    const html=renderOptativaSlot(sem.semestre,i);
-    if(html) chosenCards.push(html);
+    chosenCards.push(renderOptativaSlot(sem.semestre,i));
   }
 
   // Count remaining open slots
-  const filledCount = chosenCards.length;
+  const filledCount = chosenCards.filter(c=>c).length;
   const remainingSlots = optCount - filledCount;
 
   // Add optativa button + carousel (only if there are open slots)
@@ -804,46 +982,14 @@ function updateAllUI(){
   });
 }
 
-// Re-render a full semester section
 function rerenderSemester(semNum){
   const idx = CURRICULUM.findIndex(s=>s.semestre===semNum);
   if(idx<0) return;
   const sec = document.getElementById(`semester-${semNum}`);
   if(!sec) return;
   sec.outerHTML = renderSemester(CURRICULUM[idx], idx);
-  // Re-attach wheel + touch listeners for carousel in this semester
-  attachCarouselWheel(semNum);
-  attachCarouselTouch(semNum);
-}
-
-function attachCarouselWheel(sem){
-  const vp = document.querySelector(`[data-wheel-sem="${sem}"]`);
-  if(!vp) return;
-  vp.addEventListener('wheel', e=>{
-    e.preventDefault();
-    const cs = getCarousel(sem);
-    const available = getAvailableOpts(sem);
-    if(!available.length) return;
-    if(e.deltaY>0 && cs.focusedIdx < available.length-1){
-      cs.focusedIdx++;
-    } else if(e.deltaY<0 && cs.focusedIdx>0){
-      cs.focusedIdx--;
-    }
-    updateCarouselUI(sem, available);
-  },{passive:false});
-}
-
-function updateCarouselUI(sem, available){
-  const cs = getCarousel(sem);
-  const list = document.getElementById(`opt-list-${sem}`);
-  if(!list) return;
-  list.style.transform = `translateY(-${cs.focusedIdx*72}px)`;
-  // update focused class
-  list.querySelectorAll('.opt-item').forEach((el,i)=>{
-    el.classList.toggle('focused', i===cs.focusedIdx);
-  });
-  const pos = document.getElementById(`opt-pos-${sem}`);
-  if(pos) pos.textContent = available.length ? `${cs.focusedIdx+1} / ${available.length}` : '—';
+  // Hacer scroll al item seleccionado después de renderizar
+  setTimeout(() => scrollToSelectedItem(semNum));
 }
 
 // ── INIT ──
@@ -851,47 +997,14 @@ document.addEventListener('DOMContentLoaded',()=>{
   const root=document.getElementById('root');
   root.innerHTML=CURRICULUM.map((sem,i)=>renderSemester(sem,i)).join('');
 
-  // Attach wheel + touch listeners for all semesters
+  // Hacer scroll a items seleccionados en carruseles abiertos
   CURRICULUM.forEach(sem=>{
-    if(sem.optativas){
-      attachCarouselWheel(sem.semestre);
-      attachCarouselTouch(sem.semestre);
+    if(sem.optativas > 0){
+      setTimeout(() => scrollToSelectedItem(sem.semestre));
     }
   });
 
-  // Touch swipe for carousel — attached directly so we can preventDefault
-  function attachCarouselTouch(sem){
-    const vp=document.querySelector(`[data-carousel-sem="${sem}"]`);
-    if(!vp||vp._touchAttached) return;
-    vp._touchAttached=true;
-    let startY=0, startX=0, moved=false;
-    vp.addEventListener('touchstart',e=>{
-      startY=e.touches[0].clientY;
-      startX=e.touches[0].clientX;
-      moved=false;
-    },{passive:true});
-    vp.addEventListener('touchmove',e=>{
-      const dy=e.touches[0].clientY-startY;
-      const dx=e.touches[0].clientX-startX;
-      // Only capture if more vertical than horizontal
-      if(Math.abs(dy)>Math.abs(dx)){
-        e.preventDefault();
-        moved=true;
-      }
-    },{passive:false});
-    vp.addEventListener('touchend',e=>{
-      if(!moved) return;
-      const dy=e.changedTouches[0].clientY-startY;
-      if(Math.abs(dy)<12) return;
-      const cs=getCarousel(sem);
-      const available=getAvailableOpts(sem);
-      if(!available.length) return;
-      if(dy<0 && cs.focusedIdx<available.length-1) cs.focusedIdx++;
-      else if(dy>0 && cs.focusedIdx>0) cs.focusedIdx--;
-      updateCarouselUI(sem, available);
-    },{passive:true});
-  }
-
+  // Click delegation
   root.addEventListener('click',e=>{
     // Toggle carousel open/close
     const tc2=e.target.closest('[data-toggle-carousel]');
@@ -901,25 +1014,41 @@ document.addEventListener('DOMContentLoaded',()=>{
       cs.open=!cs.open;
       tc2.classList.toggle('open',cs.open);
       const wrap=document.getElementById(`opt-carousel-${sem}`);
-      if(wrap) wrap.classList.toggle('open',cs.open);
-      if(cs.open){
-        // attach wheel + touch after DOM is open (slight delay for transition)
-        setTimeout(()=>{
-          attachCarouselWheel(sem);
-          attachCarouselTouch(sem);
-        },50);
+      if(wrap) {
+        wrap.classList.toggle('open',cs.open);
+        if(cs.open){
+          // Hacer scroll al item seleccionado cuando se abre
+          setTimeout(() => scrollToSelectedItem(sem), 100);
+        }
       }
       return;
     }
 
-    // Click on carousel item = focus it
+    // Click on carousel item = select it
     const oi=e.target.closest('[data-opt-item]');
     if(oi){
-      const [sem,idx]=oi.dataset.optItem.split('-').map(Number);
+      const [sem,itemIdx] = oi.dataset.optItem.split('-').map(Number);
       const cs=getCarousel(sem);
-      cs.focusedIdx=idx;
-      const available=getAvailableOpts(sem);
-      updateCarouselUI(sem,available);
+      
+      // Deseleccionar el anterior
+      const prevSelected = oi.parentElement.querySelector('.opt-item.selected');
+      if(prevSelected) prevSelected.classList.remove('selected');
+      
+      // Seleccionar el nuevo
+      oi.classList.add('selected');
+      cs.selectedIdx = itemIdx;
+      
+      // Actualizar posición
+      const available = getAvailableOpts(sem);
+      const posEl = document.getElementById(`opt-pos-${sem}`);
+      if(posEl) posEl.textContent = `${itemIdx + 1} / ${available.length}`;
+      
+      // Hacer scroll suave al item
+      oi.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+      
       return;
     }
 
@@ -929,8 +1058,9 @@ document.addEventListener('DOMContentLoaded',()=>{
       const sem=parseInt(oc.dataset.optConfirm);
       const cs=getCarousel(sem);
       const available=getAvailableOpts(sem);
-      const chosen=available[cs.focusedIdx];
+      const chosen=available[cs.selectedIdx];
       if(!chosen) return;
+      
       // Find first empty slot
       const semObj=CURRICULUM.find(s=>s.semestre===sem);
       let slot=-1;
@@ -938,9 +1068,10 @@ document.addEventListener('DOMContentLoaded',()=>{
         if(!getOptSlot(sem,i)){slot=i;break;}
       }
       if(slot<0) return;
+      
       setOptSlot(sem,slot,chosen);
       cs.open=false;
-      cs.focusedIdx=0;
+      cs.selectedIdx=0;
       rerenderSemester(sem);
       updateAllUI();
       return;
@@ -1030,8 +1161,47 @@ document.addEventListener('DOMContentLoaded',()=>{
       updateAllUI();
     }
   });
-});
 
+  // Evento de scroll en viewports para actualizar posición
+  document.querySelectorAll('.opt-carousel-viewport').forEach(vp => {
+    vp.addEventListener('scroll', () => {
+      const sem = parseInt(vp.id.replace('opt-vp-', ''));
+      const items = vp.querySelectorAll('.opt-item');
+      if (!items.length) return;
+      
+      // Encontrar el item más cercano al centro del viewport
+      const vpRect = vp.getBoundingClientRect();
+      const vpCenter = vpRect.top + vpRect.height / 2;
+      
+      let closestIdx = 0;
+      let closestDist = Infinity;
+      
+      items.forEach((item, i) => {
+        const itemRect = item.getBoundingClientRect();
+        const itemCenter = itemRect.top + itemRect.height / 2;
+        const dist = Math.abs(itemCenter - vpCenter);
+        
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIdx = i;
+        }
+      });
+      
+      // Actualizar estado
+      const cs = getCarousel(sem);
+      cs.selectedIdx = closestIdx;
+      
+      // Actualizar visualización
+      items.forEach((item, i) => {
+        item.classList.toggle('selected', i === closestIdx);
+      });
+      
+      const available = getAvailableOpts(sem);
+      const posEl = document.getElementById(`opt-pos-${sem}`);
+      if(posEl) posEl.textContent = `${closestIdx + 1} / ${available.length}`;
+    });
+  });
+});
 
 </script>
 </body>
