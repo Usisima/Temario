@@ -811,8 +811,9 @@ function rerenderSemester(semNum){
   const sec = document.getElementById(`semester-${semNum}`);
   if(!sec) return;
   sec.outerHTML = renderSemester(CURRICULUM[idx], idx);
-  // Re-attach wheel listeners for carousel in this semester
+  // Re-attach wheel + touch listeners for carousel in this semester
   attachCarouselWheel(semNum);
+  attachCarouselTouch(semNum);
 }
 
 function attachCarouselWheel(sem){
@@ -850,29 +851,46 @@ document.addEventListener('DOMContentLoaded',()=>{
   const root=document.getElementById('root');
   root.innerHTML=CURRICULUM.map((sem,i)=>renderSemester(sem,i)).join('');
 
-  // Attach wheel listeners for all semesters
+  // Attach wheel + touch listeners for all semesters
   CURRICULUM.forEach(sem=>{
-    if(sem.optativas) attachCarouselWheel(sem.semestre);
+    if(sem.optativas){
+      attachCarouselWheel(sem.semestre);
+      attachCarouselTouch(sem.semestre);
+    }
   });
 
-  // Touch swipe for carousel
-  let touchStartY=0, touchSem=null;
-  document.addEventListener('touchstart',e=>{
-    const vp=e.target.closest('[data-carousel-sem]');
-    if(vp){touchStartY=e.touches[0].clientY;touchSem=parseInt(vp.dataset.carouselSem);}
-    else touchSem=null;
-  },{passive:true});
-  document.addEventListener('touchend',e=>{
-    if(touchSem===null) return;
-    const dy=e.changedTouches[0].clientY-touchStartY;
-    if(Math.abs(dy)<15) return;
-    const cs=getCarousel(touchSem);
-    const available=getAvailableOpts(touchSem);
-    if(!available.length) return;
-    if(dy<0 && cs.focusedIdx<available.length-1) cs.focusedIdx++;
-    else if(dy>0 && cs.focusedIdx>0) cs.focusedIdx--;
-    updateCarouselUI(touchSem, available);
-  },{passive:true});
+  // Touch swipe for carousel — attached directly so we can preventDefault
+  function attachCarouselTouch(sem){
+    const vp=document.querySelector(`[data-carousel-sem="${sem}"]`);
+    if(!vp||vp._touchAttached) return;
+    vp._touchAttached=true;
+    let startY=0, startX=0, moved=false;
+    vp.addEventListener('touchstart',e=>{
+      startY=e.touches[0].clientY;
+      startX=e.touches[0].clientX;
+      moved=false;
+    },{passive:true});
+    vp.addEventListener('touchmove',e=>{
+      const dy=e.touches[0].clientY-startY;
+      const dx=e.touches[0].clientX-startX;
+      // Only capture if more vertical than horizontal
+      if(Math.abs(dy)>Math.abs(dx)){
+        e.preventDefault();
+        moved=true;
+      }
+    },{passive:false});
+    vp.addEventListener('touchend',e=>{
+      if(!moved) return;
+      const dy=e.changedTouches[0].clientY-startY;
+      if(Math.abs(dy)<12) return;
+      const cs=getCarousel(sem);
+      const available=getAvailableOpts(sem);
+      if(!available.length) return;
+      if(dy<0 && cs.focusedIdx<available.length-1) cs.focusedIdx++;
+      else if(dy>0 && cs.focusedIdx>0) cs.focusedIdx--;
+      updateCarouselUI(sem, available);
+    },{passive:true});
+  }
 
   root.addEventListener('click',e=>{
     // Toggle carousel open/close
@@ -884,6 +902,13 @@ document.addEventListener('DOMContentLoaded',()=>{
       tc2.classList.toggle('open',cs.open);
       const wrap=document.getElementById(`opt-carousel-${sem}`);
       if(wrap) wrap.classList.toggle('open',cs.open);
+      if(cs.open){
+        // attach wheel + touch after DOM is open (slight delay for transition)
+        setTimeout(()=>{
+          attachCarouselWheel(sem);
+          attachCarouselTouch(sem);
+        },50);
+      }
       return;
     }
 
