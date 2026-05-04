@@ -159,8 +159,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .opt-carousel-list{display:flex;flex-direction:column;transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);}
 .opt-item{display:flex;align-items:center;gap:0.9rem;padding:0 1rem;height:72px;min-height:72px;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.15s;flex-shrink:0;user-select:none;}
 .opt-item:last-child{border-bottom:none;}
-.opt-item:hover{background:rgba(94,207,190,0.07);}
-.opt-item:active{background:rgba(94,207,190,0.14);}
+.opt-item:hover{background:rgba(94,207,190,0.05);}
 .opt-item.focused{background:rgba(94,207,190,0.09);border-left:2px solid var(--gold);}
 .opt-item-icon{width:44px;height:44px;border-radius:var(--r2);background:rgba(94,207,190,0.07);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--gold);letter-spacing:-0.02em;}
 .opt-item-info{flex:1;min-width:0;}
@@ -675,7 +674,7 @@ function renderOptativaCarousel(sem){
       </div>
       <div class="opt-carousel-footer">
         <span class="opt-carousel-pos" id="opt-pos-${sem}">${total ? `${cs.focusedIdx+1} / ${total}` : '—'}</span>
-        <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--ink3);letter-spacing:0.06em;">toca para añadir</span>
+        <button class="opt-select-btn" data-opt-confirm="${sem}" ${!total?'disabled':''}>Añadir ＋</button>
       </div>
     </div>
   </div>`;
@@ -819,48 +818,18 @@ function rerenderSemester(semNum){
 
 function attachCarouselWheel(sem){
   const vp = document.querySelector(`[data-wheel-sem="${sem}"]`);
-  if(!vp||vp._wheelAttached) return;
-  vp._wheelAttached=true;
-  const ITEM_H=72;
-  let wheelOffset=null; // track continuous offset during wheel
-  let snapTimer=null;
-
-  function getCurrentOffset(){
-    const list=document.getElementById(`opt-list-${sem}`);
-    if(!list) return 0;
-    const m=list.style.transform.match(/-?([\d.]+)px/);
-    return m?parseFloat(m[1]):0;
-  }
-  function setOffsetRaw(offset,available){
-    const cs=getCarousel(sem);
-    const maxOffset=Math.max(0,(available.length-1)*ITEM_H);
-    offset=Math.max(0,Math.min(maxOffset,offset));
-    const list=document.getElementById(`opt-list-${sem}`);
-    if(list) list.style.transform=`translateY(-${offset}px)`;
-    cs.focusedIdx=Math.max(0,Math.min(available.length-1,Math.round(offset/ITEM_H)));
-    list&&list.querySelectorAll('.opt-item').forEach((el,i)=>el.classList.toggle('focused',i===cs.focusedIdx));
-    const pos=document.getElementById(`opt-pos-${sem}`);
-    if(pos) pos.textContent=available.length?`${cs.focusedIdx+1} / ${available.length}`:'—';
-    return offset;
-  }
-
+  if(!vp) return;
   vp.addEventListener('wheel', e=>{
     e.preventDefault();
-    const available=getAvailableOpts(sem);
+    const cs = getCarousel(sem);
+    const available = getAvailableOpts(sem);
     if(!available.length) return;
-    if(wheelOffset===null) wheelOffset=getCurrentOffset();
-    wheelOffset+=e.deltaY*0.6;
-    wheelOffset=setOffsetRaw(wheelOffset,available);
-    // snap after wheel stops
-    clearTimeout(snapTimer);
-    snapTimer=setTimeout(()=>{
-      const snapped=Math.round(wheelOffset/ITEM_H)*ITEM_H;
-      const list=document.getElementById(`opt-list-${sem}`);
-      if(list) list.style.transition='transform 0.2s cubic-bezier(0.4,0,0.2,1)';
-      setOffsetRaw(snapped,available);
-      setTimeout(()=>{if(list)list.style.transition='transform 0.3s cubic-bezier(0.4,0,0.2,1)';},220);
-      wheelOffset=null;
-    },120);
+    if(e.deltaY>0 && cs.focusedIdx < available.length-1){
+      cs.focusedIdx++;
+    } else if(e.deltaY<0 && cs.focusedIdx>0){
+      cs.focusedIdx--;
+    }
+    updateCarouselUI(sem, available);
   },{passive:false});
 }
 
@@ -890,83 +859,36 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   });
 
-  // Touch swipe for carousel — free scroll, non-passive to prevent page scroll
+  // Touch swipe for carousel — attached directly so we can preventDefault
   function attachCarouselTouch(sem){
     const vp=document.querySelector(`[data-carousel-sem="${sem}"]`);
     if(!vp||vp._touchAttached) return;
     vp._touchAttached=true;
-    let startY=0, lastY=0, startTime=0, animFrame=null;
-    const ITEM_H=72;
-
-    function getCurrentOffset(){
-      const list=document.getElementById(`opt-list-${sem}`);
-      if(!list) return 0;
-      const m=list.style.transform.match(/-?([\d.]+)px/);
-      return m?parseFloat(m[1]):0;
-    }
-    function setOffset(offset, available){
-      const cs=getCarousel(sem);
-      const maxOffset=Math.max(0,(available.length-1)*ITEM_H);
-      offset=Math.max(0,Math.min(maxOffset,offset));
-      const list=document.getElementById(`opt-list-${sem}`);
-      if(list) list.style.transform=`translateY(-${offset}px)`;
-      // update focused index
-      cs.focusedIdx=Math.round(offset/ITEM_H);
-      cs.focusedIdx=Math.max(0,Math.min(available.length-1,cs.focusedIdx));
-      list&&list.querySelectorAll('.opt-item').forEach((el,i)=>el.classList.toggle('focused',i===cs.focusedIdx));
-      const pos=document.getElementById(`opt-pos-${sem}`);
-      if(pos) pos.textContent=available.length?`${cs.focusedIdx+1} / ${available.length}`:'—';
-    }
-
+    let startY=0, startX=0, moved=false;
     vp.addEventListener('touchstart',e=>{
-      if(animFrame){cancelAnimationFrame(animFrame);animFrame=null;}
       startY=e.touches[0].clientY;
-      lastY=startY;
-      startTime=Date.now();
-      vp._dragging=true;
-      vp._baseOffset=getCurrentOffset();
-      vp._velY=0;
+      startX=e.touches[0].clientX;
+      moved=false;
     },{passive:true});
-
     vp.addEventListener('touchmove',e=>{
-      if(!vp._dragging) return;
       const dy=e.touches[0].clientY-startY;
-      const dx=e.touches[0].clientX-(vp._startX||e.touches[0].clientX);
-      if(Math.abs(e.touches[0].clientY-startY)>Math.abs(dx)) e.preventDefault();
-      const available=getAvailableOpts(sem);
-      const newOffset=vp._baseOffset-dy;
-      vp._velY=(e.touches[0].clientY-lastY)/(Date.now()-startTime+1);
-      lastY=e.touches[0].clientY;
-      startTime=Date.now();
-      setOffset(newOffset, available);
-    },{passive:false});
-
-    vp.addEventListener('touchend',e=>{
-      if(!vp._dragging) return;
-      vp._dragging=false;
-      const available=getAvailableOpts(sem);
-      // momentum + snap to nearest item
-      let offset=getCurrentOffset();
-      let vel=-vp._velY*80; // momentum factor
-      const ITEM_H=72;
-      const maxOffset=Math.max(0,(available.length-1)*ITEM_H);
-      function step(){
-        offset+=vel;
-        vel*=0.85;
-        offset=Math.max(0,Math.min(maxOffset,offset));
-        setOffset(offset,available);
-        if(Math.abs(vel)>0.5 && offset>0 && offset<maxOffset){
-          animFrame=requestAnimationFrame(step);
-        } else {
-          // snap
-          const snapped=Math.round(offset/ITEM_H)*ITEM_H;
-          const list=document.getElementById(`opt-list-${sem}`);
-          if(list) list.style.transition='transform 0.2s cubic-bezier(0.4,0,0.2,1)';
-          setOffset(snapped,available);
-          setTimeout(()=>{if(list)list.style.transition='transform 0.3s cubic-bezier(0.4,0,0.2,1)';},220);
-        }
+      const dx=e.touches[0].clientX-startX;
+      // Only capture if more vertical than horizontal
+      if(Math.abs(dy)>Math.abs(dx)){
+        e.preventDefault();
+        moved=true;
       }
-      animFrame=requestAnimationFrame(step);
+    },{passive:false});
+    vp.addEventListener('touchend',e=>{
+      if(!moved) return;
+      const dy=e.changedTouches[0].clientY-startY;
+      if(Math.abs(dy)<12) return;
+      const cs=getCarousel(sem);
+      const available=getAvailableOpts(sem);
+      if(!available.length) return;
+      if(dy<0 && cs.focusedIdx<available.length-1) cs.focusedIdx++;
+      else if(dy>0 && cs.focusedIdx>0) cs.focusedIdx--;
+      updateCarouselUI(sem, available);
     },{passive:true});
   }
 
@@ -990,29 +912,18 @@ document.addEventListener('DOMContentLoaded',()=>{
       return;
     }
 
-    // Click on carousel item = add it directly
+    // Click on carousel item = focus it
     const oi=e.target.closest('[data-opt-item]');
     if(oi){
       const [sem,idx]=oi.dataset.optItem.split('-').map(Number);
+      const cs=getCarousel(sem);
+      cs.focusedIdx=idx;
       const available=getAvailableOpts(sem);
-      const chosen=available[idx];
-      if(!chosen) return;
-      // Find first empty slot
-      const semObj=CURRICULUM.find(s=>s.semestre===sem);
-      let slot=-1;
-      for(let i=0;i<(semObj.optativas||0);i++){
-        if(!getOptSlot(sem,i)){slot=i;break;}
-      }
-      if(slot<0) return;
-      setOptSlot(sem,slot,chosen);
-      getCarousel(sem).open=false;
-      getCarousel(sem).focusedIdx=0;
-      rerenderSemester(sem);
-      updateAllUI();
+      updateCarouselUI(sem,available);
       return;
     }
 
-    // Confirm selection button (kept for keyboard/fallback)
+    // Confirm selection
     const oc=e.target.closest('[data-opt-confirm]');
     if(oc){
       const sem=parseInt(oc.dataset.optConfirm);
@@ -1020,6 +931,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       const available=getAvailableOpts(sem);
       const chosen=available[cs.focusedIdx];
       if(!chosen) return;
+      // Find first empty slot
       const semObj=CURRICULUM.find(s=>s.semestre===sem);
       let slot=-1;
       for(let i=0;i<(semObj.optativas||0);i++){
