@@ -54,7 +54,22 @@ body{
   background:linear-gradient(90deg,transparent,var(--gold),transparent);
   opacity:0.3;
 }
-.header-left{}
+.header-left{
+  display:flex;align-items:center;gap:0.85rem;
+}
+.header-logo{
+  font-family:'Playfair Display',serif;
+  font-size:2.1rem;
+  font-weight:900;
+  color:var(--ink);
+  line-height:1;
+  letter-spacing:-0.02em;
+  flex-shrink:0;
+  /* Optical vertical centering */
+  display:flex;
+  align-items:center;
+}
+.header-text{}
 .header-title{
   font-family:'Playfair Display',serif;
   font-size:1.35rem;font-weight:900;
@@ -232,8 +247,12 @@ body{
 .tema-head{
   display:flex;align-items:flex-start;gap:0.7rem;
   padding:0.75rem 0.9rem;
-  cursor:pointer;
+  cursor:default;
   background:rgba(255,255,255,0.03);
+}
+/* Only allow collapse pointer when done */
+.tema-item.done .tema-head{
+  cursor:pointer;
 }
 .tema-head-left{flex:1;display:flex;gap:0.6rem;align-items:flex-start;}
 .tema-num{
@@ -250,6 +269,21 @@ body{
   font-family:'DM Mono',monospace;font-size:9px;
   color:var(--ink3);white-space:nowrap;
 }
+/* Collapse chevron for tema */
+.tema-chev{
+  width:14px;height:14px;color:var(--ink3);
+  transition:transform 0.2s, opacity 0.2s;
+  flex-shrink:0;
+  opacity:0;
+  pointer-events:none;
+}
+.tema-item.done .tema-chev{
+  opacity:1;
+}
+.tema-item.done.collapsed .tema-chev{
+  transform:rotate(-90deg);
+}
+
 .tema-check-wrap{
   width:22px;height:22px;flex-shrink:0;
 }
@@ -273,6 +307,16 @@ body{
 .tema-progress-bar{height:2px;background:rgba(255,255,255,0.05);}
 .tema-progress-fill{height:100%;background:var(--teal);transition:width 0.3s;}
 
+/* Subtema collapse */
+.tema-subtemas{
+  overflow:hidden;
+  max-height:9999px;
+  transition:max-height 0.35s cubic-bezier(0.2,1,0.4,1);
+}
+.tema-item.collapsed .tema-subtemas{
+  max-height:0;
+}
+
 .subtema{
   font-size:12.5px;color:var(--ink3);
   padding:0.5rem 0.9rem;
@@ -281,8 +325,6 @@ body{
   display:flex;gap:0.5rem;
 }
 .subtema::before{content:"›";color:var(--gold);flex-shrink:0;font-size:14px;line-height:1.4;}
-
-.tema-subtemas{}
 
 .sec-label{
   font-size:9px;font-weight:700;letter-spacing:0.18em;
@@ -459,8 +501,11 @@ body{
 
 <header class="header">
   <div class="header-left">
-    <div class="header-title">Matemáticas</div>
-    <div class="header-sub">Facultad de Ciencias · UNAM</div>
+    <div class="header-logo">Ж</div>
+    <div class="header-text">
+      <div class="header-title">Matemáticas</div>
+      <div class="header-sub">Facultad de Ciencias · UNAM</div>
+    </div>
   </div>
   <span class="global-badge" id="global-pct">0%</span>
 </header>
@@ -630,15 +675,19 @@ const CURRICULUM = [
 // ── STORAGE ──
 const SK_TEMA = 'mat_tema_v1';
 const SK_BOOK = 'mat_book_v1';
+const SK_COLLAPSED = 'mat_collapsed_v1';
 function loadDB(key){ try{ return JSON.parse(localStorage.getItem(key)||'{}'); }catch{ return {}; } }
 function saveDB(key,db){ localStorage.setItem(key,JSON.stringify(db)); }
 let temaDB = loadDB(SK_TEMA);
 let bookDB = loadDB(SK_BOOK);
+let collapsedDB = loadDB(SK_COLLAPSED);
 
 function getTemaDone(mid,ti){ return temaDB[`${mid}_${ti}`]===true; }
 function setTemaDone(mid,ti,val){ temaDB[`${mid}_${ti}`]=val; saveDB(SK_TEMA,temaDB); }
 function getBookCaps(mid,bi){ return bookDB[`${mid}_${bi}`]||[]; }
 function setBookCaps(mid,bi,arr){ bookDB[`${mid}_${bi}`]=arr; saveDB(SK_BOOK,bookDB); }
+function getTemaCollapsed(mid,ti){ return collapsedDB[`${mid}_${ti}`]===true; }
+function setTemaCollapsed(mid,ti,val){ collapsedDB[`${mid}_${ti}`]=val; saveDB(SK_COLLAPSED,collapsedDB); }
 
 // ── PROGRESS CALC ──
 function getMateriaProgress(mat){
@@ -677,9 +726,11 @@ function renderTemario(mat){
   if(!mat.temario||!mat.temario.length) return '<div style="padding:1rem;color:var(--ink3);font-size:12px;">Temario en construcción</div>';
   return mat.temario.map((t,i)=>{
     const done=getTemaDone(mat.id,i);
+    // Only collapse if done AND saved as collapsed
+    const collapsed = done && getTemaCollapsed(mat.id,i);
     const h=t.horas||((t.subtemas||[]).length*2);
     const subs=(t.subtemas||[]).map(s=>`<div class="subtema">${s}</div>`).join('');
-    return `<div class="tema-item ${done?'done':''}" id="tema-${mat.id}-${i}">
+    return `<div class="tema-item ${done?'done':''} ${collapsed?'collapsed':''}" id="tema-${mat.id}-${i}">
       <div class="tema-head" data-tema-toggle="${mat.id}-${i}">
         <div class="tema-head-left">
           <span class="tema-num">${t.num}</span>
@@ -687,6 +738,7 @@ function renderTemario(mat){
         </div>
         <div class="tema-meta">
           <span class="tema-hrs-badge">${h}h</span>
+          <svg class="tema-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
           <input class="tema-checkbox" type="checkbox" ${done?'checked':''} data-tema-check="${mat.id}" data-tema-idx="${i}" onclick="event.stopPropagation()">
         </div>
       </div>
@@ -846,8 +898,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   root.innerHTML=CURRICULUM.map((sem,i)=>renderSemester(sem,i)).join('');
 
   root.addEventListener('click',e=>{
+    // ── Card toggle ──
     const ct=e.target.closest('[data-toggle-card]');
     if(ct){ document.querySelector(`[data-materia="${ct.dataset.toggleCard}"]`)?.classList.toggle('open'); return; }
+
+    // ── Tab toggle ──
     const tab=e.target.closest('[data-tab-target]');
     if(tab){
       const tid=tab.dataset.tabTarget;
@@ -856,18 +911,56 @@ document.addEventListener('DOMContentLoaded',()=>{
       tab.closest('.card-body').querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===tid));
       return;
     }
+
+    // ── Tema head toggle (collapse/expand subtemas) — only when done ──
+    const th=e.target.closest('[data-tema-toggle]');
+    if(th && !e.target.closest('.tema-checkbox')){
+      const key=th.dataset.temaToggle; // "mid-idx"
+      const [mid,...rest]=key.split('-');
+      // Reconstruct mid properly (in case id has dashes)
+      const allIds = CURRICULUM.flatMap(s=>s.materias).map(m=>m.id);
+      // find which materia id matches and extract index
+      let temaIdx=null, materiaId=null;
+      for(const id of allIds){
+        if(key.startsWith(id+'-')){
+          materiaId=id;
+          temaIdx=parseInt(key.slice(id.length+1));
+          break;
+        }
+      }
+      if(materiaId===null) return;
+      const temaEl=document.getElementById(`tema-${materiaId}-${temaIdx}`);
+      if(!temaEl) return;
+      const isDone=temaEl.classList.contains('done');
+      if(!isDone) return; // only collapse if done
+      const isCollapsed=temaEl.classList.contains('collapsed');
+      temaEl.classList.toggle('collapsed',!isCollapsed);
+      setTemaCollapsed(materiaId,temaIdx,!isCollapsed);
+      return;
+    }
+
+    // ── Book toggle ──
     const bt=e.target.closest('[data-toggle-book]');
     if(bt){ document.querySelector(`[data-book="${bt.dataset.toggleBook}"]`)?.classList.toggle('open'); return; }
+
+    // ── Comp toggle ──
     const compt=e.target.closest('[data-toggle-comp]');
     if(compt){ document.querySelector(`[data-comp="${compt.dataset.toggleComp}"]`)?.classList.toggle('open'); return; }
+
+    // ── Navigate to subsecuente ──
     const nav=e.target.closest('[data-nav]');
     if(nav){
       const mid=nav.dataset.nav;
       const cardEl=document.getElementById(buildMateriaId(mid));
       if(cardEl){
         cardEl.classList.add('open');
+        // Scroll to the card-head (title pill), accounting for sticky header
         setTimeout(()=>{
-          cardEl.scrollIntoView({behavior:'smooth',block:'start'});
+          const cardHead=cardEl.querySelector('.card-head');
+          const target=cardHead||cardEl;
+          const headerHeight=document.querySelector('.header')?.offsetHeight||0;
+          const targetTop=target.getBoundingClientRect().top+window.scrollY - headerHeight - 12;
+          window.scrollTo({top:targetTop, behavior:'smooth'});
           cardEl.classList.add('highlight-pulse');
           setTimeout(()=>cardEl.classList.remove('highlight-pulse'),1600);
         },100);
@@ -876,15 +969,28 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 
   root.addEventListener('change',e=>{
+    // ── Tema checkbox ──
     const tc=e.target.closest('.tema-checkbox');
     if(tc){
       const mid=tc.dataset.temaCheck;
       const ti=parseInt(tc.dataset.temaIdx);
-      setTemaDone(mid,ti,tc.checked);
-      document.getElementById(`tema-${mid}-${ti}`)?.classList.toggle('done',tc.checked);
+      const checked=tc.checked;
+      setTemaDone(mid,ti,checked);
+      const temaEl=document.getElementById(`tema-${mid}-${ti}`);
+      if(temaEl){
+        temaEl.classList.toggle('done',checked);
+        // If unchecking: always expand
+        if(!checked){
+          temaEl.classList.remove('collapsed');
+          setTemaCollapsed(mid,ti,false);
+        }
+        // If checking: leave expanded (user can collapse manually)
+      }
       updateAllUI();
       return;
     }
+
+    // ── Chapter checkbox ──
     const cc=e.target.closest('.cap-check');
     if(cc){
       const {mid,bi,ci}=cc.dataset;
