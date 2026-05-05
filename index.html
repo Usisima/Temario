@@ -2921,9 +2921,9 @@ function renderOptativaCarousel(sem) {
   const itemsHtml = available.map((o, i) => {
     const mono = o.name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase().slice(0, 2);
     const iconContent = o.icon
-      ? `<img src="${o.icon}" alt="${o.name}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r2);" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`
-        + `<span style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">${mono}</span>`
-      : mono;
+    ? `<img src="${o.icon}" alt="${o.name}" style="width:100%;height:100%;object-fit:cover;border-radius:0;" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`
+      + `<span style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">${mono}</span>`
+    : mono;
     return `<div class="opt-item${i===cs.selectedIdx?' selected':''}" data-opt-item="${sem}-${i}"><div class="opt-item-icon" style="overflow:hidden;border-radius:0;border:none;">${iconContent}</div><div class="opt-item-info"><div class="opt-item-name">${o.name}</div><div class="opt-item-meta"><span class="meta-pill">Optativa</span><span class="meta-pill"><b>${o.creditos}</b> créditos</span></div></div></div>`;
   }).join('');
   const hint = total ? `<span class="opt-carousel-pos" id="opt-pos-${sem}">${total} opciones · toca para seleccionar</span>` : '';
