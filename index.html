@@ -914,7 +914,6 @@ max-height: 2000px;
 height: 220px;
 overflow-y: auto;
 position: relative;
-border-radius: var(--r2);
 border: 1px solid var(--border);
 background: rgba(0, 0, 0, 0.25);
 scroll-snap-type: y mandatory;
@@ -944,26 +943,35 @@ cursor: pointer;
 background: rgba(94, 207, 190, 0.5);
 }
 
-.opt-carousel-viewport::before,
-.opt-carousel-viewport::after {
+/* Fade overlays handled by .opt-carousel-inner wrapper */
+
+.opt-carousel-inner {
+position: relative;
+border-radius: var(--r2);
+overflow: hidden;
+}
+
+.opt-carousel-inner::before,
+.opt-carousel-inner::after {
 content: '';
-position: sticky;
+position: absolute;
 left: 0;
 right: 0;
-height: 20px;
-z-index: 2;
+height: 32px;
+z-index: 3;
 pointer-events: none;
-display: block;
 }
 
-.opt-carousel-viewport::before {
+.opt-carousel-inner::before {
 top: 0;
-background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent);
+border-radius: var(--r2) var(--r2) 0 0;
 }
 
-.opt-carousel-viewport::after {
+.opt-carousel-inner::after {
 bottom: 0;
-background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+border-radius: 0 0 var(--r2) var(--r2);
 }
 
 .opt-carousel-list {
@@ -1132,550 +1140,731 @@ border-color: rgba(255, 80, 80, 0.4);
 <script>
 const OPTATIVAS_I_II = [{
   name: "Álgebra Geométrica",
-  creditos: 10
+  creditos: 10,
+  icon: "d17.jpg"
 }, {
   name: "Ciencia, Diversidad e Inclusión",
-  creditos: 8
+  creditos: 8,
+  icon: "d18.jpg"
 }, {
   name: "Conjuntos Convexos",
-  creditos: 10
+  creditos: 10,
+  icon: "d19.jpg"
 }, {
   name: "Conjuntos y Lógica",
-  creditos: 10
+  creditos: 10,
+  icon: "d20.jpg"
 }, {
   name: "Diseño de Sistemas Digitales",
-  creditos: 10
+  creditos: 10,
+  icon: "d21.jpg"
 }, {
   name: "Electromagnetismo I",
-  creditos: 12
+  creditos: 12,
+  icon: "d22.jpg"
 }, {
   name: "Fenómenos Colectivos",
-  creditos: 12
+  creditos: 12,
+  icon: "d23.jpg"
 }, {
   name: "Geometría Moderna II",
-  creditos: 10
+  creditos: 10,
+  icon: "d24.jpg"
 }, {
   name: "Geometría Proyectiva",
-  creditos: 10
+  creditos: 10,
+  icon: "d25.jpg"
 }, {
   name: "Graficas y Juegos",
-  creditos: 10
+  creditos: 10,
+  icon: "d26.jpg"
 }, {
   name: "Introducción a Ciencias de la Computación I",
-  creditos: 10
+  creditos: 10,
+  icon: "d27.jpg"
 }, {
   name: "Introducción a Ciencias de la Computación II",
-  creditos: 10
+  creditos: 10,
+  icon: "d28.jpg"
 }, {
   name: "Introducción a la Geometría Avanzada",
-  creditos: 10
+  creditos: 10,
+  icon: "d29.jpg"
 }, {
   name: "Matemáticas Discretas",
-  creditos: 10
+  creditos: 10,
+  icon: "d30.jpg"
 }, {
   name: "Mecánica Vectorial",
-  creditos: 12
+  creditos: 12,
+  icon: "d31.jpg"
 }, {
   name: "Probabilidad I",
-  creditos: 10
+  creditos: 10,
+  icon: "d32.jpg"
 }, {
   name: "Teoría de los Números I",
-  creditos: 10
+  creditos: 10,
+  icon: "d33.jpg"
 }, {
   name: "Teoría de los Números II",
-  creditos: 10
+  creditos: 10,
+  icon: "d34.jpg"
 }];
 const OPTATIVAS_III_IV = [...OPTATIVAS_I_II, {
   name: "Álgebra Moderna II",
-  creditos: 10
+  creditos: 10,
+  icon: "d35.jpg"
 }, {
   name: "Análisis de Algoritmos I",
-  creditos: 10
+  creditos: 10,
+  icon: "d36.jpg"
 }, {
   name: "Análisis Numérico",
-  creditos: 10
+  creditos: 10,
+  icon: "d37.jpg"
 }, {
   name: "Arquitectura de Computadoras",
-  creditos: 10
+  creditos: 10,
+  icon: "d38.jpg"
 }, {
   name: "Cálculo de las Variaciones",
-  creditos: 10
+  creditos: 10,
+  icon: "d39.jpg"
 }, {
   name: "Didáctica de las Matemáticas",
-  creditos: 10
+  creditos: 10,
+  icon: "d40.jpg"
 }, {
   name: "Economía I",
-  creditos: 10
+  creditos: 10,
+  icon: "d41.jpg"
 }, {
   name: "Ecuaciones Diferenciales II",
-  creditos: 10
+  creditos: 10,
+  icon: "d42.jpg"
 }, {
   name: "Electromagnetismo II",
-  creditos: 12
+  creditos: 12,
+  icon: "d43.jpg"
 }, {
   name: "Estadística I",
-  creditos: 10
+  creditos: 10,
+  icon: "d44.jpg"
 }, {
   name: "Estadística II",
-  creditos: 10
+  creditos: 10,
+  icon: "d45.jpg"
 }, {
   name: "Geometría Diferencial I",
-  creditos: 10
+  creditos: 10,
+  icon: "d46.jpg"
 }, {
   name: "Geometría Diferencial II",
-  creditos: 10
+  creditos: 10,
+  icon: "d47.jpg"
 }, {
   name: "Historia de las Matemáticas I",
-  creditos: 10
+  creditos: 10,
+  icon: "d48.jpg"
 }, {
   name: "Historia de las Matemáticas II",
-  creditos: 10
+  creditos: 10,
+  icon: "d49.jpg"
 }, {
   name: "Introducción a la Física Cuántica",
-  creditos: 12
+  creditos: 12,
+  icon: "d50.jpg"
 }, {
   name: "Introducción a los Sistemas Complejos",
-  creditos: 12
+  creditos: 12,
+  icon: "d51.jpg"
 }, {
   name: "Introducción Matemática a la Mecánica Celeste",
-  creditos: 10
+  creditos: 10,
+  icon: "d52.jpg"
 }, {
   name: "Investigación de Operaciones",
-  creditos: 10
+  creditos: 10,
+  icon: "d53.jpg"
 }, {
   name: "La Sustentabilidad del Desarrollo",
-  creditos: 12
+  creditos: 12,
+  icon: "d54.jpg"
 }, {
   name: "Lenguajes de Programación y sus Paradigmas",
-  creditos: 10
+  creditos: 10,
+  icon: "d55.jpg"
 }, {
   name: "Lógica Matemática I",
-  creditos: 10
+  creditos: 10,
+  icon: "d56.jpg"
 }, {
   name: "Matemáticas Avanzadas de la Física",
-  creditos: 10
+  creditos: 10,
+  icon: "d57.jpg"
 }, {
   name: "Mecánica Analítica",
-  creditos: 12
+  creditos: 12,
+  icon: "d58.jpg"
 }, {
   name: "Muestreo",
-  creditos: 10
+  creditos: 10,
+  icon: "d59.jpg"
 }, {
   name: "Óptica",
-  creditos: 12
+  creditos: 12,
+  icon: "d60.jpg"
 }, {
   name: "Probabilidad II",
-  creditos: 10
+  creditos: 10,
+  icon: "d61.jpg"
 }, {
   name: "Programación Lineal",
-  creditos: 10
+  creditos: 10,
+  icon: "d62.jpg"
 }, {
   name: "Seminario de Ciencia y Sociedad I",
-  creditos: 12
+  creditos: 12,
+  icon: "d63.jpg"
 }, {
   name: "Series de Fourier y Teoría de Sturm Louville",
-  creditos: 10
+  creditos: 10,
+  icon: "d64.jpg"
 }, {
   name: "Sistemas Dinámicos Discretos I",
-  creditos: 10
+  creditos: 10,
+  icon: "d65.jpg"
 }, {
   name: "Sistemas Operativos",
-  creditos: 10
+  creditos: 10,
+  icon: "d66.jpg"
 }, {
   name: "Teoría de Gráficas",
-  creditos: 10
+  creditos: 10,
+  icon: "d67.jpg"
 }, {
   name: "Teoría de la Computación",
-  creditos: 10
+  creditos: 10,
+  icon: "d68.jpg"
 }, {
   name: "Teoría de la Medida I",
-  creditos: 10
+  creditos: 10,
+  icon: "d69.jpg"
 }, {
   name: "Teoría de los Conjuntos I",
-  creditos: 10
+  creditos: 10,
+  icon: "d70.jpg"
 }, {
   name: "Termodinámica",
-  creditos: 12
+  creditos: 12,
+  icon: "d71.jpg"
 }, {
   name: "Topología I",
-  creditos: 10
+  creditos: 10,
+  icon: "d72.jpg"
 }];
 const OPTATIVAS_V_VI = [{
   name: "Álgebra Moderna II",
-  creditos: 10
+  creditos: 10,
+  icon: "d35.jpg"
 }, {
   name: "Análisis de Algoritmos I",
-  creditos: 10
+  creditos: 10,
+  icon: "d36.jpg"
 }, {
   name: "Análisis Numérico",
-  creditos: 10
+  creditos: 10,
+  icon: "d37.jpg"
 }, {
   name: "Arquitectura de Computadoras",
-  creditos: 10
+  creditos: 10,
+  icon: "d38.jpg"
 }, {
   name: "Cálculo de las Variaciones",
-  creditos: 10
+  creditos: 10,
+  icon: "d39.jpg"
 }, {
   name: "Didáctica de las Matemáticas",
-  creditos: 10
+  creditos: 10,
+  icon: "d40.jpg"
 }, {
   name: "Economía I",
-  creditos: 10
+  creditos: 10,
+  icon: "d41.jpg"
 }, {
   name: "Ecuaciones Diferenciales II",
-  creditos: 10
+  creditos: 10,
+  icon: "d42.jpg"
 }, {
   name: "Electromagnetismo II",
-  creditos: 12
+  creditos: 12,
+  icon: "d43.jpg"
 }, {
   name: "Estadística I",
-  creditos: 10
+  creditos: 10,
+  icon: "d44.jpg"
 }, {
   name: "Estadística II",
-  creditos: 10
+  creditos: 10,
+  icon: "d45.jpg"
 }, {
   name: "Geometría Diferencial I",
-  creditos: 10
+  creditos: 10,
+  icon: "d46.jpg"
 }, {
   name: "Geometría Diferencial II",
-  creditos: 10
+  creditos: 10,
+  icon: "d47.jpg"
 }, {
   name: "Historia de las Matemáticas I",
-  creditos: 10
+  creditos: 10,
+  icon: "d48.jpg"
 }, {
   name: "Historia de las Matemáticas II",
-  creditos: 10
+  creditos: 10,
+  icon: "d49.jpg"
 }, {
   name: "Introducción a la Física Cuántica",
-  creditos: 12
+  creditos: 12,
+  icon: "d50.jpg"
 }, {
   name: "Introducción a los Sistemas Complejos",
-  creditos: 12
+  creditos: 12,
+  icon: "d51.jpg"
 }, {
   name: "Introducción Matemática a la Mecánica Celeste",
-  creditos: 10
+  creditos: 10,
+  icon: "d52.jpg"
 }, {
   name: "Investigación de Operaciones",
-  creditos: 10
+  creditos: 10,
+  icon: "d53.jpg"
 }, {
   name: "La Sustentabilidad del Desarrollo",
-  creditos: 12
+  creditos: 12,
+  icon: "d54.jpg"
 }, {
   name: "Lenguajes de Programación y sus Paradigmas",
-  creditos: 10
+  creditos: 10,
+  icon: "d55.jpg"
 }, {
   name: "Lógica Matemática I",
-  creditos: 10
+  creditos: 10,
+  icon: "d56.jpg"
 }, {
   name: "Matemáticas Avanzadas de la Física",
-  creditos: 10
+  creditos: 10,
+  icon: "d57.jpg"
 }, {
   name: "Mecánica Analítica",
-  creditos: 12
+  creditos: 12,
+  icon: "d58.jpg"
 }, {
   name: "Muestreo",
-  creditos: 10
+  creditos: 10,
+  icon: "d59.jpg"
 }, {
   name: "Óptica",
-  creditos: 12
+  creditos: 12,
+  icon: "d60.jpg"
 }, {
   name: "Probabilidad II",
-  creditos: 10
+  creditos: 10,
+  icon: "d61.jpg"
 }, {
   name: "Programación Lineal",
-  creditos: 10
+  creditos: 10,
+  icon: "d62.jpg"
 }, {
   name: "Seminario de Ciencia y Sociedad I",
-  creditos: 12
+  creditos: 12,
+  icon: "d63.jpg"
 }, {
   name: "Series de Fourier y Teoría de Sturm Louville",
-  creditos: 10
+  creditos: 10,
+  icon: "d64.jpg"
 }, {
   name: "Sistemas Dinámicos Discretos I",
-  creditos: 10
+  creditos: 10,
+  icon: "d65.jpg"
 }, {
   name: "Sistemas Operativos",
-  creditos: 10
+  creditos: 10,
+  icon: "d66.jpg"
 }, {
   name: "Teoría de Gráficas",
-  creditos: 10
+  creditos: 10,
+  icon: "d67.jpg"
 }, {
   name: "Teoría de la Computación",
-  creditos: 10
+  creditos: 10,
+  icon: "d68.jpg"
 }, {
   name: "Teoría de la Medida I",
-  creditos: 10
+  creditos: 10,
+  icon: "d69.jpg"
 }, {
   name: "Teoría de los Conjuntos I",
-  creditos: 10
+  creditos: 10,
+  icon: "d70.jpg"
 }, {
   name: "Termodinámica",
-  creditos: 12
+  creditos: 12,
+  icon: "d71.jpg"
 }, {
   name: "Topología I",
-  creditos: 10
+  creditos: 10,
+  icon: "d72.jpg"
 }];
 const OPTATIVAS_VII_VIII = [{
   name: "Álgebra Moderna III",
-  creditos: 10
+  creditos: 10,
+  icon: "d73.jpg"
 }, {
   name: "Álgebra Moderna IV",
-  creditos: 10
+  creditos: 10,
+  icon: "d74.jpg"
 }, {
   name: "Análisis de Fourier I",
-  creditos: 10
+  creditos: 10,
+  icon: "d75.jpg"
 }, {
   name: "Análisis de Fourier II",
-  creditos: 10
+  creditos: 10,
+  icon: "d76.jpg"
 }, {
   name: "Análisis de Regresión",
-  creditos: 10
+  creditos: 10,
+  icon: "d77.jpg"
 }, {
   name: "Análisis Matemático III",
-  creditos: 10
+  creditos: 10,
+  icon: "d78.jpg"
 }, {
   name: "Análisis Matemático IV",
-  creditos: 10
+  creditos: 10,
+  icon: "d79.jpg"
 }, {
   name: "Biología Matemática I",
-  creditos: 10
+  creditos: 10,
+  icon: "d80.jpg"
 }, {
   name: "Biología Matemática II",
-  creditos: 10
+  creditos: 10,
+  icon: "d81.jpg"
 }, {
   name: "Complejidad Computacional",
-  creditos: 10
+  creditos: 10,
+  icon: "d82.jpg"
 }, {
   name: "Dinámica de Medios Deformables",
-  creditos: 12
+  creditos: 12,
+  icon: "d83.jpg"
 }, {
   name: "Econometría I",
-  creditos: 10
+  creditos: 10,
+  icon: "d84.jpg"
 }, {
   name: "Econometría II",
-  creditos: 10
+  creditos: 10,
+  icon: "d85.jpg"
 }, {
   name: "Economía II",
-  creditos: 10
+  creditos: 10,
+  icon: "d86.jpg"
 }, {
   name: "Ecuaciones Diferenciales III",
-  creditos: 10
+  creditos: 10,
+  icon: "d87.jpg"
 }, {
   name: "Ecuaciones Diferenciales Parciales I",
-  creditos: 10
+  creditos: 10,
+  icon: "d88.jpg"
 }, {
   name: "Ecuaciones Diferenciales Parciales II",
-  creditos: 10
+  creditos: 10,
+  icon: "d89.jpg"
 }, {
   name: "Ecuaciones Integrales I",
-  creditos: 10
+  creditos: 10,
+  icon: "d90.jpg"
 }, {
   name: "Estadística Bayesiana",
-  creditos: 10
+  creditos: 10,
+  icon: "d91.jpg"
 }, {
   name: "Estadística III",
-  creditos: 10
+  creditos: 10,
+  icon: "d92.jpg"
 }, {
   name: "Física Computacional",
-  creditos: 12
+  creditos: 12,
+  icon: "d93.jpg"
 }, {
   name: "Física Estadística",
-  creditos: 12
+  creditos: 12,
+  icon: "d94.jpg"
 }, {
   name: "Geometría Algebraica I",
-  creditos: 10
+  creditos: 10,
+  icon: "d95.jpg"
 }, {
   name: "Geometría Algebraica II",
-  creditos: 10
+  creditos: 10,
+  icon: "d96.jpg"
 }, {
   name: "Geometría Diferencial III",
-  creditos: 10
+  creditos: 10,
+  icon: "d97.jpg"
 }, {
   name: "Geometría Riemanniana I",
-  creditos: 10
+  creditos: 10,
+  icon: "d98.jpg"
 }, {
   name: "Geometría Riemanniana II",
-  creditos: 10
+  creditos: 10,
+  icon: "d99.jpg"
 }, {
   name: "Geometría Sumatoria I",
-  creditos: 10
+  creditos: 10,
+  icon: "d100.jpg"
 }, {
   name: "Ingeniería de Software",
-  creditos: 10
+  creditos: 10,
+  icon: "d101.jpg"
 }, {
   name: "Inteligencia Artificial",
-  creditos: 10
+  creditos: 10,
+  icon: "d102.jpg"
 }, {
   name: "Introducción a las Funciones Recursivas y Computabilidad",
-  creditos: 10
+  creditos: 10,
+  icon: "d103.jpg"
 }, {
   name: "Lógica Matemática II",
-  creditos: 10
+  creditos: 10,
+  icon: "d104.jpg"
 }, {
   name: "Lógica Matemática III",
-  creditos: 10
+  creditos: 10,
+  icon: "d105.jpg"
 }, {
   name: "Mecánica Cuántica",
-  creditos: 12
+  creditos: 12,
+  icon: "d106.jpg"
 }, {
   name: "Procesos Estocásticos I",
-  creditos: 10
+  creditos: 10,
+  icon: "d107.jpg"
 }, {
   name: "Procesos Estocásticos II",
-  creditos: 10
+  creditos: 10,
+  icon: "d108.jpg"
 }, {
   name: "Programación Dinámica",
-  creditos: 10
+  creditos: 10,
+  icon: "d109.jpg"
 }, {
   name: "Programación Entera",
-  creditos: 10
+  creditos: 10,
+  icon: "d110.jpg"
 }, {
   name: "Programación no Lineal",
-  creditos: 10
+  creditos: 10,
+  icon: "d111.jpg"
 }, {
   name: "Redes de Computadoras",
-  creditos: 10
+  creditos: 10,
+  icon: "d112.jpg"
 }, {
   name: "Relatividad",
-  creditos: 6
+  creditos: 6,
+  icon: "d113.jpg"
 }, {
   name: "Seminario de Álgebra A",
-  creditos: 10
+  creditos: 10,
+  icon: "d114.jpg"
 }, {
   name: "Seminario de Álgebra B",
-  creditos: 10
+  creditos: 10,
+  icon: "d115.jpg"
 }, {
   name: "Seminario de Análisis Combinatorio",
-  creditos: 10
+  creditos: 10,
+  icon: "d116.jpg"
 }, {
   name: "Seminario de Análisis Matemático A",
-  creditos: 10
+  creditos: 10,
+  icon: "d117.jpg"
 }, {
   name: "Seminario de Análisis Matemático B",
-  creditos: 10
+  creditos: 10,
+  icon: "d118.jpg"
 }, {
   name: "Seminario de Ciencia y Sociedad II",
-  creditos: 12
+  creditos: 12,
+  icon: "d119.jpg"
 }, {
   name: "Seminario de Estadística A",
-  creditos: 10
+  creditos: 10,
+  icon: "d120.jpg"
 }, {
   name: "Seminario de Estadística B",
-  creditos: 10
+  creditos: 10,
+  icon: "d121.jpg"
 }, {
   name: "Seminario de Filosofía de la Ciencia I",
-  creditos: 10
+  creditos: 10,
+  icon: "d122.jpg"
 }, {
   name: "Seminario de Filosofía de la Ciencia II",
-  creditos: 10
+  creditos: 10,
+  icon: "d123.jpg"
 }, {
   name: "Seminario de Filosofía de la Ciencia III",
-  creditos: 10
+  creditos: 10,
+  icon: "d124.jpg"
 }, {
   name: "Seminario de Filosofía de la Ciencia IV",
-  creditos: 10
+  creditos: 10,
+  icon: "d125.jpg"
 }, {
   name: "Seminario de Geometría A",
-  creditos: 10
+  creditos: 10,
+  icon: "d126.jpg"
 }, {
   name: "Seminario de Geometría B",
-  creditos: 10
+  creditos: 10,
+  icon: "d127.jpg"
 }, {
   name: "Seminario de Investigación de Operaciones",
-  creditos: 10
+  creditos: 10,
+  icon: "d128.jpg"
 }, {
   name: "Seminario de Probabilidad A",
-  creditos: 10
+  creditos: 10,
+  icon: "d129.jpg"
 }, {
   name: "Seminario de Probalidad B",
-  creditos: 10
+  creditos: 10,
+  icon: "d130.jpg"
 }, {
   name: "Seminario de Temas Selectos de Computación",
-  creditos: 10
+  creditos: 10,
+  icon: "d131.jpg"
 }, {
   name: "Seminario de Topología A",
-  creditos: 10
+  creditos: 10,
+  icon: "d132.jpg"
 }, {
   name: "Seminario de Topología B",
-  creditos: 10
+  creditos: 10,
+  icon: "d133.jpg"
 }, {
   name: "Seminario Filosofía de las Matemáticas",
-  creditos: 10
+  creditos: 10,
+  icon: "d134.jpg"
 }, {
   name: "Seminario Matemáticas Aplicadas I",
-  creditos: 10
+  creditos: 10,
+  icon: "d135.jpg"
 }, {
   name: "Seminario Matemáticas Aplicadas II",
-  creditos: 10
+  creditos: 10,
+  icon: "d136.jpg"
 }, {
   name: "Seminario sobre Enseñanza de las Matemáticas I",
-  creditos: 10
+  creditos: 10,
+  icon: "d137.jpg"
 }, {
   name: "Seminario sobre Enseñanza de las Matemáticas II",
-  creditos: 10
+  creditos: 10,
+  icon: "d138.jpg"
 }, {
   name: "Seminario sobre Enseñanza de las Matemáticas IV",
-  creditos: 10
+  creditos: 10,
+  icon: "d139.jpg"
 }, {
   name: "Seminario Sobre Enseñanza Matemáticas III",
-  creditos: 10
+  creditos: 10,
+  icon: "d140.jpg"
 }, {
   name: "Simulación y Control",
-  creditos: 10
+  creditos: 10,
+  icon: "d141.jpg"
 }, {
   name: "Sistemas Dinámicos Discretos II",
-  creditos: 10
+  creditos: 10,
+  icon: "d142.jpg"
 }, {
   name: "Temas Selectos de Análisis Númerico",
-  creditos: 10
+  creditos: 10,
+  icon: "d143.jpg"
 }, {
   name: "Teoría de Colas",
-  creditos: 10
+  creditos: 10,
+  icon: "d144.jpg"
 }, {
   name: "Teoría de Inventarios, Reemplazo y Mantenimiento",
-  creditos: 10
+  creditos: 10,
+  icon: "d145.jpg"
 }, {
   name: "Teoría de Juegos I",
-  creditos: 10
+  creditos: 10,
+  icon: "d146.jpg"
 }, {
   name: "Teoría de Juegos II",
-  creditos: 10
+  creditos: 10,
+  icon: "d147.jpg"
 }, {
   name: "Teoría de la Medida II",
-  creditos: 10
+  creditos: 10,
+  icon: "d148.jpg"
 }, {
   name: "Teoría de las Decisiones",
-  creditos: 10
+  creditos: 10,
+  icon: "d149.jpg"
 }, {
   name: "Teoría de las Gráficas II",
-  creditos: 10
+  creditos: 10,
+  icon: "d150.jpg"
 }, {
   name: "Teoría de los Conjuntos II",
-  creditos: 10
+  creditos: 10,
+  icon: "d151.jpg"
 }, {
   name: "Teoría de los Conjuntos III",
-  creditos: 10
+  creditos: 10,
+  icon: "d152.jpg"
 }, {
   name: "Teoría de Redes",
-  creditos: 10
+  creditos: 10,
+  icon: "d153.jpg"
 }, {
   name: "Topología Diferencial I",
-  creditos: 10
+  creditos: 10,
+  icon: "d154.jpg"
 }, {
   name: "Topología Diferencial II",
-  creditos: 10
+  creditos: 10,
+  icon: "d155.jpg"
 }, {
   name: "Topología II",
-  creditos: 10
+  creditos: 10,
+  icon: "d156.jpg"
 }, {
   name: "Topología III",
-  creditos: 10
+  creditos: 10,
+  icon: "d157.jpg"
 }, {
   name: "Variable Compleja II",
-  creditos: 10
+  creditos: 10,
+  icon: "d158.jpg"
 }, {
   name: "Variable Compleja III",
-  creditos: 10
+  creditos: 10,
+  icon: "d159.jpg"
 }];
 
 
@@ -2731,7 +2920,11 @@ function renderOptativaCarousel(sem) {
   const total = available.length;
   const itemsHtml = available.map((o, i) => {
     const mono = o.name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase().slice(0, 2);
-    return `<div class="opt-item${i===cs.selectedIdx?' selected':''}" data-opt-item="${sem}-${i}"><div class="opt-item-icon">${mono}</div><div class="opt-item-info"><div class="opt-item-name">${o.name}</div><div class="opt-item-meta"><span class="meta-pill">Optativa</span><span class="meta-pill"><b>${o.creditos}</b> créditos</span></div></div></div>`;
+    const iconContent = o.icon
+      ? `<img src="${o.icon}" alt="${o.name}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--r2);" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`
+        + `<span style="display:none;width:100%;height:100%;align-items:center;justify-content:center;">${mono}</span>`
+      : mono;
+    return `<div class="opt-item${i===cs.selectedIdx?' selected':''}" data-opt-item="${sem}-${i}"><div class="opt-item-icon" style="overflow:hidden;">${iconContent}</div><div class="opt-item-info"><div class="opt-item-name">${o.name}</div><div class="opt-item-meta"><span class="meta-pill">Optativa</span><span class="meta-pill"><b>${o.creditos}</b> créditos</span></div></div></div>`;
   }).join('');
   const hint = total ? `<span class="opt-carousel-pos" id="opt-pos-${sem}">${total} opciones · toca para seleccionar</span>` : '';
   return `<div class="opt-carousel-wrap${cs.open?' open':''}" id="opt-carousel-${sem}"><div class="opt-carousel-inner"><div class="opt-carousel-viewport" id="opt-vp-${sem}"><div class="opt-carousel-list" id="opt-list-${sem}">${total?itemsHtml:'<div style="padding:1.5rem;text-align:center;color:var(--ink3);font-size:12px;">Sin opciones disponibles</div>'}</div></div><div class="opt-carousel-footer">${hint}</div></div></div>`;
@@ -2741,7 +2934,7 @@ function renderOptativaSlot(sem, slot) {
   const chosen = getOptSlot(sem, slot);
   if (!chosen) return '';
 
-  // Enrich with known academic data
+  // Enrich with known academic data (icon already on chosen from pool)
   const enriched = enrichOptativa(chosen);
   const mono = enriched.name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase().slice(0, 2);
   const mat = {
@@ -2760,7 +2953,9 @@ function renderOptativaSlot(sem, slot) {
   const offset = 107 - (107 * pct / 100);
 
   // Build icon html (initials box instead of img)
-  const iconHtml = `<div style="width:44px;height:44px;background:rgba(94,207,190,0.07);border:1px solid var(--border2);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--gold);flex-shrink:0;">${mono}</div>`;
+  const iconHtml = enriched.icon
+    ? `<div style="width:44px;height:44px;border-radius:var(--r2);overflow:hidden;flex-shrink:0;border:1px solid var(--border2);"><img src="${enriched.icon}" alt="${enriched.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='<span style=\'display:flex;width:100%;height:100%;align-items:center;justify-content:center;background:rgba(94,207,190,0.07);font-family:Playfair Display,serif;font-size:1.05rem;font-weight:900;color:var(--gold);\'>${mono}</span>'"></div>`
+    : `<div style="width:44px;height:44px;background:rgba(94,207,190,0.07);border:1px solid var(--border2);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--gold);flex-shrink:0;">${mono}</div>`;
 
   // Reuse existing render helpers
   const temarioHtml = renderTemario(mat);
