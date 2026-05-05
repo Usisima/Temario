@@ -17,22 +17,15 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:4rem;position:relative;overflow-x:hidden;}
-
-/* HEADER */
 .header{position:sticky;top:0;z-index:200;padding:1.1rem 1.5rem 0.9rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(0,0,0,0.85);backdrop-filter:blur(20px) saturate(150%);border-bottom:1px solid var(--border);}
 .header::after{content:'';position:absolute;bottom:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.3;}
 .header-left{display:flex;align-items:center;gap:0.8rem;}
 .header-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--ink);line-height:1;letter-spacing:-0.02em;flex-shrink:0;align-self:center;}
 .header-divider{width:1px;background:rgba(232,245,242,0.15);align-self:stretch;flex-shrink:0;}
-.header-text{}
 .header-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;color:var(--ink);letter-spacing:-0.01em;line-height:1.1;}
 .header-sub{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink3);margin-top:3px;font-weight:500;}
 .global-badge{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;padding:6px 16px;border-radius:99px;border:1px solid rgba(94,207,190,0.35);background:rgba(94,207,190,0.08);color:var(--gold2);white-space:nowrap;letter-spacing:0.04em;}
-
-/* CONTAINER */
 .container{max-width:600px;margin:0 auto;padding:0 1.2rem;}
-
-/* SEMESTER */
 .semester{margin-top:2.5rem;}
 .sem-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.5rem;padding:0 0.2rem;}
 .sem-title{font-family:'Playfair Display',serif;font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);}
@@ -42,8 +35,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .sem-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width 0.6s cubic-bezier(0.4,0,0.2,1);width:0%;}
 .sem-pct{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;color:var(--gold);min-width:32px;text-align:right;}
 .sem-grid{display:flex;flex-direction:column;gap:0.9rem;}
-
-/* CARD */
 .card{border-radius:var(--r);background:rgba(255,255,255,0.035);border:1px solid var(--border);backdrop-filter:blur(16px);box-shadow:0 4px 24px rgba(0,0,0,0.5);overflow:hidden;transition:border-color var(--ease),box-shadow var(--ease);}
 .card:hover{border-color:rgba(255,255,255,0.12);box-shadow:0 8px 40px rgba(0,0,0,0.6);}
 .card.open{border-color:rgba(94,207,190,0.2);box-shadow:0 8px 40px rgba(0,0,0,0.6),0 0 0 1px rgba(94,207,190,0.06) inset;}
@@ -64,15 +55,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .card.open .chevron{transform:rotate(180deg);color:var(--gold);}
 .card-body{max-height:0;overflow:hidden;transition:max-height 0.55s cubic-bezier(0.2,1,0.4,1);}
 .card.open .card-body{max-height:9999px;}
-
-/* TABS */
 .tabs{display:flex;background:rgba(0,0,0,0.3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0 1rem;gap:0.25rem;}
 .tab{font-size:11.5px;font-weight:600;padding:0.7rem 0.8rem;cursor:pointer;color:var(--ink3);border-bottom:2px solid transparent;letter-spacing:0.04em;text-transform:uppercase;transition:all var(--ease);white-space:nowrap;}
 .tab.active{color:var(--gold);border-bottom-color:var(--gold);}
 .tab-panel{display:none;padding:1rem;}
 .tab-panel.active{display:block;}
-
-/* TEMARIO */
 .tema-item{border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:0.65rem;background:rgba(255,255,255,0.018);}
 .tema-head{display:flex;align-items:flex-start;gap:0.7rem;padding:0.75rem 0.9rem;cursor:default;background:rgba(255,255,255,0.03);}
 .tema-item.done .tema-head{cursor:pointer;background:rgba(91,191,181,0.04);}
@@ -95,8 +82,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .sec-label{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink3);margin:1rem 0 0.6rem;display:flex;align-items:center;gap:0.6rem;padding:0.75rem 1rem 0;}
 .sec-label:first-child{padding-top:0.75rem;margin-top:0;}
 .sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
-
-/* BOOKS */
 .book-card{border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:0.65rem;}
 .book-head{display:flex;align-items:flex-start;gap:0.6rem;padding:0.7rem 0.9rem;cursor:pointer;background:rgba(255,255,255,0.025);}
 .book-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:0.4rem;}
@@ -118,8 +103,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .cap-check:checked::after{content:'';position:absolute;width:4px;height:7px;border:1.5px solid #000;border-top:none;border-left:none;transform:rotate(45deg);left:4px;top:1px;}
 .chap-label{font-size:12px;color:var(--ink3);flex:1;cursor:pointer;line-height:1.4;}
 .chap-item.read .chap-label{color:var(--teal);text-decoration:line-through;text-decoration-thickness:1px;opacity:0.7;}
-
-/* SUBSECUENTES */
 .subsec-block{margin:0;padding:0.75rem 1rem 1rem;background:rgba(94,207,190,0.04);border-top:1px solid rgba(94,207,190,0.12);}
 .subsec-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
 .subsec-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
@@ -128,363 +111,50 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
 .subsec-tag-arrow{font-size:9px;opacity:0.6;}
 .subsec-tag.no-link{cursor:default;opacity:0.5;}
 .subsec-tag.no-link:hover{background:rgba(94,207,190,0.07);border-color:rgba(94,207,190,0.2);}
-
-/* EMPTY / HIGHLIGHT */
 .empty-card{padding:2rem;text-align:center;color:var(--ink3);border:1px dashed var(--border);border-radius:var(--r);font-size:12px;letter-spacing:0.06em;font-family:'DM Mono',monospace;}
 .card.highlight-pulse{animation:pulseBorder 1.5s ease forwards;}
 @keyframes pulseBorder{0%{border-color:rgba(94,207,190,0.6);box-shadow:0 0 0 4px rgba(94,207,190,0.15);}100%{border-color:rgba(94,207,190,0.2);box-shadow:0 8px 40px rgba(0,0,0,0.6);}}
 
-/* ── OPTATIVA CAROUSEL (SCROLL MEJORADO) ── */
-.add-optativa-btn{display:flex;align-items:center;justify-content:center;gap:0.55rem;width:100%;padding:0.75rem 1rem;border-radius:var(--r);border:1px dashed rgba(94,207,190,0.2);background:rgba(94,207,190,0.03);color:var(--ink3);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.04em;transition:all 0.2s;}
+/* FIX 1: margin-top para separar de cards anteriores */
+.add-optativa-btn{display:flex;align-items:center;justify-content:center;gap:0.55rem;width:100%;padding:0.75rem 1rem;border-radius:var(--r);border:1px dashed rgba(94,207,190,0.2);background:rgba(94,207,190,0.03);color:var(--ink3);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.04em;transition:all 0.2s;margin-top:0.9rem;}
 .add-optativa-btn:hover{border-color:rgba(94,207,190,0.4);background:rgba(94,207,190,0.07);color:var(--gold);}
 .add-optativa-btn svg{flex-shrink:0;transition:transform 0.25s;}
 .add-optativa-btn.open svg{transform:rotate(180deg);}
 .add-optativa-btn.open{border-color:rgba(94,207,190,0.35);background:rgba(94,207,190,0.06);color:var(--gold);}
 
-/* Contenedor principal del carrusel */
 .opt-carousel-wrap{overflow:hidden;max-height:0;transition:max-height 0.45s cubic-bezier(0.2,1,0.4,1);}
 .opt-carousel-wrap.open{max-height:2000px;}
-
-/* Viewport con scroll NATIVO y snap points */
-.opt-carousel-viewport{
-  height:220px; /* Altura fija para 3 items visibles */
-  overflow-y:auto; /* ¡Scroll nativo! */
-  position:relative;
-  border-radius:var(--r2);
-  border:1px solid var(--border);
-  background:rgba(0,0,0,0.25);
-  
-  /* CSS Scroll Snap - esencial */
-  scroll-snap-type:y mandatory;
-  scroll-behavior:smooth;
-  
-  /* Oculta el scrollbar nativo */
-  scrollbar-width:thin;
-  scrollbar-color:rgba(94,207,190,0.3) transparent;
-  
-  /* Padding para compensar los fades */
-  padding: 10px 0;
-}
-
-/* Scrollbar personalizado para WebKit (Chrome/Safari) */
-.opt-carousel-viewport::-webkit-scrollbar{
-  width:6px;
-}
-
-.opt-carousel-viewport::-webkit-scrollbar-track{
-  background:rgba(255,255,255,0.03);
-  border-radius:99px;
-  margin:15px 0;
-}
-
-.opt-carousel-viewport::-webkit-scrollbar-thumb{
-  background:rgba(94,207,190,0.3);
-  border-radius:99px;
-  cursor:pointer;
-}
-
-.opt-carousel-viewport::-webkit-scrollbar-thumb:hover{
-  background:rgba(94,207,190,0.5);
-}
-
-/* Efectos de fade en los bordes */
-.opt-carousel-viewport::before,.opt-carousel-viewport::after{
-  content:'';
-  position:sticky;
-  left:0;right:0;
-  height:20px;
-  z-index:2;
-  pointer-events:none;
-  display:block;
-}
-
-.opt-carousel-viewport::before{
-  top:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,0.7),transparent);
-}
-
-.opt-carousel-viewport::after{
-  bottom:0;
-  background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
-}
-
-/* Lista de items */
-.opt-carousel-list{
-  display:flex;
-  flex-direction:column;
-  padding: 5px 0;
-}
-
-/* Cada item con snap */
-.opt-item{
-  display:flex;
-  align-items:center;
-  gap:0.9rem;
-  padding:0.55rem 1rem;
-  height:70px;
-  min-height:70px;
-  cursor:pointer;
-  border-bottom:1px solid var(--border);
-  transition:background 0.15s;
-  flex-shrink:0;
-  user-select:none;
-  
-  /* Scroll snap alignment */
-  scroll-snap-align:center;
-}
-
+.opt-carousel-viewport{height:220px;overflow-y:auto;position:relative;border-radius:var(--r2);border:1px solid var(--border);background:rgba(0,0,0,0.25);scroll-snap-type:y mandatory;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(94,207,190,0.3) transparent;padding:10px 0;}
+.opt-carousel-viewport::-webkit-scrollbar{width:6px;}
+.opt-carousel-viewport::-webkit-scrollbar-track{background:rgba(255,255,255,0.03);border-radius:99px;margin:15px 0;}
+.opt-carousel-viewport::-webkit-scrollbar-thumb{background:rgba(94,207,190,0.3);border-radius:99px;cursor:pointer;}
+.opt-carousel-viewport::-webkit-scrollbar-thumb:hover{background:rgba(94,207,190,0.5);}
+.opt-carousel-viewport::before,.opt-carousel-viewport::after{content:'';position:sticky;left:0;right:0;height:20px;z-index:2;pointer-events:none;display:block;}
+.opt-carousel-viewport::before{top:0;background:linear-gradient(to bottom,rgba(0,0,0,0.7),transparent);}
+.opt-carousel-viewport::after{bottom:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);}
+.opt-carousel-list{display:flex;flex-direction:column;padding:5px 0;}
+.opt-item{display:flex;align-items:center;gap:0.9rem;padding:0.55rem 1rem;height:70px;min-height:70px;cursor:pointer;border-bottom:1px solid var(--border);transition:background 0.15s;flex-shrink:0;user-select:none;scroll-snap-align:center;}
 .opt-item:last-child{border-bottom:none;}
 .opt-item:hover{background:rgba(94,207,190,0.05);}
-
-/* Estado seleccionado con mejor visibilidad */
-.opt-item.selected{
-  background:rgba(94,207,190,0.12);
-  border-left:3px solid var(--gold);
-  position:relative;
-}
-
-.opt-item.selected::after{
-  content:'✓';
-  position:absolute;
-  right:15px;
-  color:var(--gold);
-  font-size:16px;
-  font-weight:bold;
-}
-
-/* Icono del item */
-.opt-item-icon{
-  width:44px;height:44px;
-  border-radius:var(--r2);
-  background:rgba(94,207,190,0.07);
-  border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  font-family:'Playfair Display',serif;
-  font-size:1.05rem;font-weight:900;
-  color:var(--gold);
-  letter-spacing:-0.02em;
-}
-
-/* Info del item */
+.opt-item.selected{background:rgba(94,207,190,0.12);border-left:3px solid var(--gold);position:relative;}
+.opt-item.selected::after{content:'✓';position:absolute;right:15px;color:var(--gold);font-size:16px;font-weight:bold;}
+.opt-item-icon{width:44px;height:44px;border-radius:var(--r2);background:rgba(94,207,190,0.07);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--gold);letter-spacing:-0.02em;}
 .opt-item-info{flex:1;min-width:0;}
 .opt-item-name{font-family:'Playfair Display',serif;font-size:0.93rem;font-weight:700;color:var(--ink);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .opt-item-meta{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.35rem;}
-
-/* Footer del carrusel */
-.opt-carousel-footer{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0.55rem 0.2rem 0.3rem;gap:0.75rem;
-}
-
-.opt-carousel-pos{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  color:var(--ink3);
-}
-
-/* Botón de selección */
-.opt-select-btn{
-  font-family:'DM Sans',sans-serif;
-  font-size:12px;font-weight:600;
-  padding:6px 18px;
-  border-radius:99px;
-  border:1px solid rgba(94,207,190,0.45);
-  background:rgba(94,207,190,0.1);
-  color:var(--gold);
-  cursor:pointer;
-  transition:all 0.2s;
-}
-
-.opt-select-btn:hover{
-  background:rgba(94,207,190,0.2);
-  border-color:rgba(94,207,190,0.7);
-}
-
+.opt-carousel-footer{display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0.2rem 0.3rem;gap:0.75rem;}
+.opt-carousel-pos{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);}
+.opt-select-btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:6px 18px;border-radius:99px;border:1px solid rgba(94,207,190,0.45);background:rgba(94,207,190,0.1);color:var(--gold);cursor:pointer;transition:all 0.2s;}
+.opt-select-btn:hover{background:rgba(94,207,190,0.2);border-color:rgba(94,207,190,0.7);}
 .opt-select-btn:disabled{opacity:0.3;cursor:default;}
-
-/* Botones de cambio/eliminación */
-.opt-change-row{
-  display:flex;align-items:center;justify-content:flex-end;gap:0.5rem;
-  padding:0.6rem 1rem;
-  border-top:1px solid rgba(94,207,190,0.08);
-  background:rgba(0,0,0,0.2);
-}
-
-.opt-change-btn{
-  font-family:'DM Mono',monospace;font-size:9px;
-  padding:3px 10px;border-radius:99px;
-  border:1px solid var(--border2);
-  background:transparent;color:var(--ink3);
-  cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;
-}
-
-.opt-change-btn:hover{
-  background:rgba(94,207,190,0.08);
-  color:var(--gold);
-  border-color:rgba(94,207,190,0.3);
-}
-
-.opt-remove-btn{
-  font-family:'DM Mono',monospace;font-size:9px;
-  padding:3px 10px;border-radius:99px;
-  border:1px solid rgba(255,80,80,0.2);
-  background:transparent;
-  color:rgba(255,120,120,0.6);
-  cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;
-}
-
-.opt-remove-btn:hover{
-  background:rgba(255,80,80,0.08);
-  color:rgba(255,120,120,1);
-  border-color:rgba(255,80,80,0.4);
-}
-
-/* ── OLD optativa wrapper (keep for selected state) ── */
-.optativa-wrapper{
-  position:relative;
-  border-radius:var(--r);
-  min-height:70px;
-}
-
-/* The empty state (before selection) */
-.optativa-empty{
-  border-radius:var(--r);
-  border:1px dashed rgba(255,255,255,0.1);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 1rem;
-  min-height:70px;
-  gap:0.75rem;
-  cursor:pointer;
-  transition:border-color 0.2s, background 0.2s;
-  background:rgba(255,255,255,0.018);
-}
-.optativa-empty:hover{border-color:rgba(94,207,190,0.3);background:rgba(94,207,190,0.04);}
-.optativa-empty-left{display:flex;flex-direction:column;gap:0.3rem;}
-.optativa-empty-name{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.55);}
-.optativa-empty-tag{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.28);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:2px 8px;border-radius:99px;letter-spacing:0.04em;align-self:flex-start;}
-.optativa-pick-btn{
-  font-family:'DM Mono',monospace;font-size:10px;font-weight:500;
-  padding:5px 12px;border-radius:99px;border:1px solid rgba(94,207,190,0.35);
-  background:rgba(94,207,190,0.08);color:var(--gold);cursor:pointer;
-  white-space:nowrap;letter-spacing:0.04em;flex-shrink:0;
-  transition:all 0.2s;
-}
-.optativa-pick-btn:hover{background:rgba(94,207,190,0.18);border-color:rgba(94,207,190,0.5);}
-
-/* OVERLAY PICKER */
-.opt-picker-overlay{
-  position:fixed;inset:0;z-index:500;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;
-  padding:1.5rem;
-  opacity:0;pointer-events:none;
-  transition:opacity 0.25s;
-}
-.opt-picker-overlay.visible{opacity:1;pointer-events:all;}
-
-.opt-picker-box{
-  width:100%;max-width:500px;
-  background:#0a0f0e;
-  border:1px solid rgba(94,207,190,0.2);
-  border-radius:var(--r);
-  box-shadow:0 20px 60px rgba(0,0,0,0.8);
-  overflow:hidden;
-  display:flex;flex-direction:column;
-  max-height:80vh;
-}
-.opt-picker-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 1.2rem;
-  border-bottom:1px solid var(--border);
-  flex-shrink:0;
-}
-.opt-picker-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);}
-.opt-picker-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);}
-.opt-picker-close{
-  width:28px;height:28px;border-radius:50%;border:1px solid var(--border2);
-  background:transparent;color:var(--ink3);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-size:14px;
-  transition:all 0.15s;
-}
-.opt-picker-close:hover{background:rgba(255,255,255,0.08);color:var(--ink);}
-
-/* Carousel viewport */
-.opt-picker-viewport{
-  flex:1;overflow:hidden;
-  position:relative;
-  min-height:130px;
-}
-.opt-picker-track{
-  display:flex;
-  height:100%;
-  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
-}
-.opt-picker-slide{
-  min-width:100%;
-  padding:1rem 1.2rem;
-  display:flex;align-items:center;
-  flex-shrink:0;
-  box-sizing:border-box;
-}
-/* Each slide looks like a card-head */
-.opt-slide-inner{
-  width:100%;
-  border-radius:var(--r2);
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--border2);
-  padding:0.9rem 1rem;
-  display:flex;align-items:center;gap:0.75rem;
-  transition:border-color 0.2s;
-}
-.opt-slide-inner:hover{border-color:rgba(94,207,190,0.3);}
-.opt-slide-info{flex:1;min-width:0;}
-.opt-slide-name{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--ink);line-height:1.3;}
-.opt-slide-meta{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.35rem;}
-
-/* Nav + select row */
-.opt-picker-nav{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0.75rem 1.2rem;
-  border-top:1px solid var(--border);
-  flex-shrink:0;
-  gap:0.75rem;
-}
-.opt-nav-btn{
-  width:34px;height:34px;border-radius:50%;border:1px solid var(--border2);
-  background:rgba(255,255,255,0.04);color:var(--ink2);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.15s;flex-shrink:0;
-}
-.opt-nav-btn:hover:not(:disabled){background:rgba(94,207,190,0.12);border-color:rgba(94,207,190,0.35);color:var(--gold);}
-.opt-nav-btn:disabled{opacity:0.25;cursor:default;}
-.opt-picker-pos{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);flex:1;text-align:center;}
-.opt-select-btn{
-  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;
-  padding:7px 18px;border-radius:99px;
-  border:1px solid rgba(94,207,190,0.5);
-  background:rgba(94,207,190,0.12);color:var(--gold);
-  cursor:pointer;transition:all 0.2s;flex-shrink:0;
-}
-.opt-select-btn:hover{background:rgba(94,207,190,0.22);border-color:rgba(94,207,190,0.7);}
-
-/* Change/remove row inside selected optativa card */
-.opt-change-row{
-  display:flex;align-items:center;justify-content:flex-end;gap:0.5rem;
-  padding:0.6rem 1rem;
-  border-top:1px solid rgba(94,207,190,0.08);
-  background:rgba(0,0,0,0.2);
-}
+.opt-change-row{display:flex;align-items:center;justify-content:flex-end;gap:0.5rem;padding:0.6rem 1rem;border-top:1px solid rgba(94,207,190,0.08);background:rgba(0,0,0,0.2);}
 .opt-change-btn{font-family:'DM Mono',monospace;font-size:9px;padding:3px 10px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--ink3);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
 .opt-change-btn:hover{background:rgba(94,207,190,0.08);color:var(--gold);border-color:rgba(94,207,190,0.3);}
 .opt-remove-btn{font-family:'DM Mono',monospace;font-size:9px;padding:3px 10px;border-radius:99px;border:1px solid rgba(255,80,80,0.2);background:transparent;color:rgba(255,120,120,0.6);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
 .opt-remove-btn:hover{background:rgba(255,80,80,0.08);color:rgba(255,120,120,1);border-color:rgba(255,80,80,0.4);}
-
 </style>
 </head>
 <body>
-
 <header class="header">
   <div class="header-left">
     <div class="header-logo">Ж</div>
@@ -496,132 +166,15 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(-
   </div>
   <span class="global-badge" id="global-pct">0%</span>
 </header>
-
 <div class="container" id="root"></div>
-
 <script>
-// ── OPTATIVAS DATA ──
-const OPTATIVAS_I_II = [
-  {name:"Álgebra Geométrica",creditos:10},{name:"Ciencia, Diversidad e Inclusión",creditos:8},
-  {name:"Conjuntos Convexos",creditos:10},{name:"Conjuntos y Lógica",creditos:10},
-  {name:"Diseño de Sistemas Digitales",creditos:10},{name:"Electromagnetismo I",creditos:12},
-  {name:"Fenómenos Colectivos",creditos:12},{name:"Geometría Moderna II",creditos:10},
-  {name:"Geometría Proyectiva",creditos:10},{name:"Graficas y Juegos",creditos:10},
-  {name:"Introducción a Ciencias de la Computación I",creditos:10},{name:"Introducción a Ciencias de la Computación II",creditos:10},
-  {name:"Introducción a la Geometría Avanzada",creditos:10},{name:"Matemáticas Discretas",creditos:10},
-  {name:"Mecánica Vectorial",creditos:12},{name:"Probabilidad I",creditos:10},
-  {name:"Teoría de los Números I",creditos:10},{name:"Teoría de los Números II",creditos:10}
-];
-const OPTATIVAS_III_IV = [
-  {name:"Álgebra Geométrica",creditos:10},{name:"Ciencia, Diversidad e Inclusión",creditos:8},
-  {name:"Conjuntos Convexos",creditos:10},{name:"Conjuntos y Lógica",creditos:10},
-  {name:"Diseño de Sistemas Digitales",creditos:10},{name:"Electromagnetismo I",creditos:12},
-  {name:"Fenómenos Colectivos",creditos:12},{name:"Geometría Moderna II",creditos:10},
-  {name:"Geometría Proyectiva",creditos:10},{name:"Graficas y Juegos",creditos:10},
-  {name:"Introducción a Ciencias de la Computación I",creditos:10},{name:"Introducción a Ciencias de la Computación II",creditos:10},
-  {name:"Introducción a la Geometría Avanzada",creditos:10},{name:"Matemáticas Discretas",creditos:10},
-  {name:"Mecánica Vectorial",creditos:12},{name:"Probabilidad I",creditos:10},
-  {name:"Teoría de los Números I",creditos:10},{name:"Teoría de los Números II",creditos:10},
-  // V-VI also available from III
-  {name:"Álgebra Moderna II",creditos:10},{name:"Análisis de Algoritmos I",creditos:10},
-  {name:"Análisis Numérico",creditos:10},{name:"Arquitectura de Computadoras",creditos:10},
-  {name:"Cálculo de las Variaciones",creditos:10},{name:"Didáctica de las Matemáticas",creditos:10},
-  {name:"Economía I",creditos:10},{name:"Ecuaciones Diferenciales II",creditos:10},
-  {name:"Electromagnetismo II",creditos:12},{name:"Estadística I",creditos:10},
-  {name:"Estadística II",creditos:10},{name:"Geometría Diferencial I",creditos:10},
-  {name:"Geometría Diferencial II",creditos:10},{name:"Historia de las Matemáticas I",creditos:10},
-  {name:"Historia de las Matemáticas II",creditos:10},{name:"Introducción a la Física Cuántica",creditos:12},
-  {name:"Introducción a los Sistemas Complejos",creditos:12},{name:"Introducción Matemática a la Mecánica Celeste",creditos:10},
-  {name:"Investigación de Operaciones",creditos:10},{name:"La Sustentabilidad del Desarrollo",creditos:12},
-  {name:"Lenguajes de Programación y sus Paradigmas",creditos:10},{name:"Lógica Matemática I",creditos:10},
-  {name:"Matemáticas Avanzadas de la Física",creditos:10},{name:"Mecánica Analítica",creditos:12},
-  {name:"Muestreo",creditos:10},{name:"Óptica",creditos:12},{name:"Probabilidad II",creditos:10},
-  {name:"Programación Lineal",creditos:10},{name:"Seminario de Ciencia y Sociedad I",creditos:12},
-  {name:"Series de Fourier y Teoría de Sturm Louville",creditos:10},{name:"Sistemas Dinámicos Discretos I",creditos:10},
-  {name:"Sistemas Operativos",creditos:10},{name:"Teoría de Gráficas",creditos:10},
-  {name:"Teoría de la Computación",creditos:10},{name:"Teoría de la Medida I",creditos:10},
-  {name:"Teoría de los Conjuntos I",creditos:10},{name:"Termodinámica",creditos:12},
-  {name:"Topología I",creditos:10}
-];
-const OPTATIVAS_V_VI = [
-  {name:"Álgebra Moderna II",creditos:10},{name:"Análisis de Algoritmos I",creditos:10},
-  {name:"Análisis Numérico",creditos:10},{name:"Arquitectura de Computadoras",creditos:10},
-  {name:"Cálculo de las Variaciones",creditos:10},{name:"Didáctica de las Matemáticas",creditos:10},
-  {name:"Economía I",creditos:10},{name:"Ecuaciones Diferenciales II",creditos:10},
-  {name:"Electromagnetismo II",creditos:12},{name:"Estadística I",creditos:10},
-  {name:"Estadística II",creditos:10},{name:"Geometría Diferencial I",creditos:10},
-  {name:"Geometría Diferencial II",creditos:10},{name:"Historia de las Matemáticas I",creditos:10},
-  {name:"Historia de las Matemáticas II",creditos:10},{name:"Introducción a la Física Cuántica",creditos:12},
-  {name:"Introducción a los Sistemas Complejos",creditos:12},{name:"Introducción Matemática a la Mecánica Celeste",creditos:10},
-  {name:"Investigación de Operaciones",creditos:10},{name:"La Sustentabilidad del Desarrollo",creditos:12},
-  {name:"Lenguajes de Programación y sus Paradigmas",creditos:10},{name:"Lógica Matemática I",creditos:10},
-  {name:"Matemáticas Avanzadas de la Física",creditos:10},{name:"Mecánica Analítica",creditos:12},
-  {name:"Muestreo",creditos:10},{name:"Óptica",creditos:12},{name:"Probabilidad II",creditos:10},
-  {name:"Programación Lineal",creditos:10},{name:"Seminario de Ciencia y Sociedad I",creditos:12},
-  {name:"Series de Fourier y Teoría de Sturm Louville",creditos:10},{name:"Sistemas Dinámicos Discretos I",creditos:10},
-  {name:"Sistemas Operativos",creditos:10},{name:"Teoría de Gráficas",creditos:10},
-  {name:"Teoría de la Computación",creditos:10},{name:"Teoría de la Medida I",creditos:10},
-  {name:"Teoría de los Conjuntos I",creditos:10},{name:"Termodinámica",creditos:12},
-  {name:"Topología I",creditos:10}
-];
-const OPTATIVAS_VII_VIII = [
-  {name:"Álgebra Moderna III",creditos:10},{name:"Álgebra Moderna IV",creditos:10},
-  {name:"Análisis de Fourier I",creditos:10},{name:"Análisis de Fourier II",creditos:10},
-  {name:"Análisis de Regresión",creditos:10},{name:"Análisis Matemático III",creditos:10},
-  {name:"Análisis Matemático IV",creditos:10},{name:"Biología Matemática I",creditos:10},
-  {name:"Biología Matemática II",creditos:10},{name:"Complejidad Computacional",creditos:10},
-  {name:"Dinámica de Medios Deformables",creditos:12},{name:"Econometría I",creditos:10},
-  {name:"Econometría II",creditos:10},{name:"Economía II",creditos:10},
-  {name:"Ecuaciones Diferenciales III",creditos:10},{name:"Ecuaciones Diferenciales Parciales I",creditos:10},
-  {name:"Ecuaciones Diferenciales Parciales II",creditos:10},{name:"Ecuaciones Integrales I",creditos:10},
-  {name:"Estadística Bayesiana",creditos:10},{name:"Estadística III",creditos:10},
-  {name:"Física Computacional",creditos:12},{name:"Física Estadística",creditos:12},
-  {name:"Geometría Algebraica I",creditos:10},{name:"Geometría Algebraica II",creditos:10},
-  {name:"Geometría Diferencial III",creditos:10},{name:"Geometría Riemanniana I",creditos:10},
-  {name:"Geometría Riemanniana II",creditos:10},{name:"Geometría Sumatoria I",creditos:10},
-  {name:"Ingeniería de Software",creditos:10},{name:"Inteligencia Artificial",creditos:10},
-  {name:"Introducción a las Funciones Recursivas y Computabilidad",creditos:10},
-  {name:"Lógica Matemática II",creditos:10},{name:"Lógica Matemática III",creditos:10},
-  {name:"Mecánica Cuántica",creditos:12},{name:"Procesos Estocásticos I",creditos:10},
-  {name:"Procesos Estocásticos II",creditos:10},{name:"Programación Dinámica",creditos:10},
-  {name:"Programación Entera",creditos:10},{name:"Programación no Lineal",creditos:10},
-  {name:"Redes de Computadoras",creditos:10},{name:"Relatividad",creditos:6},
-  {name:"Seminario de Álgebra A",creditos:10},{name:"Seminario de Álgebra B",creditos:10},
-  {name:"Seminario de Análisis Combinatorio",creditos:10},{name:"Seminario de Análisis Matemático A",creditos:10},
-  {name:"Seminario de Análisis Matemático B",creditos:10},{name:"Seminario de Ciencia y Sociedad II",creditos:12},
-  {name:"Seminario de Estadística A",creditos:10},{name:"Seminario de Estadística B",creditos:10},
-  {name:"Seminario de Filosofía de la Ciencia I",creditos:10},{name:"Seminario de Filosofía de la Ciencia II",creditos:10},
-  {name:"Seminario de Filosofía de la Ciencia III",creditos:10},{name:"Seminario de Filosofía de la Ciencia IV",creditos:10},
-  {name:"Seminario de Geometría A",creditos:10},{name:"Seminario de Geometría B",creditos:10},
-  {name:"Seminario de Investigación de Operaciones",creditos:10},{name:"Seminario de Probabilidad A",creditos:10},
-  {name:"Seminario de Probalidad B",creditos:10},{name:"Seminario de Temas Selectos de Computación",creditos:10},
-  {name:"Seminario de Topología A",creditos:10},{name:"Seminario de Topología B",creditos:10},
-  {name:"Seminario Filosofía de las Matemáticas",creditos:10},{name:"Seminario Matemáticas Aplicadas I",creditos:10},
-  {name:"Seminario Matemáticas Aplicadas II",creditos:10},{name:"Seminario sobre Enseñanza de las Matemáticas I",creditos:10},
-  {name:"Seminario sobre Enseñanza de las Matemáticas II",creditos:10},
-  {name:"Seminario sobre Enseñanza de las Matemáticas IV",creditos:10},
-  {name:"Seminario Sobre Enseñanza Matemáticas III",creditos:10},
-  {name:"Simulación y Control",creditos:10},{name:"Sistemas Dinámicos Discretos II",creditos:10},
-  {name:"Temas Selectos de Análisis Númerico",creditos:10},{name:"Teoría de Colas",creditos:10},
-  {name:"Teoría de Inventarios, Reemplazo y Mantenimiento",creditos:10},
-  {name:"Teoría de Juegos I",creditos:10},{name:"Teoría de Juegos II",creditos:10},
-  {name:"Teoría de la Medida II",creditos:10},{name:"Teoría de las Decisiones",creditos:10},
-  {name:"Teoría de las Gráficas II",creditos:10},{name:"Teoría de los Conjuntos II",creditos:10},
-  {name:"Teoría de los Conjuntos III",creditos:10},{name:"Teoría de Redes",creditos:10},
-  {name:"Topología Diferencial I",creditos:10},{name:"Topología Diferencial II",creditos:10},
-  {name:"Topología II",creditos:10},{name:"Topología III",creditos:10},
-  {name:"Variable Compleja II",creditos:10},{name:"Variable Compleja III",creditos:10}
-];
+const OPTATIVAS_I_II=[{name:"Álgebra Geométrica",creditos:10},{name:"Ciencia, Diversidad e Inclusión",creditos:8},{name:"Conjuntos Convexos",creditos:10},{name:"Conjuntos y Lógica",creditos:10},{name:"Diseño de Sistemas Digitales",creditos:10},{name:"Electromagnetismo I",creditos:12},{name:"Fenómenos Colectivos",creditos:12},{name:"Geometría Moderna II",creditos:10},{name:"Geometría Proyectiva",creditos:10},{name:"Graficas y Juegos",creditos:10},{name:"Introducción a Ciencias de la Computación I",creditos:10},{name:"Introducción a Ciencias de la Computación II",creditos:10},{name:"Introducción a la Geometría Avanzada",creditos:10},{name:"Matemáticas Discretas",creditos:10},{name:"Mecánica Vectorial",creditos:12},{name:"Probabilidad I",creditos:10},{name:"Teoría de los Números I",creditos:10},{name:"Teoría de los Números II",creditos:10}];
+const OPTATIVAS_III_IV=[...OPTATIVAS_I_II,{name:"Álgebra Moderna II",creditos:10},{name:"Análisis de Algoritmos I",creditos:10},{name:"Análisis Numérico",creditos:10},{name:"Arquitectura de Computadoras",creditos:10},{name:"Cálculo de las Variaciones",creditos:10},{name:"Didáctica de las Matemáticas",creditos:10},{name:"Economía I",creditos:10},{name:"Ecuaciones Diferenciales II",creditos:10},{name:"Electromagnetismo II",creditos:12},{name:"Estadística I",creditos:10},{name:"Estadística II",creditos:10},{name:"Geometría Diferencial I",creditos:10},{name:"Geometría Diferencial II",creditos:10},{name:"Historia de las Matemáticas I",creditos:10},{name:"Historia de las Matemáticas II",creditos:10},{name:"Introducción a la Física Cuántica",creditos:12},{name:"Introducción a los Sistemas Complejos",creditos:12},{name:"Introducción Matemática a la Mecánica Celeste",creditos:10},{name:"Investigación de Operaciones",creditos:10},{name:"La Sustentabilidad del Desarrollo",creditos:12},{name:"Lenguajes de Programación y sus Paradigmas",creditos:10},{name:"Lógica Matemática I",creditos:10},{name:"Matemáticas Avanzadas de la Física",creditos:10},{name:"Mecánica Analítica",creditos:12},{name:"Muestreo",creditos:10},{name:"Óptica",creditos:12},{name:"Probabilidad II",creditos:10},{name:"Programación Lineal",creditos:10},{name:"Seminario de Ciencia y Sociedad I",creditos:12},{name:"Series de Fourier y Teoría de Sturm Louville",creditos:10},{name:"Sistemas Dinámicos Discretos I",creditos:10},{name:"Sistemas Operativos",creditos:10},{name:"Teoría de Gráficas",creditos:10},{name:"Teoría de la Computación",creditos:10},{name:"Teoría de la Medida I",creditos:10},{name:"Teoría de los Conjuntos I",creditos:10},{name:"Termodinámica",creditos:12},{name:"Topología I",creditos:10}];
+const OPTATIVAS_V_VI=[{name:"Álgebra Moderna II",creditos:10},{name:"Análisis de Algoritmos I",creditos:10},{name:"Análisis Numérico",creditos:10},{name:"Arquitectura de Computadoras",creditos:10},{name:"Cálculo de las Variaciones",creditos:10},{name:"Didáctica de las Matemáticas",creditos:10},{name:"Economía I",creditos:10},{name:"Ecuaciones Diferenciales II",creditos:10},{name:"Electromagnetismo II",creditos:12},{name:"Estadística I",creditos:10},{name:"Estadística II",creditos:10},{name:"Geometría Diferencial I",creditos:10},{name:"Geometría Diferencial II",creditos:10},{name:"Historia de las Matemáticas I",creditos:10},{name:"Historia de las Matemáticas II",creditos:10},{name:"Introducción a la Física Cuántica",creditos:12},{name:"Introducción a los Sistemas Complejos",creditos:12},{name:"Introducción Matemática a la Mecánica Celeste",creditos:10},{name:"Investigación de Operaciones",creditos:10},{name:"La Sustentabilidad del Desarrollo",creditos:12},{name:"Lenguajes de Programación y sus Paradigmas",creditos:10},{name:"Lógica Matemática I",creditos:10},{name:"Matemáticas Avanzadas de la Física",creditos:10},{name:"Mecánica Analítica",creditos:12},{name:"Muestreo",creditos:10},{name:"Óptica",creditos:12},{name:"Probabilidad II",creditos:10},{name:"Programación Lineal",creditos:10},{name:"Seminario de Ciencia y Sociedad I",creditos:12},{name:"Series de Fourier y Teoría de Sturm Louville",creditos:10},{name:"Sistemas Dinámicos Discretos I",creditos:10},{name:"Sistemas Operativos",creditos:10},{name:"Teoría de Gráficas",creditos:10},{name:"Teoría de la Computación",creditos:10},{name:"Teoría de la Medida I",creditos:10},{name:"Teoría de los Conjuntos I",creditos:10},{name:"Termodinámica",creditos:12},{name:"Topología I",creditos:10}];
+const OPTATIVAS_VII_VIII=[{name:"Álgebra Moderna III",creditos:10},{name:"Álgebra Moderna IV",creditos:10},{name:"Análisis de Fourier I",creditos:10},{name:"Análisis de Fourier II",creditos:10},{name:"Análisis de Regresión",creditos:10},{name:"Análisis Matemático III",creditos:10},{name:"Análisis Matemático IV",creditos:10},{name:"Biología Matemática I",creditos:10},{name:"Biología Matemática II",creditos:10},{name:"Complejidad Computacional",creditos:10},{name:"Dinámica de Medios Deformables",creditos:12},{name:"Econometría I",creditos:10},{name:"Econometría II",creditos:10},{name:"Economía II",creditos:10},{name:"Ecuaciones Diferenciales III",creditos:10},{name:"Ecuaciones Diferenciales Parciales I",creditos:10},{name:"Ecuaciones Diferenciales Parciales II",creditos:10},{name:"Ecuaciones Integrales I",creditos:10},{name:"Estadística Bayesiana",creditos:10},{name:"Estadística III",creditos:10},{name:"Física Computacional",creditos:12},{name:"Física Estadística",creditos:12},{name:"Geometría Algebraica I",creditos:10},{name:"Geometría Algebraica II",creditos:10},{name:"Geometría Diferencial III",creditos:10},{name:"Geometría Riemanniana I",creditos:10},{name:"Geometría Riemanniana II",creditos:10},{name:"Geometría Sumatoria I",creditos:10},{name:"Ingeniería de Software",creditos:10},{name:"Inteligencia Artificial",creditos:10},{name:"Introducción a las Funciones Recursivas y Computabilidad",creditos:10},{name:"Lógica Matemática II",creditos:10},{name:"Lógica Matemática III",creditos:10},{name:"Mecánica Cuántica",creditos:12},{name:"Procesos Estocásticos I",creditos:10},{name:"Procesos Estocásticos II",creditos:10},{name:"Programación Dinámica",creditos:10},{name:"Programación Entera",creditos:10},{name:"Programación no Lineal",creditos:10},{name:"Redes de Computadoras",creditos:10},{name:"Relatividad",creditos:6},{name:"Seminario de Álgebra A",creditos:10},{name:"Seminario de Álgebra B",creditos:10},{name:"Seminario de Análisis Combinatorio",creditos:10},{name:"Seminario de Análisis Matemático A",creditos:10},{name:"Seminario de Análisis Matemático B",creditos:10},{name:"Seminario de Ciencia y Sociedad II",creditos:12},{name:"Seminario de Estadística A",creditos:10},{name:"Seminario de Estadística B",creditos:10},{name:"Seminario de Filosofía de la Ciencia I",creditos:10},{name:"Seminario de Filosofía de la Ciencia II",creditos:10},{name:"Seminario de Filosofía de la Ciencia III",creditos:10},{name:"Seminario de Filosofía de la Ciencia IV",creditos:10},{name:"Seminario de Geometría A",creditos:10},{name:"Seminario de Geometría B",creditos:10},{name:"Seminario de Investigación de Operaciones",creditos:10},{name:"Seminario de Probabilidad A",creditos:10},{name:"Seminario de Probalidad B",creditos:10},{name:"Seminario de Temas Selectos de Computación",creditos:10},{name:"Seminario de Topología A",creditos:10},{name:"Seminario de Topología B",creditos:10},{name:"Seminario Filosofía de las Matemáticas",creditos:10},{name:"Seminario Matemáticas Aplicadas I",creditos:10},{name:"Seminario Matemáticas Aplicadas II",creditos:10},{name:"Seminario sobre Enseñanza de las Matemáticas I",creditos:10},{name:"Seminario sobre Enseñanza de las Matemáticas II",creditos:10},{name:"Seminario sobre Enseñanza de las Matemáticas IV",creditos:10},{name:"Seminario Sobre Enseñanza Matemáticas III",creditos:10},{name:"Simulación y Control",creditos:10},{name:"Sistemas Dinámicos Discretos II",creditos:10},{name:"Temas Selectos de Análisis Númerico",creditos:10},{name:"Teoría de Colas",creditos:10},{name:"Teoría de Inventarios, Reemplazo y Mantenimiento",creditos:10},{name:"Teoría de Juegos I",creditos:10},{name:"Teoría de Juegos II",creditos:10},{name:"Teoría de la Medida II",creditos:10},{name:"Teoría de las Decisiones",creditos:10},{name:"Teoría de las Gráficas II",creditos:10},{name:"Teoría de los Conjuntos II",creditos:10},{name:"Teoría de los Conjuntos III",creditos:10},{name:"Teoría de Redes",creditos:10},{name:"Topología Diferencial I",creditos:10},{name:"Topología Diferencial II",creditos:10},{name:"Topología II",creditos:10},{name:"Topología III",creditos:10},{name:"Variable Compleja II",creditos:10},{name:"Variable Compleja III",creditos:10}];
 
-// Map semestre -> pool
-function getOptativasPool(semestre){
-  if(semestre<=2) return OPTATIVAS_I_II;
-  if(semestre<=4) return OPTATIVAS_III_IV;
-  if(semestre<=6) return OPTATIVAS_V_VI;
-  return OPTATIVAS_VII_VIII;
-}
+function getOptativasPool(s){if(s<=2)return OPTATIVAS_I_II;if(s<=4)return OPTATIVAS_III_IV;if(s<=6)return OPTATIVAS_V_VI;return OPTATIVAS_VII_VIII;}
 
-// ── CURRICULUM ──
 const TOTAL_CREDITOS=352;
 const CURRICULUM=[
   {semestre:1,titulo:"Primer Semestre",optativas:0,materias:[{id:"algebra_superior_1",name:"Álgebra Superior I",clave:"0007",creditos:10,icon:"d1.jpg",temario:[{num:"1",name:"Conjuntos",horas:12,subtemas:["Noción intuitiva e igualdad de conjuntos. Subconjuntos. Conjunto vacío, Conjunto Universal","Operaciones con conjuntos: unión, intersección, complemento y diferencia","Conjunto potencia. Producto cartesiano. Familias de conjuntos"]},{num:"2",name:"Relaciones y funciones",horas:19,subtemas:["Relaciones (dominio, codominio e imagen)","Funciones (imágenes e imágenes inversas)","Composición de funciones. Función inversa","Funciones inyectivas, suprayectivas y biyectivas","Cardinalidad. Conjuntos finitos e infinitos. Funciones entre conjuntos finitos","Relaciones de equivalencia y particiones"]},{num:"3",name:"Números naturales y cálculo combinatorio",horas:12,subtemas:["Los números naturales. Principio de inducción","Cálculo combinatorio: ordenaciones con repetición, ordenaciones, permutaciones y combinaciones","Teorema del binomio. Relaciones entre coeficientes binomiales"]},{num:"4",name:"Espacios vectoriales",horas:12,subtemas:["Los espacios ℝ² y ℝ³. Interpretación geométrica","El espacio vectorial ℝⁿ","Subespacios. Combinaciones lineales. Subespacio generado por un conjunto de vectores","Dependencia e independencia lineal","Bases. Dimensión"]},{num:"5",name:"Matrices y determinantes",horas:13,subtemas:["Matrices, definición y operaciones. Transpuesta de una matriz","Operaciones elementales: Matrices escalón reducidas. Rango de una matriz","El determinante de una matriz cuadrada: definición y propiedades","Cálculo de determinantes","Caracterización del rango de una matriz por medio del determinante"]},{num:"6",name:"Sistemas de ecuaciones lineales",horas:12,subtemas:["Sistemas, soluciones, matriz y matriz aumentada","Criterios de existencia de soluciones","Regla de Cramer","Espacio de soluciones de un sistema no homogéneo","Resolución de sistemas (eliminación)"]}],bibBasicas:[{name:"Cárdenas, H., Lluis, E., Raggi, F., Tomás, F. — Álgebra Superior. Trillas, 1974.",caps:["Conjuntos","Relaciones y funciones","Números naturales","Espacios vectoriales","Matrices","Sistemas de ecuaciones"]},{name:"Nachbin, L. — Álgebra Elemental. OEA, 1986.",caps:["Teoría de conjuntos","Funciones","Inducción","Ecuaciones lineales","Matrices"]}],bibComp:["Dodge, C. W. — Logic and Numbers. Weber & Schmidt, 1969.","Friedberg, Insel, Spence — Álgebra Lineal. Publicaciones Cultural, 1986.","Gentile, E. R. — Aritmética Elemental. OEA, 1985.","Grimaldi, R. P. — Matemáticas Discreta y Combinatoria. STE, 1998.","Grossman, S. I. — Álgebra Lineal. McGraw-Hill, 1996.","Halmos, P. R. — Teoría Intuitiva de los Conjuntos. Continental, 1973.","Hoffman & Kunze — Álgebra Lineal. Prentice Hall, 1973.","Lang, S. — Álgebra Lineal. STE, 1986.","Niven & Zuckerman — Introducción a la Teoría de los Números. Limusa-Wiley, 1969."],subsecuentes:["Álgebra Superior II","Cálculo Diferencial e Integral III","Taller de Modelación I"]},{id:"calculo_1",name:"Cálculo Diferencial e Integral I",clave:"0091",creditos:18,icon:"d2.jpg",temario:[{num:"1",name:"Introducción",horas:6,subtemas:["Los problemas que fundamentan al cálculo","Ejemplos"]},{num:"2",name:"Números reales",horas:15,subtemas:["Propiedades de los números enteros, racionales y reales y sus operaciones, desigualdades y valor absoluto","La propiedad de compleción de los números reales, expansiones decimales"]},{num:"3",name:"Funciones y sucesiones",horas:30,subtemas:["Definición, ejemplos, gráficas y propiedades elementales de las funciones","Sucesiones de números reales, sucesiones de Cauchy","Suma, producto y cociente de funciones y sucesiones","Composición de funciones. Funciones inversas"]},{num:"4",name:"Límite",horas:30,subtemas:["Definición y ejemplos de sucesiones convergentes","Criterios elementales para la convergencia de sucesiones","Límite de funciones","Definición, ejemplos y propiedades básicas del límite de una función","Límite de la suma, el producto y el cociente de funciones","Límites que involucran al infinito, asíntotas de curvas"]},{num:"5",name:"Continuidad",horas:22,subtemas:["Definición y propiedades de las funciones continuas en un punto","La continuidad y la composición","Funciones continuas en intervalos cerrados","Propiedades de las funciones continuas en intervalos cerrados: máximos, mínimos y teorema de valor intermedio"]},{num:"6",name:"Funciones derivables",horas:41,subtemas:["Razón de cambio y razón instantánea de cambio y velocidad","Tangentes de curvas","Definición y ejemplos del concepto de derivada","Relación entre la continuidad y la derivabilidad de una función","Suma, producto y cociente de funciones derivables","La regla de la cadena","Método de Newton y raíces de funciones. Derivada de la función inversa","Derivación implícita","Derivadas de orden superior","Aceleración","El Teorema del Valor Medio","Puntos críticos","Localización de puntos máximos y mínimos relativos","Problemas de optimización","Polinomios de Taylor y forma de Lagrange del residuo","La Regla de L'Hôpital"]}],bibBasicas:[{name:"Arizmendi, Carrillo, Lara — Cálculo. Primer Curso. Addison Wesley, 1987.",caps:["Introducción","Números reales","Funciones","Límite","Continuidad","Derivada"]},{name:"Spivak, M. — Cálculo Infinitesimal. Reverté, 1998.",caps:["Propiedades básicas de los números","Funciones","Límites","Continuidad","Derivación"]},{name:"Thomas & Finney — Cálculo con Geometría Analítica. Addison-Wesley, 1987.",caps:["Preliminares","Límites y continuidad","Derivadas","Aplicaciones de la derivada"]}],bibComp:["Apostol, T. M. — Calculus, Vol. I. Reverté, 2001.","Banach, S. — Cálculo Diferencial e Integral. UTEHA, 1991."],subsecuentes:["Cálculo Diferencial e Integral II","Taller de Modelación I"]},{id:"geo_analitica_1",name:"Geometría Analítica I",clave:"0244",creditos:10,icon:"d3.jpg",temario:[{num:"1",name:"Introducción",horas:10,subtemas:["Los conceptos geométricos elementales: distancia, simetría","Introducción de coordenadas cartesianas y el método analítico","Lugares geométricos del plano y el espacio"]},{num:"2",name:"Trigonometría",horas:15,subtemas:["Razones trigonométricas. El Teorema de Pitágoras","Resolución de triángulos. Congruencia. Semejanza","Funciones trigonométricas. Identidades trigonométricas","Coordenadas polares. Curvas paramétricas"]},{num:"3",name:"Espacios vectoriales básicos",horas:20,subtemas:["Definición y ejemplos de un espacio vectorial real","Subespacios vectoriales","Independencia lineal, base, dimensión","Producto escalar, producto vectorial, triple producto escalar"]},{num:"4",name:"Rectas, planos, semiplanos y semiespacios",horas:15,subtemas:["Ecuaciones de la recta en ℝ²","Rectas en ℝ³","Ecuaciones de un plano en ℝ³","Sistemas de ecuaciones lineales"]},{num:"5",name:"Cónicas",horas:20,subtemas:["Definición, trazado y nomenclatura","Ecuaciones canónicas","Rotaciones en ℝ². Clasificación","Definición general de cónica (excentricidad)"]}],bibBasicas:[{name:"Bracho, J. — Geometría Analítica. Notas.",caps:["Introducción","Trigonometría","Espacios vectoriales","Rectas y planos","Cónicas"]},{name:"Ramírez Galarza, A. — Geometría Analítica: Una Introducción. Las Prensas de Ciencias, 2004.",caps:["Geometría elemental","Trigonometría","Vectores","Recta y plano","Cónicas"]}],bibComp:["Eves, H. — Estudio de las Geometrías. UTEHA, 1969.","Hilbert & Cohn-Vossen — Geometry and the Imagination. UNAM, 2000."],subsecuentes:["Cálculo Diferencial e Integral II","Geometría Analítica II","Taller de Modelación I"]},{id:"geo_moderna_1",name:"Geometría Moderna I",clave:"0249",creditos:10,icon:"d16.jpg",temario:[{num:"1",name:"Geometría del triángulo",horas:25,subtemas:["Congruencia. Semejanza. Teorema de Tales. Teorema de Pitágoras","Circuncentro, incentro, excentros, ortocentro, baricentro","Recta de Euler","Triángulos pedales"]},{num:"2",name:"Circunferencia y cuadriláteros cíclicos",horas:15,subtemas:["Cuadriláteros cíclicos","Ángulos en la circunferencia","Teorema de Ptolomeo. Línea de Simson","Circunferencia de los nueve puntos"]},{num:"3",name:"Introducción a la geometría moderna",horas:30,subtemas:["Breve discusión sobre los postulados euclidianos","Puntos al infinito. División armónica","Homotecia: polígonos homotéticos"]},{num:"4",name:"Principales teoremas",horas:10,subtemas:["Teorema de Ceva. Teorema de Menelao","Teorema de Desargues","Teorema de Pascal"]}],bibBasicas:[{name:"Efimov, N. — Geometría Superior. MIR, 1984.",caps:["Geometría del triángulo","Circunferencia","Geometría moderna","Teoremas fundamentales"]},{name:"Shively, L. — Introducción a la Geometría Moderna. Continental, 1961.",caps:["Triángulo","Circunferencia","Geometría moderna","Teoremas de Ceva y Menelao"]}],bibComp:["Coxeter & Greitzer — Geometry Revisited. Random House, 1967."],subsecuentes:["Geometría Moderna II","Geometría Proyectiva"]}]},
@@ -634,575 +187,94 @@ const CURRICULUM=[
   {semestre:8,titulo:"Octavo Semestre",optativas:4,materias:[]}
 ];
 
-// ── STORAGE ──
 const SK_TEMA='mat_tema_v1',SK_BOOK='mat_book_v1',SK_COLLAPSED='mat_collapsed_v1',SK_OPTATIVAS='mat_optativas_v1';
 function loadDB(k){try{return JSON.parse(localStorage.getItem(k)||'{}')}catch{return{}}}
 function saveDB(k,d){localStorage.setItem(k,JSON.stringify(d))}
 let temaDB=loadDB(SK_TEMA),bookDB=loadDB(SK_BOOK),collapsedDB=loadDB(SK_COLLAPSED),optDB=loadDB(SK_OPTATIVAS);
-
 function getTemaDone(m,i){return temaDB[`${m}_${i}`]===true}
 function setTemaDone(m,i,v){temaDB[`${m}_${i}`]=v;saveDB(SK_TEMA,temaDB)}
 function getBookCaps(m,b){return bookDB[`${m}_${b}`]||[]}
 function setBookCaps(m,b,a){bookDB[`${m}_${b}`]=a;saveDB(SK_BOOK,bookDB)}
 function getTemaCollapsed(m,i){return collapsedDB[`${m}_${i}`]===true}
 function setTemaCollapsed(m,i,v){collapsedDB[`${m}_${i}`]=v;saveDB(SK_COLLAPSED,collapsedDB)}
-
-// optDB: { "sem_slotIdx": { name, creditos } }
 function getOptSlot(sem,slot){return optDB[`${sem}_${slot}`]||null}
 function setOptSlot(sem,slot,opt){optDB[`${sem}_${slot}`]=opt;saveDB(SK_OPTATIVAS,optDB)}
 function clearOptSlot(sem,slot){delete optDB[`${sem}_${slot}`];saveDB(SK_OPTATIVAS,optDB)}
 function getAllChosenOptNames(){return Object.values(optDB).filter(Boolean).map(o=>o.name)}
-
-// ── PROGRESS ──
-function getMateriaProgress(mat){
-  let t=0,d=0;
-  (mat.temario||[]).forEach((tema,i)=>{const h=tema.horas||((tema.subtemas||[]).length*2);t+=h;if(getTemaDone(mat.id,i))d+=h;});
-  return t===0?0:Math.min(100,Math.round(d/t*100));
-}
+function getMateriaProgress(mat){let t=0,d=0;(mat.temario||[]).forEach((tema,i)=>{const h=tema.horas||((tema.subtemas||[]).length*2);t+=h;if(getTemaDone(mat.id,i))d+=h;});return t===0?0:Math.min(100,Math.round(d/t*100));}
 function isComplete(mat){return getMateriaProgress(mat)===100}
-function getGlobalPct(){
-  const allMats=CURRICULUM.flatMap(s=>s.materias);
-  const done=allMats.filter(m=>isComplete(m)).reduce((s,m)=>s+m.creditos,0);
-  return Math.min(100,Math.round(done/TOTAL_CREDITOS*100));
-}
-function getSemPct(sem){
-  const tc=sem.materias.reduce((s,m)=>s+m.creditos,0);
-  if(!tc)return 0;
-  const dc=sem.materias.filter(m=>isComplete(m)).reduce((s,m)=>s+m.creditos,0);
-  return Math.min(100,Math.round(dc/tc*100));
-}
-
-// ── RENDER HELPERS ──
+function getGlobalPct(){const allMats=CURRICULUM.flatMap(s=>s.materias);const done=allMats.filter(m=>isComplete(m)).reduce((s,m)=>s+m.creditos,0);return Math.min(100,Math.round(done/TOTAL_CREDITOS*100));}
+function getSemPct(sem){const tc=sem.materias.reduce((s,m)=>s+m.creditos,0);if(!tc)return 0;const dc=sem.materias.filter(m=>isComplete(m)).reduce((s,m)=>s+m.creditos,0);return Math.min(100,Math.round(dc/tc*100));}
 function buildMateriaId(id){return `card-${id}`}
+function renderTemario(mat){if(!mat.temario||!mat.temario.length)return '<div style="padding:1rem;color:var(--ink3);font-size:12px;">Temario en construcción</div>';return mat.temario.map((t,i)=>{const done=getTemaDone(mat.id,i);const collapsed=done&&getTemaCollapsed(mat.id,i);const h=t.horas||((t.subtemas||[]).length*2);const subs=(t.subtemas||[]).map(s=>`<div class="subtema">${s}</div>`).join('');return `<div class="tema-item ${done?'done':''} ${collapsed?'collapsed':''}" id="tema-${mat.id}-${i}"><div class="tema-head" data-tema-toggle="${mat.id}-${i}"><div class="tema-head-left"><span class="tema-num">${t.num}</span><span class="tema-name">${t.name}</span></div><div class="tema-meta"><span class="tema-hrs-badge">${h}h</span><svg class="tema-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg><input class="tema-checkbox" type="checkbox" ${done?'checked':''} data-tema-check="${mat.id}" data-tema-idx="${i}" onclick="event.stopPropagation()"></div></div><div class="tema-subtemas">${subs}</div></div>`;}).join('');}
+function renderBiblio(mat){const books=(mat.bibBasicas||[]).map((bk,bi)=>{const caps=getBookCaps(mat.id,bi);const done=caps.filter(Boolean).length;const pct=bk.caps.length?Math.round(done/bk.caps.length*100):0;const chaps=bk.caps.map((c,ci)=>{const checked=caps[ci]===true;return `<div class="chap-item ${checked?'read':''}"><input class="cap-check" type="checkbox" ${checked?'checked':''} data-mid="${mat.id}" data-bi="${bi}" data-ci="${ci}"><span class="chap-label">${c}</span></div>`;}).join('');return `<div class="book-card" data-book="${mat.id}-${bi}"><div class="book-head" data-toggle-book="${mat.id}-${bi}"><div class="book-dot"></div><span class="book-name">${bk.name}</span><div class="book-right"><span class="book-pct-badge" data-book-pct="${mat.id}-${bi}">${pct}%</span><svg class="bk-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg></div></div><div class="book-prog-bar"><div class="book-prog-fill" data-book-bar="${mat.id}-${bi}" style="width:${pct}%"></div></div><div class="book-body"><div class="chapters-list" data-caps="${mat.id}-${bi}">${chaps}</div></div></div>`;}).join('');const comp=(mat.bibComp||[]).map(c=>`<div class="comp-entry">${c}</div>`).join('')||'<div class="comp-entry">Sin referencias complementarias</div>';return `<div class="sec-label">Bibliografía Básica</div><div style="padding:0 1rem">${books}</div><div class="comp-section" style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none" data-comp="${mat.id}"><div class="comp-toggle" data-toggle-comp="${mat.id}"><span class="comp-title">Complementaria · ${mat.bibComp?.length||0}</span><svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><polyline points="3,5 7,9 11,5"/></svg></div><div class="comp-body">${comp}</div></div>`;}
+function renderSubsecuentes(mat){const tags=(mat.subsecuentes||[]).map(name=>{const found=CURRICULUM.flatMap(s=>s.materias).find(m=>m.name===name);if(found)return `<span class="subsec-tag" data-nav="${found.id}">${name} <span class="subsec-tag-arrow">↗</span></span>`;return `<span class="subsec-tag no-link">${name}</span>`;}).join('');return `<div class="subsec-block"><div class="subsec-label">Materias Subsecuentes</div><div class="subsec-tags">${tags||'<span class="subsec-tag no-link">—</span>'}</div></div>`;}
+function renderCard(mat){const pct=getMateriaProgress(mat);const offset=107-(107*pct/100);return `<div class="card" id="${buildMateriaId(mat.id)}" data-materia="${mat.id}"><div class="card-head" data-toggle-card="${mat.id}"><div class="card-icon"><img src="${mat.icon||'https://img.icons8.com/fluency/48/book.png'}" alt="${mat.name}" onerror="this.src='https://img.icons8.com/fluency/48/book.png'"></div><div class="card-info"><div class="card-name">${mat.name}</div><div class="card-meta"><span class="meta-pill">Clave <b>${mat.clave}</b></span><span class="meta-pill"><b>${mat.creditos}</b> créditos</span></div></div><div style="display:flex;align-items:center;gap:0.5rem;flex-shrink:0;"><div class="circ-wrap"><svg class="circ-svg" viewBox="0 0 46 46"><circle class="circ-bg" cx="23" cy="23" r="17"/><circle class="circ-fg" cx="23" cy="23" r="17" style="stroke-dashoffset:${offset}"/></svg><span class="circ-num">${pct}%</span></div><svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5,7 10,13 15,7"/></svg></div></div><div class="card-body"><div class="tabs"><div class="tab active" data-tab-target="${mat.id}-temario">Temario</div><div class="tab" data-tab-target="${mat.id}-biblio">Bibliografía</div></div><div class="tab-panel active" id="${mat.id}-temario">${renderTemario(mat)}</div><div class="tab-panel" id="${mat.id}-biblio" style="padding:0">${renderBiblio(mat)}</div>${renderSubsecuentes(mat)}</div></div>`;}
 
-function renderTemario(mat){
-  if(!mat.temario||!mat.temario.length)return '<div style="padding:1rem;color:var(--ink3);font-size:12px;">Temario en construcción</div>';
-  return mat.temario.map((t,i)=>{
-    const done=getTemaDone(mat.id,i);
-    const collapsed=done&&getTemaCollapsed(mat.id,i);
-    const h=t.horas||((t.subtemas||[]).length*2);
-    const subs=(t.subtemas||[]).map(s=>`<div class="subtema">${s}</div>`).join('');
-    return `<div class="tema-item ${done?'done':''} ${collapsed?'collapsed':''}" id="tema-${mat.id}-${i}">
-      <div class="tema-head" data-tema-toggle="${mat.id}-${i}">
-        <div class="tema-head-left">
-          <span class="tema-num">${t.num}</span>
-          <span class="tema-name">${t.name}</span>
-        </div>
-        <div class="tema-meta">
-          <span class="tema-hrs-badge">${h}h</span>
-          <svg class="tema-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg>
-          <input class="tema-checkbox" type="checkbox" ${done?'checked':''} data-tema-check="${mat.id}" data-tema-idx="${i}" onclick="event.stopPropagation()">
-        </div>
-      </div>
-      <div class="tema-subtemas">${subs}</div>
-    </div>`;
-  }).join('');
-}
+const carouselState={};
+function getCarousel(sem){if(!carouselState[sem])carouselState[sem]={open:false,selectedIdx:0};return carouselState[sem];}
+function getAvailableOpts(sem){const pool=getOptativasPool(sem);const allChosen=getAllChosenOptNames();const thisSemChosen=[];const semObj=CURRICULUM.find(s=>s.semestre===sem);if(semObj){for(let i=0;i<(semObj.optativas||0);i++){const s=getOptSlot(sem,i);if(s)thisSemChosen.push(s.name);}}return pool.filter(o=>{if(!allChosen.includes(o.name))return true;return thisSemChosen.includes(o.name);});}
+function renderOptativaCarousel(sem){const cs=getCarousel(sem);const available=getAvailableOpts(sem);const total=available.length;const itemsHtml=available.map((o,i)=>{const mono=o.name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase().slice(0,2);return `<div class="opt-item${i===cs.selectedIdx?' selected':''}" data-opt-item="${sem}-${i}"><div class="opt-item-icon">${mono}</div><div class="opt-item-info"><div class="opt-item-name">${o.name}</div><div class="opt-item-meta"><span class="meta-pill">Optativa</span><span class="meta-pill"><b>${o.creditos}</b> créditos</span></div></div></div>`;}).join('');return `<div class="opt-carousel-wrap${cs.open?' open':''}" id="opt-carousel-${sem}"><div class="opt-carousel-inner"><div class="opt-carousel-viewport" id="opt-vp-${sem}"><div class="opt-carousel-list" id="opt-list-${sem}">${total?itemsHtml:'<div style="padding:1.5rem;text-align:center;color:var(--ink3);font-size:12px;">Sin opciones disponibles</div>'}</div></div><div class="opt-carousel-footer"><span class="opt-carousel-pos" id="opt-pos-${sem}">${total?`1 / ${total}`:'—'}</span><button class="opt-select-btn" data-opt-confirm="${sem}" ${!total?'disabled':''}>Añadir ＋</button></div></div></div>`;}
+function renderOptativaSlot(sem,slot){const chosen=getOptSlot(sem,slot);if(!chosen)return'';const mat={id:`opt_${sem}_${slot}`,name:chosen.name,clave:'OPT',creditos:chosen.creditos,icon:'',temario:[],bibBasicas:[],bibComp:[],subsecuentes:[]};const pct=getMateriaProgress(mat);const offset=107-(107*pct/100);const mono=chosen.name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase().slice(0,2);return `<div class="card" id="${buildMateriaId(mat.id)}" data-materia="${mat.id}"><div class="card-head" data-toggle-card="${mat.id}"><div class="card-icon" style="background:rgba(94,207,190,0.07);border:1px solid var(--border2);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--gold);">${mono}</div><div class="card-info"><div class="card-name">${mat.name}</div><div class="card-meta"><span class="meta-pill">Optativa</span><span class="meta-pill"><b>${mat.creditos}</b> créditos</span></div></div><div style="display:flex;align-items:center;gap:0.5rem;flex-shrink:0;"><div class="circ-wrap"><svg class="circ-svg" viewBox="0 0 46 46"><circle class="circ-bg" cx="23" cy="23" r="17"/><circle class="circ-fg" cx="23" cy="23" r="17" style="stroke-dashoffset:${offset}"/></svg><span class="circ-num">${pct}%</span></div><svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5,7 10,13 15,7"/></svg></div></div><div class="card-body"><div style="padding:1rem;color:var(--ink3);font-size:12px;text-align:center;font-family:'DM Mono',monospace;">· sin temario ·</div><div class="opt-change-row"><button class="opt-change-btn" data-opt-remove="${sem}-${slot}">Cambiar / Eliminar</button></div></div></div>`;}
+function renderSemester(sem,idx){const pct=getSemPct(sem);const tc=sem.materias.reduce((s,m)=>s+m.creditos,0);const optCount=sem.optativas||0;const chosenCards=[];for(let i=0;i<optCount;i++){chosenCards.push(renderOptativaSlot(sem.semestre,i));}const filledCount=chosenCards.filter(c=>c).length;const remainingSlots=optCount-filledCount;let addSection='';if(remainingSlots>0){const cs=getCarousel(sem.semestre);addSection=`<button class="add-optativa-btn${cs.open?' open':''}" data-toggle-carousel="${sem.semestre}"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="3,5 7,9 11,5"/></svg>Añadir optativa · ${remainingSlots} slot${remainingSlots>1?'s':''} disponible${remainingSlots>1?'s':''}</button>${renderOptativaCarousel(sem.semestre)}`;}let content='';if(sem.materias.length||optCount){const cards=sem.materias.map(renderCard).join('');content=`<div class="sem-grid">${cards}${chosenCards.join('')}</div>${addSection}`;}else{content=`<div class="empty-card">· · · por cursar · · ·</div>`;}const totalCreditos=tc+optCount*10;return `<section class="semester" id="semester-${sem.semestre}"><div class="sem-header"><span class="sem-title">${sem.titulo}</span>${totalCreditos?`<span class="sem-credits-badge">${totalCreditos} créditos</span>`:''}</div><div class="sem-prog-row"><div class="sem-bar-track"><div class="sem-bar-fill" id="sem-fill-${idx}" style="width:${pct}%"></div></div><span class="sem-pct" id="sem-pct-${idx}">${pct}%</span></div>${content}</section>`;}
 
-function renderBiblio(mat){
-  const books=(mat.bibBasicas||[]).map((bk,bi)=>{
-    const caps=getBookCaps(mat.id,bi);
-    const done=caps.filter(Boolean).length;
-    const pct=bk.caps.length?Math.round(done/bk.caps.length*100):0;
-    const chaps=bk.caps.map((c,ci)=>{
-      const checked=caps[ci]===true;
-      return `<div class="chap-item ${checked?'read':''}"><input class="cap-check" type="checkbox" ${checked?'checked':''} data-mid="${mat.id}" data-bi="${bi}" data-ci="${ci}"><span class="chap-label">${c}</span></div>`;
-    }).join('');
-    return `<div class="book-card" data-book="${mat.id}-${bi}">
-      <div class="book-head" data-toggle-book="${mat.id}-${bi}">
-        <div class="book-dot"></div><span class="book-name">${bk.name}</span>
-        <div class="book-right"><span class="book-pct-badge" data-book-pct="${mat.id}-${bi}">${pct}%</span>
-        <svg class="bk-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,5 7,9 11,5"/></svg></div>
-      </div>
-      <div class="book-prog-bar"><div class="book-prog-fill" data-book-bar="${mat.id}-${bi}" style="width:${pct}%"></div></div>
-      <div class="book-body"><div class="chapters-list" data-caps="${mat.id}-${bi}">${chaps}</div></div>
-    </div>`;
-  }).join('');
-  const comp=(mat.bibComp||[]).map(c=>`<div class="comp-entry">${c}</div>`).join('')||'<div class="comp-entry">Sin referencias complementarias</div>';
-  return `<div class="sec-label">Bibliografía Básica</div><div style="padding:0 1rem">${books}</div>
-    <div class="comp-section" style="margin:0;border-radius:0;border-left:none;border-right:none;border-bottom:none" data-comp="${mat.id}">
-      <div class="comp-toggle" data-toggle-comp="${mat.id}">
-        <span class="comp-title">Complementaria · ${mat.bibComp?.length||0}</span>
-        <svg class="comp-chev" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><polyline points="3,5 7,9 11,5"/></svg>
-      </div>
-      <div class="comp-body">${comp}</div>
-    </div>`;
-}
+function updateAllUI(){document.getElementById('global-pct').textContent=`${getGlobalPct()}%`;CURRICULUM.forEach((sem,i)=>{const pct=getSemPct(sem);const fb=document.getElementById(`sem-fill-${i}`);const fp=document.getElementById(`sem-pct-${i}`);if(fb)fb.style.width=`${pct}%`;if(fp)fp.textContent=`${pct}%`;sem.materias.forEach(mat=>{const p=getMateriaProgress(mat);const fg=document.querySelector(`#${buildMateriaId(mat.id)} .circ-fg`);if(fg)fg.style.strokeDashoffset=107-(107*p/100);const cn=document.querySelector(`#${buildMateriaId(mat.id)} .circ-num`);if(cn)cn.textContent=`${p}%`;});});CURRICULUM.flatMap(s=>s.materias).forEach(mat=>{(mat.bibBasicas||[]).forEach((bk,bi)=>{const caps=getBookCaps(mat.id,bi);const done=caps.filter(Boolean).length;const pct=bk.caps.length?Math.round(done/bk.caps.length*100):0;const pe=document.querySelector(`[data-book-pct="${mat.id}-${bi}"]`);const be=document.querySelector(`[data-book-bar="${mat.id}-${bi}"]`);if(pe)pe.textContent=`${pct}%`;if(be)be.style.width=`${pct}%`;});});}
+function rerenderSemester(semNum){const idx=CURRICULUM.findIndex(s=>s.semestre===semNum);if(idx<0)return;const sec=document.getElementById(`semester-${semNum}`);if(!sec)return;sec.outerHTML=renderSemester(CURRICULUM[idx],idx);}
 
-function renderSubsecuentes(mat){
-  const tags=(mat.subsecuentes||[]).map(name=>{
-    const found=CURRICULUM.flatMap(s=>s.materias).find(m=>m.name===name);
-    if(found)return `<span class="subsec-tag" data-nav="${found.id}">${name} <span class="subsec-tag-arrow">↗</span></span>`;
-    return `<span class="subsec-tag no-link">${name}</span>`;
-  }).join('');
-  return `<div class="subsec-block"><div class="subsec-label">Materias Subsecuentes</div><div class="subsec-tags">${tags||'<span class="subsec-tag no-link">—</span>'}</div></div>`;
-}
-
-function renderCard(mat){
-  const pct=getMateriaProgress(mat);
-  const offset=107-(107*pct/100);
-  return `<div class="card" id="${buildMateriaId(mat.id)}" data-materia="${mat.id}">
-    <div class="card-head" data-toggle-card="${mat.id}">
-      <div class="card-icon"><img src="${mat.icon||'https://img.icons8.com/fluency/48/book.png'}" alt="${mat.name}" onerror="this.src='https://img.icons8.com/fluency/48/book.png'"></div>
-      <div class="card-info">
-        <div class="card-name">${mat.name}</div>
-        <div class="card-meta">
-          <span class="meta-pill">Clave <b>${mat.clave}</b></span>
-          <span class="meta-pill"><b>${mat.creditos}</b> créditos</span>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:0.5rem;flex-shrink:0;">
-        <div class="circ-wrap">
-          <svg class="circ-svg" viewBox="0 0 46 46"><circle class="circ-bg" cx="23" cy="23" r="17"/><circle class="circ-fg" cx="23" cy="23" r="17" style="stroke-dashoffset:${offset}"/></svg>
-          <span class="circ-num">${pct}%</span>
-        </div>
-        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5,7 10,13 15,7"/></svg>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="tabs">
-        <div class="tab active" data-tab-target="${mat.id}-temario">Temario</div>
-        <div class="tab" data-tab-target="${mat.id}-biblio">Bibliografía</div>
-      </div>
-      <div class="tab-panel active" id="${mat.id}-temario">${renderTemario(mat)}</div>
-      <div class="tab-panel" id="${mat.id}-biblio" style="padding:0">${renderBiblio(mat)}</div>
-      ${renderSubsecuentes(mat)}
-    </div>
-  </div>`;
-}
-
-// ── OPTATIVA CAROUSEL (SCROLL MEJORADO) ──
-const carouselState = {};
-
-function getCarousel(sem){
-  if(!carouselState[sem]) carouselState[sem]={open:false,selectedIdx:0};
-  return carouselState[sem];
-}
-
-function getAvailableOpts(sem){
-  const pool = getOptativasPool(sem);
-  const allChosen = getAllChosenOptNames();
-  const thisSemChosen = [];
-  const semObj = CURRICULUM.find(s=>s.semestre===sem);
-  if(semObj){
-    for(let i=0;i<(semObj.optativas||0);i++){
-      const s=getOptSlot(sem,i);
-      if(s) thisSemChosen.push(s.name);
-    }
-  }
-  return pool.filter(o=>{
-    if(!allChosen.includes(o.name)) return true;
-    return thisSemChosen.includes(o.name);
-  });
-}
-
-// Función para hacer scroll al item seleccionado
-function scrollToSelectedItem(sem) {
-  const cs = getCarousel(sem);
-  const viewport = document.querySelector(`#opt-vp-${sem}`);
-  const list = document.querySelector(`#opt-list-${sem}`);
-  
-  if (!viewport || !list) return;
-  
-  const items = list.querySelectorAll('.opt-item');
-  if (!items.length) return;
-  
-  // Encontrar el item seleccionado
-  let selectedItem = null;
-  items.forEach(item => {
-    if (item.classList.contains('selected')) {
-      selectedItem = item;
-    }
-  });
-  
-  if (selectedItem) {
-    // Scroll suave al item seleccionado
-    selectedItem.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
-  }
-}
-
-function renderOptativaCarousel(sem){
-  const cs = getCarousel(sem);
-  const available = getAvailableOpts(sem);
-  const total = available.length;
-
-  const itemsHtml = available.map((o,i)=>{
-    const mono = o.name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase().slice(0,2);
-    return `<div class="opt-item${i===cs.selectedIdx?' selected':''}" data-opt-item="${sem}-${i}">
-      <div class="opt-item-icon">${mono}</div>
-      <div class="opt-item-info">
-        <div class="opt-item-name">${o.name}</div>
-        <div class="opt-item-meta">
-          <span class="meta-pill">Optativa</span>
-          <span class="meta-pill"><b>${o.creditos}</b> créditos</span>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-
-  return `<div class="opt-carousel-wrap${cs.open?' open':''}" id="opt-carousel-${sem}">
-    <div class="opt-carousel-inner">
-      <div class="opt-carousel-viewport" id="opt-vp-${sem}">
-        <div class="opt-carousel-list" id="opt-list-${sem}">
-          ${total ? itemsHtml : '<div style="padding:1.5rem;text-align:center;color:var(--ink3);font-size:12px;font-family:\'DM Mono\',monospace;">Sin opciones disponibles</div>'}
-        </div>
-      </div>
-      <div class="opt-carousel-footer">
-        <span class="opt-carousel-pos" id="opt-pos-${sem}">${total ? `1 / ${total}` : '—'}</span>
-        <button class="opt-select-btn" data-opt-confirm="${sem}" ${!total?'disabled':''}>Añadir ＋</button>
-      </div>
-    </div>
-  </div>`;
-}
-
-// Render selected optativa as full card
-function renderOptativaSlot(sem, slot){
-  const chosen = getOptSlot(sem, slot);
-  if(!chosen && false) return ''; // Slot vacío = no renderizar nada
-  if(!chosen) return ''; // Mostrar slot vacío
-
-  const mat = {
-    id:`opt_${sem}_${slot}`,
-    name:chosen.name,
-    clave:'OPT',
-    creditos:chosen.creditos,
-    icon:'',
-    temario:[],bibBasicas:[],bibComp:[],subsecuentes:[]
-  };
-  const pct = getMateriaProgress(mat);
-  const offset = 107-(107*pct/100);
-  const mono = chosen.name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase().slice(0,2);
-
-  return `<div class="card" id="${buildMateriaId(mat.id)}" data-materia="${mat.id}">
-    <div class="card-head" data-toggle-card="${mat.id}">
-      <div class="card-icon" style="background:rgba(94,207,190,0.07);border:1px solid var(--border2);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--gold);">${mono}</div>
-      <div class="card-info">
-        <div class="card-name">${mat.name}</div>
-        <div class="card-meta">
-          <span class="meta-pill">Optativa</span>
-          <span class="meta-pill"><b>${mat.creditos}</b> créditos</span>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:0.5rem;flex-shrink:0;">
-        <div class="circ-wrap">
-          <svg class="circ-svg" viewBox="0 0 46 46"><circle class="circ-bg" cx="23" cy="23" r="17"/><circle class="circ-fg" cx="23" cy="23" r="17" style="stroke-dashoffset:${offset}"/></svg>
-          <span class="circ-num">${pct}%</span>
-        </div>
-        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5,7 10,13 15,7"/></svg>
-      </div>
-    </div>
-    <div class="card-body">
-      <div style="padding:1rem;color:var(--ink3);font-size:12px;text-align:center;font-family:'DM Mono',monospace;">· sin temario ·</div>
-      <div class="opt-change-row">
-        <button class="opt-change-btn" data-opt-remove="${sem}-${slot}">Cambiar / Eliminar</button>
-      </div>
-    </div>
-  </div>`;
-}
-
-function renderSemester(sem,idx){
-  const pct=getSemPct(sem);
-  const tc=sem.materias.reduce((s,m)=>s+m.creditos,0);
-  const optCount=sem.optativas||0;
-
-  // Render already-chosen optativas as cards
-  const chosenCards = [];
-  for(let i=0;i<optCount;i++){
-    chosenCards.push(renderOptativaSlot(sem.semestre,i));
-  }
-
-  // Count remaining open slots
-  const filledCount = chosenCards.filter(c=>c).length;
-  const remainingSlots = optCount - filledCount;
-
-  // Add optativa button + carousel (only if there are open slots)
-  let addSection = '';
-  if(remainingSlots > 0){
-    const cs = getCarousel(sem.semestre);
-    addSection = `
-      <button class="add-optativa-btn${cs.open?' open':''}" data-toggle-carousel="${sem.semestre}">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="3,5 7,9 11,5"/></svg>
-        Añadir optativa · ${remainingSlots} slot${remainingSlots>1?'s':''} disponible${remainingSlots>1?'s':''}
-      </button>
-      ${renderOptativaCarousel(sem.semestre)}`;
-  }
-
-  let content = '';
-  if(sem.materias.length || optCount){
-    const cards = sem.materias.map(renderCard).join('');
-    content = `<div class="sem-grid">${cards}${chosenCards.join('')}</div>${addSection}`;
-  } else {
-    content = `<div class="empty-card">· · · por cursar · · ·</div>`;
-  }
-
-  const totalCreditos = tc + optCount*10;
-  return `<section class="semester" id="semester-${sem.semestre}">
-    <div class="sem-header">
-      <span class="sem-title">${sem.titulo}</span>
-      ${totalCreditos?`<span class="sem-credits-badge">${totalCreditos} créditos</span>`:''}
-    </div>
-    <div class="sem-prog-row">
-      <div class="sem-bar-track"><div class="sem-bar-fill" id="sem-fill-${idx}" style="width:${pct}%"></div></div>
-      <span class="sem-pct" id="sem-pct-${idx}">${pct}%</span>
-    </div>
-    ${content}
-  </section>`;
-}
-
-// ── UPDATE UI ──
-function updateAllUI(){
-  document.getElementById('global-pct').textContent=`${getGlobalPct()}%`;
-  CURRICULUM.forEach((sem,i)=>{
-    const pct=getSemPct(sem);
-    const fb=document.getElementById(`sem-fill-${i}`);
-    const fp=document.getElementById(`sem-pct-${i}`);
-    if(fb)fb.style.width=`${pct}%`;
-    if(fp)fp.textContent=`${pct}%`;
-    sem.materias.forEach(mat=>{
-      const p=getMateriaProgress(mat);
-      const fg=document.querySelector(`#${buildMateriaId(mat.id)} .circ-fg`);
-      if(fg)fg.style.strokeDashoffset=107-(107*p/100);
-      const cn=document.querySelector(`#${buildMateriaId(mat.id)} .circ-num`);
-      if(cn)cn.textContent=`${p}%`;
-    });
-  });
-  CURRICULUM.flatMap(s=>s.materias).forEach(mat=>{
-    (mat.bibBasicas||[]).forEach((bk,bi)=>{
-      const caps=getBookCaps(mat.id,bi);
-      const done=caps.filter(Boolean).length;
-      const pct=bk.caps.length?Math.round(done/bk.caps.length*100):0;
-      const pe=document.querySelector(`[data-book-pct="${mat.id}-${bi}"]`);
-      const be=document.querySelector(`[data-book-bar="${mat.id}-${bi}"]`);
-      if(pe)pe.textContent=`${pct}%`;
-      if(be)be.style.width=`${pct}%`;
-    });
-  });
-}
-
-function rerenderSemester(semNum){
-  const idx = CURRICULUM.findIndex(s=>s.semestre===semNum);
-  if(idx<0) return;
-  const sec = document.getElementById(`semester-${semNum}`);
-  if(!sec) return;
-  sec.outerHTML = renderSemester(CURRICULUM[idx], idx);
-  // Hacer scroll al item seleccionado después de renderizar
-  setTimeout(() => scrollToSelectedItem(semNum));
-}
-
-// ── INIT ──
 document.addEventListener('DOMContentLoaded',()=>{
+  // FIX: scroll al inicio al cargar
+  window.scrollTo(0,0);
   const root=document.getElementById('root');
   root.innerHTML=CURRICULUM.map((sem,i)=>renderSemester(sem,i)).join('');
 
-  // Hacer scroll a items seleccionados en carruseles abiertos
-  CURRICULUM.forEach(sem=>{
-    if(sem.optativas > 0){
-      setTimeout(() => scrollToSelectedItem(sem.semestre));
-    }
-  });
-
-  // Click delegation
   root.addEventListener('click',e=>{
-    // Toggle carousel open/close
     const tc2=e.target.closest('[data-toggle-carousel]');
-    if(tc2){
-      const sem=parseInt(tc2.dataset.toggleCarousel);
-      const cs=getCarousel(sem);
-      cs.open=!cs.open;
-      tc2.classList.toggle('open',cs.open);
-      const wrap=document.getElementById(`opt-carousel-${sem}`);
-      if(wrap) {
-        wrap.classList.toggle('open',cs.open);
-        if(cs.open){
-          // Hacer scroll al item seleccionado cuando se abre
-          setTimeout(() => scrollToSelectedItem(sem), 100);
-        }
-      }
-      return;
-    }
-
-    // Click on carousel item = select it
+    if(tc2){const sem=parseInt(tc2.dataset.toggleCarousel);const cs=getCarousel(sem);cs.open=!cs.open;tc2.classList.toggle('open',cs.open);const wrap=document.getElementById(`opt-carousel-${sem}`);if(wrap)wrap.classList.toggle('open',cs.open);return;}
     const oi=e.target.closest('[data-opt-item]');
-    if(oi){
-      const [sem,itemIdx] = oi.dataset.optItem.split('-').map(Number);
-      const cs=getCarousel(sem);
-      
-      // Deseleccionar el anterior
-      const prevSelected = oi.parentElement.querySelector('.opt-item.selected');
-      if(prevSelected) prevSelected.classList.remove('selected');
-      
-      // Seleccionar el nuevo
-      oi.classList.add('selected');
-      cs.selectedIdx = itemIdx;
-      
-      // Actualizar posición
-      const available = getAvailableOpts(sem);
-      const posEl = document.getElementById(`opt-pos-${sem}`);
-      if(posEl) posEl.textContent = `${itemIdx + 1} / ${available.length}`;
-      
-      // Hacer scroll suave al item
-      oi.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-      
-      return;
-    }
-
-    // Confirm selection
+    if(oi){const[sem,itemIdx]=oi.dataset.optItem.split('-').map(Number);const cs=getCarousel(sem);const prevSelected=oi.parentElement.querySelector('.opt-item.selected');if(prevSelected)prevSelected.classList.remove('selected');oi.classList.add('selected');cs.selectedIdx=itemIdx;const available=getAvailableOpts(sem);const posEl=document.getElementById(`opt-pos-${sem}`);if(posEl)posEl.textContent=`${itemIdx+1} / ${available.length}`;oi.scrollIntoView({behavior:'smooth',block:'center'});return;}
     const oc=e.target.closest('[data-opt-confirm]');
-    if(oc){
-      const sem=parseInt(oc.dataset.optConfirm);
-      const cs=getCarousel(sem);
-      const available=getAvailableOpts(sem);
-      const chosen=available[cs.selectedIdx];
-      if(!chosen) return;
-      
-      // Find first empty slot
-      const semObj=CURRICULUM.find(s=>s.semestre===sem);
-      let slot=-1;
-      for(let i=0;i<(semObj.optativas||0);i++){
-        if(!getOptSlot(sem,i)){slot=i;break;}
-      }
-      if(slot<0) return;
-      
-      setOptSlot(sem,slot,chosen);
-      cs.open=false;
-      cs.selectedIdx=0;
-      rerenderSemester(sem);
-      updateAllUI();
-      return;
-    }
-
-    // Remove/change optativa
+    if(oc){const sem=parseInt(oc.dataset.optConfirm);const cs=getCarousel(sem);const available=getAvailableOpts(sem);const chosen=available[cs.selectedIdx];if(!chosen)return;const semObj=CURRICULUM.find(s=>s.semestre===sem);let slot=-1;for(let i=0;i<(semObj.optativas||0);i++){if(!getOptSlot(sem,i)){slot=i;break;}}if(slot<0)return;setOptSlot(sem,slot,chosen);cs.open=false;cs.selectedIdx=0;rerenderSemester(sem);updateAllUI();return;}
     const orb=e.target.closest('[data-opt-remove]');
-    if(orb){
-      const [sem,slot]=orb.dataset.optRemove.split('-').map(Number);
-      clearOptSlot(sem,slot);
-      rerenderSemester(sem);
-      updateAllUI();
-      return;
-    }
-
-    // Card toggle
+    if(orb){const[sem,slot]=orb.dataset.optRemove.split('-').map(Number);clearOptSlot(sem,slot);rerenderSemester(sem);updateAllUI();return;}
     const ct=e.target.closest('[data-toggle-card]');
     if(ct){document.querySelector(`[data-materia="${ct.dataset.toggleCard}"]`)?.classList.toggle('open');return;}
-
-    // Tab
     const tab=e.target.closest('[data-tab-target]');
-    if(tab){
-      const tid=tab.dataset.tabTarget;
-      tab.closest('.tabs').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-      tab.classList.add('active');
-      tab.closest('.card-body').querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===tid));return;
-    }
-
-    // Tema collapse
+    if(tab){const tid=tab.dataset.tabTarget;tab.closest('.tabs').querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');tab.closest('.card-body').querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===tid));return;}
     const th=e.target.closest('[data-tema-toggle]');
-    if(th&&!e.target.closest('.tema-checkbox')){
-      const key=th.dataset.temaToggle;
-      const allIds=CURRICULUM.flatMap(s=>s.materias).map(m=>m.id);
-      let materiaId=null,temaIdx=null;
-      for(const id of allIds){if(key.startsWith(id+'-')){materiaId=id;temaIdx=parseInt(key.slice(id.length+1));break;}}
-      if(!materiaId)return;
-      const temaEl=document.getElementById(`tema-${materiaId}-${temaIdx}`);
-      if(!temaEl||!temaEl.classList.contains('done'))return;
-      const isCollapsed=temaEl.classList.contains('collapsed');
-      temaEl.classList.toggle('collapsed',!isCollapsed);
-      setTemaCollapsed(materiaId,temaIdx,!isCollapsed);return;
-    }
-
-    // Book toggle
+    if(th&&!e.target.closest('.tema-checkbox')){const key=th.dataset.temaToggle;const allIds=CURRICULUM.flatMap(s=>s.materias).map(m=>m.id);let materiaId=null,temaIdx=null;for(const id of allIds){if(key.startsWith(id+'-')){materiaId=id;temaIdx=parseInt(key.slice(id.length+1));break;}}if(!materiaId)return;const temaEl=document.getElementById(`tema-${materiaId}-${temaIdx}`);if(!temaEl||!temaEl.classList.contains('done'))return;const isCollapsed=temaEl.classList.contains('collapsed');temaEl.classList.toggle('collapsed',!isCollapsed);setTemaCollapsed(materiaId,temaIdx,!isCollapsed);return;}
     const bt=e.target.closest('[data-toggle-book]');
     if(bt){document.querySelector(`[data-book="${bt.dataset.toggleBook}"]`)?.classList.toggle('open');return;}
-
-    // Comp toggle
     const compt=e.target.closest('[data-toggle-comp]');
     if(compt){document.querySelector(`[data-comp="${compt.dataset.toggleComp}"]`)?.classList.toggle('open');return;}
-
-    // Navigate subsecuente
     const nav=e.target.closest('[data-nav]');
-    if(nav){
-      const mid=nav.dataset.nav;
-      const cardEl=document.getElementById(buildMateriaId(mid));
-      if(cardEl){
-        cardEl.classList.add('open');
-        setTimeout(()=>{
-          const head=cardEl.querySelector('.card-head');
-          const hh=document.querySelector('.header')?.offsetHeight||0;
-          window.scrollTo({top:(head||cardEl).getBoundingClientRect().top+window.scrollY-hh-12,behavior:'smooth'});
-          cardEl.classList.add('highlight-pulse');
-          setTimeout(()=>cardEl.classList.remove('highlight-pulse'),1600);
-        },100);
-      }
-    }
+    if(nav){const mid=nav.dataset.nav;const cardEl=document.getElementById(buildMateriaId(mid));if(cardEl){cardEl.classList.add('open');setTimeout(()=>{const head=cardEl.querySelector('.card-head');const hh=document.querySelector('.header')?.offsetHeight||0;window.scrollTo({top:(head||cardEl).getBoundingClientRect().top+window.scrollY-hh-12,behavior:'smooth'});cardEl.classList.add('highlight-pulse');setTimeout(()=>cardEl.classList.remove('highlight-pulse'),1600);},100);}}
   });
 
   root.addEventListener('change',e=>{
     const tc=e.target.closest('.tema-checkbox');
-    if(tc){
-      const mid=tc.dataset.temaCheck,ti=parseInt(tc.dataset.temaIdx),checked=tc.checked;
-      setTemaDone(mid,ti,checked);
-      const temaEl=document.getElementById(`tema-${mid}-${ti}`);
-      if(temaEl){temaEl.classList.toggle('done',checked);if(!checked){temaEl.classList.remove('collapsed');setTemaCollapsed(mid,ti,false);}}
-      updateAllUI();return;
-    }
+    if(tc){const mid=tc.dataset.temaCheck,ti=parseInt(tc.dataset.temaIdx),checked=tc.checked;setTemaDone(mid,ti,checked);const temaEl=document.getElementById(`tema-${mid}-${ti}`);if(temaEl){temaEl.classList.toggle('done',checked);if(!checked){temaEl.classList.remove('collapsed');setTemaCollapsed(mid,ti,false);}}updateAllUI();return;}
     const cc=e.target.closest('.cap-check');
-    if(cc){
-      const {mid,bi}=cc.dataset,biN=parseInt(bi);
-      const container=document.querySelector(`[data-caps="${mid}-${biN}"]`);
-      const allCaps=container.querySelectorAll('.cap-check');
-      const states=Array.from(allCaps).map(cb=>cb.checked);
-      setBookCaps(mid,biN,states);
-      allCaps.forEach(cb=>cb.closest('.chap-item')?.classList.toggle('read',cb.checked));
-      updateAllUI();
-    }
+    if(cc){const{mid,bi}=cc.dataset,biN=parseInt(bi);const container=document.querySelector(`[data-caps="${mid}-${biN}"]`);const allCaps=container.querySelectorAll('.cap-check');const states=Array.from(allCaps).map(cb=>cb.checked);setBookCaps(mid,biN,states);allCaps.forEach(cb=>cb.closest('.chap-item')?.classList.toggle('read',cb.checked));updateAllUI();}
   });
 
-  // Evento de scroll en viewports para actualizar posición
-  document.querySelectorAll('.opt-carousel-viewport').forEach(vp => {
-    vp.addEventListener('scroll', () => {
-      const sem = parseInt(vp.id.replace('opt-vp-', ''));
-      const items = vp.querySelectorAll('.opt-item');
-      if (!items.length) return;
-      
-      // Encontrar el item más cercano al centro del viewport
-      const vpRect = vp.getBoundingClientRect();
-      const vpCenter = vpRect.top + vpRect.height / 2;
-      
-      let closestIdx = 0;
-      let closestDist = Infinity;
-      
-      items.forEach((item, i) => {
-        const itemRect = item.getBoundingClientRect();
-        const itemCenter = itemRect.top + itemRect.height / 2;
-        const dist = Math.abs(itemCenter - vpCenter);
-        
-        if (dist < closestDist) {
-          closestDist = dist;
-          closestIdx = i;
-        }
-      });
-      
-      // Actualizar estado
-      const cs = getCarousel(sem);
-      cs.selectedIdx = closestIdx;
-      
-      // Actualizar visualización
-      items.forEach((item, i) => {
-        item.classList.toggle('selected', i === closestIdx);
-      });
-      
-      const available = getAvailableOpts(sem);
-      const posEl = document.getElementById(`opt-pos-${sem}`);
-      if(posEl) posEl.textContent = `${closestIdx + 1} / ${available.length}`;
+  document.querySelectorAll('.opt-carousel-viewport').forEach(vp=>{
+    vp.addEventListener('scroll',()=>{
+      const sem=parseInt(vp.id.replace('opt-vp-',''));
+      const items=vp.querySelectorAll('.opt-item');
+      if(!items.length)return;
+      const vpRect=vp.getBoundingClientRect();
+      const vpCenter=vpRect.top+vpRect.height/2;
+      let closestIdx=0,closestDist=Infinity;
+      items.forEach((item,i)=>{const itemRect=item.getBoundingClientRect();const itemCenter=itemRect.top+itemRect.height/2;const dist=Math.abs(itemCenter-vpCenter);if(dist<closestDist){closestDist=dist;closestIdx=i;}});
+      const cs=getCarousel(sem);
+      cs.selectedIdx=closestIdx;
+      items.forEach((item,i)=>item.classList.toggle('selected',i===closestIdx));
+      const available=getAvailableOpts(sem);
+      const posEl=document.getElementById(`opt-pos-${sem}`);
+      if(posEl)posEl.textContent=`${closestIdx+1} / ${available.length}`;
     });
   });
 });
-
 </script>
 </body>
 </html>
