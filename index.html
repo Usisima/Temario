@@ -1022,7 +1022,7 @@ font-weight: bold;
 width: 44px;
 height: 44px;
 border-radius: var(--r2);
-background: rgba(94, 207, 190, 0.07);
+background: rgba(96, 94, 207, 0.07);
 border: 1px solid var(--border2);
 display: flex;
 align-items: center;
@@ -1054,8 +1054,8 @@ text-overflow: ellipsis;
 .opt-item-meta {
 display: flex;
 flex-wrap: wrap;
-gap: 0.3rem;
 margin-top: 0.35rem;
+gap: 0.3rem;
 }
 
 .opt-carousel-footer {
@@ -2954,9 +2954,8 @@ function renderOptativaSlot(sem, slot) {
 
   // Build icon html (initials box instead of img)
   const iconHtml = enriched.icon
-    ? `<div style="width:44px;height:44px;border-radius:var(--r2);overflow:hidden;flex-shrink:0;border:1px solid var(--border2);"><img src="${enriched.icon}" alt="${enriched.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='<span style=\'display:flex;width:100%;height:100%;align-items:center;justify-content:center;background:rgba(94,207,190,0.07);font-family:Playfair Display,serif;font-size:1.05rem;font-weight:900;color:var(--gold);\'>${mono}</span>'"></div>`
-    : `<div style="width:44px;height:44px;background:rgba(94,207,190,0.07);border:1px solid var(--border2);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--gold);flex-shrink:0;">${mono}</div>`;
-
+    ? `<div style="width:44px;height:44px;border-radius:0;overflow:hidden;flex-shrink:0;border:0;"><img src="${enriched.icon}" alt="${enriched.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='<span style=\'display:flex;width:100%;height:100%;align-items:center;justify-content:center;background:rgba(94,207,190,0.07);font-family:Playfair Display,serif;font-size:1.05rem;font-weight:900;color:var(--gold);\'>${mono}</span>'"></div>`
+    : `<div style="width:44px;height:44px;background:rgba(94,207,190,0.07);border:0;border-radius:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;color:var(--gold);flex-shrink:0;">${mono}</div>`;
   // Reuse existing render helpers
   const temarioHtml = renderTemario(mat);
   const biblioHtml = renderBiblio(mat);
